@@ -1,6 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const minify = {
+  swcMinify: true,
+};
 
-module.exports = nextConfig
+const final = {
+  minify,
+
+  images: {
+    domains: ['geekspot.azurewebsites.net'],
+  }
+};
+
+module.exports = final;
