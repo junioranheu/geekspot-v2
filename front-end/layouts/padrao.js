@@ -46,7 +46,7 @@ export default function Padrao({ Component, pageProps }) {
             {/* <Navbar1 />
             <Navbar2 /> */}
 
-            <section className='secaoPrincipal'>
+            <section className='sessaoPrincipal'>
                 <section className={`${efeitoAnimar}`}>
                     <Component {...pageProps} />
                 </section>

@@ -6,7 +6,7 @@ const final = {
   minify,
 
   images: {
-    domains: ['geekspot.azurewebsites.net'],
+    domains: ['geekspot.azurewebsites.net', 'photos.enjoei.com.br'],
   }
 };
 

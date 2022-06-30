@@ -1,4 +1,11 @@
-.aea{
+.containerWidgets {
     background-color: red;
-    /* color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.containerWidgets img {
+    border-radius: 10px;
 }

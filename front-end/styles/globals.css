@@ -36,7 +36,22 @@ html, body {
     /* Definir tamanho mínimo para a tela para fixar o footer corretamente */
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
+}
+
+.sessaoPrincipal {
+    /* background-color: pink; */
+    background-color: var(--branco);
+
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+
+    width: 70vw;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -102,13 +117,13 @@ a {
 
 .opacidade-hover:hover {
     opacity: 1;
-    color: var(--branco);
+    color: var(--preto);
     transition: opacity .2s;
 }
 
 .opacidade-baixa-hover:hover {
     opacity: 0.6;
-    color: var(--branco);
+    color: var(--preto);
     transition: opacity .2s;
 }
 
@@ -127,20 +142,6 @@ a {
     transform: rotate(-4deg) translateY(2px);
     -webkit-transform-origin: 0 100%;
     transform-origin: 0 100%;
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=- Layout =-=-=-=-=-=-=-=-=-=-=-=- */
-.secaoPrincipal {
-    background-color: var(--preto);
- 
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-
-    width: 100vw;
-    min-height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 /* =-=-=-=-=-=-=-=-= Input "padrão" =-=-=-=-=-=-=-=-= */
@@ -194,7 +195,7 @@ select:focus {
     -webkit-appearance: textfield;
     appearance: textfield;
     background: transparent;
-    color: var(--branco);
+    color: var(--preto);
     font-family: inherit;
     font-size: 2.5rem;
     font-weight: 500;
@@ -263,37 +264,20 @@ select:focus {
 
 /* Títulos e textos */
 .titulo {
-    color: var(--branco);
-    font-size: 4rem;
+    color: var(--preto);
+    font-size: 2rem;
     font-weight: 600;
-    line-height: 70px;
-}
-
-.tituloDesc {
-    color: var(--branco);
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: -.014em;
+    line-height: 2.5rem;
 }
 
 .texto {
-    color: var(--branco);
+    color: var(--preto);
     font-size: 1.25rem;
     font-weight: 400;
     letter-spacing: -.012em;
     line-height: 1.3;
 
     opacity: 0.9;
-}
-
-.topico {
-    color: var(--branco);
-    font-size: 2.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -.036em;
-    cursor: pointer;
 }
 
 .efeitoTexto {
@@ -305,18 +289,6 @@ select:focus {
 
     font-size: 0.75em;
     font-weight: 400;
-}
-
-.efeitoTextoGrande {
-    padding: 1.8em;
-    background: var(--cinza);
-    border-radius: 0.4em;
-
-    color: var(--branco);
-    font-size: 1.2rem;
-    font-weight: 500;
-    opacity: 0.9;
-    line-height: 1.5;
 }
 
 .grifar {
@@ -344,7 +316,7 @@ select:focus {
     margin: 0;
     background: var(--cor-principal-gradient);
     border-radius: 12px;
-    color: var(--branco);
+    color: var(--preto);
     cursor: pointer;
     font: inherit;
     font-size: 15px;
@@ -363,7 +335,7 @@ select:focus {
 }
 
 .botao:disabled, .botao[disabled] {
-    background-color: var(--branco);
+    background-color: var(--preto);
     color: var(--preto);
     opacity: 0.5;
     cursor: not-allowed;
@@ -371,7 +343,7 @@ select:focus {
 
 /* =-=-=-=-=-=-=-=-=-=-= Tag =-=-=-=-=-=-=-=-=-=-= */
 .tag {
-    color: var(--branco);
+    color: var(--preto);
     background: var(--cor-principal-gradient);
     padding: 5px 10px 5px;
     border-radius: 5px;
@@ -404,34 +376,34 @@ select:focus {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Margens =-=-=-=-=-=-=-=-=-=-= */
+.margem1 {
+    margin-top: 1rem;
+}
+
+.margem2 {
+    margin-top: 1.5rem;
+}
+
+.margem3 {
+    margin-top: 2rem;
+}
+
+.margem4 {
+    margin-top: 2.5rem;
+}
+
 .margem5 {
-    margin-top: 5px;
+    margin-top: 3rem;
 }
 
-.margem10 {
-    margin-top: 10px;
-}
-
-.margem20 {
-    margin-top: 20px;
-}
-
-.margem30 {
-    margin-top: 30px;
-}
-
-.margem40 {
-    margin-top: 40px;
-}
-
-.margem50 {
-    margin-top: 50px;
+.margem6 {
+    margin-top: 3.5rem;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Padding =-=-=-=-=-=-=-=-=-=-= */
 .paddingPadrao {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Outros =-=-=-=-=-=-=-=-=-=-= */
@@ -460,38 +432,9 @@ select:focus {
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
-    .secaoPrincipal {
-        /* background-color: pink; */
-        display: flex;
-        flex-direction: column;
-    }
-
-    .secaoPrincipal aside {
-        /* background-color: pink; */
-        width: 100vw;
-        height: 40px;
-        padding: 0rem;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        border-right: none;
-        border-bottom: 1px solid var(--cor-border-hr);
-    }
-
-    .secaoPrincipal main {
-        /* background-color: blue !important; */
-        width: 100vw;
-    }
-
-    .topico:before {
-        display: none !important;
-    }
-
     .paddingPadrao {
-        padding-left: 3rem;
-        padding-right: 3rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 }
 
@@ -503,20 +446,6 @@ select:focus {
     .titulo {
         font-size: 3rem;
         line-height: 70px;
-    }
-
-    .topico {
-        cursor: auto;
-    }
-
-    .card {
-        width: 50vh !important;
-    }
-
-    .secaoPrincipal aside {
-        /* background-color: pink; */
-        min-height: 40px;
-        height: fit-content;
     }
 
     .paddingPadrao {
@@ -537,11 +466,6 @@ select:focus {
 
     .inputFiltro {
         font-size: 1.5rem;
-    }
-
-    /* Ajustar os margem50 em todas as view "padrões" */
-    .margem50 {
-        margin-top: 10px;
     }
 }
 
