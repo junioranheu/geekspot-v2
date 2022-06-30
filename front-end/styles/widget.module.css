@@ -3,12 +3,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
     gap: 1.5rem;
 }
 
 .containerWidgets img {
     border-radius: 10px;
+}
+
+.divGrupoImagens {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */

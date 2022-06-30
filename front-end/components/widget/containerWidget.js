@@ -5,11 +5,8 @@ import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
 
 export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
-
-    function setarTamanhoImagem(tamanho) {
-        const res = tamanho === 1 ? 250 : 450;
-        return res;
-    }
+    const tamanhoGrande = 1050;
+    const tamanhoPequeno = 500;
 
     return (
         <div className='flexColumn'>
@@ -18,15 +15,41 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
 
             <div className={`margem1 ${Styles.containerWidgets}`}>
                 {
-                    listaWidgets?.map((item, i) => (
+                    listaWidgets?.slice(0, 6).map((item, i) => (
                         <Fragment key={item.id}>
-                            <Image
-                                src={item.imagem}
-                                width={setarTamanhoImagem(item.tamanho)}
-                                height={setarTamanhoImagem(item.tamanho)}
-                                onError={() => setSrc(ImgCinza)}
-                                alt=''
-                            />
+                            {
+                                item.tamanho === 2 ? (
+                                    // Tamanho grande
+                                    <Image
+                                        src={item.imagem}
+                                        width={tamanhoGrande}
+                                        height={tamanhoGrande}
+                                        onError={() => setSrc(ImgCinza)}
+                                        alt=''
+                                    />
+                                ) : (
+                                    // Tamanho pequeno;
+                                    listaWidgets[i + 1] && listaWidgets[i + 1]?.tamanho === 1 && (
+                                        <div className={Styles.divGrupoImagens}>
+                                            <Image
+                                                src={item.imagem}
+                                                width={tamanhoPequeno}
+                                                height={tamanhoPequeno}
+                                                onError={() => setSrc(ImgCinza)}
+                                                alt=''
+                                            />
+
+                                            <Image
+                                                src={listaWidgets[i + 1].imagem}
+                                                width={tamanhoPequeno}
+                                                height={tamanhoPequeno}
+                                                onError={() => setSrc(ImgCinza)}
+                                                alt=''
+                                            />
+                                        </div>
+                                    )
+                                )
+                            }
                         </Fragment>
                     ))
                 }
