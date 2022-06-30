@@ -3,10 +3,11 @@ import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
+import Seta from '../svg/seta';
 
 export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
-    const tamanhoGrande = 366;
-    const tamanhoPequeno = 176;
+    const tamanhoGrande = 406;
+    const tamanhoPequeno = 196;
 
     const [ordemTamanhosImagens, setOrdemTamanhosImagens] = useState([]);
     useEffect(() => {
@@ -74,10 +75,26 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         );
     }
 
+    function fraseAleatoria() {
+        const frases = ['aqui', 'ver tudo', 'quero', 'muito mais aqui', 'corre aqui', 'é aqui', 'imperdível', 'chic', 'muito chic', 'iti malia', 'ver agora', 'é agora'];
+
+        const random = Math.floor(Math.random() * frases.length);
+        return frases[random];
+    }
+
     return (
         <div className='flexColumn margem6'>
-            <b className='titulo'>{titulo}</b>
-            <span className='texto'>{descricao}</span>
+            <div className='flexRow'>
+                <div className='flexColumn'>
+                    <b className='titulo'>{titulo}</b>
+                    <span className='texto'>{descricao}</span>
+                </div>
+
+                <div className={Styles.infoDireita}>
+                    {fraseAleatoria()}
+                    <Seta width='1rem' />
+                </div>
+            </div>
 
             <div className={`margem1 ${Styles.containerWidgets}`}>
                 {

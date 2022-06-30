@@ -52,6 +52,14 @@
     letter-spacing: -.012em;
 }
 
+.infoDireita{
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
 .divGrupoImagens {
     /* background-color: red; */
     display: flex;

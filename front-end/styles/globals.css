@@ -260,6 +260,12 @@ select:focus {
     flex-direction: column;
 }
 
+.flexRow {
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: row;
+}
+
 .flexCenter {
     /* background-color: pink; */
     display: flex;
