@@ -62,7 +62,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
     }, [listaWidgets.length]);
 
     return (
-        <div className='flexColumn margem6'>
+        <div className='flexColumn margem4'>
             <b className='titulo'>{titulo}</b>
             <span className='texto'>{descricao}</span>
 
@@ -73,32 +73,44 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
                                     // Tamanho grande
-                                    <Image
-                                        src={item.imagem}
-                                        width={tamanhoGrande}
-                                        height={tamanhoGrande}
-                                        onError={() => setSrc(ImgCinza)}
-                                        alt=''
-                                    />
+                                    <div className={Styles.wrapImagem}>
+                                        <Image
+                                            src={item.imagem}
+                                            width={tamanhoGrande}
+                                            height={tamanhoGrande}
+                                            onError={() => setSrc(ImgCinza)}
+                                            alt=''
+                                        />
+
+                                        <span className={Styles.infoBottomLeft}>{item.preco}</span>
+                                    </div>
                                 ) : (
                                     // Tamanho pequeno;
                                     listaWidgets[i + 1] && ordemTamanhosImagens[i + 1] === 0 && (
                                         <div className={Styles.divGrupoImagens}>
-                                            <Image
-                                                src={item.imagem}
-                                                width={tamanhoPequeno}
-                                                height={tamanhoPequeno}
-                                                onError={() => setSrc(ImgCinza)}
-                                                alt=''
-                                            />
+                                            <div className={Styles.wrapImagem}>
+                                                <Image
+                                                    src={item.imagem}
+                                                    width={tamanhoPequeno}
+                                                    height={tamanhoPequeno}
+                                                    onError={() => setSrc(ImgCinza)}
+                                                    alt=''
+                                                />
 
-                                            <Image
-                                                src={listaWidgets[i + 1].imagem}
-                                                width={tamanhoPequeno}
-                                                height={tamanhoPequeno}
-                                                onError={() => setSrc(ImgCinza)}
-                                                alt=''
-                                            />
+                                                <span className={Styles.infoBottomLeft}>{item.preco}</span>
+                                            </div>
+
+                                            <div className={Styles.wrapImagem}>
+                                                <Image
+                                                    src={listaWidgets[i + 1].imagem}
+                                                    width={tamanhoPequeno}
+                                                    height={tamanhoPequeno}
+                                                    onError={() => setSrc(ImgCinza)}
+                                                    alt=''
+                                                />
+
+                                                <span className={Styles.infoBottomLeft}>{listaWidgets[i + 1].preco}</span>
+                                            </div>
                                         </div>
                                     )
                                 )

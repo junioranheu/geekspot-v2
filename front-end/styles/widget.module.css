@@ -8,6 +8,30 @@
 
 .containerWidgets img {
     border-radius: 10px;
+    cursor: pointer;
+    filter: grayscale(35%) blur(0.5px);
+    transition: 1s ease-in-out;
+}
+
+.containerWidgets img:hover {
+    filter: grayscale(0%) blur(0px) contrast(101%);
+    /* transform: scale(1.01); */
+    transition: 0.5s ease-in-out;
+}
+
+.wrapImagem {
+    /* background-color: pink; */
+    position: relative;
+    display: flex;
+}
+
+.infoBottomLeft {
+    background-color: red;
+    position: absolute;
+
+    left: 0.7rem;
+    bottom: 0.7rem;
+    z-index: 999;
 }
 
 .divGrupoImagens {
@@ -33,7 +57,7 @@
 
     .divGrupoImagens {
         /* background-color: red; */
-        flex-direction:row;
+        flex-direction: row;
     }
 }
 
