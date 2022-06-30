@@ -61,8 +61,21 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         setOrdemTamanhosImagens(ordens);
     }, [listaWidgets.length]);
 
+    function definirPreco(preco, precoDesconto) {
+        let precoFinal = `R$ ${preco}`;
+
+        if (precoDesconto) {
+            precoFinal = `<span style="color: var(--cor-principal);">R$ ${precoDesconto}</span> 
+                          <span style="text-decoration: line-through;">R$ ${preco}</span>`;
+        }
+
+        return (
+            <div dangerouslySetInnerHTML={{ __html: precoFinal }} />
+        );
+    }
+
     return (
-        <div className='flexColumn margem4'>
+        <div className='flexColumn margem6'>
             <b className='titulo'>{titulo}</b>
             <span className='texto'>{descricao}</span>
 
@@ -72,8 +85,8 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                         <Fragment key={item.id}>
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
-                                    // Tamanho grande
-                                    <div className={Styles.wrapImagem}>
+                                    // Tamanho grande;
+                                    <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`}>
                                         <Image
                                             src={item.imagem}
                                             width={tamanhoGrande}
@@ -82,7 +95,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                             alt=''
                                         />
 
-                                        <span className={Styles.infoBottomLeft}>{item.preco}</span>
+                                        <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                                     </div>
                                 ) : (
                                     // Tamanho pequeno;
@@ -97,7 +110,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                                     alt=''
                                                 />
 
-                                                <span className={Styles.infoBottomLeft}>{item.preco}</span>
+                                                <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                                             </div>
 
                                             <div className={Styles.wrapImagem}>
@@ -109,7 +122,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                                     alt=''
                                                 />
 
-                                                <span className={Styles.infoBottomLeft}>{listaWidgets[i + 1].preco}</span>
+                                                <span className={Styles.infoBottomLeft}>{definirPreco(listaWidgets[i + 1]?.preco, listaWidgets[i + 1]?.precoDesconto)}</span>
                                             </div>
                                         </div>
                                     )
