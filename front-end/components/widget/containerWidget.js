@@ -65,7 +65,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         let precoFinal = `R$ ${preco}`;
 
         if (precoDesconto) {
-            precoFinal = `<span style="color: var(--cor-principal);">R$ ${precoDesconto}</span> 
+            precoFinal = `<b style="color: var(--cor-principal);">R$ ${precoDesconto}</b> 
                           <span style="text-decoration: line-through;">R$ ${preco}</span>`;
         }
 

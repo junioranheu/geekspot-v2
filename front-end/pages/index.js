@@ -18,6 +18,7 @@ export default function Home() {
             { id: 9, nome: 'i', preco: '90', precoDesconto: '30', url: 'x', imagem: 'https://photos.enjoei.com.br/public/500x500/czM6Ly9waG90b3MuZW5qb2VpLmNvbS5ici9wcm9kdWN0cy8yMzYxMzg0OS80OGZlMWFlNTdiYzZlNzA4Yjk0MjhiZTZmZmZlNzdiMi5qcGc' },
             { id: 10, nome: 'j', preco: '100', precoDesconto: '', url: 'x', imagem: 'https://photos.enjoei.com.br/public/500x500/czM6Ly9waG90b3MuZW5qb2VpLmNvbS5ici9wcm9kdWN0cy8xODU1MjAvMmQ0MWI1NDQ4MjU0MTI1MGI0MGVlZmNjZDAzYTY1MzQuanBn' },
             { id: 11, nome: 'k', preco: '110', precoDesconto: '5', url: 'x', imagem: 'https://photos.enjoei.com.br/public/500x500/czM6Ly9waG90b3MuZW5qb2VpLmNvbS5ici9wcm9kdWN0cy8yMzYxMzg0OS83NDZmOTQ1YzkyZjBlMmRjYzc4Y2ZlNGI1ZDQxYzBkMi5qcGc' },
+            { id: 12, nome: 'k', preco: '1099', precoDesconto: '0.99', url: 'x', imagem: 'https://cdn.discordapp.com/attachments/985572242698145833/992192366255558788/Gorda.jpg' }
         ]
     ];
 
