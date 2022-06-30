@@ -1,5 +1,5 @@
 .containerWidgets {
-    background-color: pink;
+    /* background-color: pink; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +29,11 @@
     .containerWidgets {
         /* background-color: pink; */
         flex-direction: column;
+    }
+
+    .divGrupoImagens {
+        /* background-color: red; */
+        flex-direction:row;
     }
 }
 

@@ -5,11 +5,11 @@ import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
 
 export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
-    const tamanhoGrande = 1050;
-    const tamanhoPequeno = 500;
+    const tamanhoGrande = 366;
+    const tamanhoPequeno = 176;
 
     return (
-        <div className='flexColumn'>
+        <div className='flexColumn margem6'>
             <b className='titulo'>{titulo}</b>
             <span className='texto'>{descricao}</span>
 
@@ -47,7 +47,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                                 alt=''
                                             />
                                         </div>
-                                    )
+                                    ) 
                                 )
                             }
                         </Fragment>
