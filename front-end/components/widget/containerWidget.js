@@ -5,6 +5,12 @@ import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
 
 export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
+
+    function setarTamanhoImagem(tamanho) {
+        const res = tamanho === 1 ? 250 : 450;
+        return res;
+    }
+
     return (
         <div className='flexColumn'>
             <b className='titulo'>{titulo}</b>
@@ -13,21 +19,14 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
             <div className={`margem1 ${Styles.containerWidgets}`}>
                 {
                     listaWidgets?.map((item, i) => (
-                        <Fragment>
-                            {/* <span>{item.nome}</span> */}
-
-                            {
-                                item.imagem && (
-                                    <Image
-                                        className={Styles.thumb}
-                                        src={item.imagem}
-                                        width={200}
-                                        height={200}
-                                        onError={() => setSrc(ImgCinza)}
-                                        alt=''
-                                    />
-                                )
-                            }
+                        <Fragment key={item.id}>
+                            <Image
+                                src={item.imagem}
+                                width={setarTamanhoImagem(item.tamanho)}
+                                height={setarTamanhoImagem(item.tamanho)}
+                                onError={() => setSrc(ImgCinza)}
+                                alt=''
+                            />
                         </Fragment>
                     ))
                 }
