@@ -82,7 +82,16 @@ a {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+}
+
+img {
+    /* Desabilitar "select" nas imagens */
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .pointer {
@@ -448,7 +457,6 @@ select:focus {
 @media (max-width:801px) {
     .titulo {
         font-size: 3rem;
-        line-height: 70px;
     }
 
     .paddingPadrao {
