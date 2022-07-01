@@ -52,7 +52,7 @@
     letter-spacing: -.012em;
 }
 
-.infoDireita{
+.infoDireita {
     /* background-color: red; */
     display: flex;
     justify-content: center;
@@ -83,14 +83,19 @@
         flex-direction: column;
         gap: 1rem;
         width: 100%;
+    }
 
-        /* Gambi */
-        max-width: 60%;
+    .containerWidgets img {
+        width: 100vw !important;
     }
 
     .divGrupoImagens {
         /* background-color: red; */
         flex-direction: row;
+    }
+
+    .infoDireita {
+        display: none;
     }
 }
 
