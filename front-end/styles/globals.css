@@ -183,6 +183,15 @@ img {
     border-bottom: 1px solid #bababa;
 }
 
+.backgroundBlur {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    pointer-events: none !important;
+}
+
 /* =-=-=-=-=-=-=-=-= Input "padrão" =-=-=-=-=-=-=-=-= */
 .input {
     font-size: 16px;

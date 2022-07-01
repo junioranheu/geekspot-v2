@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Styles from '../../styles/navbarMobile.module.css';
 import Geekspot from '../svg/geekspot';
 import Hamburguer from '../svg/hamburguer';
@@ -20,6 +20,28 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }) {
     function handleHamburguer() {
         setIsHamburguer(!isHamburguer);
     }
+
+    // Efeito de blur no fundo;
+    useEffect(() => {
+        if (isHamburguer) {
+            // console.log('Hamburguer aberto');
+            document.getElementsByClassName('sessaoPrincipal')[0].classList.add('backgroundBlur');
+            document.getElementsByTagName('footer')[0].classList.add('backgroundBlur');
+        } else {
+            // console.log('Hamburguer fechado');
+            document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
+            document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
+        }
+    }, [isHamburguer]);
+
+    // Ao "destruir" componente (force que volte ao normal, sem blur ao fundo);
+    useEffect(() => {
+        return () => {
+            // console.log('Componente destruído');
+            document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
+            document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
+        }
+    }, []);
 
     function deslogar() {
         NProgress.start();
