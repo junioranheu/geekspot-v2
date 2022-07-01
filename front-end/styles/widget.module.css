@@ -17,13 +17,13 @@
 .containerWidgets img {
     border-radius: 10px;
     cursor: pointer;
-    /* filter: grayscale(35%) blur(0.5px); */
-    filter: grayscale(100%) blur(0.5px);
+    filter: grayscale(10%);
+    /* filter: grayscale(100%) blur(0.5px); */
     transition: 0.5s ease-in-out;
 }
 
 .containerWidgets img:hover {
-    filter: grayscale(0%) blur(0px) contrast(101%);
+    filter: grayscale(0%) blur(0px) contrast(110%);
     transform: scale(1.01);
     transition: 0.5s ease-in-out;
 }

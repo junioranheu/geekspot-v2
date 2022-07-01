@@ -115,7 +115,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
                                     // Tamanho grande;
-                                    <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`}>
+                                    <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
                                         <Image
                                             src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                             width={tamanhoGrande}
@@ -130,7 +130,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                     // Tamanho pequeno;
                                     listaWidgets[i + 1] && ordemTamanhosImagens[i + 1] === 0 && (
                                         <div className={Styles.divGrupoImagens}>
-                                            <div className={Styles.wrapImagem}>
+                                            <div className={Styles.wrapImagem} title={item.nome}>
                                                 <Image
                                                     src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
@@ -142,7 +142,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                                             </div>
 
-                                            <div className={Styles.wrapImagem}>
+                                            <div className={Styles.wrapImagem} title={listaWidgets[i + 1].nome}>
                                                 <Image
                                                     src={(listaWidgets[i + 1].imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaWidgets[i + 1].imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
