@@ -1,4 +1,6 @@
 using GeekSpot.API.Data;
+using GeekSpot.API.Interfaces;
+using GeekSpot.API.Repositories;
 using GeekSpot.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -63,7 +65,7 @@ builder.Services.AddDbContext<Context>(options => options.UseMySql(con, ServerVe
 // Banco (injection) com o Pattern Design: https://www.c-sharpcorner.com/blogs/net-core-mvc-with-entity-framework-core-using-dependency-injection-and-repository
 // NOVOS REPOSITÓRIOS DEVEM SEMPRE SER ADICIONADOS AQUI;
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-builder.Services.AddScoped<IItemCategoriaRepository, ItemCategoriaRepository>();
+builder.Services.AddScoped<IItemTipoRepository, ItemTipoRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 // Cors;
