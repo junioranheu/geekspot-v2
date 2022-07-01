@@ -1,16 +1,14 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Styles from '../../styles/navbarMobile.module.css';
-import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import Geekspot from '../svg/geekspot';
 import Hamburguer from '../svg/hamburguer';
 import Lupa from '../svg/lupa';
 import Xis from '../svg/xis';
 
-export default function NavbarMobile() {
-    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
+export default function NavbarMobile({auth, isAuth, setIsAuth}) {
     const [isLupa, setIsLupa] = useState(false);
 
     function handleLupa() {
@@ -21,7 +19,7 @@ export default function NavbarMobile() {
         NProgress.start();
 
         // Deslogar;
-        Auth.deleteUsuarioLogado();
+        auth.deleteUsuarioLogado();
         NProgress.done();
 
         // Voltar à tela principal;
@@ -44,24 +42,6 @@ export default function NavbarMobile() {
                         </div>
 
                         <div className={Styles.divDireita}>
-                            {/* {
-                                isAuth ? (
-                                    <Fragment>
-                                        <span className={Styles.margemBotao} onClick={() => deslogar()}>
-                                            <Botao texto={'Sair'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
-                                        </span>
-                                    </Fragment>
-                                ) : (
-                                    <Fragment>
-                                        <Link href='/usuario/criar-conta'><a>Crie sua conta</a></Link>
-
-                                        <span className={Styles.margemBotao}>
-                                            <Botao texto={'Entrar'} url={'/usuario/entrar'} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
-                                        </span>
-                                    </Fragment>
-                                )
-                            } */}
-
                             <Hamburguer width='1rem' cor='var(--branco)'/>
                         </div>
                     </div>

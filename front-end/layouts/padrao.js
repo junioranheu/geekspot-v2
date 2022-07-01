@@ -57,9 +57,9 @@ export default function Padrao({ Component, pageProps }) {
 
             {
                 tamanhoTela.width >= 1025 ? (
-                    <NavbarPadrao />
+                    <NavbarPadrao auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 ) : (
-                    <NavbarMobile />
+                    <NavbarMobile auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 )
             }
 

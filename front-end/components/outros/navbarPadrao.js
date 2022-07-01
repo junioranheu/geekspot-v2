@@ -1,16 +1,14 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useState } from 'react';
 import Styles from '../../styles/navbarPadrao.module.css';
-import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import Geekspot from '../svg/geekspot';
 import Lupa from '../svg/lupa';
 import Xis from '../svg/xis';
 import Botao from './botao';
 
-export default function NavbarPadrao() {
-    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
+export default function NavbarPadrao({auth, isAuth, setIsAuth}) {
     const [isLupa, setIsLupa] = useState(false);
 
     function handleLupa() {
@@ -21,7 +19,7 @@ export default function NavbarPadrao() {
         NProgress.start();
 
         // Deslogar;
-        Auth.deleteUsuarioLogado();
+        auth.deleteUsuarioLogado();
         NProgress.done();
 
         // Voltar à tela principal;
