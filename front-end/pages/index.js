@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import ContainerWidget from '../components/widget/containerWidget';
+import CONSTANTS_ITENS from '../utils/data/constItens';
+import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
+import { Fetch } from '../utils/outros/fetch';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 
-export default function Home() {
+export default function Home({ listaItens }) {
+    console.log(listaItens);
     document.title = 'GeekSpot — Início';
 
     const listaWidgets = [
@@ -50,4 +54,28 @@ export default function Home() {
             <div className='espacoBottom'></div>
         </main>
     )
+}
+
+export async function getStaticProps() {
+    // Pegar todos os usuários;
+    const urlUsuarios = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
+    const usuarios = await Fetch.getApi(urlUsuarios, null);
+
+    let listaItens = [];
+    for (const u of usuarios) {
+        // Encontrar os itens com base no usuário;
+        const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
+        const itens = await Fetch.getApi(urlItens, null);
+
+        if (itens.length) {
+            listaItens.push(itens);
+        }
+    }
+
+    return {
+        props: {
+            listaItens
+        },
+        // revalidate: 10 // segundos
+    }
 }

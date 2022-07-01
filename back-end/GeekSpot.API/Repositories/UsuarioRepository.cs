@@ -22,6 +22,12 @@ namespace GeekSpot.API.Repositories
                 Include(ui => ui.UsuariosInformacoes).
                 OrderBy(ui => ui.UsuarioId).AsNoTracking().ToListAsync();
 
+            // Esconder alguns atributos;
+            foreach (var item in itens)
+            {
+                item.Senha = "";
+            }
+
             return itens;
         }
 
@@ -31,6 +37,9 @@ namespace GeekSpot.API.Repositories
                 Include(ut => ut.UsuariosTipos).
                 Include(ui => ui.UsuariosInformacoes).
                 Where(ui => ui.UsuarioId == id).AsNoTracking().FirstOrDefaultAsync();
+
+            // Esconder alguns atributos;
+            item.Senha = "";
 
             return item;
         }

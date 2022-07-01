@@ -48,17 +48,10 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("todos")]
-        [Authorize]
+        // [Authorize]
         public async Task<ActionResult<List<Usuario>>> GetTodos()
         {
             var itens = await _usuarios.GetTodos();
-
-            // Esconder alguns atributos;
-            foreach (var item in itens)
-            {
-                item.Senha = "";
-            }
-
             return itens;
         }
 
@@ -71,9 +64,6 @@ namespace GeekSpot.API.Controllers
             {
                 return NotFound();
             }
-
-            // Esconder alguns atributos;
-            item.Senha = "";
 
             return item;
         }
