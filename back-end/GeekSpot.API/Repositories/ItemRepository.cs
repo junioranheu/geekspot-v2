@@ -16,14 +16,31 @@ namespace GeekSpot.API.Repositories
 
         public async Task<List<Item>> GetTodos()
         {
-            var itens = await _context.Itens.OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
-            return itens;
+            var todos = await _context.Itens
+                .Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos)
+                .Include(it => it.ItensTipos)
+                .OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
+
+            // Esconder alguns atributos;
+            foreach (var item in todos)
+            {
+                item.Usuarios.Senha = "";
+            }
+
+            return todos;
         }
 
         public async Task<Item> GetPorId(int id)
         {
-            var item = await _context.Itens.Where(i => i.ItemId == id).AsNoTracking().FirstOrDefaultAsync();
-            return item;
+            var porId = await _context.Itens
+                .Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos)
+                .Include(it => it.ItensTipos)
+                .Where(i => i.ItemId == id).AsNoTracking().FirstOrDefaultAsync();
+
+            // Esconder alguns atributos;
+            porId.Usuarios.Senha = "";
+
+            return porId;
         }
 
         public async Task<int> PostCriar(Item i)
