@@ -1,5 +1,6 @@
 import 'animate.css/animate.min.css';
 import { useRouter } from 'next/router';
+import 'nprogress/nprogress.css';
 import { Fragment, useEffect, useState } from 'react';
 import '../fonts/GTWalsheim.css';
 import '../fonts/NanumPenScript.css';

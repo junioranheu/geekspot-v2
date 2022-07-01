@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import ContainerWidget from '../components/widget/containerWidget';
+import paginaCarregada from '../utils/outros/paginaCarregada';
 
 export default function Home() {
     document.title = 'GeekSpot — Início';
@@ -21,6 +23,15 @@ export default function Home() {
             { id: 12, nome: 'k', preco: '1099', precoDesconto: '0.99', url: 'x', imagem: 'https://cdn.discordapp.com/attachments/985572242698145833/992192366255558788/Gorda.jpg' }
         ]
     ];
+
+    const [isLoaded, setIsLoaded] = useState(false);
+    useEffect(() => {
+        paginaCarregada(false, 200, 500, setIsLoaded);
+    }, []);
+
+    if (!isLoaded) {
+        return false;
+    }
 
     return (
         <main className={'paddingPadrao margem6'}>

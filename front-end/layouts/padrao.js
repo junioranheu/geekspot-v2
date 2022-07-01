@@ -42,7 +42,7 @@ export default function Padrao({ Component, pageProps }) {
     }, [router.asPath]);
 
     return (
-        <section className='main'>
+        <section className='main semHighlight'>
             {/* <Navbar1 />
             <Navbar2 /> */}
 
