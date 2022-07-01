@@ -16,10 +16,10 @@ namespace GeekSpot.API.Repositories
 
         public async Task<List<Item>> GetTodos()
         {
-            var todos = await _context.Itens
-                .Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos)
-                .Include(it => it.ItensTipos)
-                .OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
+            var todos = await _context.Itens.
+                Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                Include(it => it.ItensTipos).
+                OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
 
             // Esconder alguns atributos;
             foreach (var item in todos)
@@ -32,10 +32,10 @@ namespace GeekSpot.API.Repositories
 
         public async Task<Item> GetPorId(int id)
         {
-            var porId = await _context.Itens
-                .Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos)
-                .Include(it => it.ItensTipos)
-                .Where(i => i.ItemId == id).AsNoTracking().FirstOrDefaultAsync();
+            var porId = await _context.Itens.
+                Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                Include(it => it.ItensTipos).
+                Where(i => i.ItemId == id).AsNoTracking().FirstOrDefaultAsync();
 
             // Esconder alguns atributos;
             porId.Usuarios.Senha = "";
@@ -86,6 +86,38 @@ namespace GeekSpot.API.Repositories
         private async Task<bool> IsExiste(int id)
         {
             return await _context.Itens.AnyAsync(i => i.ItemId == id);
+        }
+
+        public async Task<List<Item>> GetPorItemTipoId(int itemTipoId)
+        {
+            var itens = await _context.Itens.
+                Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                Include(it => it.ItensTipos).
+                Where(it => it.ItemTipoId == itemTipoId).AsNoTracking().ToListAsync();
+
+            // Esconder alguns atributos;
+            foreach (var item in itens)
+            {
+                item.Usuarios.Senha = "";
+            }
+
+            return itens;
+        }
+
+        public async Task<List<Item>> GetPorUsuarioId(int usuarioId)
+        {
+            var itens = await _context.Itens.
+                   Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                   Include(it => it.ItensTipos).
+                   Where(it => it.UsuarioId == usuarioId).AsNoTracking().ToListAsync();
+
+            // Esconder alguns atributos;
+            foreach (var item in itens)
+            {
+                item.Usuarios.Senha = "";
+            }
+
+            return itens;
         }
     }
 }

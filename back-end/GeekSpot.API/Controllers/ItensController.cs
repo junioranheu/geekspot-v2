@@ -77,5 +77,31 @@ namespace GeekSpot.API.Controllers
 
             return Ok(true);
         }
+
+        [HttpGet("porItemTipoId/{itemTipoId}")]
+        public async Task<ActionResult<List<Item>>> GetPorItemTipoIdId(int itemTipoId)
+        {
+            var porItemTipoId = await _itemRepository.GetPorItemTipoId(itemTipoId);
+
+            if (porItemTipoId == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(porItemTipoId);
+        }
+
+        [HttpGet("porUsuarioId/{usuarioId}")]
+        public async Task<ActionResult<List<Item>>> GetPorUsuarioId(int usuarioId)
+        {
+            var porUsuarioId = await _itemRepository.GetPorUsuarioId(usuarioId);
+
+            if (porUsuarioId == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(porUsuarioId);
+        }
     }
 }

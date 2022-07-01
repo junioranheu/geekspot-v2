@@ -9,5 +9,7 @@ namespace GeekSpot.API.Interfaces
         Task<int> PostCriar(Item i);
         Task<int> PostAtualizar(Item i);
         Task<int> PostDeletar(int id);
+        Task<List<Item>> GetPorItemTipoId(int itemTipoId);
+        Task<List<Item>> GetPorUsuarioId(int usuarioId);
     }
 }
