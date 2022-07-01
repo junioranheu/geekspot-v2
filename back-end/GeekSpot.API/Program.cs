@@ -1,3 +1,4 @@
+using GeekSpot.API.Data;
 using GeekSpot.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;

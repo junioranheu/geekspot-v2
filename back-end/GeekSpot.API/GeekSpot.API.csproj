@@ -21,6 +21,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\GeekSpot.Biblioteca\GeekSpot.Biblioteca.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- https://stackoverflow.com/questions/32754616/how-to-change-the-properties-of-all-the-files-of-a-folder-to-copy-always-autom -->
 		<None Update="Upload\**">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

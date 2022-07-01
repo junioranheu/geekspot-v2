@@ -1,4 +1,5 @@
 ﻿using GeekSpot.API.Models;
+using static GeekSpot.Biblioteca.Biblioteca;
 
 namespace GeekSpot.API.Data
 {
@@ -7,7 +8,7 @@ namespace GeekSpot.API.Data
         public static void Initialize(Context context)
         {
             // Exclui o esquema, copia as queries, cria esquema/tabelas, popula o BD;
-            bool resetarBd = false;
+            bool resetarBd = true;
             if (resetarBd)
             {
                 context.Database.EnsureDeleted(); // Excluir o esquema e as tabelas;
@@ -63,7 +64,18 @@ namespace GeekSpot.API.Data
             #region itens
             if (!context.ItensTipos.Any())
             {
-                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 1, Tipo = "xxx", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 1, Tipo = "Acessório gamer", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 2, Tipo = "Action figure", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 3, Tipo = "CD/DVD/Blu-ray", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 4, Tipo = "Carta", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 5, Tipo = "Console", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 6, Tipo = "Cosplay", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 7, Tipo = "HQ/Mangá", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 8, Tipo = "Jogo", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 9, Tipo = "Livro", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 10, Tipo = "Poster", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 11, Tipo = "Vestuário", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 12, Tipo = "Outro", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
             }
 
             if (!context.Itens.Any())
