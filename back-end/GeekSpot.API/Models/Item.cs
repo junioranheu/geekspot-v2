@@ -10,6 +10,8 @@ namespace GeekSpot.API.Models
         public string? Nome { get; set; }
         public string? Descricao { get; set; }
         public string? Imagem { get; set; }
+        public double? Preco { get; set; }
+        public double? PrecoDesconto { get; set; }
 
         // Fk (De lá pra cá);
         public int UsuarioId { get; set; }

@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\junior.souza\\Desktop\\geekspot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj": {}
+    "C:\\Users\\junin\\Desktop\\geek-spot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj": {}
   },
   "projects": {
-    "C:\\Users\\junior.souza\\Desktop\\geekspot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj": {
+    "C:\\Users\\junin\\Desktop\\geek-spot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\junior.souza\\Desktop\\geekspot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj",
+        "projectUniqueName": "C:\\Users\\junin\\Desktop\\geek-spot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj",
         "projectName": "GeekSpot.Biblioteca",
-        "projectPath": "C:\\Users\\junior.souza\\Desktop\\geekspot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj",
-        "packagesPath": "C:\\Users\\junior.souza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\junior.souza\\Desktop\\geekspot\\back-end\\GeekSpot.Biblioteca\\obj\\",
+        "projectPath": "C:\\Users\\junin\\Desktop\\geek-spot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj",
+        "packagesPath": "C:\\Users\\junin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\junin\\Desktop\\geek-spot\\back-end\\GeekSpot.Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\junior.souza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\junin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

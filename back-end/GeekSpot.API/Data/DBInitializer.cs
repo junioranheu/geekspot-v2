@@ -61,7 +61,7 @@ namespace GeekSpot.API.Data
             }
             #endregion
 
-            #region itens
+            #region seed_itens
             if (!context.ItensTipos.Any())
             {
                 context.ItensTipos.Add(new ItemTipo() { ItemTipoId = 1, Tipo = "Outro", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
@@ -81,20 +81,20 @@ namespace GeekSpot.API.Data
             if (!context.Itens.Any())
             {
                 // Itens do usuário @junioranheu (2);
-                context.Itens.Add(new Item() { ItemId = 1, Nome = "MacBook", Descricao = "xxx", Imagem = "1.webp", UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 2, Nome = "Coleção de livros do Harry Potter", Descricao = "xxx", Imagem = "2.webp", UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 3, Nome = "Poster de Breaking Bad", Descricao = "xxx", Imagem = "3.webp", UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 4, Nome = "Guitarra do Liam Gallagher", Descricao = "xxx", Imagem = "4.webp", UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 5, Nome = "Controles de Xbox X e PS5", Descricao = "xxx", Imagem = "5.webp", UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 6, Nome = "Bonequinhos do Harry Potter", Descricao = "xxx", Imagem = "6.webp", UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 1, Nome = "MacBook", Descricao = "xxx", Imagem = "1.webp", Preco = 4000, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 2, Nome = "Coleção de livros do Harry Potter", Descricao = "xxx", Imagem = "2.webp", Preco = 120.99, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 3, Nome = "Poster de Breaking Bad", Descricao = "xxx", Imagem = "3.webp", Preco = 15, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 4, Nome = "Guitarra do Liam Gallagher", Descricao = "xxx", Imagem = "4.webp", Preco = 12000, PrecoDesconto = 11.099, UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 5, Nome = "Controles de Xbox X e PS5", Descricao = "xxx", Imagem = "5.webp", Preco = 350, PrecoDesconto = 300, UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 6, Nome = "Bonequinhos do Harry Potter", Descricao = "xxx", Imagem = "6.webp", Preco = 80, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
 
                 // Itens do usuário @chaleco (5);
-                context.Itens.Add(new Item() { ItemId = 7, Nome = "iPhone", Descricao = "xxx", Imagem = "7.webp", UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 8, Nome = "Violão acústico (baby)", Descricao = "xxx", Imagem = "8.webp", UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 9, Nome = "Headset pro", Descricao = "xxx", Imagem = "9.webp", UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 10, Nome = "Nintendo Switch V2", Descricao = "xxx", Imagem = "10.webp", UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 11, Nome = "PS4", Descricao = "xxx", Imagem = "11.webp", UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 12, Nome = "Guatona Kla", Descricao = "xxx", Imagem = "12.webp", UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 7, Nome = "iPhone", Descricao = "xxx", Imagem = "7.webp", Preco = 2000, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 8, Nome = "Violão acústico (baby)", Descricao = "xxx", Imagem = "8.webp", Preco = 1200, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 9, Nome = "Headset pro", Descricao = "xxx", Imagem = "9.webp", Preco = 500, PrecoDesconto = 350, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 10, Nome = "Nintendo Switch V2", Descricao = "xxx", Imagem = "10.webp", Preco = 1700, PrecoDesconto = 1350.99, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 11, Nome = "PS4", Descricao = "xxx", Imagem = "11.webp", Preco = 3500, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 12, Nome = "Guatona Kla", Descricao = "xxx", Imagem = "12.webp", Preco = 10000, PrecoDesconto = 9999.99, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
             }
             #endregion
 

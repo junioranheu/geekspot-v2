@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
+import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import Seta from '../svg/seta';
 
 export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
@@ -85,7 +86,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         const frases = [
             'aqui', 'ver tudo', 'quero', 'muito mais aqui', 'corre aqui',
             'é aqui', 'imperdível', 'aí sim, meu patrão', 'muito chic', 'iti malia',
-            'ver agora', 'uhu!', 'aí sim', 'opa', 'é pra já', 
+            'ver agora', 'uhu!', 'aí sim', 'opa', 'é pra já',
             'uhuuu', 'boraaa'
         ];
 
@@ -110,16 +111,15 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
             <div className={`margem1 ${Styles.containerWidgets}`}>
                 {
                     listaWidgets?.slice(0, 6).map((item, i) => (
-                        <Fragment key={item.id}>
+                        <Fragment key={item.itemId}>
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
                                     // Tamanho grande;
                                     <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`}>
                                         <Image
-                                            src={item.imagem}
+                                            src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                             width={tamanhoGrande}
                                             height={tamanhoGrande}
-                                            onError={() => setSrc(ImgCinza)}
                                             alt=''
                                             onClick={() => Router.push(`${item?.url}`)}
                                         />
@@ -132,10 +132,9 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                         <div className={Styles.divGrupoImagens}>
                                             <div className={Styles.wrapImagem}>
                                                 <Image
-                                                    src={item.imagem}
+                                                    src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
-                                                    onError={() => setSrc(ImgCinza)}
                                                     alt=''
                                                     onClick={() => Router.push(`${item?.url}`)}
                                                 />
@@ -145,10 +144,9 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
 
                                             <div className={Styles.wrapImagem}>
                                                 <Image
-                                                    src={listaWidgets[i + 1].imagem}
+                                                    src={(listaWidgets[i + 1].imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaWidgets[i + 1].imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
-                                                    onError={() => setSrc(ImgCinza)}
                                                     alt=''
                                                     onClick={() => Router.push(`${listaWidgets[i + 1]?.url}`)}
                                                 />

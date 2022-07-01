@@ -10,3 +10,15 @@ C:\Users\junior.souza\Desktop\geekspot\back-end\GeekSpot.Biblioteca\obj\Debug\ne
 C:\Users\junior.souza\Desktop\geekspot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\refint\GeekSpot.Biblioteca.dll
 C:\Users\junior.souza\Desktop\geekspot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.pdb
 C:\Users\junior.souza\Desktop\geekspot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\ref\GeekSpot.Biblioteca.dll
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\bin\Debug\net6.0\GeekSpot.Biblioteca.deps.json
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\bin\Debug\net6.0\GeekSpot.Biblioteca.dll
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\bin\Debug\net6.0\GeekSpot.Biblioteca.pdb
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.csproj.AssemblyReference.cache
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.AssemblyInfoInputs.cache
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.AssemblyInfo.cs
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.dll
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\refint\GeekSpot.Biblioteca.dll
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\GeekSpot.Biblioteca.pdb
+C:\Users\junin\Desktop\geek-spot\back-end\GeekSpot.Biblioteca\obj\Debug\net6.0\ref\GeekSpot.Biblioteca.dll

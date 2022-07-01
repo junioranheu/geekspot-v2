@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "MgorMxzCydckTx7ngDlgNyJ9o73ueWcrHWUwegQkj8bvavu12ZSJhtS0Cd093s+AywP37mg+vE1jsZ2CBBrf0w==",
+  "dgSpecHash": "8sgNpLEhRbosCv4tOYAGnp2Vo5upjW5JFCkxQRLYsEsrKY35Q1bgJ3Uxwlo/SbiFLluF4f8rvLcMDB+GRL4Z+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\junior.souza\\Desktop\\geekspot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj",
+  "projectFilePath": "C:\\Users\\junin\\Desktop\\geek-spot\\back-end\\GeekSpot.Biblioteca\\GeekSpot.Biblioteca.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\junior.souza\\.nuget\\packages\\timezoneconverter\\5.0.0\\timezoneconverter.5.0.0.nupkg.sha512"
+    "C:\\Users\\junin\\.nuget\\packages\\timezoneconverter\\5.0.0\\timezoneconverter.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
