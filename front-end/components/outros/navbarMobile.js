@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { Fragment, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Styles from '../../styles/navbarMobile.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import Geekspot from '../svg/geekspot';
+import Hamburguer from '../svg/hamburguer';
 import Lupa from '../svg/lupa';
 import Xis from '../svg/xis';
-import Botao from './botao';
 
 export default function NavbarMobile() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
@@ -40,23 +40,11 @@ export default function NavbarMobile() {
                     <div className={Styles.wrapper}>
                         <div className={Styles.divEsquerda}>
                             <Link href='/'><a className={Styles.iconeCorInvertida}><Geekspot width='0.9rem' cor='var(--branco)' />&nbsp;&nbsp;GeekSpot</a></Link>
-                            <Link href='/xxx'><a>Produtos</a></Link>
-                            <Link href='/xxx'><a>Promoções 🔥</a></Link>
-
-                            {
-                                isAuth && (
-                                    <Fragment>
-                                        <Link href='/xxx'><a>xxx</a></Link>
-                                        <Link href='/xxx'><a>xxx</a></Link>
-                                    </Fragment>
-                                )
-                            }
-
                             <a onClick={() => handleLupa()}><Lupa height='1.5rem' width='1.5rem' cor='rgba(255, 255, 255, 0.7)' /></a>
                         </div>
 
                         <div className={Styles.divDireita}>
-                            {
+                            {/* {
                                 isAuth ? (
                                     <Fragment>
                                         <span className={Styles.margemBotao} onClick={() => deslogar()}>
@@ -72,7 +60,9 @@ export default function NavbarMobile() {
                                         </span>
                                     </Fragment>
                                 )
-                            }
+                            } */}
+
+                            <Hamburguer width='1rem' cor='var(--branco)'/>
                         </div>
                     </div>
                 ) : (
