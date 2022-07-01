@@ -2,14 +2,14 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { Fragment, useContext, useState } from 'react';
-import Botao from '../../components/outros/botao';
-import Styles from '../../styles/navbar2.module.css';
+import Styles from '../../styles/navbarPadrao.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import Geekspot from '../svg/geekspot';
 import Lupa from '../svg/lupa';
 import Xis from '../svg/xis';
+import Botao from './botao';
 
-export default function Navbar2() {
+export default function NavbarPadrao() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [isLupa, setIsLupa] = useState(false);
 
@@ -46,8 +46,8 @@ export default function Navbar2() {
                             {
                                 isAuth && (
                                     <Fragment>
-                                        <Link href='/disciplinas'><a>Minhas disciplinas & aulas</a></Link>
-                                        <Link href='/chat'><a>Chat</a></Link>
+                                        <Link href='/xxx'><a>xxx</a></Link>
+                                        <Link href='/xxx'><a>xxx</a></Link>
                                     </Fragment>
                                 )
                             }

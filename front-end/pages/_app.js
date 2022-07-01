@@ -2,6 +2,8 @@ import 'animate.css/animate.min.css';
 import { useRouter } from 'next/router';
 import 'nprogress/nprogress.css';
 import { Fragment, useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../fonts/GTWalsheim.css';
 import '../fonts/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao.js';
@@ -35,6 +37,9 @@ export default function App({ Component, pageProps }) {
         (
             <Fragment>
                 <UsuarioProvider>
+                    {/* Toaster de aviso */}
+                    <ToastContainer className='semHighlight' />
+
                     {/* Conteúdo */}
                     {verificarLayout()}
                 </UsuarioProvider>

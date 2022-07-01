@@ -149,12 +149,6 @@
 }
 
 @media (max-width:879px) {
-    /* .navbar div div:nth-child(1) a:nth-child(4),
-    .navbar div div:nth-child(1) a:nth-child(5),
-    .navbar div div:nth-child(1) a:nth-child(6) {
-        display: none;
-    } */
-
     .navbar {
         /* background-color: pink; */
         /* height: fit-content; */
