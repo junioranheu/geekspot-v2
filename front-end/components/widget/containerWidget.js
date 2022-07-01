@@ -58,9 +58,13 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
             return ordens;
         }
 
+        // #01;
         const ordens = gerarOrdemTamanhosImagens(listaWidgets.length);
         // console.log(ordens);
         setOrdemTamanhosImagens(ordens);
+
+        // #02;
+        gerarFraseAleatoria();
     }, [listaWidgets.length]);
 
     function definirPreco(preco, precoDesconto) {
@@ -76,15 +80,17 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         );
     }
 
-    function fraseAleatoria() {
+    const [fraseAleatoria, setFraseAleatoria] = useState('');
+    function gerarFraseAleatoria() {
         const frases = [
             'aqui', 'ver tudo', 'quero', 'muito mais aqui', 'corre aqui',
             'é aqui', 'imperdível', 'aí sim, meu patrão', 'muito chic', 'iti malia',
-            'ver agora', 'uhu', 'aí sim'
+            'ver agora', 'uhu!', 'aí sim', 'opa', 'é pra já', 
+            'uhuuu', 'boraaa'
         ];
 
         const random = Math.floor(Math.random() * frases.length);
-        return frases[random];
+        setFraseAleatoria(frases[random]);
     }
 
     return (
@@ -96,7 +102,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                 </div>
 
                 <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`xxx`)}>
-                    {fraseAleatoria()}
+                    {fraseAleatoria}
                     <Seta width='1rem' />
                 </div>
             </div>
