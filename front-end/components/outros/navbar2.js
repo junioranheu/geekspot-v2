@@ -1,14 +1,16 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import NProgress from 'nprogress';
-import { useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
+import Botao from '../../components/outros/botao';
 import Styles from '../../styles/navbar2.module.css';
-// import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
+import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import Geekspot from '../svg/geekspot';
 import Lupa from '../svg/lupa';
 import Xis from '../svg/xis';
 
 export default function Navbar2() {
-    // const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
+    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [isLupa, setIsLupa] = useState(false);
 
     function handleLupa() {
@@ -18,17 +20,17 @@ export default function Navbar2() {
     function deslogar() {
         NProgress.start();
 
-        // // Deslogar;
-        // Auth.deleteUsuarioLogado();
-        // NProgress.done();
+        // Deslogar;
+        Auth.deleteUsuarioLogado();
+        NProgress.done();
 
-        // // Voltar à tela principal;
-        // Router.push('/');
+        // Voltar à tela principal;
+        Router.push('/');
 
-        // // Desatribuir autenticação ao contexto de usuário;
-        // setTimeout(function () {
-        //     setIsAuth(false);
-        // }, 100);
+        // Desatribuir autenticação ao contexto de usuário;
+        setTimeout(function () {
+            setIsAuth(false);
+        }, 100);
     }
 
     return (
@@ -41,20 +43,20 @@ export default function Navbar2() {
                             <Link href='/xxx'><a>Produtos</a></Link>
                             <Link href='/xxx'><a>Promoções 🔥</a></Link>
 
-                            {/* {
+                            {
                                 isAuth && (
                                     <Fragment>
                                         <Link href='/disciplinas'><a>Minhas disciplinas & aulas</a></Link>
                                         <Link href='/chat'><a>Chat</a></Link>
                                     </Fragment>
                                 )
-                            } */}
+                            }
 
                             <a onClick={() => handleLupa()}><Lupa height='1.5rem' width='1.5rem' cor='rgba(255, 255, 255, 0.7)' /></a>
                         </div>
 
                         <div className={Styles.divDireita}>
-                            {/* {
+                            {
                                 isAuth ? (
                                     <Fragment>
                                         <span className={Styles.margemBotao} onClick={() => deslogar()}>
@@ -70,7 +72,7 @@ export default function Navbar2() {
                                         </span>
                                     </Fragment>
                                 )
-                            } */}
+                            }
                         </div>
                     </div>
                 ) : (

@@ -6,6 +6,7 @@ import '../fonts/GTWalsheim.css';
 import '../fonts/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao.js';
 import '../styles/globals.css';
+import { UsuarioProvider } from '../utils/context/usuarioContext';
 
 export default function App({ Component, pageProps }) {
     const { asPath } = useRouter();
@@ -33,8 +34,10 @@ export default function App({ Component, pageProps }) {
     return url ?
         (
             <Fragment>
-                {/* Conteúdo */}
-                {verificarLayout()}
+                <UsuarioProvider>
+                    {/* Conteúdo */}
+                    {verificarLayout()}
+                </UsuarioProvider>
             </Fragment>
         ) : null
 }

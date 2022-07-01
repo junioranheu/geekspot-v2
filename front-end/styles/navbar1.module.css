@@ -3,6 +3,7 @@
     color: var(--branco);
 
     height: 32px;
+    width: 100vw;
 
     display: flex;
     justify-content: center;

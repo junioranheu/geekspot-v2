@@ -24,7 +24,7 @@
 html, body {
     padding: 0;
     margin: 0;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
     font-family: 'GT';
 
     width: 100vw;
@@ -333,7 +333,7 @@ select:focus {
     margin: 0;
     background: var(--cor-principal-gradient);
     border-radius: 12px;
-    color: var(--preto);
+    color: var(--branco);
     cursor: pointer;
     font: inherit;
     font-size: 15px;
