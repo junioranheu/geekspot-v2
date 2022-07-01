@@ -1,5 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Footer from '../components/outros/footer';
+import Navbar1 from '../components/outros/navbar1';
+import Navbar2 from '../components/outros/navbar2';
 
 export default function Padrao({ Component, pageProps }) {
     const router = useRouter();
@@ -18,7 +21,7 @@ export default function Padrao({ Component, pageProps }) {
     //         const limiteExpirarTokenHoras = 24;
     //         if (diferencaHoras >= limiteExpirarTokenHoras) {
     //             NProgress.start();
-    //             Aviso.custom('A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no Anheu 😎', 15000);
+    //             Aviso.custom('A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no GeekSpot 😎', 15000);
 
     //             // Desatribuir autenticação ao contexto de usuário;
     //             setIsAuth(false);
@@ -35,7 +38,7 @@ export default function Padrao({ Component, pageProps }) {
     const [efeitoAnimar, setEfeitoAnimar] = useState('');
     useEffect(() => {
         setEfeitoAnimar('animate__animated animate__fadeIn delay03');
- 
+
         setTimeout(function () {
             setEfeitoAnimar('');
         }, 1000);
@@ -43,8 +46,8 @@ export default function Padrao({ Component, pageProps }) {
 
     return (
         <section className='main semHighlight'>
-            {/* <Navbar1 />
-            <Navbar2 /> */}
+            <Navbar1 />
+            <Navbar2 />
 
             <section className='sessaoPrincipal'>
                 <section className={`${efeitoAnimar}`}>
@@ -52,7 +55,7 @@ export default function Padrao({ Component, pageProps }) {
                 </section>
             </section>
 
-            {/* <Footer /> */}
+            <Footer />
         </section>
     )
 }

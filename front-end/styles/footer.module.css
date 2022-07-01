@@ -1,0 +1,146 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    background-color: var(--preto);
+
+    /* Fixar footer sempre embaixo */
+    margin-top: auto;
+
+    border-top: 1px solid var(--cor-border-hr);
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
+.principal {
+    display: flex;
+    justify-content: center;
+    width: 70vw;
+    margin-top: 2.5vw;
+    margin-bottom: 2vw;
+}
+
+.sessao {
+    /* background-color: pink; */
+    text-align: center;
+    width: 100vw;
+    color: var(--branco);
+}
+
+.sessao .tituloSessao {
+    font-weight: 600;
+    line-height: 1;
+}
+
+.sessao a {
+    display: block;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 400;
+    margin-top: 10px;
+    opacity: 0.8;
+    transition: opacity .2s;
+}
+
+.footer a:hover {
+    opacity: 0.5;
+    transition: opacity .2s;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Secundária =-=-=-=-=-=-=-=-=-=-=-=- */
+.secundaria {
+    border-top: 1px solid var(--cor-border-hr); 
+    width: 70vw;
+    font-weight: 400;
+    font-size: 14px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--branco);
+}
+
+.secundaria span:nth-child(n+2) {
+    margin-left: 10px;
+}
+
+.secundaria .direita {
+    display: flex;
+}
+
+.secundaria .direita .icones {
+    /* background-color: rebeccapurple; */
+    margin-left: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.secundaria .direita .icones span:nth-child(n+2) {
+    margin-left: 20px;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+
+    /* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
+    .principal {
+        /* background-color: blue; */
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 80vw;
+    }
+
+    .sessao {
+        /* background-color: pink; */
+        flex: 0 0 30%;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-=-=- Secundária =-=-=-=-=-=-=-=-=-=-=-=- */
+    .secundaria {
+        /* background-color: pink; */
+        width: 90vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 21px;
+        margin-top: 3vw;
+        text-align: center;
+    }
+
+    .direita {
+        display: none !important;
+    }
+}
+
+@media (max-width:739px) {
+    .principal {
+        /* background-color: blue; */
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {
+    .direita {
+        display: none !important;
+    }
+}
+
+@media (max-width:500px) {
+    .principal {
+        /* background-color: blue; */
+        width: 95vw;
+    }
+
+    .sessao {
+        /* background-color: pink; */
+        flex: 0 0 25%;
+    }
+}

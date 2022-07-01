@@ -1,0 +1,186 @@
+.navbar {
+    background-color: var(--preto);
+    color: var(--branco);
+    height: 80px;
+    width: 100vw;
+    border-bottom: 1px solid var(--cor-border-hr);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    /* background-color: pink; */
+    width: 55%;
+    display: flex;
+    align-items: center;
+}
+
+.divEsquerda {
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.divDireita {
+    /* background-color: turquoise; */
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.navbar a {
+    /* background-color: pink; */
+    color: var(--branco);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+
+    padding: 5px 14px;
+    opacity: 0.7;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar a:hover {
+    opacity: 1;
+    height: 40px;
+    background: var(--cinza);
+    transition: opacity .2s, color .2s;
+    -webkit-transition: .2s, color .2s;
+}
+
+.iconeCorInvertida {
+    opacity: 1 !important;
+}
+
+.iconeCorInvertida:hover {
+    opacity: 0.5 !important;
+    background: transparent !important;
+}
+
+.margemBotao {
+    margin-left: 10px;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Div lupa =-=-=-=-=-=-=-=-=-=-= */
+.divLupa {
+    /* background-color: red; */
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.divLupa div {
+    /* background-color: blueviolet; */
+    width: 100%;
+    display: flex;
+}
+
+.inputPesquisaNavbar {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 3.2em 0 1rem;
+    border: none;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    outline: none;
+}
+
+.botaoXis {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    margin: 0;
+    background: hsla(0, 0%, 100%, 0.1);
+    border-radius: 20px;
+    color: hsla(0, 0%, 100%, 0.7);
+    cursor: pointer;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    outline: none;
+    place-content: center;
+    place-items: center;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+}
+
+.botaoXis:hover {
+    opacity: 0.7;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+@media (max-width:1439px) {
+    .navbar div {
+        /* background-color: pink; */
+        width: 75%;
+    }
+}
+
+@media (max-width:1039px) {
+    .navbar div {
+        /* background-color: pink; */
+        width: 95%;
+    }
+
+    .margemBotao {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width:879px) {
+    /* .navbar div div:nth-child(1) a:nth-child(4),
+    .navbar div div:nth-child(1) a:nth-child(5),
+    .navbar div div:nth-child(1) a:nth-child(6) {
+        display: none;
+    } */
+
+    .navbar {
+        /* background-color: pink; */
+        /* height: fit-content; */
+        height: 130px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .navbar div {
+        /* background-color: red; */
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+
+    .navbar a:hover {
+        /* Remover o efeito, para tirar um bug chato */
+        height: 0px;
+        background: inherit;
+    }
+}
+
+@media (max-width:739px) {
+    .navbar {
+        /* background-color: red; */
+        height: fit-content;
+    }
+}

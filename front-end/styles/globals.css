@@ -426,7 +426,7 @@ select:focus {
 /* =-=-=-=-=-=-=-=-=-=-= Outros =-=-=-=-=-=-=-=-=-=-= */
 .espacoBottom {
     /* background-color: pink; */
-    height: 50px;
+    height: 100px;
 }
 
 .botaoAbsoluteCustom {
@@ -487,6 +487,11 @@ select:focus {
 
     .inputFiltro {
         font-size: 1.5rem;
+    }
+
+    .espacoBottom {
+        /* background-color: pink; */
+        height: 50px;
     }
 }
 
