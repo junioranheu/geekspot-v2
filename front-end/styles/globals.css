@@ -7,7 +7,6 @@
     --cor-principal: rgba(154, 107, 255, 1);
     --cor-principal-opaca: rgba(154, 107, 255, 0.1);
     --cor-principal-escura: hsl(257, 80%, 60%);
-    --cor-border-hr: rgba(42, 42, 42, 100);
     --cor-principal-gradient: linear-gradient(to bottom right, var(--cor-principal), var(--cor-principal-escura));
 
     --toastify-color-progress-light: var(--cor-principal) !important;
@@ -155,6 +154,33 @@ img {
     transform: rotate(-4deg) translateY(2px);
     -webkit-transform-origin: 0 100%;
     transform-origin: 0 100%;
+}
+
+.divisao {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    color: #bababa;
+    line-height: 8px;
+    /* margin: 5px auto 8px; */
+}
+
+.divisao::after {
+    content: "";
+    margin-top: 3px;
+    margin-left: 1em;
+    flex: 1 1 0%;
+    border-bottom: 1px solid #bababa;
+}
+
+.divisao::before {
+    content: "";
+    margin-top: 3px;
+    margin-right: 1em;
+    flex: 1 1 0%;
+    border-bottom: 1px solid #bababa;
 }
 
 /* =-=-=-=-=-=-=-=-= Input "padrão" =-=-=-=-=-=-=-=-= */

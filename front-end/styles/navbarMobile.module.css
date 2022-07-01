@@ -133,6 +133,63 @@
     opacity: 0.7;
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= Sessão do Hamburguer ativo (não pensei em uma nomenclatura melhor) =-=-=-=-=-=-=-=-=-=-= */
+.sessaoHamburguer {
+    background-color: var(--super-preto);
+    position: absolute;
+    right: 0;
+    z-index: 9999 !important;
+
+    width: 60%;
+    height: 100vh;
+
+    padding: 2rem;
+    color: var(--branco);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.divAtalhos {
+    /* background-color: red; */
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.8rem;
+
+    font-weight: 500;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.divAtalhos a {
+    transition: .2s ease-in-out;
+}
+
+.divAtalhos a:hover {
+    color: var(--cor-principal) !important;
+    opacity: 1 !important;
+    transition: .2s ease-in-out;
+}
+
+.sessaoBotoes {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.botaoCriarConta button {
+    width: 100%;
+    background: var(--branco);
+    color: var(--preto);
+}
+
+.botaoPadrao button {
+    width: 100%;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {}
