@@ -5,10 +5,10 @@ import { Fragment, useState } from 'react';
 import Styles from '../../styles/navbarPadrao.module.css';
 import Geekspot from '../svg/geekspot';
 import Lupa from '../svg/lupa';
-import Xis from '../svg/xis';
 import Botao from './botao';
+import InputFiltroNavbar from './inputFiltroNavbar';
 
-export default function NavbarPadrao({auth, isAuth, setIsAuth}) {
+export default function NavbarPadrao({ auth, isAuth, setIsAuth }) {
     const [isLupa, setIsLupa] = useState(false);
 
     function handleLupa() {
@@ -74,13 +74,7 @@ export default function NavbarPadrao({auth, isAuth, setIsAuth}) {
                         </div>
                     </div>
                 ) : (
-                    <div className={`${Styles.divLupa} animate__animated animate__fadeIn`}>
-                        <div>
-                            <Lupa width='1.5rem' cor='rgba(255, 255, 255, 0.7)' />
-                            <input className={Styles.inputPesquisaNavbar} type='text' placeholder='Busque algo aqui...' />
-                            <button className={Styles.botaoXis} onClick={() => handleLupa()}><Xis height='1rem' width='1rem' cor='rgba(255, 255, 255, 0.7)' /></button>
-                        </div>
-                    </div>
+                    <InputFiltroNavbar handleLupa={handleLupa} />
                 )
             }
         </nav>
