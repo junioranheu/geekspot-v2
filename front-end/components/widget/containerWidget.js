@@ -1,5 +1,6 @@
 
 import Image from 'next/image';
+import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
@@ -86,11 +87,11 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         <div className='flexColumn margem6'>
             <div className='flexRow'>
                 <div className='flexColumn'>
-                    <b className='titulo'>{titulo}</b>
+                    <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`xxx`)}>{titulo}</b>
                     <span className='texto'>{descricao}</span>
                 </div>
 
-                <div className={Styles.infoDireita}>
+                <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`xxx`)}>
                     {fraseAleatoria()}
                     <Seta width='1rem' />
                 </div>
@@ -110,6 +111,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                             height={tamanhoGrande}
                                             onError={() => setSrc(ImgCinza)}
                                             alt=''
+                                            onClick={() => Router.push(`${item?.url}`)}
                                         />
 
                                         <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
@@ -125,6 +127,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                                     height={tamanhoPequeno}
                                                     onError={() => setSrc(ImgCinza)}
                                                     alt=''
+                                                    onClick={() => Router.push(`${item?.url}`)}
                                                 />
 
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
@@ -137,6 +140,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
                                                     height={tamanhoPequeno}
                                                     onError={() => setSrc(ImgCinza)}
                                                     alt=''
+                                                    onClick={() => Router.push(`${listaWidgets[i + 1]?.url}`)}
                                                 />
 
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(listaWidgets[i + 1]?.preco, listaWidgets[i + 1]?.precoDesconto)}</span>

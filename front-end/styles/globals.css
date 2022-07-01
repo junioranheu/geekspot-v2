@@ -106,6 +106,10 @@ img {
     opacity: 1 !important;
 }
 
+.cor-principal-hover {
+    transition: .2s ease-in-out;
+}
+
 .cor-principal-hover:hover {
     color: var(--cor-principal) !important;
     opacity: 1 !important;
