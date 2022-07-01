@@ -12,7 +12,7 @@ const DEV = {
 };
 
 const PROD = {
-    API_URL_GET_AULAS_THUMBNAIL: `${API_BASE_URL_PROD}/${ENDPOINTS.GET_ITENS_IMAGENS}`,
+    API_URL_GET_ITENS_IMAGENS: `${API_BASE_URL_PROD}/${ENDPOINTS.GET_ITENS_IMAGENS}`,
 };
 
 // Definir se as constantes para a API é DEV ou PROD;
