@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import ContainerWidget from '../components/widget/containerWidget';
-import CONSTANTS_ITENS from '../utils/data/constItens';
 import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
 import paginaCarregada from '../utils/outros/paginaCarregada';
@@ -41,21 +40,21 @@ export async function getStaticProps() {
     const urlUsuarios = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(urlUsuarios, null);
 
-    let listaItens = [];
-    for (const u of usuarios) {
-        // Encontrar os itens com base no usuário;
-        const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
-        const itens = await Fetch.getApi(urlItens, null);
+    // let listaItens = [];
+    // for (const u of usuarios) {
+    //     // Encontrar os itens com base no usuário;
+    //     const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
+    //     const itens = await Fetch.getApi(urlItens, null);
 
-        if (itens.length) {
-            listaItens.push(itens);
-        }
-    }
+    //     if (itens.length) {
+    //         listaItens.push(itens);
+    //     }
+    // }
 
     return {
         props: {
             listaItens
         },
-        revalidate: 60 // segundos
+        // revalidate: 60 // segundos
     }
 }
