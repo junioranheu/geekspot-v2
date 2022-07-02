@@ -1,10 +1,53 @@
 import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Styles from '../../styles/footer.module.css';
+import { modoDark } from '../../utils/context/modoDarkContext';
 
 export default function Footer() {
+
+    useEffect(() => {
+        const isModoDark = (modoDark.get() ? modoDark.get().isModoDark : null);
+        console.log(isModoDark);
+
+        if (isModoDark) {
+            // Modo dark;
+            setIsDark(true);
+            alterarModo();
+        } else {
+            // Modo light;
+            setIsDark(false);
+            // Não é necessário definir as variáveis porque o modo dark já é o padrão e está em globals.css também;
+        }
+    }, []);
+
+    const [isDark, setIsDark] = useState(true);
+    function alterarModo() {
+        // "Inverter" as cores para ativar o modo dark/light;
+        if (isDark) {
+            // Modo dark;
+            setIsDark(true);
+            document.documentElement.style.setProperty('--preto', '#1A1A1A');
+            document.documentElement.style.setProperty('--super-preto', '#000000');
+            document.documentElement.style.setProperty('--branco', '#FFFFFF');
+            document.documentElement.style.setProperty('--cinza', '#313131');
+            document.documentElement.style.setProperty('--cinza-secundario', '#242424');
+        } else {
+            // Modo light;
+            setIsDark(false);
+            document.documentElement.style.setProperty('--preto', '#FFFFFF'); // Preto fica branco;
+            document.documentElement.style.setProperty('--super-preto', '#F2F2F2'); // Super preto fica creme;
+            document.documentElement.style.setProperty('--branco', '#1A1A1A'); // Branco fica preto;
+            document.documentElement.style.setProperty('--cinza', '#F2F2F2'); // Cinza fica creme acinzentado;
+            document.documentElement.style.setProperty('--cinza-secundario', '#F2F2F2'); // Cinza escuro fica creme acinzentado;
+        }
+
+        // Atualizar no localStorage;
+        modoDark.update({ isModoDark: !isDark });
+    }
+
     return (
         <footer className={Styles.footer}>
             {/* Principal */}
@@ -76,7 +119,7 @@ export default function Footer() {
                 <div className={Styles.direita}>
                     <div className={Styles.icones}>
                         <span title='Alternar modo dark/light'>
-                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faSun} size='lg' onClick={() => alert('Função não implementada ainda')} />
+                            <FontAwesomeIcon className='pointer' icon={(isDark ? faMoon : faSun)} size='lg' onClick={() => alterarModo()} />
                         </span>
 
                         <span title='GitHub'>
