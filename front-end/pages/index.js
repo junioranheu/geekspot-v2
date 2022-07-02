@@ -15,7 +15,7 @@ export default function Home({ listaItens }) {
 
     if (!isLoaded) {
         return false;
-    }
+    } 
 
     return (
         <main className={'paddingPadrao margem6'}>
