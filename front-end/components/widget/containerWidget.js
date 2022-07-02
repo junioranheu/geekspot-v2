@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
+import randomizarArray from '../../utils/outros/randomizarArray';
 import Seta from '../svg/seta';
 
 export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
@@ -12,6 +13,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
     const tamanhoPequeno = 196;
 
     const [ordemTamanhosImagens, setOrdemTamanhosImagens] = useState([]);
+    const [listaWidgetsAleatorio, setListaWidgetsAleatorio] = useState([]);
     useEffect(() => {
         function gerarOrdemTamanhosImagens(qtd) {
             let ordens = [];
@@ -66,6 +68,9 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
 
         // #02;
         gerarFraseAleatoria();
+
+        // #03;
+        setListaWidgetsAleatorio(randomizarArray(listaWidgets));
     }, [listaWidgets.length]);
 
     function definirPreco(preco, precoDesconto) {
@@ -110,7 +115,7 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
 
             <div className={`margem1 ${Styles.containerWidgets}`}>
                 {
-                    listaWidgets?.slice(0, 6).map((item, i) => (
+                    listaWidgetsAleatorio?.slice(0, 6).map((item, i) => (
                         <Fragment key={item.itemId}>
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
