@@ -1,6 +1,6 @@
 .navbar {
-    background-color: var(--preto);
-    color: var(--branco);
+    background-color: var(--branco);
+    color: var(--preto);
     height: 80px;
     width: 100vw;
     border-bottom: 1px solid var(--cor-border-hr);
@@ -37,7 +37,7 @@
 
 .navbar a {
     /* background-color: pink; */
-    color: var(--branco);
+    color: var(--preto);
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
@@ -56,8 +56,13 @@
     opacity: 1;
     height: 40px;
     background: var(--cinza);
+    color: var(--branco);
     transition: opacity .2s, color .2s;
     -webkit-transition: .2s, color .2s;
+}
+
+.navbar a:hover svg path {
+    stroke: var(--branco) !important;
 }
 
 .iconeCorInvertida {
@@ -141,7 +146,7 @@
 @media (max-width:600px) {
     .sessaoHamburguer {
         width: 80%;
-    }    
+    }
 }
 
 /* smartphones, Android phones, landscape iPhone */

@@ -7,6 +7,7 @@
     --cor-principal: rgba(154, 107, 255, 1);
     --cor-principal-opaca: rgba(154, 107, 255, 0.1);
     --cor-principal-escura: hsl(257, 80%, 60%);
+    --cor-border-hr: rgba(42, 42, 42, 20%);
     --cor-principal-gradient: linear-gradient(to bottom right, var(--cor-principal), var(--cor-principal-escura));
 
     --toastify-color-progress-light: var(--cor-principal) !important;
@@ -112,6 +113,10 @@ img {
 .cor-principal-hover:hover {
     color: var(--cor-principal) !important;
     opacity: 1 !important;
+    transition: .2s ease-in-out;
+}
+
+.cor-principal-hover {
     transition: .2s ease-in-out;
 }
 

@@ -68,12 +68,12 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }) {
                     !isLupa ? (
                         <div className={Styles.wrapper}>
                             <div className={Styles.divEsquerda}>
-                                <Link href='/'><a className={Styles.iconeCorInvertida}><Geekspot width='0.9rem' cor='var(--branco)' />&nbsp;&nbsp;GeekSpot</a></Link>
-                                <a onClick={() => handleLupa()}><Lupa height='1.5rem' width='1.5rem' cor='rgba(255, 255, 255, 0.7)' /></a>
+                                <Link href='/'><a className={Styles.iconeCorInvertida}><Geekspot width='0.9rem' cor='var(--preto)' />&nbsp;&nbsp;GeekSpot</a></Link>
+                                <a onClick={() => handleLupa()}><Lupa height='1.5rem' width='1.5rem' cor='var(--preto)' /></a>
                             </div>
 
                             <div className={Styles.divDireita}>
-                                <a onClick={() => handleHamburguer()}><Hamburguer width='1rem' cor='var(--branco)' /></a>
+                                <a onClick={() => handleHamburguer()}><Hamburguer width='1rem' cor='var(--preto)' /></a>
                             </div>
                         </div>
                     ) : (

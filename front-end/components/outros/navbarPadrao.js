@@ -37,7 +37,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }) {
                 !isLupa ? (
                     <div className={Styles.wrapper}>
                         <div className={Styles.divEsquerda}>
-                            <Link href='/'><a className={Styles.iconeCorInvertida}><Geekspot width='0.9rem' cor='var(--branco)' />&nbsp;&nbsp;GeekSpot</a></Link>
+                            <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' />&nbsp;&nbsp;GeekSpot</a></Link>
                             <Link href='/xxx'><a>Produtos</a></Link>
                             <Link href='/xxx'><a>Promoções 🔥</a></Link>
 
@@ -50,7 +50,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }) {
                                 )
                             }
 
-                            <a onClick={() => handleLupa()}><Lupa height='1.5rem' width='1.5rem' cor='rgba(255, 255, 255, 0.7)' /></a>
+                            <a onClick={() => handleLupa()}><Lupa height='1.5rem' width='1.5rem' cor='var(--preto)' /></a>
                         </div>
 
                         <div className={Styles.divDireita}>

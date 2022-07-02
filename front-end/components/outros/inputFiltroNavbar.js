@@ -6,9 +6,9 @@ export default function InputFiltroNavbar({ handleLupa }) {
     return (
         <div className={`${Styles.divLupa} animate__animated animate__fadeIn`}>
             <div>
-                <Lupa width='1.5rem' cor='rgba(255, 255, 255, 0.7)' />
+                <Lupa width='1.5rem' cor='var(--preto)' />
                 <input className={Styles.inputPesquisaNavbar} type='text' placeholder='Busque algo aqui...' />
-                <button className={Styles.botaoXis} onClick={() => handleLupa()}><Xis height='1rem' width='1rem' cor='rgba(255, 255, 255, 0.7)' /></button>
+                <button className={Styles.botaoXis} onClick={() => handleLupa()}><Xis height='1rem' width='1rem' cor='var(--preto)' /></button>
             </div>
         </div>
     )

@@ -15,7 +15,7 @@
 }
 
 .containerWidgets img {
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     filter: grayscale(10%);
     /* filter: grayscale(100%) blur(0.5px); */

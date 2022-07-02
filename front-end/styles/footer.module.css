@@ -4,11 +4,10 @@
     align-items: center;
     flex-direction: column;
     width: 100vw;
-    background-color: var(--preto);
+    background-color: var(--branco);
 
     /* Fixar footer sempre embaixo */
     margin-top: auto;
-
     border-top: 1px solid var(--cor-border-hr);
 }
 
@@ -25,7 +24,7 @@
     /* background-color: pink; */
     text-align: center;
     width: 100vw;
-    color: var(--branco);
+    color: var(--preto);
 }
 
 .sessao .tituloSessao {
@@ -58,7 +57,7 @@
     padding-bottom: 24px;
     display: flex;
     justify-content: space-between;
-    color: var(--branco);
+    color: var(--preto);
 }
 
 .secundaria span:nth-child(n+2) {
@@ -83,7 +82,6 @@
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
-
     /* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
     .principal {
         /* background-color: blue; */
