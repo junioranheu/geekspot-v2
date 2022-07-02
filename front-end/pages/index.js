@@ -40,7 +40,7 @@ export async function getStaticProps() {
     const urlUsuarios = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(urlUsuarios, null);
 
-    // let listaItens = [];
+    let listaItens = [];
     // for (const u of usuarios) {
     //     // Encontrar os itens com base no usuário;
     //     const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
