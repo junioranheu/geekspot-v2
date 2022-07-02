@@ -35,7 +35,7 @@ export default function Home({ listaItens }) {
         </main>
     )
 }
-
+ 
 export async function getStaticProps() {
     // Pegar todos os usuários;
     const urlUsuarios = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
