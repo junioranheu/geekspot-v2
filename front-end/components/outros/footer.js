@@ -26,7 +26,7 @@ export default function Footer() {
     const [isDark, setIsDark] = useState(true);
     function alterarModo() {
         // "Inverter" as cores para ativar o modo dark/light;
-        if (isDark) {
+        if (isDark) { 
             // Modo dark;
             setIsDark(true);
             document.documentElement.style.setProperty('--preto', '#1A1A1A');
