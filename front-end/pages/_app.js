@@ -8,6 +8,7 @@ import '../fonts/GTWalsheim.css';
 import '../fonts/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao.js';
 import '../styles/globals.css';
+import { ModoDarkProvider } from '../utils/context/modoDarkContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
 
 export default function App({ Component, pageProps }) {
@@ -36,13 +37,15 @@ export default function App({ Component, pageProps }) {
     return url ?
         (
             <Fragment>
-                <UsuarioProvider>
-                    {/* Toaster de aviso */}
-                    <ToastContainer className='semHighlight' />
+                <ModoDarkProvider>
+                    <UsuarioProvider>
+                        {/* Toaster de aviso */}
+                        <ToastContainer className='semHighlight' />
 
-                    {/* Conteúdo */}
-                    {verificarLayout()}
-                </UsuarioProvider>
+                        {/* Conteúdo */}
+                        {verificarLayout()}
+                    </UsuarioProvider>
+                </ModoDarkProvider>
             </Fragment>
         ) : null
 }

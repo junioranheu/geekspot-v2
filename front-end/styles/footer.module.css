@@ -49,7 +49,7 @@
 
 /* =-=-=-=-=-=-=-=-=-=-=-=- Secundária =-=-=-=-=-=-=-=-=-=-=-=- */
 .secundaria {
-    border-top: 1px solid var(--cor-border-hr); 
+    border-top: 1px solid var(--cor-border-hr);
     width: 70vw;
     font-weight: 400;
     font-size: 14px;
@@ -70,18 +70,19 @@
 
 .secundaria .direita .icones {
     /* background-color: rebeccapurple; */
-    margin-left: 60px;
     display: flex;
     justify-content: space-between;
 }
 
 .secundaria .direita .icones span:nth-child(n+2) {
+    /* background-color: red; */
     margin-left: 20px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
+
     /* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
     .principal {
         /* background-color: blue; */
@@ -110,10 +111,6 @@
         margin-top: 3vw;
         text-align: center;
     }
-
-    .direita {
-        display: none !important;
-    }
 }
 
 @media (max-width:739px) {
@@ -125,11 +122,7 @@
 }
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {
-    .direita {
-        display: none !important;
-    }
-}
+@media (max-width:600px) {}
 
 @media (max-width:500px) {
     .principal {

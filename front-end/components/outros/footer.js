@@ -2,50 +2,37 @@ import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Styles from '../../styles/footer.module.css';
-import { modoDark } from '../../utils/context/modoDarkContext';
+import { ModoDarkContext, StorageModoDark } from '../../utils/context/modoDarkContext';
 
 export default function Footer() {
+    const [isModoDark, setIsModoDark] = useContext(ModoDarkContext); // Contexto do modo dark;
 
     useEffect(() => {
-        const isModoDark = (modoDark.get() ? modoDark.get().isModoDark : null);
-        console.log(isModoDark);
+        alterarModo(isModoDark);
+    }, [isModoDark]);
 
+    function alterarModo(isModoDark) {
         if (isModoDark) {
-            // Modo dark;
-            setIsDark(true);
-            alterarModo();
+            // console.log('Ativar modo dark');
+            document.documentElement.style.setProperty('--preto', '#FFFFFF'); // Preto fica branco;
+            document.documentElement.style.setProperty('--super-preto', '#F2F2F2'); // Super preto fica creme;
+            document.documentElement.style.setProperty('--branco', '#1A1A1A'); // Branco fica preto;
+            document.documentElement.style.setProperty('--cinza', '#F2F2F2'); // Cinza fica creme acinzentado;
+            document.documentElement.style.setProperty('--cinza-secundario', '#F2F2F2'); // Cinza escuro fica creme acinzentado;  
         } else {
-            // Modo light;
-            setIsDark(false);
-            // Não é necessário definir as variáveis porque o modo dark já é o padrão e está em globals.css também;
-        }
-    }, []);
-
-    const [isDark, setIsDark] = useState(true);
-    function alterarModo() {
-        // "Inverter" as cores para ativar o modo dark/light;
-        if (isDark) { 
-            // Modo dark;
-            setIsDark(true);
+            // console.log('Ativar modo light');
             document.documentElement.style.setProperty('--preto', '#1A1A1A');
             document.documentElement.style.setProperty('--super-preto', '#000000');
             document.documentElement.style.setProperty('--branco', '#FFFFFF');
             document.documentElement.style.setProperty('--cinza', '#313131');
             document.documentElement.style.setProperty('--cinza-secundario', '#242424');
-        } else {
-            // Modo light;
-            setIsDark(false);
-            document.documentElement.style.setProperty('--preto', '#FFFFFF'); // Preto fica branco;
-            document.documentElement.style.setProperty('--super-preto', '#F2F2F2'); // Super preto fica creme;
-            document.documentElement.style.setProperty('--branco', '#1A1A1A'); // Branco fica preto;
-            document.documentElement.style.setProperty('--cinza', '#F2F2F2'); // Cinza fica creme acinzentado;
-            document.documentElement.style.setProperty('--cinza-secundario', '#F2F2F2'); // Cinza escuro fica creme acinzentado;
         }
 
         // Atualizar no localStorage;
-        modoDark.update({ isModoDark: !isDark });
+        setIsModoDark(isModoDark);
+        StorageModoDark.update({ isModoDark: isModoDark });
     }
 
     return (
@@ -118,8 +105,8 @@ export default function Footer() {
                 {/* Direita */}
                 <div className={Styles.direita}>
                     <div className={Styles.icones}>
-                        <span title='Alternar modo dark/light'>
-                            <FontAwesomeIcon className='pointer' icon={(isDark ? faMoon : faSun)} size='lg' onClick={() => alterarModo()} />
+                        <span title={`${(isModoDark ? 'Alternar para o modo light' : 'Alternar para o modo dark')}`}>
+                            <FontAwesomeIcon className='pointer' icon={(isModoDark ? faSun : faMoon)} size='lg' onClick={() => alterarModo(!isModoDark)} />
                         </span>
 
                         <span title='GitHub'>
