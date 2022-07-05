@@ -488,6 +488,13 @@ select:focus {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+@media (max-width:1400px) {
+    .sessaoPrincipal {
+        /* background-color: pink; */
+        width: 85vw;
+    }
+}
+
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
     .sessaoPrincipal {
