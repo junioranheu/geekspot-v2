@@ -1,5 +1,5 @@
 .wrapper {
-    background-color: var(--preto);
+    background-color: var(--branco);
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
@@ -23,14 +23,14 @@
 }
 
 .titulo {
-    color: var(--branco);
+    color: var(--preto);
     font-size: 2.5rem;
     font-weight: 600;
     letter-spacing: -1px;
 }
 
 .subtitulo {
-    color: var(--branco);
+    color: var(--preto);
     font-size: 1rem;
     font-weight: 500;
 }
@@ -84,11 +84,13 @@
 .botaoCustom button {
     width: 300px;
     background: var(--cor-principal);
+    color: var(--preto);
 }
 
 .botaoCustom2 button {
     width: 300px;
     background: var(--cor-principal-opaca);
+    color: var(--preto);
 }
 
 /* =-=-=-=-=-=-=-=-= Margens =-=-=-=-=-=-=-=-= */

@@ -2,15 +2,15 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
-import { Aviso } from '../../components/outros/aviso';
 import Botao from '../../components/outros/botao.js';
 import Styles from '../../styles/entrar.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import CONSTANTS_USUARIOS from '../../utils/data/constUsuarios';
+import { Aviso } from '../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
 import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
-import Anheu from '../svg/anheu.js';
 import Facebook from '../svg/facebook';
+import GeekSpot from '../svg/geekspot';
 import Google from '../svg/google.js';
 
 export default function SessaoEsquerda() {
@@ -108,7 +108,7 @@ export default function SessaoEsquerda() {
 
     return (
         <section className={Styles.divEsquerda}>
-            <Anheu width='0.9rem' cor='var(--branco)' />
+            <GeekSpot width='0.9rem' cor='var(--branco)' />
             <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao Anheu</span>
 
             {/* Inputs */}
