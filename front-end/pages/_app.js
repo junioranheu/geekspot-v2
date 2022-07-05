@@ -4,6 +4,7 @@ import 'nprogress/nprogress.css';
 import { Fragment, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalCookieConsent from '../components/outros/modalCookieConsent';
 import '../fonts/GTWalsheim.css';
 import '../fonts/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao.js';
@@ -44,6 +45,9 @@ export default function App({ Component, pageProps }) {
 
                         {/* Conteúdo */}
                         {verificarLayout()}
+
+                        {/* Consentimento de cookies */}
+                        <ModalCookieConsent />
                     </UsuarioProvider>
                 </ModoDarkProvider>
             </Fragment>
