@@ -1,6 +1,5 @@
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import SessaoDireita from '../../components/entrar/entrar.sessaoDireita.js';
 import SessaoEsquerda from '../../components/entrar/entrar.sessaoEsquerda.js';
 import Styles from '../../styles/entrar.module.css';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
@@ -32,7 +31,6 @@ export default function Entrar() {
     return (
         <section className={Styles.wrapper}>
             <SessaoEsquerda />
-            <SessaoDireita />
         </section>
     )
 }
