@@ -10,9 +10,9 @@ import { Aviso } from '../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../utils/outros/fetch';
 import horarioBrasilia from '../../utils/outros/horarioBrasilia';
-import PadronizarNomeCompletoUsuario from '../../utils/outros/padronizarNomeCompletoUsuario';
+import padronizarNomeCompletoUsuario from '../../utils/outros/padronizarNomeCompletoUsuario';
 import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
-import VerificarDadosCriarConta from '../../utils/outros/verificarDadosCriarConta';
+import verificarDadosCriarConta from '../../utils/outros/verificarDadosCriarConta';
 import Facebook from '../svg/facebook.js';
 import GeekSpot from '../svg/geekspot';
 import Google from '../svg/google.js';
@@ -44,14 +44,14 @@ export default function SessaoEsquerda() {
 
         // Verificações;
         const isTrocouSenha = true;
-        let isContinuarUm = VerificarDadosCriarConta(formData, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha);
+        let isContinuarUm = verificarDadosCriarConta(formData, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha);
         if (!isContinuarUm) {
             refBtnCriar.current.disabled = false;
             return false;
         }
 
         // Atribuir o nome formatado para a variavel nome, novamente;
-        formData.nomeCompleto = PadronizarNomeCompletoUsuario(formData.nomeCompleto);
+        formData.nomeCompleto = padronizarNomeCompletoUsuario(formData.nomeCompleto);
 
         // Criar conta;
         const urlCriarConta = CONSTANTS_USUARIOS.API_URL_POST_CRIAR_CONTA_COM_VALIDACOES;
