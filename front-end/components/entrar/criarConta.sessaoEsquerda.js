@@ -157,7 +157,7 @@ export default function SessaoEsquerda() {
     return (
         <section className={Styles.divPrincipal}>
             <GeekSpot width='0.9rem' cor='var(--branco)' />
-            <span className={Styles.titulo}>Crie sua conta no Anheu</span>
+            <span className={Styles.titulo}>Crie sua conta no GeekSpot</span>
 
             {/* Inputs */}
             <div>

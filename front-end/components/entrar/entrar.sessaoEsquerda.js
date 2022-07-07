@@ -109,7 +109,7 @@ export default function SessaoEsquerda() {
     return (
         <section className={Styles.divPrincipal}>
             <GeekSpot width='0.9rem' cor='var(--branco)' />
-            <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao Anheu</span>
+            <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao GeekSpot</span>
 
             {/* Inputs */}
             <div className={Styles.divLogin}>
