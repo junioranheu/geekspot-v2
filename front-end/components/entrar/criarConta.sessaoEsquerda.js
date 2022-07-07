@@ -111,7 +111,7 @@ export default function SessaoEsquerda() {
         // Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
 
         // Voltar à tela principal;
-        Router.push('/disciplinas');
+        Router.push('/');
 
         // Atribuir autenticação ao contexto de usuário;
         setIsAuth(true);

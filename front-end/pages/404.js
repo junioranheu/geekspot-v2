@@ -40,9 +40,9 @@ export default function Erro() {
     return (
         <section className={`${Styles.wrapper} paddingPadrao`}>
             <span className='titulo'>Opa...</span>
-            <span className='tituloDesc margem10'>Parece que algo deu errado<br />{msg}</span>
+            <span className='texto margem10'>Parece que algo deu errado<br />{msg}</span>
 
-            <div className='margem50'>
+            <div className='margem3'>
                 <Botao texto='Voltar ao início' url={'/'} isNovaAba={false} Svg={null} refBtn={null} isEnabled={true} />
             </div>
         </section>

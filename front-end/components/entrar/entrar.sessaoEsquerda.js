@@ -96,7 +96,7 @@ export default function SessaoEsquerda() {
         setIsAuth(true);
 
         // Voltar à tela principal;
-        Router.push('/disciplinas');
+        Router.push('/');
         NProgress.done();
     }
 
