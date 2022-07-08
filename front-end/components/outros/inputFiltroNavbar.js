@@ -8,7 +8,7 @@ export default function InputFiltroNavbar({ handleLupa }) {
             <div>
                 <Lupa width='1.5rem' cor='var(--preto)' />
                 <input className={Styles.inputPesquisaNavbar} type='text' placeholder='Busque algo aqui...' />
-                <button className={Styles.botaoXis} onClick={() => handleLupa()}><Xis height='1rem' width='1rem' cor='var(--preto)' /></button>
+                <button className={Styles.botaoXis} onClick={() => handleLupa()}><Xis height='1rem' width='1rem' cor='#1A1A1A' /></button>
             </div>
         </div>
     )

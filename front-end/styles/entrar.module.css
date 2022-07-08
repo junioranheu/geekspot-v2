@@ -1,7 +1,7 @@
 .divPrincipal {
     /* background-color: pink; */
     width: 100%;
-    height: 90vh;
+    height: 85vh;
     overflow-y: auto;
 
     display: flex;
