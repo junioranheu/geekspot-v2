@@ -111,7 +111,7 @@ export default function SessaoEsquerda() {
         // Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
 
         // Voltar à tela principal;
-        Router.push('/disciplinas');
+        Router.push('/');
 
         // Atribuir autenticação ao contexto de usuário;
         setIsAuth(true);
@@ -155,9 +155,9 @@ export default function SessaoEsquerda() {
     }
 
     return (
-        <section className={Styles.divEsquerda}>
+        <section className={Styles.divPrincipal}>
             <GeekSpot width='0.9rem' cor='var(--branco)' />
-            <span className={Styles.titulo}>Crie sua conta no Anheu</span>
+            <span className={Styles.titulo}>Crie sua conta no GeekSpot</span>
 
             {/* Inputs */}
             <div>

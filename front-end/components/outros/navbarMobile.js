@@ -87,7 +87,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }) {
                 isHamburguer && (
                     <section className={`${Styles.sessaoHamburguer} animate__animated animate__slideInRight animate__faster`}>
                         <div className={Styles.divDireita}>
-                            <a onClick={() => handleHamburguer()}><Xis height='1.7rem' width='1.7rem' cor='rgba(255, 255, 255, 0.8)' /></a>
+                            <a onClick={() => handleHamburguer()}><Xis height='1.7rem' width='1.7rem' cor='var(--branco)' /></a>
                         </div>
 
                         <div className={Styles.divAtalhos}>

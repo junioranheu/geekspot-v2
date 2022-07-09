@@ -1,8 +1,6 @@
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import SessaoEsquerda from '../../components/entrar/criarConta.sessaoEsquerda.js';
-import SessaoDireita from '../../components/entrar/entrar.sessaoDireita.js';
-import Styles from '../../styles/entrar.module.css';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
 import paginaCarregada from '../../utils/outros/paginaCarregada.js';
 
@@ -30,9 +28,6 @@ export default function CriarConta() {
     }
 
     return (
-        <section className={Styles.wrapper}>
-            <SessaoEsquerda />
-            <SessaoDireita />
-        </section>
+        <SessaoEsquerda />
     )
 }
