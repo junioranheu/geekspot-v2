@@ -21,6 +21,7 @@ export default function Footer() {
             document.documentElement.style.setProperty('--branco', '#1A1A1A'); // Branco fica preto;
             document.documentElement.style.setProperty('--cinza', '#F2F2F2'); // Cinza fica creme acinzentado;
             document.documentElement.style.setProperty('--cinza-secundario', '#F2F2F2'); // Cinza escuro fica creme acinzentado;  
+            document.documentElement.style.setProperty('--cor-border-hr', 'rgba(255, 255, 255, 20%)'); // Cinza "apagado" para branco "apagado";
         } else {
             // console.log('Ativar modo light');
             document.documentElement.style.setProperty('--preto', '#1A1A1A');
@@ -28,6 +29,7 @@ export default function Footer() {
             document.documentElement.style.setProperty('--branco', '#FFFFFF');
             document.documentElement.style.setProperty('--cinza', '#313131');
             document.documentElement.style.setProperty('--cinza-secundario', '#242424');
+            document.documentElement.style.setProperty('--cor-border-hr', 'rgba(42, 42, 42, 20%)');     
         }
 
         // Atualizar no localStorage;

@@ -22,7 +22,8 @@ export default function Home({ listaItens }) {
             {
                 listaItens?.map((item, i) => (
                     <ContainerWidget
-                        titulo={`Itens do usuário @${item[0]?.usuarios?.nomeUsuarioSistema}`}
+                        usuarioId={item[0]?.usuarios?.usuarioId}
+                        usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
                         descricao='Isso é apenas um teste'
                         listaWidgets={item}
                         key={i}

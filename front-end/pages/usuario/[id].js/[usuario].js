@@ -24,11 +24,11 @@ export default function Perfil({ usuario }) {
     return (
         <section className='flexColumn paddingPadrao margem5'>
             <div className='centralizarTexto'>
-                <span className='titulo'>Perfil de <span className='grifar'>{cursos[0]?.xxx.xxx}</span></span>
+                <span className='titulo'>Perfil de <span className='grifar'>{usuario[0]?.xxx.xxx}</span></span>
             </div>
 
             <div className='margem3'>
-   
+
             </div>
 
             {/* Espaço a mais */}
@@ -39,16 +39,18 @@ export default function Perfil({ usuario }) {
 
 export async function getStaticPaths() {
     // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
+    console.log('xxxxxxxxxxxxxxxxxx');
 
     // Todas os usuários;
     const url = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(url, null);
+    console.log(usuarios);
 
     // Gerar o "paths";
-    const paths = usuarios?.map(c => ({
+    const paths = usuarios?.map(u => ({
         params: {
-            id: c.cursoCategoriaId.toString(),
-            nome: ajustarUrl(c.categoria)
+            id: u.usuarioId.toString(),
+            nome: ajustarUrl(u.usuarioNomeSistema)
         }
     }));
 
@@ -60,6 +62,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const id = context.params.id;
+    console.log(id);
 
     // Usuário;
     const url = `${CONSTANTS_USUARIOS.API_URL_GET_POR_CURSO_CATEGORIA_ID}/${id}`;

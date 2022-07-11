@@ -5,10 +5,11 @@ import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/widget.module.css';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
+import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import Seta from '../svg/seta';
 
-export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
+export default function ContainerWidget({ usuarioId, usuarioNomeSistema, descricao, listaWidgets }) {
     const tamanhoGrande = 406;
     const tamanhoPequeno = 196;
 
@@ -103,11 +104,14 @@ export default function ContainerWidget({ titulo, descricao, listaWidgets }) {
         <div className='flexColumn margem6'>
             <div className='flexRow'>
                 <div className='flexColumn'>
-                    <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`xxx`)}>{titulo}</b>
+                    <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
+                        Itens do usuário @{usuarioNomeSistema} 
+                    </b>
+
                     <span className='texto'>{descricao}</span>
                 </div>
 
-                <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`xxx`)}>
+                <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
                     {fraseAleatoria}
                     <Seta width='1rem' />
                 </div>
