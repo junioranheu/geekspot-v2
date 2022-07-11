@@ -108,7 +108,7 @@ export default function Footer() {
                 <div className={Styles.direita}>
                     <div className={Styles.icones}>
                         <span title={`${(isModoDark ? 'Alternar para o modo light' : 'Alternar para o modo dark')}`}>
-                            <FontAwesomeIcon className='pointer' icon={(isModoDark ? faSun : faMoon)} size='lg' onClick={() => alterarModo(!isModoDark)} />
+                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={(isModoDark ? faSun : faMoon)} size='lg' onClick={() => alterarModo(!isModoDark)} />
                         </span>
 
                         <span title='GitHub'>
