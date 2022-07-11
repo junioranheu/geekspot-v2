@@ -9,8 +9,6 @@ export default function Perfil({ usuario }) {
     const [isAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const usuarioId = isAuth ? Auth?.getUsuarioLogado()?.usuarioId : null;
 
-    const [filtroCurso, setFiltroCurso] = useState('');
-    const [cursoDefinidoAtual, setCursoDefinidoAtual] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         // Título da página;
@@ -39,18 +37,16 @@ export default function Perfil({ usuario }) {
 
 export async function getStaticPaths() {
     // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
-    console.log('xxxxxxxxxxxxxxxxxx');
 
     // Todas os usuários;
     const url = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(url, null);
-    console.log(usuarios);
 
     // Gerar o "paths";
     const paths = usuarios?.map(u => ({
         params: {
             id: u.usuarioId.toString(),
-            nome: ajustarUrl(u.usuarioNomeSistema)
+            nomeUsuarioSistema: ajustarUrl(u.nomeUsuarioSistema)
         }
     }));
 
@@ -62,7 +58,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const id = context.params.id;
-    console.log(id);
 
     // Usuário;
     const url = `${CONSTANTS_USUARIOS.API_URL_GET_POR_CURSO_CATEGORIA_ID}/${id}`;
