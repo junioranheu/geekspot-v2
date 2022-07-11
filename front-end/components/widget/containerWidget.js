@@ -72,7 +72,7 @@ export default function ContainerWidget({ usuarioId, usuarioNomeSistema, descric
 
         // #03;
         setListaWidgetsAleatorio(randomizarArray(listaWidgets));
-    }, [listaWidgets.length]);
+    }, [listaWidgets]);
 
     function definirPreco(preco, precoDesconto) {
         let precoFinal = `R$ ${preco}`;

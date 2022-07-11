@@ -17,7 +17,7 @@ export default function Perfil({ usuario }) {
         document.title = usuario ? `GeekSpot — Perfil de @${usuario?.nomeUsuarioSistema}` : 'GeekSpot';
 
         paginaCarregada(true, 200, 500, setIsLoaded);
-    }, [usuarioId, usuario?.nomeUsuarioSistema]);
+    }, [usuarioId, usuario]);
 
     if (!isLoaded) {
         return false;
