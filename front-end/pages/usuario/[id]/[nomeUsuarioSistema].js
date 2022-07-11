@@ -22,7 +22,7 @@ export default function Perfil({ usuario }) {
     if (!isLoaded) {
         return false;
     }
-
+ 
     return (
         <section className='flexColumn paddingPadrao margem5'>
             <div className='centralizarTexto'>
