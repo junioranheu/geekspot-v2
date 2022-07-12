@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
-import CONSTANTS_USUARIOS from '../../../utils/data/constUsuarios';
+import CONSTANTS_ITENS from '../../../utils/data/constItens';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 
-export default function Perfil({ usuario }) {
+export default function Item({ item }) {
     // console.log(cursos);
     const [isAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const usuarioId = isAuth ? Auth?.getUsuarioLogado()?.usuarioId : null;
@@ -13,10 +13,10 @@ export default function Perfil({ usuario }) {
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         // Título da página;
-        document.title = usuario ? `GeekSpot — Perfil de @${usuario?.nomeUsuarioSistema}` : 'GeekSpot';
+        document.title = item ? `GeekSpot — ${item?.nome}` : 'GeekSpot';
 
         paginaCarregada(true, 200, 500, setIsLoaded);
-    }, [usuarioId, usuario]);
+    }, [usuarioId, item]);
 
     if (!isLoaded) {
         return false;
@@ -25,7 +25,7 @@ export default function Perfil({ usuario }) {
     return (
         <section className='flexColumn paddingPadrao margem5'>
             <div className='centralizarTexto'>
-                <span className='titulo'>Perfil de <span className='grifar'>@{usuario?.nomeUsuarioSistema}</span></span>
+                <span className='titulo'>xxx <span className='grifar'>@{item?.nome}</span></span>
             </div>
 
             <div className='margem3'>
@@ -41,15 +41,16 @@ export default function Perfil({ usuario }) {
 export async function getStaticPaths() {
     // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
 
-    // Todas os usuários;
-    const url = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
-    const usuarios = await Fetch.getApi(url, null);
+    // Todas os itens;
+    const url = CONSTANTS_ITENS.API_URL_GET_TODOS;
+    const itens = await Fetch.getApi(url, null);
+    // console.log(itens);
 
     // Gerar o "paths";
-    const paths = usuarios?.map(u => ({
+    const paths = itens?.map(i => ({
         params: {
-            id: u.usuarioId.toString(),
-            nomeUsuarioSistema: ajustarUrl(u.nomeUsuarioSistema)
+            id: i.itemId.toString(),
+            nome: ajustarUrl(i.nome)
         }
     }));
 
@@ -62,14 +63,14 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
     const id = context.params.id;
 
-    // Usuário;
-    const url = `${CONSTANTS_USUARIOS.API_URL_GET_POR_ID}/${id}`;
-    const usuario = await Fetch.getApi(url, null);
-    // console.log(usuario);
+    // Item;
+    const url = `${CONSTANTS_ITENS.API_URL_GET_POR_ID}/${id}`;
+    const item = await Fetch.getApi(url, null);
+    // console.log(item);
 
     return {
         props: {
-            usuario
+            item
         },
         // revalidate: 10 // segundos
     }

@@ -105,7 +105,7 @@ export default function ContainerWidget({ usuarioId, usuarioNomeSistema, descric
             <div className='flexRow'>
                 <div className='flexColumn'>
                     <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
-                        Itens do usuário @{usuarioNomeSistema} 
+                        Itens do usuário @{usuarioNomeSistema}
                     </b>
 
                     <span className='texto'>{descricao}</span>
@@ -130,7 +130,7 @@ export default function ContainerWidget({ usuarioId, usuarioNomeSistema, descric
                                             width={tamanhoGrande}
                                             height={tamanhoGrande}
                                             alt=''
-                                            onClick={() => Router.push(`${item?.url}`)}
+                                            onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
                                         />
 
                                         <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
@@ -145,7 +145,7 @@ export default function ContainerWidget({ usuarioId, usuarioNomeSistema, descric
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
-                                                    onClick={() => Router.push(`${item?.url}`)}
+                                                    onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
                                                 />
 
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
@@ -157,7 +157,7 @@ export default function ContainerWidget({ usuarioId, usuarioNomeSistema, descric
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
-                                                    onClick={() => Router.push(`${listaWidgets[i + 1]?.url}`)}
+                                                    onClick={() => Router.push(`/item/${listaWidgets[i + 1]?.itemId}/${ajustarUrl(listaWidgets[i + 1]?.nome)}`)}
                                                 />
 
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(listaWidgets[i + 1]?.preco, listaWidgets[i + 1]?.precoDesconto)}</span>
