@@ -1,12 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Fragment, useContext, useEffect, useState } from 'react';
+import ImgCinza from '../../../static/image/cinza.webp';
+import Styles from '../../../styles/item.module.css';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import CONSTANTS_ITENS from '../../../utils/data/constItens';
+import CONSTANTS_UPLOAD from '../../../utils/data/constUpload';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 
 export default function Item({ item }) {
-    // console.log(cursos);
+    // console.log(item);
     const [isAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const usuarioId = isAuth ? Auth?.getUsuarioLogado()?.usuarioId : null;
 
@@ -21,20 +25,31 @@ export default function Item({ item }) {
     if (!isLoaded) {
         return false;
     }
- 
-    return (
-        <section className='flexColumn paddingPadrao margem5'>
-            <div className='centralizarTexto'>
-                <span className='titulo'>xxx <span className='grifar'>@{item?.nome}</span></span>
-            </div>
 
-            <div className='margem3'>
-                Teste
-            </div>
+    return (
+        <Fragment>
+            <section className={`${Styles.sessaoPrincipal} margem5`}>
+                <div className={Styles.sessaoEsquerda}>
+                    <Image
+                        src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                        width={500}
+                        height={500}
+                        alt=''
+                    />
+                </div>
+
+                <div className={Styles.sessaoDireita}>
+                    <span className='titulo'>xxx <span className='grifar'>{item?.nome}</span></span>
+
+                    <div className='margem1'>
+                        Teste
+                    </div>
+                </div>
+            </section>
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>
-        </section>
+        </Fragment>
     )
 }
 

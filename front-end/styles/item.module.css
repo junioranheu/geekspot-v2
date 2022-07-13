@@ -1,0 +1,23 @@
+.sessaoPrincipal {
+    background-color: red;
+
+    display: flex;
+}
+
+.sessaoEsquerda {
+    background-color: yellow;
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.sessaoEsquerda img {
+    width: 30vw !important;
+    border-radius: 10px;
+}
+
+.sessaoDireita {
+    background-color: blue;
+    width: 50%;
+}
