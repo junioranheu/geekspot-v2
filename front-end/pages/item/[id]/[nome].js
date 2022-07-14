@@ -35,6 +35,7 @@ export default function Item({ item }) {
                         width={500}
                         height={500}
                         alt=''
+                        className={Styles.efeitoImagemHover}
                     />
                 </div>
 

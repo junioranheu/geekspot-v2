@@ -21,3 +21,17 @@
     background-color: blue;
     width: 50%;
 }
+
+.efeitoImagemHover {
+    border-radius: 5px;
+    cursor: pointer;
+    filter: grayscale(10%);
+    /* filter: grayscale(100%) blur(0.5px); */
+    transition: 0.5s ease-in-out;
+}
+
+.efeitoImagemHover:hover {
+    filter: grayscale(0%) blur(0px) contrast(110%);
+    transform: scale(1.01);
+    transition: 0.5s ease-in-out;
+}
