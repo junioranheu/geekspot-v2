@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Fragment, useContext, useEffect, useState } from 'react';
+import Botao from '../../../components/outros/botao';
 import ImgCinza from '../../../static/image/cinza.webp';
 import Styles from '../../../styles/item.module.css';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
@@ -22,6 +23,11 @@ export default function Item({ item }) {
         paginaCarregada(true, 200, 500, setIsLoaded);
     }, [usuarioId, item]);
 
+    function gerarTextoParcelas(preco) {
+        const msg = `2x de R$ ${(preco / 2)} sem juros`;
+        return msg;
+    }
+
     if (!isLoaded) {
         return false;
     }
@@ -42,8 +48,23 @@ export default function Item({ item }) {
                 <div className={Styles.sessaoDireita}>
                     <span className='titulo'>{item?.nome}</span>
 
-                    <div className='margem1'>
-                        <span className='titulo cor-principal'>R$ {item?.preco}</span>
+                    <div className='margem2 flexColumn'>
+                        <span className={Styles.textoNegrito}>R$ {item?.preco}</span>
+                        <span className='texto'>{gerarTextoParcelas(item?.preco)}</span>
+                    </div>
+
+                    <div className='margem2 flexColumn'>
+                        <div className={Styles.botaoCustom} onClick={null}>
+                            <Botao texto={'Eu quero'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                        </div>
+
+                        <div className={`${Styles.botaoCustom} margem1`} onClick={null}>
+                            <Botao texto={'Adicionar ao carrinho'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                        </div>
+
+                        <div className={`${Styles.botaoCustom} margem1`} onClick={null}>
+                            <Botao texto={'Fazer oferta'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                        </div>
                     </div>
                 </div>
             </section>
