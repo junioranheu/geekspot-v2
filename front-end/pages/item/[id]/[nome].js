@@ -1,3 +1,6 @@
+import { faCcMastercard, faCcPaypal, faCcVisa } from '@fortawesome/free-brands-svg-icons';
+import { faMoneyBill1 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
@@ -51,6 +54,13 @@ export default function Item({ item }) {
                     <div className='margem2 flexColumn'>
                         <span className={Styles.textoNegrito}>R$ {item?.preco}</span>
                         <span className='texto'>{gerarTextoParcelas(item?.preco)}</span>
+
+                        <div className={Styles.divFormasPagamento}>
+                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcVisa} size='lg' title='Visa'/>
+                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcMastercard} size='lg' title='Mastercard' />
+                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcPaypal} size='lg' title='PayPal' />
+                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faMoneyBill1} size='lg' title='Dinheiro ou pix' />
+                        </div>
                     </div>
 
                     <div className='margem2 flexColumn'>

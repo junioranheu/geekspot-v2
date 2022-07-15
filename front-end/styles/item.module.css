@@ -48,3 +48,11 @@
 .botaoCustom button {
     width: 60%;
 }
+
+.divFormasPagamento{
+    /* background-color: red; */
+    display: flex;
+    gap: 10px;
+    color: var(--preto);
+    margin-top: 0.5rem;
+}
