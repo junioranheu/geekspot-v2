@@ -40,10 +40,10 @@ export default function Item({ item }) {
                 </div>
 
                 <div className={Styles.sessaoDireita}>
-                    <span className='titulo'>xxx <span className='grifar'>{item?.nome}</span></span>
+                    <span className='titulo'>{item?.nome}</span>
 
                     <div className='margem1'>
-                        Teste
+                        <span className='titulo cor-principal'>R$ {item?.preco}</span>
                     </div>
                 </div>
             </section>
