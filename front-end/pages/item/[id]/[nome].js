@@ -62,7 +62,7 @@ export default function Item({ item }) {
                             <FontAwesomeIcon className='pointer cor-principal-hover' icon={faMoneyBill1} size='lg' title='Dinheiro ou pix' />
                         </div>
                     </div>
-
+ 
                     <div className='margem2 flexColumn'>
                         <div className={Styles.botaoCustom} onClick={null}>
                             <Botao texto={'Eu quero'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
