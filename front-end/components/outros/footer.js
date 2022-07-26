@@ -7,11 +7,17 @@ import Styles from '../../styles/footer.module.css';
 import { ModoDarkContext, StorageModoDark } from '../../utils/context/modoDarkContext';
 
 export default function Footer() {
-    const [isModoDark, setIsModoDark] = useContext(ModoDarkContext); // Contexto do modo dark;
+    const { isModoDarkContext, testeContext } = useContext(ModoDarkContext); // Contexto do modo dark;
+    const [isModoDark, setIsModoDark] = isModoDarkContext;
+    const [teste, setTeste] = testeContext;
 
     useEffect(() => {
         alterarModo(isModoDark);
     }, [isModoDark]);
+
+    useEffect(() => {
+        console.log('Teste', teste);
+    }, [teste]);
 
     function alterarModo(isModoDark) {
         if (isModoDark) {

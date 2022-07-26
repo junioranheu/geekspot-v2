@@ -5,11 +5,14 @@ export const ModoDarkContext = createContext();
 
 // Provider: para "segurar" uma informação e passar para todos os componentes "child";
 export const ModoDarkProvider = props => {
-    // console.log(StorageModoDark.get()?.isModoDark, (StorageModoDark.get()?.isModoDark ? true : false));
     const [isModoDark, setIsModoDark] = useState(StorageModoDark.get()?.isModoDark ? true : false);
+    const [teste, setTeste] = useState(true);
 
     return (
-        <ModoDarkContext.Provider value={[isModoDark, setIsModoDark]}>
+        <ModoDarkContext.Provider value={{
+            isModoDarkContext: [isModoDark, setIsModoDark],
+            testeContext: [teste, setTeste]
+        }}>
             {props.children}
         </ModoDarkContext.Provider>
     );
