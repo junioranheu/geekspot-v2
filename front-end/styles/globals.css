@@ -435,28 +435,40 @@ select:focus {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Margens =-=-=-=-=-=-=-=-=-=-= */
+.margem0_5 {
+    margin-top: 0.5rem;
+}
+
 .margem1 {
     margin-top: 1rem;
 }
 
-.margem2 {
+.margem1_5 {
     margin-top: 1.5rem;
 }
 
-.margem3 {
+.margem2 {
     margin-top: 2rem;
 }
 
-.margem4 {
-    margin-top: 2.5rem;
-}
-
-.margem5 {
+.margem3 {
     margin-top: 3rem;
 }
 
+.margem3_5 {
+    margin-top: 3rem;
+}
+
+.margem4 {
+    margin-top: 4rem;
+}
+
+.margem5 {
+    margin-top: 5rem;
+}
+
 .margem6 {
-    margin-top: 3.5rem;
+    margin-top: 6rem;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Padding =-=-=-=-=-=-=-=-=-=-= */

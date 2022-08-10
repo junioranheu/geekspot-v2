@@ -1,0 +1,106 @@
+.divPrincipal {
+    // background-color: pink;
+    width: 100%;
+    height: 85vh;
+    overflow-y: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    .titulo {
+        color: var(--preto);
+        font-size: 2.5rem;
+        font-weight: 600;
+        letter-spacing: -1px;
+    }
+
+    .subtitulo {
+        color: var(--preto);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .divisao {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        text-align: center;
+        font-size: 14px;
+        color: #bababa;
+        line-height: 8px;
+        margin: 5px auto 8px;
+
+        &::after {
+            content: "";
+            margin-top: 3px;
+            margin-left: 1em;
+            flex: 1 1 0%;
+            border-bottom: 2px solid var(--cor-border-hr);
+        }
+
+        &::before {
+            content: "";
+            margin-top: 3px;
+            margin-right: 1em;
+            flex: 1 1 0%;
+            border-bottom: 2px solid var(--cor-border-hr);
+        }
+    }
+
+    .divLogin{
+        /* background-color: red; */
+        max-width: 300px;
+    }
+
+    /* =-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-= */
+    .botaoCustom {
+        button {
+            width: 300px;
+            background: var(--cor-principal);
+            color: var(--preto);
+        }
+    }
+
+    .botaoCustom2 {
+        button {
+            width: 300px;
+            background: var(--cor-principal-opaca);
+            color: var(--preto);
+        }
+    }
+
+    /* =-=-=-=-=-=-=-=-= Checkbox =-=-=-=-=-=-=-=-= */
+    .checkbox {
+        color: #f3f3f3;
+        display: flex;
+
+        label {
+            margin-left: 5px;
+        }
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .divPrincipal {
+        /* background-color: pink; */
+        width: 100%;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .divPrincipal {
+        .titulo {
+            font-size: 2rem;
+        }
+
+        .subtitulo {
+            font-size: 0.9rem;
+        }
+    }
+}

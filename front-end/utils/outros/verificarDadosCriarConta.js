@@ -1,5 +1,5 @@
 import NProgress from 'nprogress';
-import { Aviso } from '../../utils/outros/aviso';
+import { Aviso } from './aviso';
 
 export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha) {
     // console.log(form);
