@@ -77,19 +77,18 @@ var builder = WebApplication.CreateBuilder(args);
     })
     .AddJwtBearer(x =>
     {
-        x.RequireHttpsMetadata = builder.Environment.IsDevelopment() ? false : true;
+        x.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
         x.SaveToken = true; 
         x.IncludeErrorDetails = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true, 
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Chave.chave)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:Secret"])),
             ValidateIssuer = true,
-            ValidIssuer = "GeekSpot",
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
             ValidateAudience = true,
-            ValidAudience = "GeekSpot",
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            ValidateLifetime = true
         };
     });
 
