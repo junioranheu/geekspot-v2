@@ -43,7 +43,7 @@ namespace GeekSpot.Application.Services.Authentication
                 NomeCompleto = dto?.NomeCompleto,
                 Email = dto?.Email,
                 NomeUsuarioSistema = dto?.NomeUsuarioSistema,
-                Senha = dto?.Senha,
+                Senha = Criptografar(dto?.Senha),
                 UsuarioTipoId = (int)UsuarioTipoEnum.Usuario,
                 Foto = "",
                 DataRegistro = HorarioBrasilia(),
@@ -83,7 +83,7 @@ namespace GeekSpot.Application.Services.Authentication
             }
 
             // #2 - Verificar se a senha está correta;
-            if (usuario.Senha != dto?.Senha)
+            if (usuario.Senha != Criptografar(dto?.Senha))
             {
                 UsuarioDTO erro = new()
                 {

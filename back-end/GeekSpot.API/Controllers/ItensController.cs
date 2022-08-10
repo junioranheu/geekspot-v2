@@ -19,7 +19,7 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpPost("adicionar")]
-        [CustomAuthorize(UsuarioTipoEnum.Administrador)]
+        [Authorize(Roles = "1")]
         public async Task<ActionResult<bool>> Adicionar(ItemDTO dto)
         {
             await _itemRepository.Adicionar(dto);
