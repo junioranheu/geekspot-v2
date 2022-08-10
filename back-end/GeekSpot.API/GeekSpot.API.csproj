@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\GeekSpot.Application\GeekSpot.Application.csproj" />
 		<ProjectReference Include="..\GeekSpot.Infraestructure\GeekSpot.Infraestructure.csproj" />
+		<ProjectReference Include="..\GeekSpot.Utils\GeekSpot.Utils.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

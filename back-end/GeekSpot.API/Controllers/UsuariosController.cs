@@ -1,6 +1,9 @@
-﻿using GeekSpot.Domain.Entities;
+﻿using GeekSpot.Application.Common.Interfaces.Persistence;
+using GeekSpot.Domain.DTO;
+using GeekSpot.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.API.Controllers
 {
@@ -15,65 +18,74 @@ namespace GeekSpot.API.Controllers
             _usuarios = usuarioRepository;
         }
 
-        [HttpGet("todos")]
-        [Authorize]
-        public async Task<ActionResult<List<Usuario>>> GetTodos()
+        [HttpPost("adicionar")]
+        public async Task<ActionResult<UsuarioDTO>> Adicionar(UsuarioSenhaDTO dto)
         {
-            var itens = await _usuarios.GetTodos();
-            return itens;
+            var isExiste = await _usuarios.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+
+            if (isExiste is not null)
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.UsuarioExistente,
+                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
+                };
+
+                return erro;
+            }
+
+            var usuario = await _usuarios.Adicionar(dto);
+            return Ok(usuario);
+        }
+
+        [HttpPost("atualizar")]
+        [Authorize]
+        public async Task<ActionResult<UsuarioDTO>> Atualizar(UsuarioSenhaDTO dto)
+        {
+            var isExiste = await _usuarios.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+
+            if (isExiste is not null)
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.UsuarioExistente,
+                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
+                };
+
+                return erro;
+            }
+
+            var usuario = await _usuarios.Adicionar(dto);
+            return Ok(usuario);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetPorId(int id)
+        public async Task<ActionResult<UsuarioDTO>> GetPorId(int id)
         {
-            var item = await _usuarios.GetPorId(id);
+            var porId = await _usuarios.GetPorId(id);
 
-            if (item == null)
+            if (porId == null)
             {
                 return NotFound();
             }
 
-            return item;
+            return porId;
         }
 
-        [HttpGet("verificarEmailSenha")]
-        public async Task<ActionResult<Usuario>> GetVerificarEmailSenha(string nomeUsuarioSistema, string senha)
+        [HttpGet("todos")]
+        [Authorize]
+        public async Task<ActionResult<List<UsuarioDTO>>> GetTodos()
         {
-            var usuarioBd = await _usuarios.GetVerificarEmailSenha(nomeUsuarioSistema, senha);
+            var itens = await _usuarios.GetTodos();
 
-            if (usuarioBd != null)
+            if (itens == null)
             {
-                Usuario usu = new()
-                {
-                    UsuarioId = usuarioBd.UsuarioId,
-                    NomeCompleto = usuarioBd.NomeCompleto,
-                    NomeUsuarioSistema = usuarioBd.NomeUsuarioSistema,
-                    Email = usuarioBd.Email,
-                    UsuarioTipoId = usuarioBd.UsuarioTipoId,
-                    Foto = usuarioBd.Foto,
-                    DataOnline = usuarioBd.DataOnline
-                };
-
-                return usu;
+                return NotFound();
             }
-            else
-            {
-                return null;
-            }
-        }
 
-        [HttpGet("isExistePorEmail")]
-        public async Task<ActionResult<bool>> IsExistePorEmail(string email)
-        {
-            bool isExiste = await _usuarios.IsExistePorEmail(email);
-            return isExiste;
-        }
-
-        [HttpGet("isExistePorNomeUsuarioSistema")]
-        public async Task<ActionResult<bool>> IsExistePorNomeUsuarioSistema(string nomeUsuarioSistema)
-        {
-            bool isExiste = await _usuarios.IsExistePorNomeUsuarioSistema(nomeUsuarioSistema);
-            return isExiste;
+            return itens;
         }
     }
 }

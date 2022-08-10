@@ -7,7 +7,7 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task Adicionar(ItemTipoDTO dto);
         Task Atualizar(ItemTipoDTO dto);
         Task Deletar(int id);
-        Task<List<ItemTipoDTO>> GetTodos();
-        Task<ItemTipoDTO> GetPorId(int id);    
+        Task<List<ItemTipoDTO>>? GetTodos();
+        Task<ItemTipoDTO>? GetPorId(int id);    
     }
 }

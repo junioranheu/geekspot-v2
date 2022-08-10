@@ -11,7 +11,7 @@ namespace GeekSpot.Domain.Enums
         TipoUsuarioNaoPermitido = 102,
 
         [Description("Tipo de usuário não encontrado")]
-        tipoUsuarioNaoEncontrado = 103,
+        TipoUsuarioNaoEncontrado = 103,
 
         [Description("Requisitos de senha não cumprido")]
         RequisitosSenhaNaoCumprido = 104,
@@ -25,13 +25,7 @@ namespace GeekSpot.Domain.Enums
         [Description("Usuário não encontrado")]
         UsuarioNaoEncontrado = 107,
 
-        [Description("Link de recuperação de senha desativado")]
-        LinkRecuperacaoSenhaDesativado = 108,
-
-        [Description("Código de verificação incorreto")]
-        CodigoVerificacaoIncorreto = 109,
-
-        [Description("Código de verificação expirado")]
-        CodigoVerificacaoExpirado = 110,
+        [Description("Dado não encontrado")]
+        NaoEncontrado = 500,
     }
 }

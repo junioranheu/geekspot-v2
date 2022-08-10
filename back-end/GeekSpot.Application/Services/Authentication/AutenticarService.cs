@@ -20,10 +20,10 @@ namespace GeekSpot.Application.Services.Authentication
             _map = map;
         }
 
-        public UsuarioDTO Registrar(UsuarioSenhaDTO dto)
+        public async Task<UsuarioDTO> Registrar(UsuarioSenhaDTO dto)
         {
             // #1.2 - Verificar se o usuário já existe com o e-mail informado. Se existir, aborte;
-            var verificarUsuario = _usuarioRepository.GetPorEmail(dto?.Email);
+            var verificarUsuario = _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
 
             if (verificarUsuario is not null)
             {
@@ -53,7 +53,7 @@ namespace GeekSpot.Application.Services.Authentication
                 IsVerificado = 1
             };
 
-            _usuarioRepository.Adicionar(novoUsuario);
+            await _usuarioRepository.Adicionar(novoUsuario);
 
             // #3 - Criar token JWT;
             var token = _jwtTokenGenerator.GerarToken(novoUsuario);
@@ -65,10 +65,10 @@ namespace GeekSpot.Application.Services.Authentication
             return usuarioDto;
         }
 
-        public UsuarioDTO Login(UsuarioSenhaDTO dto)
+        public async Task<UsuarioDTO> Login(UsuarioSenhaDTO dto)
         {
             // #1 - Verificar se o usuário existe;
-            if (_usuarioRepository.GetPorEmail(dto?.Email) is not UsuarioSenhaDTO usuario)
+            if (await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema) is not UsuarioSenhaDTO usuario)
             {
                 UsuarioDTO erro = new()
                 {

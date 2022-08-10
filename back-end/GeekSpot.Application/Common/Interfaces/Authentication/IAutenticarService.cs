@@ -4,7 +4,7 @@ namespace GeekSpot.Application.Common.Interfaces.Authentication
 {
     public interface IAutenticarService
     {
-        UsuarioDTO Registrar(UsuarioSenhaDTO dto);
-        UsuarioDTO Login(UsuarioSenhaDTO dto);
+        Task<UsuarioDTO>? Registrar(UsuarioSenhaDTO dto);
+        Task<UsuarioDTO>? Login(UsuarioSenhaDTO dto);
     }
 }

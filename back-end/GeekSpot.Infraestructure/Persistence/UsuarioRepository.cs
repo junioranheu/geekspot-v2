@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
-using GeekSpot.Domain.Entities;
 
 namespace GeekSpot.Infraestructure.Persistence
 {
@@ -14,22 +13,34 @@ namespace GeekSpot.Infraestructure.Persistence
             _map = map;
         }
 
-        private static readonly List<Usuario> _usuarios = new();
-
-        public bool Adicionar(UsuarioSenhaDTO dto)
+        public Task<UsuarioDTO>? Adicionar(UsuarioSenhaDTO dto)
         {
-            Usuario usuario = _map.Map<Usuario>(dto);
-
-            _usuarios.Add(usuario);
-            return true;
+            throw new NotImplementedException();
         }
 
-        public UsuarioSenhaDTO? GetPorEmail(string email)
+        public Task<UsuarioDTO>? Atualizar(UsuarioSenhaDTO dto)
         {
-            var u = _usuarios.SingleOrDefault(u => u.Email == email);
-            UsuarioSenhaDTO dto = _map.Map<UsuarioSenhaDTO>(u);
+            throw new NotImplementedException();
+        }
 
-            return dto;
+        public Task Deletar(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UsuarioSenhaDTO>? GetPorEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UsuarioDTO>? GetPorId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<UsuarioDTO>> GetTodos()
+        {
+            throw new NotImplementedException();
         }
     }
 }
