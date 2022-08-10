@@ -12,13 +12,13 @@ namespace GeekSpot.API.Controllers
     public class UsuariosController : BaseController<UsuariosController>
     {
         private readonly IUsuarioRepository _usuarios;
-
+          
         public UsuariosController(IUsuarioRepository usuarioRepository)
         {
             _usuarios = usuarioRepository;
         }
 
-        [HttpPost("atualizar")]
+        [HttpPut("atualizar")]
         [Authorize]
         public async Task<ActionResult<UsuarioDTO>> Atualizar(UsuarioSenhaDTO dto)
         {
@@ -41,7 +41,6 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("todos")]
-        [Authorize]
         public async Task<ActionResult<List<UsuarioDTO>>> GetTodos()
         {
             var itens = await _usuarios.GetTodos();
