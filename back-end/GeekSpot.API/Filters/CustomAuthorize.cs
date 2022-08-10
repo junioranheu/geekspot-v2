@@ -3,20 +3,24 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GeekSpot.API.Filters
 {
-    // https://stackoverflow.com/a/10445884
     public class CustomAuthorize : AuthorizeAttribute
     {
-        public CustomAuthorize(params UsuarioTipoEnum[] DomainRoles)
+        // https://stackoverflow.com/questions/1148312/asp-net-mvc-decorate-authorize-with-multiple-enums
+        public CustomAuthorize(params UsuarioTipoEnum[] roles)
         {
-            foreach (var domainRole in DomainRoles)
+            string resultadoFinal = string.Empty;
+
+            foreach (var role in roles)
             {
-                var domain = domainRole.ToString().Split('_')[0] + "_";
-                var role = domainRole.ToString().Replace(domain, "").Replace("_", " ");
-                domain = domain.Replace("_", "\\");
-                Roles += ", " + domain + role;
+                resultadoFinal += (int)role + ", ";
             }
 
-            Roles = Roles?.Substring(2);
+            if (resultadoFinal.EndsWith(", "))
+            {
+                resultadoFinal = resultadoFinal.Remove(resultadoFinal.Length - 2);
+            }
+
+            Roles = resultadoFinal;
         }
     }
 }

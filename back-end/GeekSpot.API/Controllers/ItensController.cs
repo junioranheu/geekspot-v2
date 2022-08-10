@@ -2,7 +2,6 @@
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekSpot.API.Controllers
@@ -19,7 +18,7 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpPost("adicionar")]
-        [Authorize(Roles = "1")]
+        [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Adicionar(ItemDTO dto)
         {
             await _itemRepository.Adicionar(dto);

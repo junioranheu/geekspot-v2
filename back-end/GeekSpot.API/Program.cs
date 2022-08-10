@@ -70,7 +70,6 @@ var builder = WebApplication.CreateBuilder(args);
     );
 
     // Autenticação JWT para a API: https://balta.io/artigos/aspnet-5-autenticacao-autorizacao-bearer-jwt;
-    var key = Encoding.ASCII.GetBytes(Chave.chave);
     builder.Services.AddAuthentication(x =>
     {
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -78,14 +77,17 @@ var builder = WebApplication.CreateBuilder(args);
     })
     .AddJwtBearer(x =>
     {
-        x.RequireHttpsMetadata = false;
-        x.SaveToken = true;
+        x.RequireHttpsMetadata = builder.Environment.IsDevelopment() ? false : true;
+        x.SaveToken = true; 
+        x.IncludeErrorDetails = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuerSigningKey = true, xxxxxxxxxx
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false,
+            ValidateIssuerSigningKey = true, 
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Chave.chave)),
+            ValidateIssuer = true,
+            ValidIssuer = "GeekSpot",
+            ValidateAudience = true,
+            ValidAudience = "GeekSpot",
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero
         };
