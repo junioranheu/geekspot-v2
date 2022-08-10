@@ -13,7 +13,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/nprogress": "^0.2.0",
-    "@types/react-toastify": "^4.1.0",
     "animate.css": "^4.1.1",
     "gender-detection-from-name": "^1.7.3",
     "moment": "^2.29.4",
