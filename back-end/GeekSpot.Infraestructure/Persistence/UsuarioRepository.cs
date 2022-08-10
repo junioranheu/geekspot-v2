@@ -1,46 +1,87 @@
 ﻿using AutoMapper;
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
+using GeekSpot.Domain.Entities;
+using GeekSpot.Infraestructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeekSpot.Infraestructure.Persistence
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        public readonly Context _context;
         private readonly IMapper _map;
 
-        public UsuarioRepository(IMapper map)
+        public UsuarioRepository(Context context, IMapper map)
         {
             _map = map;
+            _context = context;
         }
 
-        public Task<UsuarioDTO>? Adicionar(UsuarioSenhaDTO dto)
+        public async Task<UsuarioDTO>? Adicionar(UsuarioSenhaDTO dto)
         {
-            throw new NotImplementedException();
+            Usuario usuario = _map.Map<Usuario>(dto);
+            UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(dto);
+
+            _context.Add(usuario);
+            await _context.SaveChangesAsync();
+            return usuarioDto;
         }
 
-        public Task<UsuarioDTO>? Atualizar(UsuarioSenhaDTO dto)
+        public async Task<UsuarioDTO>? Atualizar(UsuarioSenhaDTO dto)
         {
-            throw new NotImplementedException();
+            Usuario usuario = _map.Map<Usuario>(dto);
+            UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(dto);
+
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
+            return usuarioDto;
         }
 
-        public Task Deletar(int id)
+        public async Task Deletar(int id)
         {
-            throw new NotImplementedException();
+            var dados = await _context.Usuarios.FindAsync(id);
+
+            if (dados == null)
+            {
+                throw new Exception("Registro com o id " + id + " não foi encontrado");
+            }
+
+            _context.Usuarios.Remove(dados);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<UsuarioSenhaDTO>? GetPorEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema)
+        public async Task<List<UsuarioDTO>> GetTodos()
         {
-            throw new NotImplementedException();
+            var todos = await _context.Usuarios.
+                        Include(ut => ut.UsuariosTipos).
+                        Include(ui => ui.UsuariosInformacoes).
+                        OrderBy(ui => ui.UsuarioId).AsNoTracking().ToListAsync();
+
+            List<UsuarioDTO> dto = _map.Map<List<UsuarioDTO>>(todos);
+            return dto;
         }
 
-        public Task<UsuarioDTO>? GetPorId(int id)
+        public async Task<UsuarioDTO>? GetPorId(int id)
         {
-            throw new NotImplementedException();
+            var porId = await _context.Usuarios.
+                        Include(ut => ut.UsuariosTipos).
+                        Include(ui => ui.UsuariosInformacoes).
+                        Where(ui => ui.UsuarioId == id).AsNoTracking().FirstOrDefaultAsync();
+
+            UsuarioDTO dto = _map.Map<UsuarioDTO>(porId);
+            return dto;
         }
 
-        public Task<List<UsuarioDTO>> GetTodos()
+        public async Task<UsuarioSenhaDTO>? GetPorEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema)
         {
-            throw new NotImplementedException();
+            var porEmailOuUsuario = await _context.Usuarios.
+                                    Include(ut => ut.UsuariosTipos).
+                                    Include(ui => ui.UsuariosInformacoes).
+                                    Where(e => e.Email == email || e.NomeUsuarioSistema == nomeUsuarioSistema).AsNoTracking().FirstOrDefaultAsync();
+
+            UsuarioSenhaDTO dto = _map.Map<UsuarioSenhaDTO>(porEmailOuUsuario);
+            return dto;
         }
     }
 }

@@ -57,7 +57,7 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<ItemTipoDTO> GetPorId(int id)
         {
-            var itens = await _context.ItensTipos.AsNoTracking().ToListAsync();
+            var itens = await _context.ItensTipos.AsNoTracking().FirstOrDefaultAsync();
 
             ItemTipoDTO dto = _map.Map<ItemTipoDTO>(itens);
             return dto;

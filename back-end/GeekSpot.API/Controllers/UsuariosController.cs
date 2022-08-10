@@ -61,19 +61,6 @@ namespace GeekSpot.API.Controllers
             return Ok(usuario);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioDTO>> GetPorId(int id)
-        {
-            var porId = await _usuarios.GetPorId(id);
-
-            if (porId == null)
-            {
-                return NotFound();
-            }
-
-            return porId;
-        }
-
         [HttpGet("todos")]
         [Authorize]
         public async Task<ActionResult<List<UsuarioDTO>>> GetTodos()
@@ -86,6 +73,19 @@ namespace GeekSpot.API.Controllers
             }
 
             return itens;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UsuarioDTO>> GetPorId(int id)
+        {
+            var porId = await _usuarios.GetPorId(id);
+
+            if (porId == null)
+            {
+                return NotFound();
+            }
+
+            return porId;
         }
     }
 }
