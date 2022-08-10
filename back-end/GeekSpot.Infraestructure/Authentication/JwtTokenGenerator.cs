@@ -24,49 +24,31 @@ namespace GeekSpot.Infraestructure.Authentication
 
         public string GerarToken(UsuarioSenhaDTO usuario)
         {
-            //var signingCredentials = new SigningCredentials(
-            //        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret ?? "")), algorithm: SecurityAlgorithms.HmacSha256
-            //    );
+            JwtSecurityTokenHandler tokenHandler = new();
 
-            //var claims = new[] {
-            //    new Claim(type: JwtRegisteredClaimNames.Sub, usuario.UsuarioId.ToString()),
-            //    new Claim(type: JwtRegisteredClaimNames.Name, usuario.NomeCompleto ?? ""),
-            //    new Claim(type: JwtRegisteredClaimNames.Typ, usuario.UsuarioTipoId.ToString() ?? ""),
-            //    new Claim(type: JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            //};
+            SigningCredentials signingCredentials = new(
+                                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret ?? "")),
+                                        algorithm: SecurityAlgorithms.HmacSha256Signature
+                                     );
 
-            //var securityToken = new JwtSecurityToken(
-            //        issuer: _jwtSettings.Issuer, // Emissor do token;
-            //        audience: _jwtSettings.Audience,
-            //        expires: _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
-            //        claims: claims,
-            //        signingCredentials: signingCredentials
-            //    );
+            ClaimsIdentity claims = new(new Claim[]
+                           {
+                                new Claim(type: ClaimTypes.Name, usuario.NomeCompleto ?? ""),
+                                new Claim(type: ClaimTypes.Role, usuario.UsuarioTipoId.ToString()),
+                                new Claim(type: ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
+                           });
 
-            //return new JwtSecurityTokenHandler().WriteToken(securityToken);
-
-            var tokenHandler = new JwtSecurityTokenHandler
-            {
-                SetDefaultTimesOnTokenCreation = false
-            };
-
-            var tokenDescriptor = new SecurityTokenDescriptor
+            SecurityTokenDescriptor tokenDescriptor = new()
             {
                 Issuer = _jwtSettings.Issuer, // Emissor do token;
                 Audience = _jwtSettings.Audience,
-                Expires = _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(type: ClaimTypes.Name, usuario.NomeCompleto ?? ""),
-                    new Claim(type: ClaimTypes.Role, usuario.UsuarioTipoId.ToString()),
-                    new Claim(type: ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
-                }),
-
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret ?? "")), algorithm: SecurityAlgorithms.HmacSha256Signature)
+                NotBefore = _dateTimeProvider.HorarioBrasilia,
+                Expires = _dateTimeProvider.HorarioBrasilia.AddMinutes(_jwtSettings.ExpiryMinutes),
+                Subject = claims,
+                SigningCredentials = signingCredentials
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
             return tokenHandler.WriteToken(token);
         }
     }
