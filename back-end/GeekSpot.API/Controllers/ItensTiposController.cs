@@ -7,7 +7,7 @@ namespace GeekSpot.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItensTiposController : ControllerBase
+    public class ItensTiposController : BaseController<ItensTiposController>
     {
         private readonly IItemTipoRepository _itemTipoRepository;
 

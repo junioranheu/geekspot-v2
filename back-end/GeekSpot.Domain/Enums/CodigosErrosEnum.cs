@@ -25,6 +25,9 @@ namespace GeekSpot.Domain.Enums
         [Description("Usuário não encontrado")]
         UsuarioNaoEncontrado = 107,
 
+        [Description("Não autorizado")]
+        NaoAutorizado = 108,
+
         [Description("Dado não encontrado")]
         NaoEncontrado = 500,
     }

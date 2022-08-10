@@ -6,7 +6,7 @@ namespace GeekSpot.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AutenticarController : ControllerBase
+    public class AutenticarController : BaseController<AutenticarController>
     {
         private readonly IAutenticarService _autenticarService;
 

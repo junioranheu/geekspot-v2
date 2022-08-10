@@ -9,7 +9,7 @@ namespace GeekSpot.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsuariosController : ControllerBase
+    public class UsuariosController : BaseController<UsuariosController>
     {
         private readonly IUsuarioRepository _usuarios;
 
@@ -43,21 +43,21 @@ namespace GeekSpot.API.Controllers
         [Authorize]
         public async Task<ActionResult<UsuarioDTO>> Atualizar(UsuarioSenhaDTO dto)
         {
-            var isExiste = await _usuarios.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+            var isMesmoUsuario = await IsUsuarioSolicitadoMesmoDoToken(dto.UsuarioId);
 
-            if (isExiste is not null)
+            if (!isMesmoUsuario)
             {
                 UsuarioDTO erro = new()
                 {
                     Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioExistente,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
+                    CodigoErro = (int)CodigoErrosEnum.NaoAutorizado,
+                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.NaoAutorizado)
                 };
 
                 return erro;
             }
 
-            var usuario = await _usuarios.Adicionar(dto);
+            var usuario = await _usuarios.Atualizar(dto);
             return Ok(usuario);
         }
 
