@@ -12,7 +12,9 @@ GeekSpot: plataforma digital para compras, vendas e trocas de artigos geek.
 Plataforma baseada no projeto iniciado em 2016, FATEC.
 <br/>
 <br/>
-xxx.
+Back-end feito em C# com .NET 6, no padrão de modelagem DDD, criando uma API REST com JWT e testes unitários (xUnit).
+<br/>
+Front-end feito a biblioteca React.js, usando a framework Next.js, com TypeScript e SCSS.
 <br/>
 <br/>
 Projeto iniciado em 29 de junho e finalizado em xxx de xxx.
