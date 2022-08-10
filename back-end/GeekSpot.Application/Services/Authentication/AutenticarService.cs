@@ -68,7 +68,9 @@ namespace GeekSpot.Application.Services.Authentication
         public async Task<UsuarioDTO> Login(UsuarioSenhaDTO dto)
         {
             // #1 - Verificar se o usuário existe;
-            if (await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema) is not UsuarioSenhaDTO usuario)
+            var usuario = await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+
+            if (usuario is null)
             {
                 UsuarioDTO erro = new()
                 {

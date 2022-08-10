@@ -18,27 +18,6 @@ namespace GeekSpot.API.Controllers
             _usuarios = usuarioRepository;
         }
 
-        [HttpPost("adicionar")]
-        public async Task<ActionResult<UsuarioDTO>> Adicionar(UsuarioSenhaDTO dto)
-        {
-            var isExiste = await _usuarios.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
-
-            if (isExiste is not null)
-            {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioExistente,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
-                };
-
-                return erro;
-            }
-
-            var usuario = await _usuarios.Adicionar(dto);
-            return Ok(usuario);
-        }
-
         [HttpPost("atualizar")]
         [Authorize]
         public async Task<ActionResult<UsuarioDTO>> Atualizar(UsuarioSenhaDTO dto)

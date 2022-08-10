@@ -75,13 +75,24 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<UsuarioSenhaDTO>? GetPorEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema)
         {
-            var porEmailOuUsuario = await _context.Usuarios.
-                                    Include(ut => ut.UsuariosTipos).
-                                    Include(ui => ui.UsuariosInformacoes).
-                                    Where(e => e.Email == email || e.NomeUsuarioSistema == nomeUsuarioSistema).AsNoTracking().FirstOrDefaultAsync();
+            var porEmail = await _context.Usuarios.
+                           Include(ut => ut.UsuariosTipos).
+                           Include(ui => ui.UsuariosInformacoes).
+                           Where(e => e.Email == email).AsNoTracking().FirstOrDefaultAsync();
 
-            UsuarioSenhaDTO dto = _map.Map<UsuarioSenhaDTO>(porEmailOuUsuario);
-            return dto;
+            if (porEmail is null)
+            {
+                var porNomeUsuario = await _context.Usuarios.
+                                     Include(ut => ut.UsuariosTipos).
+                                     Include(ui => ui.UsuariosInformacoes).
+                                     Where(n => n.NomeUsuarioSistema == nomeUsuarioSistema).AsNoTracking().FirstOrDefaultAsync();
+
+                UsuarioSenhaDTO dto1 = _map.Map<UsuarioSenhaDTO>(porNomeUsuario);
+                return dto1;
+            }
+
+            UsuarioSenhaDTO dto2 = _map.Map<UsuarioSenhaDTO>(porEmail);
+            return dto2;
         }
     }
 }
