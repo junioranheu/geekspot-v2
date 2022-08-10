@@ -16,18 +16,16 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpPost("registrar")]
-        public IActionResult Registrar(UsuarioSenhaDTO dto)
+        public async Task<ActionResult<UsuarioDTO>> Registrar(UsuarioSenhaDTO dto)
         {
-            var authResultado = _autenticarService.Registrar(dto);
-
+            var authResultado = await _autenticarService.Registrar(dto);
             return Ok(authResultado);
         }
 
         [HttpPost("login")]
-        public IActionResult Login(UsuarioSenhaDTO dto)
+        public async Task<ActionResult<UsuarioDTO>> Login(UsuarioSenhaDTO dto)
         {
-            var authResultado = _autenticarService.Login(dto);
-
+            var authResultado = await _autenticarService.Login(dto);
             return Ok(authResultado);
         }
     }
