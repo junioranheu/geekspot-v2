@@ -1,0 +1,24 @@
+﻿* Tutorial: ASP.NET 6 REST API DDD:
+** Parte #1: https://www.youtube.com/watch?v=fhM0V2N1GpY | Project Setup | 37:45
+** Parte #2: https://www.youtube.com/watch?v=38bQNWKh0dk | Generating JWT Tokens | 22:35
+** Parte #3: https://www.youtube.com/watch?v=ZwQf_JQUUCQ | Repository Pattern | 22:45
+** Parte #4: https://www.youtube.com/watch?v=gMwAhKddHYQ | Global Error Handling | 24:08
+
+* Camadas: https://stackoverflow.com/questions/31438286/ddd-which-layer-dto-should-be-implemented
+** #1 - API - Camada de apresentação:
+*** Camada para a API, de fato, com os controllers, filtros, middlewares, etc; 
+
+** #2 - Application - Camada de aplicação:
+*** Tem os DTOs para retornar os dados sem expor as entidades do domínio;
+*** Ponte entre a camada de apresentação (#1) e a camada de domínio (#2);
+*** Contem os application services (https://stackoverflow.com/questions/3839386/domain-services-vs-application-services/3840552#3840552);
+
+** #3 - Domain - Cada de domínio:
+*** Entidades;
+*** Contem os domain services (https://stackoverflow.com/questions/3839386/domain-services-vs-application-services/3840552#3840552);
+*** Não deve conter classes que pessoas do negócio não entenderiam, exemplo: IJwtGenerator, etc. Os nomes devem ser sugestivos;
+
+** #4 - Infraestructure - Camada de infraestrutura:
+*** Cuida do suporte geral às demais camadas;
+*** Mapping;
+*** Serviços e bibliotecas;

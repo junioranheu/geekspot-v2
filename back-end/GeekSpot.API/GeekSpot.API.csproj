@@ -4,23 +4,23 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<UserSecretsId>86ffbb99-6dfd-46ae-964c-8066eb084e95</UserSecretsId>
+		<UserSecretsId>c803f8e2-d67c-49d8-b2ce-cdeb4b091d49</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
-		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GeekSpot.Application\GeekSpot.Application.csproj" />
+		<ProjectReference Include="..\GeekSpot.Infraestructure\GeekSpot.Infraestructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Upload\itens\imagem\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\GeekSpot.Biblioteca\GeekSpot.Biblioteca.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

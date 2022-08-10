@@ -1,5 +1,5 @@
-﻿using GeekSpot.API.Interfaces;
-using GeekSpot.API.Models;
+﻿using GeekSpot.Application.Common.Interfaces.Persistence;
+using GeekSpot.Domain.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +7,7 @@ namespace GeekSpot.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItensController : BaseController<ItensController>
+    public class ItensController : ControllerBase
     {
         private readonly IItemRepository _itemRepository;
 
@@ -16,15 +16,39 @@ namespace GeekSpot.API.Controllers
             _itemRepository = itemRepository;
         }
 
+        [HttpPost("adicionar")]
+        [Authorize(Roles = "1")]
+        public async Task<ActionResult<bool>> Adicionar(ItemDTO dto)
+        {
+            await _itemRepository.Adicionar(dto);
+            return Ok(true);
+        }
+
+        [HttpPut("atualizar")]
+        [Authorize(Roles = "1")]
+        public async Task<ActionResult<bool>> Atualizar(ItemDTO dto)
+        {
+            await _itemRepository.Atualizar(dto);
+            return Ok(true);
+        }
+
+        [HttpPost("deletar")]
+        [Authorize(Roles = "1")]
+        public async Task<ActionResult<int>> Deletar(int id)
+        {
+            await _itemRepository.Deletar(id);
+            return Ok(true);
+        }
+
         [HttpGet("todos")]
-        public async Task<ActionResult<List<Item>>> GetTodos()
+        public async Task<ActionResult<List<ItemDTO>>> GetTodos()
         {
             var todos = await _itemRepository.GetTodos();
             return Ok(todos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetPorId(int id)
+        public async Task<ActionResult<ItemDTO>> GetPorId(int id)
         {
             var porId = await _itemRepository.GetPorId(id);
 
@@ -36,50 +60,8 @@ namespace GeekSpot.API.Controllers
             return Ok(porId);
         }
 
-        [HttpPost("criar")]
-        [Authorize(Roles = "1")]
-        public async Task<ActionResult<bool>> PostCriar(Item i)
-        {
-            var isOk = await _itemRepository.PostCriar(i);
-
-            if (isOk < 1)
-            {
-                return NotFound();
-            }
-
-            return Ok(true);
-        }
-
-        [HttpPost("atualizar")]
-        [Authorize(Roles = "1")]
-        public async Task<ActionResult<bool>> PostAtualizar(Item i)
-        {
-            var isOk = await _itemRepository.PostAtualizar(i);
-
-            if (isOk < 1)
-            {
-                return NotFound();
-            }
-
-            return Ok(true);
-        }
-
-        [HttpPost("deletar")]
-        [Authorize(Roles = "1")]
-        public async Task<ActionResult<int>> PostDeletar(int id)
-        {
-            var isOk = await _itemRepository.PostDeletar(id);
-
-            if (isOk < 1)
-            {
-                return NotFound();
-            }
-
-            return Ok(true);
-        }
-
         [HttpGet("porItemTipoId/{itemTipoId}")]
-        public async Task<ActionResult<List<Item>>> GetPorItemTipoIdId(int itemTipoId)
+        public async Task<ActionResult<List<ItemDTO>>> GetPorItemTipoId(int itemTipoId)
         {
             var porItemTipoId = await _itemRepository.GetPorItemTipoId(itemTipoId);
 
@@ -92,7 +74,7 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("porUsuarioId/{usuarioId}")]
-        public async Task<ActionResult<List<Item>>> GetPorUsuarioId(int usuarioId)
+        public async Task<ActionResult<List<ItemDTO>>> GetPorUsuarioId(int usuarioId)
         {
             var porUsuarioId = await _itemRepository.GetPorUsuarioId(usuarioId);
 
@@ -105,3 +87,4 @@ namespace GeekSpot.API.Controllers
         }
     }
 }
+
