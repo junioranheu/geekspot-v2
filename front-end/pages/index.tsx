@@ -3,6 +3,7 @@ import ContainerWidget from '../components/widget/widget.container';
 import CONSTANTS_ITENS from '../utils/data/constItens';
 import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
+import HabilitarHttp from '../utils/outros/habilitarHttp';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 
 export default function Home({ listaItens }: any) {
@@ -38,6 +39,7 @@ export default function Home({ listaItens }: any) {
 }
 
 export async function getStaticProps() {
+    HabilitarHttp();
     let listaItens = [];
 
     // Pegar todos os usuários;

@@ -8,16 +8,9 @@ namespace GeekSpot.Domain.DTO
     {
         [Key]
         public int UsuarioId { get; set; }
-
-        [Required]
         public string? NomeCompleto { get; set; } = null;
-
-        [Required]
         public string? Email { get; set; } = null;
-
-        [Required]
         public string? NomeUsuarioSistema { get; set; } = null;
-
         public string? Token { get; set; } = null;
 
         // Fk (De lá pra cá);

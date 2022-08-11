@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import nProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
 import Styles from '../../styles/entrar.module.scss';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import CONSTANTS_AUTENTICAR from '../../utils/data/constAutenticar';
 import { Aviso } from '../../utils/outros/aviso';
+import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../utils/outros/fetch';
+import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
 import Botao from '../outros/botao';
 import Facebook from '../svg/facebook';
 import GeekSpot from '../svg/geekspot';
@@ -41,83 +44,48 @@ export default function SessaoEsquerda() {
         e.preventDefault();
 
         if (!formData || !formData.usuario || !formData.senha) {
-            nProgress.done();
-            Aviso.warn('O nome de usuário e/ou e-mail estão vazios!', 5000);
-            refSenha.current.value = '';
-            refUsuario.current.select();
-            refBtn.current.disabled = false;
+            instrucaoErro('O nome de usuário e/ou e-mail estão vazios!');
             return false;
         }
 
-        // const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
-        // const u = {
-        //     nomeUsuarioSistema: formData.usuario,
-        //     senha: formData.senha
-        // };
+        const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
+        const dto = {
+            nomeUsuarioSistema: formData.usuario,
+            senha: formData.senha
+        };
 
-        // const resposta = await Fetch.postApi(url, u, null);
-        // console.log(resposta);
+        const resposta = await Fetch.postApi(url, dto, null);
 
-        const url = `${CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN}?nomeUsuarioSistema=${formData.usuario}&senha=${formData.senha}`;
-        const resposta = await Fetch.postApi(url, null, null);
-        console.log(resposta);
+        if (resposta.erro) {
+            instrucaoErro('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!');
+            return false;
+        }
 
-        // if (resposta.status !== 200) {
-        //     nProgress.done();
-        //     refSenha.current.value = '';
-        //     formData.senha = '';
-        //     refUsuario.current.select();
-        //     refBtn.current.disabled = false;
-        //     Aviso.warn('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!', 5000);
-        //     return false;
-        // }
+        // Inserir o token no json final para gravar localmente a sessão do login;
+        resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta.nomeCompleto));
+        Auth.set(resposta);
 
-        // // Resposta em JSON;
-        // const usuario = await resposta.json();
-        // console.log(usuario);
+        // Atribuir autenticação ao contexto de usuário;
+        setIsAuth(true);
 
-        // Gerar token e autenticar/entrar;
-        // getToken(formData.senha, usuario);
-    };
-
-    // async function getToken(senha: string, usuario: any) {
-    //     const url = `${CONSTANTS_USUARIOS.API_URL_GET_AUTENTICAR}?nomeUsuarioSistema=${usuario.nomeUsuarioSistema}&senha=${senha}`;
-    //     // console.log(url);
-
-    //     // Gerar token;
-    //     const resposta = await fetch(url, {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         }
-    //     });
-
-    //     if (resposta.status !== 200) {
-    //         Aviso.error('Algo deu errado ao se autenticar!', 5000);
-    //         return false;
-    //     }
-
-    //     // Resposta em JSON;
-    //     const token = await resposta.json();
-    //     // console.log(respostaJson);
-
-    //     // Inserir o token no json final para gravar localmente a sessão do login;
-    //     usuario.token = token;
-    //     usuario.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(usuario.nomeCompleto));
-    //     Auth.set(usuario);
-
-    //     // Atribuir autenticação ao contexto de usuário;
-    //     setIsAuth(true);
-
-    //     // Voltar à tela principal;
-    //     Router.push('/');
-    //     nProgress.done();
-    // }
+        // Voltar à tela principal;
+        Router.push('/');
+        nProgress.done();
+    }
 
     function handleKeyPress(e: any) {
         if (e.key === 'Enter') {
             refBtn.current.click();
         }
+    }
+
+    function instrucaoErro(msg: string) {
+        nProgress.done();
+        refSenha.current.value = '';
+        formData.senha = '';
+        refUsuario.current.select();
+        refBtn.current.disabled = false;
+        Aviso.warn(msg, 5000);
     }
 
     return (
