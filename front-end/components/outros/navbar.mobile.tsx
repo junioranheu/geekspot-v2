@@ -108,7 +108,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                                     </Fragment>
                                 )
                             }
-
+ 
                             <div className='divisao margem1'>ou</div>
 
                             {

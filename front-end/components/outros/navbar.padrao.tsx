@@ -63,7 +63,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                             {
                                 isAuth ? (
                                     <Fragment>
-                                        <span className={Styles.margemBotao} onClick={() => deslogar()}>
+                                        <span onClick={() => deslogar()}>
                                             <Botao texto={'Sair'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
                                         </span>
                                     </Fragment>
