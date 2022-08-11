@@ -32,7 +32,7 @@ export default function Item({ item }: any) {
     if (!isLoaded) {
         return false;
     }
-
+ 
     return (
         <Fragment>
             <section className={`${Styles.sessaoPrincipal} margem3`}>

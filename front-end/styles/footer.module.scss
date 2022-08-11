@@ -9,120 +9,136 @@
     /* Fixar footer sempre embaixo */
     margin-top: auto;
     border-top: 1px solid var(--cor-border-hr);
-}
- 
-/* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
-.principal {
-    display: flex;
-    justify-content: center;
-    width: 70vw;
-    margin-top: 2.5vw;
-    margin-bottom: 2vw;
-}
 
-.sessao {
-    /* background-color: pink; */
-    text-align: center;
-    width: 100vw;
-    color: var(--preto);
-}
-
-.sessao .tituloSessao {
-    font-weight: 600;
-    line-height: 1;
-}
-
-.sessao a {
-    display: block;
-    font-size: 15px;
-    line-height: 1.2;
-    font-weight: 400;
-    margin-top: 10px;
-    opacity: 0.8;
-    transition: opacity .2s;
-}
-
-.footer a:hover {
-    opacity: 0.5;
-    transition: opacity .2s;
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=- Secundária =-=-=-=-=-=-=-=-=-=-=-=- */
-.secundaria {
-    border-top: 1px solid var(--cor-border-hr);
-    width: 70vw;
-    font-weight: 400;
-    font-size: 14px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    display: flex;
-    justify-content: space-between;
-    color: var(--preto);
-}
-
-.secundaria span:nth-child(n+2) {
-    margin-left: 10px;
-}
-
-.secundaria .direita {
-    display: flex;
-}
-
-.secundaria .direita .icones {
-    /* background-color: rebeccapurple; */
-    display: flex;
-    justify-content: space-between;
-}
-
-.secundaria .direita .icones span:nth-child(n+2) {
-    /* background-color: red; */
-    margin-left: 20px;
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
-/* hi-res laptops and desktops */
-@media (max-width:1281px) {
     /* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
     .principal {
-        /* background-color: blue; */
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 40px;
-        width: 90vw;
-    }
+        justify-content: center;
+        width: 70vw;
+        margin-top: 2.5vw;
+        margin-bottom: 2vw;
 
-    .sessao {
-        /* background-color: pink; */
-        flex: 0 0 29%;
+        .sessao {
+            /* background-color: pink; */
+            text-align: center;
+            width: 100vw;
+            color: var(--preto);
+
+            .tituloSessao {
+                font-weight: 600;
+                line-height: 1;
+            }
+
+            a {
+                display: block;
+                font-size: 15px;
+                line-height: 1.2;
+                font-weight: 400;
+                margin-top: 10px;
+                opacity: 0.8;
+                transition: opacity .2s;
+
+                &:hover {
+                    opacity: 0.5;
+                    transition: opacity .2s;
+                }
+            }
+        }
     }
 
     /* =-=-=-=-=-=-=-=-=-=-=-=- Secundária =-=-=-=-=-=-=-=-=-=-=-=- */
     .secundaria {
-        /* background-color: pink; */
-        width: 90vw;
+        border-top: 1px solid var(--cor-border-hr);
+        width: 70vw;
+        font-weight: 400;
+        font-size: 14px;
+        padding-top: 24px;
+        padding-bottom: 24px;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 18px;
-        padding-top: 21px;
-        margin-top: 3vw;
-        text-align: center;
-    }
+        justify-content: space-between;
+        color: var(--preto);
 
-    .secundaria .direita .icones span:nth-child(n+2) {
-        /* background-color: red; */
-        margin-left: 40px;
+        span {
+            &:nth-child(n+2) {
+                margin-left: 10px;
+            }
+        }
+
+        .direita {
+            display: flex;
+
+            .icones {
+                /* background-color: rebeccapurple; */
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    &:nth-child(n+2) {
+                        /* background-color: red; */
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .footer {
+
+        /* =-=-=-=-=-=-=-=-=-=-=-=- Principal =-=-=-=-=-=-=-=-=-=-=-=- */
+        .principal {
+            /* background-color: blue; */
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 90vw;
+
+            .sessao {
+                /* background-color: pink; */
+                flex: 0 0 29%;
+            }
+        }
+
+        /* =-=-=-=-=-=-=-=-=-=-=-=- Secundária =-=-=-=-=-=-=-=-=-=-=-=- */
+        .secundaria {
+            // background-color: pink !important; 
+            width: 90vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 18px;
+            padding-top: 21px;
+            margin-top: 3vw;
+            text-align: center;
+
+            .direita {
+                .icones {
+                    span {
+                        &:nth-child(n+2) {
+                            // background-color: red !important;
+                            margin-left: 40px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 @media (max-width:739px) {
-    .principal {
-        /* background-color: blue; */
-        justify-content: center;
-        margin-top: 1.5rem;
-        width: 100vw;
+    .footer {
+        .principal {
+            /* background-color: blue; */
+            justify-content: center;
+            margin-top: 1.5rem;
+            width: 100vw;
+        }
     }
 }
 
@@ -130,13 +146,15 @@
 @media (max-width:600px) {}
 
 @media (max-width:500px) {
-    .principal {
-        /* background-color: blue; */
-        width: 95vw;
-    }
+    .footer {
+        .principal {
+            //  background-color: blue; 
+            width: 95vw;
 
-    .sessao {
-        /* background-color: pink; */
-        flex: 0 0 25%;
+            .sessao {
+                /* background-color: pink; */
+                flex: 0 0 25%;
+            }
+        }
     }
 }

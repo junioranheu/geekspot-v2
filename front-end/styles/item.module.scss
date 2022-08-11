@@ -1,58 +1,57 @@
 .sessaoPrincipal {
     /* background-color: red; */
-
     display: flex;
-}
 
-.sessaoEsquerda {
-    /* background-color: yellow; */
-    width: 50%;
+    .sessaoEsquerda {
+        /* background-color: yellow; */
+        width: 50%;
+        display: flex;
+        justify-content: center;
 
-    display: flex;
-    justify-content: center;
-}
+        img {
+            width: 30vw !important;
+            border-radius: 10px;
+        }
 
-.sessaoEsquerda img {
-    width: 30vw !important;
-    border-radius: 10px;
-}
+        .efeitoImagemHover {
+            border-radius: 5px;
+            cursor: pointer;
+            filter: grayscale(10%);
+            /* filter: grayscale(100%) blur(0.5px); */
+            transition: 0.5s ease-in-out;
 
-.sessaoDireita {
-    /* background-color: blue; */
-    width: 50%;
+            &:hover {
+                filter: grayscale(0%) blur(0px) contrast(110%);
+                transform: scale(1.01);
+                transition: 0.5s ease-in-out;
+            }
+        }
+    }
 
-    display: flex;
-    flex-direction: column;
-}
+    .sessaoDireita {
+        /* background-color: blue; */
+        width: 50%;
+        display: flex;
+        flex-direction: column;
 
-.efeitoImagemHover {
-    border-radius: 5px;
-    cursor: pointer;
-    filter: grayscale(10%);
-    /* filter: grayscale(100%) blur(0.5px); */
-    transition: 0.5s ease-in-out;
-}
+        .textoNegrito {
+            color: var(--preto);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
 
-.efeitoImagemHover:hover {
-    filter: grayscale(0%) blur(0px) contrast(110%);
-    transform: scale(1.01);
-    transition: 0.5s ease-in-out;
-}
+        .botaoCustom {
+            button {
+                width: 60%;
+            }
+        }
 
-.textoNegrito {
-    color: var(--preto);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.botaoCustom button {
-    width: 60%;
-}
-
-.divFormasPagamento{
-    /* background-color: red; */
-    display: flex;
-    gap: 10px;
-    color: var(--preto);
-    margin-top: 0.5rem;
+        .divFormasPagamento {
+            /* background-color: red; */
+            display: flex;
+            gap: 10px;
+            color: var(--preto);
+            margin-top: 0.5rem;
+        }
+    }
 }
