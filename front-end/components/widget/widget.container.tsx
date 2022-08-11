@@ -105,7 +105,7 @@ export default function WidgetContainer({ usuarioId, usuarioNomeSistema, descric
         const random = Math.floor(Math.random() * frases.length);
         setFraseAleatoria(frases[random]);
     }
-
+ 
     return (
         <div className='flexColumn margem3_5'>
             <div className='flexRow'>
