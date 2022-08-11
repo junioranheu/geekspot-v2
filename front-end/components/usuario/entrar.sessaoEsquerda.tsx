@@ -56,13 +56,13 @@ export default function SessaoEsquerda() {
 
         const resposta = await Fetch.postApi(url, dto, null);
 
-        if (resposta.erro) {
+        if (resposta?.erro) {
             instrucaoErro('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!');
             return false;
         }
 
         // Inserir o token no json final para gravar localmente a sessão do login;
-        resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta.nomeCompleto));
+        resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
         Auth.set(resposta);
 
         // Atribuir autenticação ao contexto de usuário;

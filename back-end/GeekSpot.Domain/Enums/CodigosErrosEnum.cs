@@ -4,7 +4,7 @@ namespace GeekSpot.Domain.Enums
 {
     public enum CodigoErrosEnum
     {
-        [Description("Já existe outro usuário cadastrado com este e-mail")]
+        [Description("Já existe outro usuário cadastrado com este e-mail ou nome de usuário")]
         UsuarioExistente = 101,
 
         [Description("Tipo de usuário não permitido")]
