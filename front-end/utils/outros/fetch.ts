@@ -58,8 +58,6 @@ export const Fetch = {
                 body: JSON.stringify(body)
             });
 
-            // console.log(resposta);
-
             respostaJson = await resposta.json();
             // console.log(respostaJson);
             // console.log(respostaJson.status);

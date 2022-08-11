@@ -1,16 +1,13 @@
 import Link from 'next/link';
-import Router from 'next/router';
 import NProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
 import Styles from '../../styles/entrar.module.scss';
-import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
-import CONSTANTS_USUARIOS from '../../utils/data/constUsuarios';
+import { UsuarioContext } from '../../utils/context/usuarioContext';
+import CONSTANTS_AUTENTICAR from '../../utils/data/constAutenticar';
 import { Aviso } from '../../utils/outros/aviso';
-import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../utils/outros/fetch';
 import horarioBrasilia from '../../utils/outros/horarioBrasilia';
 import padronizarNomeCompletoUsuario from '../../utils/outros/padronizarNomeCompletoUsuario';
-import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
 import verificarDadosCriarConta from '../../utils/outros/verificarDadosCriarConta';
 import Botao from '../outros/botao';
 import Facebook from '../svg/facebook';
@@ -63,7 +60,7 @@ export default function SessaoEsquerda() {
         formData.nomeCompleto = padronizarNomeCompletoUsuario(formData.nomeCompleto);
 
         // Criar conta;
-        const urlCriarConta = CONSTANTS_USUARIOS.API_URL_POST_CRIAR_CONTA_COM_VALIDACOES;
+        const urlCriarConta = CONSTANTS_AUTENTICAR.API_URL_POST_REGISTRAR;
         const usuario_a_ser_criado = {
             nomeCompleto: formData.nomeCompleto,
             email: formData.email,
@@ -89,43 +86,44 @@ export default function SessaoEsquerda() {
             return false;
         }
 
-        await getToken(formData.nomeUsuarioSistema, formData.senha, formData.nomeCompleto);
+        
+       // await getToken(formData.nomeUsuarioSistema, formData.senha, formData.nomeCompleto);
     };
 
-    async function getToken(nomeUsuarioSistema: string, senha: string, nomeCompleto: string) {
-        const urlDados = `${CONSTANTS_USUARIOS.API_URL_GET_VERIFICAR_EMAIL_E_SENHA}?nomeUsuarioSistema=${nomeUsuarioSistema}&senha=${senha}`;
-        let dadosUsuarioVerificado = await Fetch.getApi(urlDados, null);
+    // async function getToken(nomeUsuarioSistema: string, senha: string, nomeCompleto: string) {
+    //     const urlDados = `${CONSTANTS_USUARIOS.API_URL_GET_VERIFICAR_EMAIL_E_SENHA}?nomeUsuarioSistema=${nomeUsuarioSistema}&senha=${senha}`;
+    //     let dadosUsuarioVerificado = await Fetch.getApi(urlDados, null);
 
-        // Gerar token;
-        const urlAutenticar = `${CONSTANTS_USUARIOS.API_URL_GET_AUTENTICAR}?nomeUsuarioSistema=${nomeUsuarioSistema}&senha=${senha}`;
-        let resposta = await Fetch.getApi(urlAutenticar, null);
+    //     // Gerar token;
+    //     const urlAutenticar = `${CONSTANTS_USUARIOS.API_URL_GET_AUTENTICAR}?nomeUsuarioSistema=${nomeUsuarioSistema}&senha=${senha}`;
+    //     let resposta = await Fetch.getApi(urlAutenticar, null);
 
-        if (!resposta) {
-            Aviso.error('Algo deu errado ao se autenticar!', 5000);
-            return false;
-        }
+    //     if (!resposta) {
+    //         Aviso.error('Algo deu errado ao se autenticar!', 5000);
+    //         return false;
+    //     }
 
-        // Inserir o token no json final para gravar localmente a sessão do login;
-        dadosUsuarioVerificado.token = resposta;
-        dadosUsuarioVerificado.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(nomeCompleto));
-        Auth.set(dadosUsuarioVerificado);
+    //     // Inserir o token no json final para gravar localmente a sessão do login;
+    //     dadosUsuarioVerificado.token = resposta;
+    //     dadosUsuarioVerificado.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(nomeCompleto));
+    //     Auth.set(dadosUsuarioVerificado);
 
-        // Enviar e-mail de "bem-vindo";
-        // const isEmailEnviado = await enviarEmail(email, nomeCompleto);
-        // if (!isEmailEnviado) {
-        //     Aviso.error('Houve um erro ao disparar um e-mail para você! Tente logar no sistema novamente mais tarde', 5000);
-        //     return false;
-        // }
+    //     // Enviar e-mail de "bem-vindo";
+    //     // const isEmailEnviado = await enviarEmail(email, nomeCompleto);
+    //     // if (!isEmailEnviado) {
+    //     //     Aviso.error('Houve um erro ao disparar um e-mail para você! Tente logar no sistema novamente mais tarde', 5000);
+    //     //     return false;
+    //     // }
 
-        // Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
+    //     // Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
 
-        // Voltar à tela principal;
-        Router.push('/');
+    //     // Voltar à tela principal;
+    //     Router.push('/');
 
-        // Atribuir autenticação ao contexto de usuário;
-        setIsAuth(true);
-        NProgress.done();
-    }
+    //     // Atribuir autenticação ao contexto de usuário;
+    //     setIsAuth(true);
+    //     NProgress.done();
+    // }
 
     // async function enviarEmail(email: string, nomeCompleto: string) {
     //     // Gerar uma url temporária;

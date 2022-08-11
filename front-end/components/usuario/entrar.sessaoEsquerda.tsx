@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import Router from 'next/router';
 import nProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
 import Styles from '../../styles/entrar.module.scss';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
-import CONSTANTS_USUARIOS from '../../utils/data/constUsuarios';
+import CONSTANTS_AUTENTICAR from '../../utils/data/constAutenticar';
 import { Aviso } from '../../utils/outros/aviso';
-import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
-import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
+import { Fetch } from '../../utils/outros/fetch';
 import Botao from '../outros/botao';
 import Facebook from '../svg/facebook';
 import GeekSpot from '../svg/geekspot';
@@ -51,60 +49,66 @@ export default function SessaoEsquerda() {
             return false;
         }
 
-        const url = `${CONSTANTS_USUARIOS.API_URL_GET_VERIFICAR_EMAIL_E_SENHA}?nomeUsuarioSistema=${formData.usuario}&senha=${formData.senha}`;
-        // console.log(url);
+        const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
+        const u = {
+            nomeUsuarioSistema: formData.usuario,
+            senha: formData.senha
+        };
 
-        const resposta = await fetch(url);
-        if (resposta.status !== 200) {
-            nProgress.done();
-            refSenha.current.value = '';
-            formData.senha = '';
-            refUsuario.current.select();
-            refBtn.current.disabled = false;
-            Aviso.warn('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!', 5000);
-            return false;
-        }
+        const resposta = await Fetch.postApi(url, u, null);
+        console.log(resposta);
 
-        // Resposta em JSON;
-        const usuario = await resposta.json();
+        // if (resposta.status !== 200) {
+        //     nProgress.done();
+        //     refSenha.current.value = '';
+        //     formData.senha = '';
+        //     refUsuario.current.select();
+        //     refBtn.current.disabled = false;
+        //     Aviso.warn('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!', 5000);
+        //     return false;
+        // }
+
+        // // Resposta em JSON;
+        // const usuario = await resposta.json();
+        // console.log(usuario);
 
         // Gerar token e autenticar/entrar;
-        getToken(formData.senha, usuario);
+        // getToken(formData.senha, usuario);
     };
 
-    async function getToken(senha: string, usuario: any) {
-        const url = `${CONSTANTS_USUARIOS.API_URL_GET_AUTENTICAR}?nomeUsuarioSistema=${usuario.nomeUsuarioSistema}&senha=${senha}`;
-        // console.log(url);
+    // async function getToken(senha: string, usuario: any) {
+    //     const url = `${CONSTANTS_USUARIOS.API_URL_GET_AUTENTICAR}?nomeUsuarioSistema=${usuario.nomeUsuarioSistema}&senha=${senha}`;
+    //     // console.log(url);
 
-        // Gerar token;
-        const resposta = await fetch(url, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        });
+    //     // Gerar token;
+    //     const resposta = await fetch(url, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         }
+    //     });
 
-        if (resposta.status !== 200) {
-            Aviso.error('Algo deu errado ao se autenticar!', 5000);
-            return false;
-        }
+    //     if (resposta.status !== 200) {
+    //         Aviso.error('Algo deu errado ao se autenticar!', 5000);
+    //         return false;
+    //     }
 
-        // Resposta em JSON;
-        const token = await resposta.json();
-        // console.log(respostaJson);
+    //     // Resposta em JSON;
+    //     const token = await resposta.json();
+    //     // console.log(respostaJson);
 
-        // Inserir o token no json final para gravar localmente a sessão do login;
-        usuario.token = token;
-        usuario.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(usuario.nomeCompleto));
-        Auth.set(usuario);
+    //     // Inserir o token no json final para gravar localmente a sessão do login;
+    //     usuario.token = token;
+    //     usuario.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(usuario.nomeCompleto));
+    //     Auth.set(usuario);
 
-        // Atribuir autenticação ao contexto de usuário;
-        setIsAuth(true);
+    //     // Atribuir autenticação ao contexto de usuário;
+    //     setIsAuth(true);
 
-        // Voltar à tela principal;
-        Router.push('/');
-        nProgress.done();
-    }
+    //     // Voltar à tela principal;
+    //     Router.push('/');
+    //     nProgress.done();
+    // }
 
     function handleKeyPress(e: any) {
         if (e.key === 'Enter') {

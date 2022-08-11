@@ -38,18 +38,21 @@ export default function Home({ listaItens }: any) {
 }
 
 export async function getStaticProps() {
+    let listaItens = [];
+
     // Pegar todos os usuários;
     const urlUsuarios = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(urlUsuarios, null);
 
-    let listaItens = [];
-    for (const u of usuarios) {
-        // Encontrar os itens com base no usuário;
-        const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
-        const itens = await Fetch.getApi(urlItens, null);
-        
-        if (itens?.length) {
-            listaItens.push(itens);
+    if (usuarios) {
+        for (const u of usuarios) {
+            // Encontrar os itens com base no usuário;
+            const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
+            const itens = await Fetch.getApi(urlItens, null);
+
+            if (itens?.length) {
+                listaItens.push(itens);
+            }
         }
     }
 

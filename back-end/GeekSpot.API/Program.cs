@@ -2,7 +2,6 @@ using GeekSpot.API.Filters;
 using GeekSpot.Application;
 using GeekSpot.Infraestructure;
 using GeekSpot.Infraestructure.Data;
-using GeekSpot.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -19,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
     // Técnica para adicionar as classes de GeekSpot.Infraestructure em uma classe centralizada: https://youtu.be/fhM0V2N1GpY?t=2149
     builder.Services.AddInfraestructure(builder.Configuration);
 
-    // Filtro;
+    // Filtro de erros;
     builder.Services.AddControllers(o => o.Filters.Add<ErrorHandlingFilterAttribute>());
 
     // Inserir as informações do banco na variável builder antes de buildá-la;
