@@ -5,10 +5,13 @@ using GeekSpot.Infraestructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Text;
+
+const string Cors = "_CorsPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -59,12 +62,12 @@ var builder = WebApplication.CreateBuilder(args);
 
     // Cors;
     builder.Services.AddCors(options =>
-        options.AddPolicy("CorsPolicy", builder =>
+        options.AddPolicy(name: Cors, builder =>
         {
             builder.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .SetIsOriginAllowed((host) => true)
-                    .AllowCredentials();
+                .AllowAnyMethod()
+                .SetIsOriginAllowed((host) => true)
+                .AllowCredentials();
         })
     );
 
@@ -77,11 +80,11 @@ var builder = WebApplication.CreateBuilder(args);
     .AddJwtBearer(x =>
     {
         x.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
-        x.SaveToken = true; 
+        x.SaveToken = true;
         x.IncludeErrorDetails = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuerSigningKey = true, 
+            ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:Secret"])),
             ValidateIssuer = true,
             ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
@@ -139,7 +142,7 @@ var app = builder.Build();
     }
 
     // Cors;
-    app.UseCors("CorsPolicy");
+    app.UseCors(Cors);
 
     // Outros;
     app.UseAuthentication();

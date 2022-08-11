@@ -49,13 +49,17 @@ export default function SessaoEsquerda() {
             return false;
         }
 
-        const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
-        const u = {
-            nomeUsuarioSistema: formData.usuario,
-            senha: formData.senha
-        };
+        // const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
+        // const u = {
+        //     nomeUsuarioSistema: formData.usuario,
+        //     senha: formData.senha
+        // };
 
-        const resposta = await Fetch.postApi(url, u, null);
+        // const resposta = await Fetch.postApi(url, u, null);
+        // console.log(resposta);
+
+        const url = `${CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN}?nomeUsuarioSistema=${formData.usuario}&senha=${formData.senha}`;
+        const resposta = await Fetch.postApi(url, null, null);
         console.log(resposta);
 
         // if (resposta.status !== 200) {
