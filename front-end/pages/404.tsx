@@ -1,7 +1,9 @@
+import Lottie from 'lottie-react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Botao from '../components/outros/botao';
 import Styles from '../styles/404.module.scss';
+import Lottie404 from '../utils/lotties/404.json';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 
 export default function Erro() {
@@ -39,11 +41,19 @@ export default function Erro() {
 
     return (
         <section className={`${Styles.wrapper} paddingPadrao`}>
-            <span className='titulo'>Opa...</span>
-            <span className='texto margem1'>Parece que algo deu errado<br />{msg}</span>
+            <div>
+                <div className={Styles.divLottie}>
+                    <Lottie animationData={Lottie404} loop={true} />
+                </div>
+            </div>
 
-            <div className='margem2'>
-                <Botao texto='Voltar ao início' url={'/'} isNovaAba={false} Svg={null} refBtn={null} isEnabled={true} />
+            <div>
+                <span className={Styles.titulo}>Opa...</span>
+                <span className='texto margem2'>Parece que algo deu errado por aqui<br />{msg}</span>
+
+                <div className='margem2'>
+                    <Botao texto='Voltar ao início' url={'/'} isNovaAba={false} Svg={null} refBtn={null} isEnabled={true} />
+                </div>
             </div>
         </section>
     )
