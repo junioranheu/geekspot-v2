@@ -1,15 +1,18 @@
+import Lottie from 'lottie-react';
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import SessaoEsquerda from '../../components/usuario/criarConta.sessaoEsquerda';
+import SessaoCriarConta from '../../components/usuario/criarConta';
+import Styles from '../../styles/entrar.module.scss';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
+import LottieAnimacao from '../../utils/lotties/um.json';
 import paginaCarregada from '../../utils/outros/paginaCarregada';
 
 export default function CriarConta() {
     document.title = 'GeekSpot — Criar conta';
- 
+
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
-    
+
     const [isPrimeiroLoading, setIsPrimeiroLoading] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -30,6 +33,12 @@ export default function CriarConta() {
     }
 
     return (
-        <SessaoEsquerda />
+        <div className={Styles.flexEntrar}>
+            <div className={Styles.divLottie}>
+                <Lottie animationData={LottieAnimacao} loop={true} />
+            </div>
+
+            <SessaoCriarConta />
+        </div>
     )
 }

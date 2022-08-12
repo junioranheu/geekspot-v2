@@ -1,9 +1,21 @@
-.divPrincipal {
-    // background-color: pink;
+.flexEntrar {
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 85vh;
+    height: 80vh;
+    gap: 7rem;
     overflow-y: auto;
 
+    .divLottie {
+        // background-color: blue;
+        width: 50%;
+    }
+}
+
+.divPrincipal {
+    // background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,10 +23,12 @@
     gap: 1rem;
 
     .titulo {
+        // background-color: red;
         color: var(--preto);
         font-size: 2.5rem;
         font-weight: 600;
         letter-spacing: -1px;
+        white-space: nowrap;
     }
 
     .subtitulo {
@@ -50,7 +64,7 @@
         }
     }
 
-    .divLogin{
+    .divLogin {
         /* background-color: red; */
         max-width: 300px;
     }
@@ -86,6 +100,12 @@
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
+    .flexEntrar {
+        .divLottie {
+            display: none;
+        }
+    }
+
     .divPrincipal {
         /* background-color: pink; */
         width: 100%;
