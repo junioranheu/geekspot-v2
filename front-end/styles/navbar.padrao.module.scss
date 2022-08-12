@@ -63,6 +63,17 @@
                     }
                 }
             }
+
+            &:nth-child(1) {
+                &:hover {
+                    svg {
+                        path {
+                            stroke: var(--cor-principal) !important;
+                            fill: var(--cor-principal) !important;
+                        }
+                    }
+                }
+            }
         }
     }
 }

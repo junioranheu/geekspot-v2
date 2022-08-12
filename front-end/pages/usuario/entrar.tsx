@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import SessaoEntrar from '../../components/usuario/entrar';
 import Styles from '../../styles/entrar.module.scss';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
-import LottieAnimacao from '../../utils/lotties/um.json';
+import LottieAnimacao from '../../utils/lotties/pessoas.json';
 import paginaCarregada from '../../utils/outros/paginaCarregada';
 
 export default function Entrar() {
