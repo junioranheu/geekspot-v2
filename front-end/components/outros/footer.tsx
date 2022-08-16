@@ -19,8 +19,10 @@ export default function Footer() {
         console.log('Teste {modoDarkContext?.testeContext[0]}', teste);
     }, [teste]);
 
-    function alterarModo(isModoDark: boolean | undefined) {
-        if (isModoDark) {
+    function alterarModo(isModoDark: boolean | undefined | null) {
+        // console.log(isModoDark);
+
+        if (isModoDark === true) {
             // console.log('Ativar modo dark');
             document.documentElement.style.setProperty('--preto', '#FFFFFF'); // Preto fica branco;
             document.documentElement.style.setProperty('--super-preto', '#F2F2F2'); // Super preto fica creme;
@@ -28,7 +30,11 @@ export default function Footer() {
             document.documentElement.style.setProperty('--cinza', '#F2F2F2'); // Cinza fica creme acinzentado;
             document.documentElement.style.setProperty('--cinza-secundario', '#F2F2F2'); // Cinza escuro fica creme acinzentado;  
             document.documentElement.style.setProperty('--cor-border-hr', 'rgba(255, 255, 255, 20%)'); // Cinza "apagado" para branco "apagado";
-        } else {
+
+            // Atualizar no localStorage;
+            setIsModoDark(isModoDark);
+            StorageModoDark.update({ isModoDark: isModoDark });
+        } else if (isModoDark === false) {
             // console.log('Ativar modo light');
             document.documentElement.style.setProperty('--preto', '#1A1A1A');
             document.documentElement.style.setProperty('--super-preto', '#000000');
@@ -36,11 +42,11 @@ export default function Footer() {
             document.documentElement.style.setProperty('--cinza', '#313131');
             document.documentElement.style.setProperty('--cinza-secundario', '#242424');
             document.documentElement.style.setProperty('--cor-border-hr', 'rgba(42, 42, 42, 20%)');
-        }
 
-        // Atualizar no localStorage;
-        setIsModoDark(isModoDark);
-        StorageModoDark.update({ isModoDark: isModoDark });
+            // Atualizar no localStorage;
+            setIsModoDark(isModoDark);
+            StorageModoDark.update({ isModoDark: isModoDark });
+        }
     }
 
     return (

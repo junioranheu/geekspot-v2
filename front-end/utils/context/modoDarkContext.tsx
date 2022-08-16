@@ -1,14 +1,14 @@
 import { createContext, useState } from 'react';
 
 interface iContext {
-    isModoDarkContext: [isModoDark: boolean, setIsModoDark: any];
+    isModoDarkContext: [isModoDark: boolean | null, setIsModoDark: any];
     testeContext: [teste: boolean, setTeste: any];
 }
 
 export const ModoDarkContext = createContext<iContext | null>(null);
 
 export const ModoDarkProvider = (props: any) => {
-    const [isModoDark, setIsModoDark] = useState(localStorage.getItem('modoDark') !== null ? true : false);
+    const [isModoDark, setIsModoDark] = useState(localStorage.getItem('modoDark') !== null ? StorageModoDark.get().isModoDark : null);
     const [teste, setTeste] = useState(true);
 
     return (
@@ -44,7 +44,7 @@ export const StorageModoDark = {
 
     delete() {
         localStorage.removeItem('modoDark');
-    }, 
+    },
 
     update(data: any) {
         const dados = {
