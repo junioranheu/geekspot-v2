@@ -11,12 +11,12 @@
 
     .wrapper {
         /* background-color: pink; */
-        width: 80%;
+        width: 66%;
         display: flex;
         align-items: center;
 
         .divEsquerda {
-            /* background-color: red; */
+            // background-color: red; 
             width: 100%;
             display: flex;
             justify-content: left;
@@ -27,6 +27,7 @@
             width: 100%;
             display: flex;
             justify-content: right;
+            margin-right: 10px; 
 
             .margemBotao {
                 margin-left: 10px;
@@ -80,8 +81,8 @@
 
 /* =-=-=-=-=-=-=-=-=-=-= Div lupa =-=-=-=-=-=-=-=-=-=-= */
 .divLupa {
-    /* background-color: red; */
-    width: 40%;
+    // background-color: red; 
+    width: 30%;
     display: flex;
     justify-content: center;
 
@@ -159,6 +160,11 @@
             }
         }
     }
+
+    .divLupa {
+        // background-color: red; 
+        width: 60%;
+    }
 }
 
 @media (max-width:879px) {
@@ -192,27 +198,12 @@
         /* background-color: red; */
         height: fit-content;
     }
-
-    .divLupa {
-        // background-color: red;
-
-        div {
-            .botaoXis {
-                width: 70px;
-            }
-        }
-    }
 }
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {
     .divLupa {
         // background-color: red;
-
-        div {
-            .botaoXis {
-                width: 90px;
-            }
-        }
+        width: 80%;
     }
 }

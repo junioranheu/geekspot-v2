@@ -96,7 +96,7 @@
         .divImagemGrande {
             img {
                 width: 100vw !important;
-                height: 60vh !important;
+                height: 50vh !important;
                 object-fit: cover !important;
             }
         }
@@ -115,12 +115,14 @@
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {
     .containerWidgets {
+        // background-color: red;
 
         // Imagens grandes, apenas;
         .divImagemGrande {
             img {
                 width: 100vw !important;
                 height: auto !important;
+                object-fit: fill !important; // De cover ao fill (normal);
             }
         }
     }

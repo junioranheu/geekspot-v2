@@ -74,7 +74,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                     !isLupa ? (
                         <div className={Styles.wrapper}>
                             <div className={Styles.divEsquerda}>
-                                <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' />&nbsp;&nbsp;GeekSpot</a></Link>
+                                <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
                                 <a onClick={() => handleLupa()}><Lupa width='1.5rem' cor='var(--preto)' /></a>
                             </div>
 
@@ -96,7 +96,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                             <a onClick={() => handleHamburguer()}><Xis height='1.7rem' width='1.7rem' cor='var(--branco)' /></a>
                         </div>
 
-                        <div className={Styles.divAtalhos}>
+                        <div className={Styles.divAtalhos} onClick={() => handleHamburguer()}>
                             <Link href='/xxx'><a>Produtos</a></Link>
                             <Link href='/xxx'><a>Promoções 🔥</a></Link>
 
