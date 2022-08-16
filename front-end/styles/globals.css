@@ -328,6 +328,7 @@ select:focus {
     font-size: 2rem;
     font-weight: 600;
     line-height: 2.5rem;
+    /* white-space: nowrap; */
 }
 
 .texto {
@@ -516,8 +517,9 @@ select:focus {
     }
 
     .paddingPadrao {
-        padding-left: 2rem;
-        padding-right: 2rem;
+        /* background-color: pink; */
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
 
@@ -527,7 +529,7 @@ select:focus {
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
     .titulo {
-        font-size: 3rem;
+        font-size: 1.8rem;
     }
 
     .paddingPadrao {
@@ -543,7 +545,7 @@ select:focus {
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {
     .titulo {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     .inputFiltro {

@@ -20,15 +20,6 @@
             width: 100%;
             display: flex;
             justify-content: left;
-
-            .iconeCorInvertida {
-                opacity: 1 !important;
-
-                &:hover {
-                    opacity: 0.5 !important;
-                    background: transparent !important;
-                }
-            }
         }
 
         .divDireita {
@@ -39,7 +30,7 @@
         }
 
         a {
-            /* background-color: pink; */
+            // background-color: pink; 
             color: var(--preto);
             font-size: 16px;
             font-weight: 500;
@@ -58,13 +49,26 @@
                 opacity: 1;
                 height: 40px;
                 background: var(--cinza);
-                color: var(--branco);
+                color: var(--preto);
                 transition: opacity .2s, color .2s;
                 -webkit-transition: .2s, color .2s;
 
                 svg {
                     path {
                         stroke: var(--branco) !important;
+                    }
+                }
+            }
+
+            &:nth-child(1) {
+                &:hover {
+                    color: var(--branco);
+
+                    svg {
+                        path {
+                            stroke: var(--cor-principal) !important;
+                            fill: var(--cor-principal) !important;
+                        }
                     }
                 }
             }

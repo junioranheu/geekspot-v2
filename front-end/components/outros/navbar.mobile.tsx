@@ -74,7 +74,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                     !isLupa ? (
                         <div className={Styles.wrapper}>
                             <div className={Styles.divEsquerda}>
-                                <Link href='/'><a className={Styles.iconeCorInvertida}><Geekspot width='0.9rem' cor='var(--preto)' />&nbsp;&nbsp;GeekSpot</a></Link>
+                                <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' />&nbsp;&nbsp;GeekSpot</a></Link>
                                 <a onClick={() => handleLupa()}><Lupa width='1.5rem' cor='var(--preto)' /></a>
                             </div>
 
@@ -108,7 +108,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                                     </Fragment>
                                 )
                             }
- 
+
                             <div className='divisao margem1'>ou</div>
 
                             {

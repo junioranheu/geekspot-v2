@@ -23,11 +23,12 @@ export default function Home({ listaItens }: any) {
             {
                 listaItens?.map((item: any, i: number) => (
                     <ContainerWidget
+                        key={i}
+                        i={i}
                         usuarioId={item[0]?.usuarios?.usuarioId}
                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
                         descricao='Isso é apenas um teste'
                         listaWidgets={item}
-                        key={i}
                     />
                 ))
             }

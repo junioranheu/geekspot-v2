@@ -9,20 +9,34 @@ import randomizarArray from '../../utils/outros/randomizarArray';
 import Seta from '../svg/seta';
 
 interface iParametros {
+    i: number;
     usuarioId: number;
     usuarioNomeSistema: string;
     descricao: string;
-    listaWidgets: any;
+    listaWidgets: {
+        nome: string;
+        descricao: string;
+        imagem: string;
+        isAtivo: number;
+        itemId: number;
+        itemTipoId: number;
+        preco: string;
+        precoDesconto: string;
+        usuarios: {
+            usuarioId: number;
+            nomeCompleto: string;
+        }
+    }[];
 }
 
-export default function WidgetContainer({ usuarioId, usuarioNomeSistema, descricao, listaWidgets }: iParametros) {
+export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, descricao, listaWidgets }: iParametros) {
     const tamanhoGrande = 406;
     const tamanhoPequeno = 196;
 
     const [ordemTamanhosImagens, setOrdemTamanhosImagens] = useState<number[]>([]);
     const [listaWidgetsAleatorio, setListaWidgetsAleatorio] = useState<Array<any>>([]);
     useEffect(() => {
-        function gerarOrdemTamanhosImagens(qtd:number) {
+        function gerarOrdemTamanhosImagens(qtd: number) {
             let ordens = [];
 
             for (let index = 0; index < qtd; index++) {
@@ -84,13 +98,13 @@ export default function WidgetContainer({ usuarioId, usuarioNomeSistema, descric
         let precoFinal = `R$ ${preco}`;
 
         if (precoDesconto) {
-            precoFinal = `<b style="color: var(--cor-principal);">R$ ${precoDesconto}</b> 
-                          <span style="text-decoration: line-through;">R$ ${preco}</span>`;
+            precoFinal = `<b style='color: var(--cor-principal);'>R$ ${precoDesconto}</b> 
+                          <span style='text-decoration: line-through; white-space: nowrap;''>R$ ${preco}</span>`;
         }
 
         return (
             <div dangerouslySetInnerHTML={{ __html: precoFinal }} />
-        );
+        )
     }
 
     const [fraseAleatoria, setFraseAleatoria] = useState('');
@@ -105,9 +119,9 @@ export default function WidgetContainer({ usuarioId, usuarioNomeSistema, descric
         const random = Math.floor(Math.random() * frases.length);
         setFraseAleatoria(frases[random]);
     }
- 
+
     return (
-        <div className='flexColumn margem3_5'>
+        <div className={`flexColumn ${i > 0 && 'margem3_5'}`}>
             <div className='flexRow'>
                 <div className='flexColumn'>
                     <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
@@ -123,7 +137,7 @@ export default function WidgetContainer({ usuarioId, usuarioNomeSistema, descric
                 </div>
             </div>
 
-            <div className={`margem1 ${Styles.containerWidgets}`}>
+            <div className={`${Styles.containerWidgets} margem1`}>
                 {
                     listaWidgetsAleatorio?.slice(0, 6).map((item, i) => (
                         <Fragment key={item.itemId}>
@@ -133,9 +147,7 @@ export default function WidgetContainer({ usuarioId, usuarioNomeSistema, descric
                                     <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
                                         <Image
                                             src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
-                                            width={tamanhoGrande}
-                                            height={tamanhoGrande}
-                                            alt=''
+                                            width={tamanhoGrande} height={tamanhoGrande} alt=''
                                             onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
                                         />
 

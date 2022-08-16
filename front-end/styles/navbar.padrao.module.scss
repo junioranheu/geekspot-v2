@@ -109,7 +109,8 @@
         }
 
         .botaoXis {
-            width: 40px;
+            border-radius: 50%;
+            width: 50px;
             height: 40px;
             position: relative;
             display: flex;
@@ -190,5 +191,28 @@
     .navbar {
         /* background-color: red; */
         height: fit-content;
+    }
+
+    .divLupa {
+        // background-color: red;
+
+        div {
+            .botaoXis {
+                width: 70px;
+            }
+        }
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {
+    .divLupa {
+        // background-color: red;
+
+        div {
+            .botaoXis {
+                width: 90px;
+            }
+        }
     }
 }
