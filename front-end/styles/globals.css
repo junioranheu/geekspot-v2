@@ -501,6 +501,11 @@ select:focus {
     opacity: 1;
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= Swiper =-=-=-=-=-=-=-=-=-=-= */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--cor-principal) !important;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
 @media (max-width:1400px) {
     .sessaoPrincipal {

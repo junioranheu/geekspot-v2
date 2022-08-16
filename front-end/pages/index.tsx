@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Carousel from '../components/outros/carousel';
 import ContainerWidget from '../components/widget/widget.container';
 import CONSTANTS_ITENS from '../utils/data/constItens';
 import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
@@ -20,18 +21,22 @@ export default function Home({ listaItens }: any) {
 
     return (
         <main className={'paddingPadrao margem3_5'}>
-            {
-                listaItens?.map((item: any, i: number) => (
-                    <ContainerWidget
-                        key={i}
-                        i={i}
-                        usuarioId={item[0]?.usuarios?.usuarioId}
-                        usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                        descricao='Isso é apenas um teste'
-                        listaWidgets={item}
-                    />
-                ))
-            }
+            <Carousel />
+
+            <div className='margem3'>
+                {
+                    listaItens?.map((item: any, i: number) => (
+                        <ContainerWidget
+                            key={i}
+                            i={i}
+                            usuarioId={item[0]?.usuarios?.usuarioId}
+                            usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
+                            descricao='Isso é apenas um teste'
+                            listaWidgets={item}
+                        />
+                    ))
+                }
+            </div>
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>
