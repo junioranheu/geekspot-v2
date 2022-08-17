@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Carousel from '../components/outros/carousel';
 import ContainerWidget from '../components/widget/widget.container';
+import CarouselDois from '../static/image/carousel/dois.webp';
+import CarouselUm from '../static/image/carousel/um.webp';
 import CONSTANTS_ITENS from '../utils/data/constItens';
 import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
@@ -21,7 +23,10 @@ export default function Home({ listaItens }: any) {
 
     return (
         <main className={'paddingPadrao margem3_5'}>
-            <Carousel />
+            <Carousel listaSlides={[
+                { imagem: CarouselUm, url: '/xxx' },
+                { imagem: CarouselDois, url: '/xxx' }
+            ]} />
 
             <div className='margem3'>
                 {

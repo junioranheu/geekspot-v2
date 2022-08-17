@@ -1,26 +1,32 @@
-import Image from 'next/image';
-import { Navigation } from 'swiper';
+import Image, { StaticImageData } from 'next/image';
+import Router from 'next/router';
+import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import ImagemTeste1 from '../../static/image/teste1.webp';
-import ImagemTeste2 from '../../static/image/teste2.webp';
 import Styles from '../../styles/carousel.module.scss';
 
 interface iParametros {
-    // texto: string;
-    // url: string | null;
-    // isNovaAba: boolean;
-    // Svg: ReactNode;
-    // refBtn: Ref<any>;
-    // isEnabled: boolean;
+    listaSlides: {
+        imagem: StaticImageData;
+        url: string;
+    }[];
 }
 
-export default function Carousel({ }: iParametros) {
+export default function Carousel({ listaSlides }: iParametros) {
     return (
         <Swiper className={Styles.carousel}
-            slidesPerView={1}
+            slidesPerView={2}
             loop={true}
+            centeredSlides={true}
+            spaceBetween={50}
+            speed={750}
+
+            autoplay={{
+                delay: 3000,
+                pauseOnMouseEnter: true,
+                disableOnInteraction: false,
+            }}
 
             breakpoints={{
                 1: {
@@ -28,16 +34,16 @@ export default function Carousel({ }: iParametros) {
                 }
             }}
 
-            modules={[Navigation]}
+            modules={[Autoplay, Navigation]}
             navigation
         >
-            <SwiperSlide>
-                <Image src={ImagemTeste1} alt='' className={Styles.imagem} />
-            </SwiperSlide>
-
-            <SwiperSlide>
-                <Image src={ImagemTeste2} alt='' className={Styles.imagem} />
-            </SwiperSlide>
+            {
+                listaSlides?.map((item, i: number) => (
+                    <SwiperSlide key={i}>
+                        <Image src={item.imagem} alt='' className={Styles.imagem} onClick={() => Router.push(item.url)} />
+                    </SwiperSlide>
+                ))
+            }
         </Swiper>
     )
 }

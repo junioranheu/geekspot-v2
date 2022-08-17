@@ -8,7 +8,7 @@ import ModalCookieConsent from '../components/outros/modalCookieConsent';
 import '../fonts/GTWalsheim/GTWalsheim.css';
 import '../fonts/NanumPenScript/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao';
-import '../styles/globals.css';
+import '../styles/globals.scss';
 import { ModoDarkProvider } from '../utils/context/modoDarkContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
 

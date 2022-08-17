@@ -1,5 +1,4 @@
 https://www.enjoei.com.br/
 
 --
-alterar imagens do carousel (fazer com componente)
 melhorar responsividade do carousel para mobile

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
-import ImgCinza from '../../../static/image/cinza.webp';
+import ImgCinza from '../../../static/image/outros/cinza.webp';
 import Styles from '../../../styles/item.module.scss';
 import { Auth } from '../../../utils/context/usuarioContext';
 import CONSTANTS_ITENS from '../../../utils/data/constItens';

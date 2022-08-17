@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
-import ImgCinza from '../../static/image/cinza.webp';
+import ImgCinza from '../../static/image/outros/cinza.webp';
 import Styles from '../../styles/widget.module.scss';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
