@@ -1,4 +1,2 @@
 https://www.enjoei.com.br/
 
---
-melhorar responsividade do carousel para mobile
