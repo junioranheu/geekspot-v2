@@ -20,10 +20,10 @@ export default function Carousel({ listaSlides }: iParametros) {
             loop={true}
             centeredSlides={true}
             spaceBetween={50}
-            speed={750}
+            speed={900}
 
             autoplay={{
-                delay: 3000,
+                delay: 4000,
                 pauseOnMouseEnter: true,
                 disableOnInteraction: false,
             }}
