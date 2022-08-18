@@ -50,8 +50,7 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
                 <div className={`${Styles.container} margem1`}>
                     {
                         listaItensAleatorio?.map((item, i) => (
-
-                            <div className={Styles.wrapImagem} title={item.nome}>
+                            <div className={Styles.wrapImagem} title={item.nome} key={i}>
                                 <Image
                                     src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                     width={500}

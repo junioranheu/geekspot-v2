@@ -116,7 +116,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
             <div className={`${Styles.container} margem1`}>
                 {
                     listaItensAleatorio?.slice(0, 6).map((item, i) => (
-                        <Fragment key={item.itemId}>
+                        <Fragment key={i}>
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
                                     // Tamanho grande;
