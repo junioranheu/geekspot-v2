@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import Styles from '../../styles/modulo.alternativo.module.scss';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
@@ -45,23 +46,30 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
                 descricao={descricao}
             />
 
-            <div className={`${Styles.container} margem1`}>
-                {
-                    listaItensAleatorio?.map((item, i) => (
-                        <div className={Styles.wrapImagem} title={item.nome}>
-                            <Image
-                                src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
-                                width={500}
-                                height={500}
-                                alt=''
-                                onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
-                            />
+            <ScrollContainer>
+                <div className={`${Styles.container} margem1`}>
+                    {
+                        listaItensAleatorio?.map((item, i) => (
 
-                            <span>{item.nome}</span>
-                        </div>
-                    ))
-                }
-            </div>
+                            <div className={Styles.wrapImagem} title={item.nome}>
+                                <Image
+                                    src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                    width={500}
+                                    height={500}
+                                    alt=''
+                                    onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
+                                />
+
+                                <span
+                                    className='cor-principal-hover pointer'
+                                    onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}>
+                                    {item.nome}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div>
+            </ScrollContainer>
         </div>
     )
 }
