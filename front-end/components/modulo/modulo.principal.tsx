@@ -2,18 +2,18 @@ import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import Styles from '../../styles/widget.module.scss';
+import Styles from '../../styles/modulo.principal.module.scss';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
-import Seta from '../svg/seta';
+import ModuloHeader from './modulo.header';
 
 interface iParametros {
     i: number;
     usuarioId: number;
     usuarioNomeSistema: string;
     descricao: string;
-    listaWidgets: {
+    listaItens: {
         nome: string;
         descricao: string;
         imagem: string;
@@ -29,12 +29,12 @@ interface iParametros {
     }[];
 }
 
-export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, descricao, listaWidgets }: iParametros) {
+export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, descricao, listaItens }: iParametros) {
     const tamanhoGrande = 406;
     const tamanhoPequeno = 196;
 
     const [ordemTamanhosImagens, setOrdemTamanhosImagens] = useState<number[]>([]);
-    const [listaWidgetsAleatorio, setListaWidgetsAleatorio] = useState<Array<any>>([]);
+    const [listaItensAleatorio, setListaItensAleatorio] = useState<Array<any>>([]);
     useEffect(() => {
         function gerarOrdemTamanhosImagens(qtd: number) {
             let ordens = [];
@@ -83,16 +83,13 @@ export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, desc
         }
 
         // #01;
-        const ordens = gerarOrdemTamanhosImagens(listaWidgets.length);
+        const ordens = gerarOrdemTamanhosImagens(listaItens?.length);
         // console.log(ordens);
         setOrdemTamanhosImagens(ordens);
 
         // #02;
-        gerarFraseAleatoria();
-
-        // #03;
-        setListaWidgetsAleatorio(randomizarArray(listaWidgets));
-    }, [listaWidgets]);
+        setListaItensAleatorio(randomizarArray(listaItens));
+    }, [listaItens]);
 
     function definirPreco(preco: string, precoDesconto: string) {
         let precoFinal = `R$ ${preco}`;
@@ -107,39 +104,18 @@ export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, desc
         )
     }
 
-    const [fraseAleatoria, setFraseAleatoria] = useState('');
-    function gerarFraseAleatoria() {
-        const frases = [
-            'aqui', 'ver tudo', 'quero', 'muito mais aqui', 'corre aqui',
-            'é aqui', 'imperdível', 'aí sim, meu patrão', 'muito chic', 'iti malia',
-            'ver agora', 'uhu!', 'aí sim', 'opa', 'é pra já',
-            'uhuuu', 'boraaa'
-        ];
-
-        const random = Math.floor(Math.random() * frases.length);
-        setFraseAleatoria(frases[random]);
-    }
-
     return (
         <div className={`flexColumn ${i > 0 && 'margem3_5'}`}>
-            <div className='flexRow'>
-                <div className='flexColumn'>
-                    <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
-                        Itens do usuário @{usuarioNomeSistema}
-                    </b>
+            <ModuloHeader
+                i={i}
+                usuarioId={usuarioId}
+                usuarioNomeSistema={usuarioNomeSistema}
+                descricao={descricao}
+            />
 
-                    <span className='texto'>{descricao}</span>
-                </div>
-
-                <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
-                    {fraseAleatoria}
-                    <Seta width='1rem' />
-                </div>
-            </div>
-
-            <div className={`${Styles.containerWidgets} margem1`}>
+            <div className={`${Styles.container} margem1`}>
                 {
-                    listaWidgetsAleatorio?.slice(0, 6).map((item, i) => (
+                    listaItensAleatorio?.slice(0, 6).map((item, i) => (
                         <Fragment key={item.itemId}>
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
@@ -147,7 +123,9 @@ export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, desc
                                     <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
                                         <Image
                                             src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
-                                            width={tamanhoGrande} height={tamanhoGrande} alt=''
+                                            width={tamanhoGrande}
+                                            height={tamanhoGrande}
+                                            alt=''
                                             onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
                                         />
 
@@ -155,7 +133,7 @@ export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, desc
                                     </div>
                                 ) : (
                                     // Tamanho pequeno;
-                                    listaWidgets[i + 1] && ordemTamanhosImagens[i + 1] === 0 && (
+                                    listaItens[i + 1] && ordemTamanhosImagens[i + 1] === 0 && (
                                         <div className={Styles.divGrupoImagens}>
                                             <div className={Styles.wrapImagem} title={item.nome}>
                                                 <Image
@@ -169,16 +147,16 @@ export default function WidgetContainer({ i, usuarioId, usuarioNomeSistema, desc
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                                             </div>
 
-                                            <div className={Styles.wrapImagem} title={listaWidgets[i + 1].nome}>
+                                            <div className={Styles.wrapImagem} title={listaItens[i + 1].nome}>
                                                 <Image
-                                                    src={(listaWidgets[i + 1].imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaWidgets[i + 1].imagem}` : ImgCinza)}
+                                                    src={(listaItens[i + 1].imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
-                                                    onClick={() => Router.push(`/item/${listaWidgets[i + 1]?.itemId}/${ajustarUrl(listaWidgets[i + 1]?.nome)}`)}
+                                                    onClick={() => Router.push(`/item/${listaItens[i + 1]?.itemId}/${ajustarUrl(listaItens[i + 1]?.nome)}`)}
                                                 />
 
-                                                <span className={Styles.infoBottomLeft}>{definirPreco(listaWidgets[i + 1]?.preco, listaWidgets[i + 1]?.precoDesconto)}</span>
+                                                <span className={Styles.infoBottomLeft}>{definirPreco(listaItens[i + 1]?.preco, listaItens[i + 1]?.precoDesconto)}</span>
                                             </div>
                                         </div>
                                     )

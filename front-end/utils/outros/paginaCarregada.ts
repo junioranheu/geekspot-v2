@@ -1,6 +1,6 @@
 import NProgress from 'nprogress';
 import { Dispatch } from 'react';
-import numeroAleatorio from './numeroAleatorio';
+import gerarNumeroAleatorio from './gerarNumeroAleatorio';
 
 export default function paginaCarregada(isMostrarNProgress: boolean, segMin: number, segMax: number, setIsLoaded: Dispatch<boolean>) {
     if (isMostrarNProgress) {
@@ -13,5 +13,5 @@ export default function paginaCarregada(isMostrarNProgress: boolean, segMin: num
         if (isMostrarNProgress) {
             NProgress.done();
         }
-    }, numeroAleatorio(segMin, segMax));
+    }, gerarNumeroAleatorio(segMin, segMax));
 }

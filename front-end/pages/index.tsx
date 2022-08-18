@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import ModuloAlternativo from '../components/modulo/modulo.alternativo';
+import ModuloPrincipal from '../components/modulo/modulo.principal';
 import Carousel from '../components/outros/carousel';
-import ContainerWidget from '../components/widget/widget.container';
 import CarouselDois from '../static/image/carousel/dois.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
 import CONSTANTS_ITENS from '../utils/data/constItens';
@@ -31,13 +32,28 @@ export default function Home({ listaItens }: any) {
             <div className='margem3'>
                 {
                     listaItens?.map((item: any, i: number) => (
-                        <ContainerWidget
+                        <ModuloAlternativo
                             key={i}
                             i={i}
                             usuarioId={item[0]?.usuarios?.usuarioId}
                             usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
                             descricao='Isso é apenas um teste'
-                            listaWidgets={item}
+                            listaItens={item}
+                        />
+                    ))
+                }
+            </div>
+
+            <div className='margem3'>
+                {
+                    listaItens?.map((item: any, i: number) => (
+                        <ModuloPrincipal
+                            key={i}
+                            i={i}
+                            usuarioId={item[0]?.usuarios?.usuarioId}
+                            usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
+                            descricao='Isso é apenas um teste'
+                            listaItens={item}
                         />
                     ))
                 }

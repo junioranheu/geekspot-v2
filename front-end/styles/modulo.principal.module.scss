@@ -1,22 +1,14 @@
-.containerWidgets {
+.container {
     // background-color: pink; 
     display: flex;
     justify-content: left;
     align-items: center;
     gap: 1.5rem;
 
-    /* Desabilitar "select" */
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
     img {
         border-radius: 5px;
         cursor: pointer;
-        filter: grayscale(10%);
+        filter: grayscale(30%);
         /* filter: grayscale(100%) blur(0.5px); */
         transition: 0.5s ease-in-out;
 
@@ -54,7 +46,7 @@
 }
 
 .infoDireita {
-    /* background-color: red; */
+    // background-color: red;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -79,7 +71,7 @@
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
-    .containerWidgets {
+    .container {
         // background-color: pink;
         margin-top: 0.7rem !important;
         margin: auto;
@@ -114,7 +106,7 @@
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {
-    .containerWidgets {
+    .container {
         // background-color: red;
 
         // Imagens grandes, apenas;
