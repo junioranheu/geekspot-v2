@@ -35,11 +35,10 @@ export default function Home({ listaItens }: any) {
             <div className='margem3'>
                 {
                     listaItensRandom && listaItensRandom?.map((item: any, i: number) => (
-                        <Fragment>
+                        <Fragment key={i}>
                             {
                                 i === 0 ? (
                                     <ModuloAlternativo
-                                        key={i}
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}
                                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
@@ -48,7 +47,6 @@ export default function Home({ listaItens }: any) {
                                     />
                                 ) : (
                                     <ModuloPrincipal
-                                        key={i}
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}
                                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
