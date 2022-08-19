@@ -26,8 +26,8 @@ namespace GeekSpot.Domain.Entities
 
         public string? CodigoVerificacao { get; set; } = null;
         public DateTime ValidadeCodigoVerificacao { get; set; }
-        public string? CodigoTrocarSenha { get; set; } = null;
-        public DateTime ValidadeCodigoTrocarSenha { get; set; }
+        public string? HashUrlTrocarSenha { get; set; } = null;
+        public DateTime ValidadeHashUrlTrocarSenha { get; set; }
 
 
         // Fk (De cá pra lá);

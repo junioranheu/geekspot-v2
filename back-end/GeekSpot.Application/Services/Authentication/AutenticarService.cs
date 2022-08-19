@@ -37,7 +37,7 @@ namespace GeekSpot.Application.Services.Authentication
                 return erro;
             }
 
-            // #2 - Criar usuário (gerando ID único);
+            // #2 - Criar usuário;
             var novoUsuario = new UsuarioSenhaDTO
             {
                 NomeCompleto = dto?.NomeCompleto,
@@ -48,13 +48,13 @@ namespace GeekSpot.Application.Services.Authentication
                 Foto = "",
                 DataRegistro = HorarioBrasilia(),
                 DataOnline = HorarioBrasilia(),
-                IsAtivo = 1,
+                IsAtivo = 0,
                 IsPremium = 0,
                 IsVerificado = 1,
-                CodigoVerificacao = "",
+                CodigoVerificacao = GerarStringAleatoria(6, true),
                 ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24),
-                CodigoTrocarSenha = "",
-                ValidadeCodigoTrocarSenha = DateTime.MinValue
+                HashUrlTrocarSenha = "",
+                ValidadeHashUrlTrocarSenha = DateTime.MinValue
             };
 
             await _usuarioRepository.Adicionar(novoUsuario);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -10,7 +11,7 @@ namespace GeekSpot.Utils
     public static class Biblioteca
     {
         // Pegar informações do appsettings: https://stackoverflow.com/a/58432834
-        static readonly string? encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EncryptionSettings")["EncryptionKey"];
+        static readonly string encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EncryptionSettings")["EncryptionKey"];
 
         // Converter para o horário de Brasilia: https://blog.yowko.com/timezoneinfo-time-zone-id-not-found/;
         public static DateTime HorarioBrasilia()
@@ -73,6 +74,34 @@ namespace GeekSpot.Utils
             MemberInfo[] memInfo = enumVal.GetType().GetMember(enumVal.ToString());
             DescriptionAttribute attribute = CustomAttributeExtensions.GetCustomAttribute<DescriptionAttribute>(memInfo[0]);
             return attribute.Description;
+        }
+
+        // Gerar um número aleatório com base na em um valor mínimo e máximo;
+        public static int GerarNumeroAleatorio(int min, int max)
+        {
+            Random random = new();
+            int numeroAleatorio = random.Next(min, max - 1);
+
+            return numeroAleatorio;
+        }
+
+        // Gerar uma string aleatória com base na quantidade de caracteres desejados;
+        public static string GerarStringAleatoria(int qtdCaracteres, bool isApenasMaiusculas)
+        {
+            Random random = new();
+            string caracteres = (isApenasMaiusculas ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
+            string? stringAleatoria = new(Enumerable.Repeat(caracteres, qtdCaracteres).Select(s => s[random.Next(s.Length)]).ToArray());
+
+            return stringAleatoria;
+        }
+
+        // Gerar um código hash para o usuário com base no usuarioId + string aleatória;
+        public static string GerarHashUsuario(int usuarioId)
+        {
+            string palavraAleatoria = $"{usuarioId}_{GerarStringAleatoria(GerarNumeroAleatorio(10, 15), false)}";
+            string hash = Criptografar(palavraAleatoria);
+
+            return hash;
         }
     }
 }

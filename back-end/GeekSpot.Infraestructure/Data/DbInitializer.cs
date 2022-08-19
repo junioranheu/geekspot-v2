@@ -10,7 +10,7 @@ namespace GeekSpot.Infraestructure.Data
         public static async Task Initialize(Context context)
         {
             // Exclui o esquema, copia as queries, cria esquema/tabelas, popula o BD;
-            bool resetarBd = true;
+            bool resetarBd = false;
 
             if (resetarBd)
             {
