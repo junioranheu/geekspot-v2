@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }: any) {
                     <meta name='description' content='GeekSpot — Um upgrade ao seu inventário' />
                     <meta name='keywords' content='geek, produtos, compra, troca, venda, e-commerce' />
                     <meta name='author' content='@junioranheu' />
-                    <meta name='theme-color' content='var(--cor-principal)' />
+                    <meta name='theme-color' content='#9a6bff' />
                 </Head>
 
                 <ModoDarkProvider>
