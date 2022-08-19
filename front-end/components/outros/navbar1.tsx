@@ -5,7 +5,8 @@ import Seta from '../svg/seta';
 export default function Navbar1() {
     return (
         <nav className={Styles.navbar}>
-            <span>GeekSpot: plataforma digital para compras, vendas e trocas de artigos geek</span>
+            {/* <span>GeekSpot: plataforma digital para compras, vendas e trocas de artigos geek</span> */}
+            <span>GeekSpot — Um upgrade ao seu inventário</span>
 
             <span>{EmojiAleatorio()}</span>
 

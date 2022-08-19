@@ -1,4 +1,5 @@
 import 'animate.css/animate.min.css';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'nprogress/nprogress.css';
 import { Fragment, useEffect, useState } from 'react';
@@ -38,6 +39,14 @@ export default function App({ Component, pageProps }: any) {
     return url ?
         (
             <Fragment>
+                <Head>
+                    <meta name='viewport' content='width=device-width, initial-scale=1' />
+                    <meta name='description' content='GeekSpot — Um upgrade ao seu inventário' />
+                    <meta name='keywords' content='geek, produtos, compra, troca, venda, e-commerce' />
+                    <meta name='author' content='@junioranheu' />
+                    <meta name='theme-color' content='var(--cor-principal)' />
+                </Head>
+
                 <ModoDarkProvider>
                     <UsuarioProvider>
                         {/* Toaster de aviso */}
