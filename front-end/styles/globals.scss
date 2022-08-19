@@ -240,6 +240,24 @@ select {
     }
 }
 
+/* =-=-=-=-=-=-=-=-=-=-=-=- react-cookie-consent =-=-=-=-=-=-=-=-=-=-=-=- */
+.CookieConsent {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    background-color: var(--super-preto) !important;
+    padding: 2rem !important;
+    color: var(--branco) !important;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-=-=- Input pesquisa =-=-=-=-=-=-=-=-=-=-=-=- */
 .inputFiltro {
     top: 0;
@@ -271,7 +289,7 @@ select {
     }
 }
 
-/* =-=-=-=-=-=-=-=-=-=-= nprogress =-=-=-=-=-=-=-=-=-=-= */
+/* =-=-=-=-=-=-=-=-=-=-= nProgress =-=-=-=-=-=-=-=-=-=-= */
 #nprogress {
     .bar {
         background: var(--cor-principal) !important;

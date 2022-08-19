@@ -7,7 +7,6 @@ export default function ModalCookieConsent() {
             location='bottom'
             buttonText='Sim, estou de acordo'
             cookieName='geekspot_cookie_consent'
-            style={{ background: '#000000', padding: '2rem' }}
             buttonStyle={{ background: 'var(--cor-principal)', borderRadius: '6px', fontWeight: 600 }}
             buttonClasses='botao'
             expires={7} // Dias;

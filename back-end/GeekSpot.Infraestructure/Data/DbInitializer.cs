@@ -108,7 +108,7 @@ namespace GeekSpot.Infraestructure.Data
                 context.Itens.Add(new Item() { ItemId = 14, Nome = "Nike zika", Descricao = "xxx", Imagem = "14.webp", Preco = 890, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 12, IsAtivo = 1, DataRegistro = dataAgora });
                 context.Itens.Add(new Item() { ItemId = 15, Nome = "Palheta da Fender", Descricao = "xxx", Imagem = "15.webp", Preco = 1, PrecoDesconto = 0.99, UsuarioId = 6, ItemTipoId = 14, IsAtivo = 1, DataRegistro = dataAgora });
                 context.Itens.Add(new Item() { ItemId = 16, Nome = "Apple Watch", Descricao = "xxx", Imagem = "16.webp", Preco = 1500, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 17, IsAtivo = 1, DataRegistro = dataAgora });
-                context.Itens.Add(new Item() { ItemId = 17, Nome = "Disco The Dark Side Of The Moon", Descricao = "xxx", Imagem = "17.webp", Preco = 370.99, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 13, IsAtivo = 1, DataRegistro = dataAgora });
+                context.Itens.Add(new Item() { ItemId = 17, Nome = "The Dark Side Of The Moon", Descricao = "xxx", Imagem = "17.webp", Preco = 370.99, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 13, IsAtivo = 1, DataRegistro = dataAgora });
             }
             #endregion
 
