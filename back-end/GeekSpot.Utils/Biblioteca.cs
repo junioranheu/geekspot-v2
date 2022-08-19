@@ -1,7 +1,6 @@
-﻿using System.ComponentModel;
-using System.Net.Http;
+﻿using Microsoft.Extensions.Configuration;
+using System.ComponentModel;
 using System.Reflection;
-using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using TimeZoneConverter;
@@ -10,6 +9,9 @@ namespace GeekSpot.Utils
 {
     public static class Biblioteca
     {
+        // Pegar informações do appsettings: https://stackoverflow.com/a/58432834
+        static readonly string? encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EncryptionSettings")["EncryptionKey"];
+
         // Converter para o horário de Brasilia: https://blog.yowko.com/timezoneinfo-time-zone-id-not-found/;
         public static DateTime HorarioBrasilia()
         {
@@ -20,12 +22,11 @@ namespace GeekSpot.Utils
         // Criptografar e decriptografar senha: https://stackoverflow.com/questions/10168240/encrypting-decrypting-a-string-in-c-sharp;
         public static string Criptografar(string clearText)
         {
-            string EncryptionKey = "abc123";
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
 
             using (Aes encryptor = Aes.Create())
             {
-                Rfc2898DeriveBytes pdb = new(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                Rfc2898DeriveBytes pdb = new(password: encriptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
                 encryptor.Key = pdb.GetBytes(32);
                 encryptor.IV = pdb.GetBytes(16);
 
@@ -44,13 +45,12 @@ namespace GeekSpot.Utils
 
         public static string Descriptografar(string cipherText)
         {
-            string EncryptionKey = "abc123";
             cipherText = cipherText.Replace(" ", "+");
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
 
             using (Aes encryptor = Aes.Create())
             {
-                Rfc2898DeriveBytes pdb = new(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                Rfc2898DeriveBytes pdb = new(password: encriptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
                 encryptor.Key = pdb.GetBytes(32);
                 encryptor.IV = pdb.GetBytes(16);
 

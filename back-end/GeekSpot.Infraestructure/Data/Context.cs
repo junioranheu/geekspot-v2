@@ -10,6 +10,10 @@ namespace GeekSpot.Infraestructure.Data
        
         }
 
+        // Cidades e estados;
+        public DbSet<Estado> Estados { get; set; }
+        public DbSet<Cidade> Cidades { get; set; }
+
         // Usuários e afins;
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<UsuarioTipo> UsuariosTipos { get; set; }

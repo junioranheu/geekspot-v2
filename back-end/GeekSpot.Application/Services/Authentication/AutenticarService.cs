@@ -50,7 +50,11 @@ namespace GeekSpot.Application.Services.Authentication
                 DataOnline = HorarioBrasilia(),
                 IsAtivo = 1,
                 IsPremium = 0,
-                IsVerificado = 1
+                IsVerificado = 1,
+                CodigoVerificacao = "",
+                ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24),
+                CodigoTrocarSenha = "",
+                ValidadeCodigoTrocarSenha = DateTime.MinValue
             };
 
             await _usuarioRepository.Adicionar(novoUsuario);

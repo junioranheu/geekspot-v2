@@ -24,6 +24,12 @@ namespace GeekSpot.Domain.Entities
         public int IsPremium { get; set; } = 0;
         public int IsVerificado { get; set; } = 0;
 
+        public string? CodigoVerificacao { get; set; } = null;
+        public DateTime ValidadeCodigoVerificacao { get; set; }
+        public string? CodigoTrocarSenha { get; set; } = null;
+        public DateTime ValidadeCodigoTrocarSenha { get; set; }
+
+
         // Fk (De cá pra lá);
         [JsonIgnore]
         public UsuarioInformacao? UsuariosInformacoes { get; set; }

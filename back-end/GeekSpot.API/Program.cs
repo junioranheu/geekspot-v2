@@ -10,8 +10,6 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Text;
 
-const string Cors = "_CorsPolicy";
-
 var builder = WebApplication.CreateBuilder(args);
 {
     // Técnica para adicionar as classes (interfaces e os repositórios/serviços) de GeekSpot.Application em uma classe centralizada: https://youtu.be/fhM0V2N1GpY?t=2117
@@ -61,7 +59,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     // Cors;
     builder.Services.AddCors(options =>
-        options.AddPolicy(name: Cors, builder =>
+        options.AddPolicy(name: builder.Configuration["CORSSettings:Cors"], builder =>
         {
             builder.AllowAnyHeader()
                 .AllowAnyMethod()
@@ -114,7 +112,7 @@ var app = builder.Build();
             var context = services.GetRequiredService<Context>();
 
             // Iniciar o banco de dados, indo para o DbInitializer.cs;
-            DbInitializer.Initialize(context);
+            await DbInitializer.Initialize(context);
         }
         catch (Exception ex)
         {
@@ -141,7 +139,7 @@ var app = builder.Build();
     }
 
     // Cors;
-    app.UseCors(Cors);
+    app.UseCors(builder.Configuration["CORSSettings:Cors"]);
 
     // Outros;
     app.UseAuthentication();

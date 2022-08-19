@@ -19,5 +19,9 @@ namespace GeekSpot.Domain.DTO
         public int IsAtivo { get; set; } = 1;
         public int IsPremium { get; set; } = 0;
         public int IsVerificado { get; set; } = 0;
+        public string? CodigoVerificacao { get; set; } = null;
+        public DateTime ValidadeCodigoVerificacao { get; set; }
+        public string? CodigoTrocarSenha { get; set; } = null;
+        public DateTime ValidadeCodigoTrocarSenha { get; set; }
     }
 }
