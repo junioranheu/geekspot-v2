@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import ModuloAlternativo from '../components/modulo/modulo.alternativo';
 import ModuloPrincipal from '../components/modulo/modulo.principal';
 import Carousel from '../components/outros/carousel';
@@ -9,12 +9,15 @@ import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
 import HabilitarHttp from '../utils/outros/habilitarHttp';
 import paginaCarregada from '../utils/outros/paginaCarregada';
+import randomizarArray from '../utils/outros/randomizarArray';
 
 export default function Home({ listaItens }: any) {
     document.title = 'GeekSpot — Início';
 
+    const [listaItensRandom, setListaItensRandom] = useState<any>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
+        setListaItensRandom(randomizarArray(listaItens))
         paginaCarregada(false, 100, 300, setIsLoaded);
     }, []);
 
@@ -31,30 +34,30 @@ export default function Home({ listaItens }: any) {
 
             <div className='margem3'>
                 {
-                    listaItens?.map((item: any, i: number) => (
-                        <ModuloAlternativo
-                            key={i}
-                            i={i}
-                            usuarioId={item[0]?.usuarios?.usuarioId}
-                            usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                            descricao='Isso é apenas um teste'
-                            listaItens={item}
-                        />
-                    ))
-                }
-            </div>
-
-            <div className='margem3'>
-                {
-                    listaItens?.map((item: any, i: number) => (
-                        <ModuloPrincipal
-                            key={i}
-                            i={i}
-                            usuarioId={item[0]?.usuarios?.usuarioId}
-                            usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                            descricao='Isso é apenas um teste'
-                            listaItens={item}
-                        />
+                    listaItensRandom && listaItensRandom?.map((item: any, i: number) => (
+                        <Fragment>
+                            {
+                                i === 0 ? (
+                                    <ModuloAlternativo
+                                        key={i}
+                                        i={i}
+                                        usuarioId={item[0]?.usuarios?.usuarioId}
+                                        usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
+                                        descricao='Isso é apenas um teste'
+                                        listaItens={item}
+                                    />
+                                ) : (
+                                    <ModuloPrincipal
+                                        key={i}
+                                        i={i}
+                                        usuarioId={item[0]?.usuarios?.usuarioId}
+                                        usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
+                                        descricao='Isso é apenas um teste'
+                                        listaItens={item}
+                                    />
+                                )
+                            }
+                        </Fragment>
                     ))
                 }
             </div>
