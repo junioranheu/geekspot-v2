@@ -7,8 +7,9 @@
     --cor-principal: rgba(154, 107, 255, 1);
     --cor-principal-opaca: rgba(154, 107, 255, 0.1);
     --cor-principal-escura: hsl(257, 80%, 60%);
-    --cor-border-hr: rgba(42, 42, 42, 20%);
+    --cor-border-hr: rgba(42, 42, 42, 10%);
     --cor-principal-gradient: linear-gradient(to bottom right, var(--cor-principal), var(--cor-principal-escura));
+    --border: 1px solid var(--cor-border-hr);
 
     --toastify-color-progress-light: var(--cor-principal) !important;
     --toastify-color-progress-warning: var(--cor-principal) !important;
@@ -373,6 +374,15 @@ select {
         background-size: 100% 88%;
         border-radius: 10px;
     }
+}
+
+.separador {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1px;
+    height: 2rem;
+    background: var(--cor-border-hr);
+    margin: 0 5px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */

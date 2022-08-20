@@ -1,18 +1,26 @@
-import Styles from '../../styles/navbar.padrao.module.scss';
+import Typewriter from 'typewriter-effect'; // https://www.npmjs.com/package/typewriter-effect
+import Styles from '../../styles/navbar.padrao2.module.scss';
 import Lupa from '../svg/lupa';
-import Xis from '../svg/xis';
 
-interface iParametros {
-    handleLupa: () => void;
-}
-
-export default function InputFiltroNavbar({ handleLupa }: iParametros) {
+export default function InputFiltroNavbar() {
     return (
         <div className={`${Styles.divLupa} animate__animated animate__fadeIn`}>
             <div>
+                <input
+                    className={Styles.inputPesquisaNavbar}
+                    type='text'
+                    placeholder={`Busque algo aqui ${1}...`}
+                />
+
                 <Lupa width='1.5rem' cor='var(--preto)' />
-                <input className={Styles.inputPesquisaNavbar} type='text' placeholder='Busque algo aqui...' />
-                <button className={Styles.botaoXis} onClick={() => handleLupa()}><Xis height='1rem' width='1rem' cor='#1A1A1A' /></button>
+
+                <Typewriter
+                    options={{
+                        strings: ['Hello', 'World'],
+                        autoStart: true,
+                        loop: true,
+                    }}
+                />
             </div>
         </div>
     )
