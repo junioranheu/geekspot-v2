@@ -1,5 +1,5 @@
 <h1 align="center">
-GeekSpot — Um upgrade ao seu invetário
+GeekSpot — Um upgrade ao seu inventário
 </h1>
 
 <p align="center">Plataforma digital para compras, vendas e trocas de artigos geek.
