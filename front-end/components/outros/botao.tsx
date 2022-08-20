@@ -5,16 +5,21 @@ interface iParametros {
     texto: string;
     url: string | null;
     isNovaAba: boolean;
-    Svg: ReactNode;
+    handleFuncao: any | null;
+    Svg: ReactNode | null;
     refBtn: Ref<any>;
     isEnabled: boolean;
 }
 
-export default function Botao({ texto, url, isNovaAba, Svg, refBtn, isEnabled }: iParametros) {
+export default function Botao({ texto, url, isNovaAba, handleFuncao, Svg, refBtn, isEnabled }: iParametros) {
     function abrirUrl() {
         // console.log(isNovaAba);
 
         if (!url) {
+            if (handleFuncao) {
+                handleFuncao();
+            }
+
             return false;
         }
 

@@ -114,18 +114,18 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                             {
                                 isAuth ? (
                                     <div className={Styles.sessaoBotoes}>
-                                        <div className={Styles.botaoPadrao} onClick={() => deslogar()}>
-                                            <Botao texto={'Sair'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                                        <div className={Styles.botaoPadrao}>
+                                            <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
                                         </div>
                                     </div>
                                 ) : (
                                     <div className={Styles.sessaoBotoes}>
                                         <div className={Styles.botaoCriarConta}>
-                                            <Botao texto={'Crie sua conta'} url={'/usuario/criar-conta'} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                                            <Botao texto='Crie sua conta' url='/usuario/criar-conta' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                         </div>
 
                                         <div className={Styles.botaoPadrao}>
-                                            <Botao texto={'Entrar agora'} url={'/usuario/entrar'} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                                            <Botao texto='Entrar agora' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                         </div>
                                     </div>
                                 )

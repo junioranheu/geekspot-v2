@@ -36,6 +36,8 @@ export default function SessaoEsquerda() {
     const refConfirmarSenha = useRef<any>(null);
     const refBtnCriar = useRef<any>(null);
 
+    const [isExibirDivEmail, setIsExibirDivEmail] = useState(false);
+
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ nomeCompleto: '', email: '', nomeUsuarioSistema: '', senha: '', confirmarSenha: '' });
     function handleChange(e: any) {
@@ -152,56 +154,59 @@ export default function SessaoEsquerda() {
             <span className={Styles.titulo}>Crie sua conta no GeekSpot</span>
 
             {/* Inputs */}
-            <div>
-                <div>
-                    <input className='input' type='text' placeholder='Nome completo' name='nomeCompleto'
-                        onChange={handleChange} onKeyPress={handleKeyPress} ref={refNomeCompleto}
-                    />
-                </div>
+            {
+                isExibirDivEmail ? (
+                    <div className='animate__animated animate__fadeIn'>
+                        <div>
+                            <input className='input' type='text' placeholder='Nome completo' name='nomeCompleto'
+                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refNomeCompleto}
+                            />
+                        </div>
 
-                <div className='margem0_5'>
-                    <input className='input' type='email' placeholder='E-mail' name='email'
-                        onChange={handleChange} onKeyPress={handleKeyPress} ref={refEmail}
-                    />
-                </div>
+                        <div className='margem0_5'>
+                            <input className='input' type='email' placeholder='E-mail' name='email'
+                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refEmail}
+                            />
+                        </div>
 
-                <div className='margem0_5'>
-                    <input className='input' type='text' placeholder='Nome de usuário' name='nomeUsuarioSistema'
-                        onChange={(e) => (handleChange(e), handleKeyPressNaoPermitirEspaco(e))} onKeyPress={handleKeyPress} ref={refNomeUsuario}
-                    />
-                </div>
+                        <div className='margem0_5'>
+                            <input className='input' type='text' placeholder='Nome de usuário' name='nomeUsuarioSistema'
+                                onChange={(e) => (handleChange(e), handleKeyPressNaoPermitirEspaco(e))} onKeyPress={handleKeyPress} ref={refNomeUsuario}
+                            />
+                        </div>
 
-                <div className='margem0_5'>
-                    <input className='input' type='password' placeholder='Senha' autoComplete='new-password' name='senha'
-                        onChange={handleChange} onKeyPress={handleKeyPress} ref={refSenha}
-                    />
-                </div>
+                        <div className='margem0_5'>
+                            <input className='input' type='password' placeholder='Senha' autoComplete='new-password' name='senha'
+                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refSenha}
+                            />
+                        </div>
 
-                <div className='margem0_5'>
-                    <input className='input' type='password' placeholder='Confirme sua senha' name='confirmarSenha'
-                        onChange={handleChange} onKeyPress={handleKeyPress} ref={refConfirmarSenha}
-                    />
-                </div>
+                        <div className='margem0_5'>
+                            <input className='input' type='password' placeholder='Confirme sua senha' name='confirmarSenha'
+                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refConfirmarSenha}
+                            />
+                        </div>
 
-                {/* <div className={`${Styles.checkbox} $'margem0_5'`}>
-                    <input type='checkbox' />
-                    <label>Concordo com os termos de uso</label>
-                </div> */}
-
-                <div className={`${Styles.botaoCustom} margem0_5`} onClick={handleSubmit} >
-                    <Botao texto={'Criar conta'} url={''} isNovaAba={false} Svg='' refBtn={refBtnCriar} isEnabled={true} />
-                </div>
-            </div>
+                        <div className={`${Styles.botaoCustom} margem0_5`} onClick={handleSubmit} >
+                            <Botao texto='Criar conta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtnCriar} isEnabled={true} />
+                        </div>
+                    </div>
+                ) : (
+                    <div className={Styles.botaoCustom}>
+                        <Botao texto='Criar conta com e-mail' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />
+                    </div>
+                )
+            }
 
             {/* Ou #1 */}
             <div>
                 <div className={Styles.divisao}>ou</div>
                 <div className={`${Styles.botaoCustom2} margem1`}>
-                    <Botao texto='&nbsp;&nbsp;&nbsp;Criar conta com o Facebook' url={'/'} isNovaAba={false} Svg={<Facebook width={'25px'} />} refBtn={null} isEnabled={true} />
+                    <Botao texto='Criar conta com o Facebook' url='/' isNovaAba={false} handleFuncao={() => null} Svg={<Facebook width={'25px'} />} refBtn={null} isEnabled={true} />
                 </div>
 
                 <div className={`${Styles.botaoCustom2} margem0_5`}>
-                    <Botao texto='&nbsp;&nbsp;&nbsp;Criar conta com o Google' url={'/'} isNovaAba={false} Svg={<Google width={'18px'} />} refBtn={null} isEnabled={true} />
+                    <Botao texto='Criar conta com o Google' url='/' isNovaAba={false} handleFuncao={() => null} Svg={<Google width={'18px'} />} refBtn={null} isEnabled={true} />
                 </div>
             </div>
 

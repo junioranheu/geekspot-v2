@@ -32,7 +32,7 @@ export default function Item({ item }: any) {
     if (!isLoaded) {
         return false;
     }
- 
+
     return (
         <Fragment>
             <section className={`${Styles.sessaoPrincipal} margem3`}>
@@ -62,16 +62,16 @@ export default function Item({ item }: any) {
                     </div>
 
                     <div className='margem1_5 flexColumn'>
-                        <div className={Styles.botaoCustom} onClick={() => null}>
-                            <Botao texto={'Eu quero'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                        <div className={Styles.botaoCustom}>
+                            <Botao texto='Eu quero' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                         </div>
 
-                        <div className={`${Styles.botaoCustom} margem1`} onClick={() => null}>
-                            <Botao texto={'Adicionar ao carrinho'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                        <div className={`${Styles.botaoCustom} margem1`}>
+                            <Botao texto='Adicionar ao carrinho' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                         </div>
 
-                        <div className={`${Styles.botaoCustom} margem1`} onClick={() => null}>
-                            <Botao texto={'Fazer oferta'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                        <div className={`${Styles.botaoCustom} margem1`}>
+                            <Botao texto='Fazer oferta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                         </div>
                     </div>
                 </div>

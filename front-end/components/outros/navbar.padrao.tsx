@@ -63,16 +63,14 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                             {
                                 isAuth ? (
                                     <Fragment>
-                                        <span onClick={() => deslogar()}>
-                                            <Botao texto={'Sair'} url={''} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
-                                        </span>
+                                        <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
                                     </Fragment>
                                 ) : (
                                     <Fragment>
                                         <Link href='/usuario/criar-conta'><a>Crie sua conta</a></Link>
 
                                         <span className={Styles.margemBotao}>
-                                            <Botao texto={'Entrar'} url={'/usuario/entrar'} isNovaAba={false} Svg='' refBtn={null} isEnabled={true} />
+                                            <Botao texto='Entrar' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                         </span>
                                     </Fragment>
                                 )

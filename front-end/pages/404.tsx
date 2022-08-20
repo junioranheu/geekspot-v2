@@ -52,7 +52,7 @@ export default function Erro() {
                 <span className='texto margem2'>Parece que algo deu errado por aqui<br />{msg}</span>
 
                 <div className='margem2'>
-                    <Botao texto='Voltar ao início' url={'/'} isNovaAba={false} Svg={null} refBtn={null} isEnabled={true} />
+                    <Botao texto='Voltar ao início' url='/' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
             </div>
         </section>

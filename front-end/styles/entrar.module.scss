@@ -79,10 +79,15 @@
     }
 
     .botaoCustom2 {
+        text-align: left !important;
+
         button {
             width: 300px;
             background: var(--cor-principal-opaca);
             color: var(--preto);
+
+            display: flex;
+            justify-content: space-evenly;
         }
     }
 

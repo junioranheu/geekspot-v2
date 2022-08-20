@@ -28,6 +28,8 @@ export default function SessaoEsquerda() {
     const refSenha = useRef<any>(null);
     const refBtn = useRef<any>(null);
 
+    const [isExibirDivEmail, setIsExibirDivEmail] = useState(false);
+
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ usuario: '', senha: '' });
     function handleChange(e: any) {
@@ -41,7 +43,6 @@ export default function SessaoEsquerda() {
     async function handleSubmit(e: any) {
         nProgress.start();
         refBtn.current.disabled = true;
-        e.preventDefault();
 
         if (!formData || !formData.usuario || !formData.senha) {
             instrucaoErro('O nome de usuário e/ou e-mail estão vazios!');
@@ -50,6 +51,7 @@ export default function SessaoEsquerda() {
 
         const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
         const dto = {
+            email: formData.usuario,
             nomeUsuarioSistema: formData.usuario,
             senha: formData.senha
         };
@@ -95,28 +97,38 @@ export default function SessaoEsquerda() {
 
             {/* Inputs */}
             <div className={Styles.divLogin}>
-                <input className={`input`} type='text' placeholder='E-mail ou nome de usuário'
-                    name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
-                />
+                {
+                    isExibirDivEmail ? (
+                        <div className='animate__animated animate__fadeIn'>
+                            <input className='input' type='text' placeholder='E-mail ou nome de usuário'
+                                name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
+                            />
 
-                <input className={`input margem0_5`} type='password' placeholder='Senha'
-                    name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
-                />
+                            <input className='input margem0_5' type='password' placeholder='Senha'
+                                name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
+                            />
 
-                <div className={`${Styles.botaoCustom} margem0_5`} onClick={handleSubmit}>
-                    <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' refBtn={refBtn} isEnabled={true} />
-                </div>
+                            <div className={`${Styles.botaoCustom} margem0_5`}>
+                                <Botao texto='Entrar' url={null} isNovaAba={false} handleFuncao={handleSubmit} Svg={null} refBtn={refBtn} isEnabled={true} />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={Styles.botaoCustom}>
+                            <Botao texto='Entrar com e-mail' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />
+                        </div>
+                    )
+                }
             </div>
 
             {/* Ou #1 */}
             <div>
                 <div className={Styles.divisao}>ou</div>
                 <div className={`${Styles.botaoCustom2} margem1`}>
-                    <Botao texto='&nbsp;&nbsp;&nbsp;Continuar com o Facebook' url={'/'} isNovaAba={false} Svg={<Facebook width='25px' />} refBtn={null} isEnabled={true} />
+                    <Botao texto='Continuar com o Facebook' url='/' isNovaAba={false} handleFuncao={null} Svg={<Facebook width='25px' />} refBtn={null} isEnabled={true} />
                 </div>
 
                 <div className={`${Styles.botaoCustom2} margem0_5`}>
-                    <Botao texto='&nbsp;&nbsp;&nbsp;Continuar com o Google' url={'/'} isNovaAba={false} Svg={<Google width='18px' />} refBtn={null} isEnabled={true} />
+                    <Botao texto='Continuar com o Google' url='/' isNovaAba={false} handleFuncao={null} Svg={<Google width='18px' />} refBtn={null} isEnabled={true} />
                 </div>
             </div>
 
