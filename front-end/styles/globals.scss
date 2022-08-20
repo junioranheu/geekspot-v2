@@ -101,6 +101,10 @@ img {
     cursor: pointer !important;
 }
 
+.esconder {
+    display: none !important;
+}
+
 .cor-principal {
     /* color: var(--cor-principal) !important; */
     background: -webkit-linear-gradient(var(--cor-principal), var(--cor-principal-escura)) !important;
