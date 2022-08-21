@@ -43,6 +43,17 @@ export default function NavbarFiltro() {
         setListaOpcoes(listaRandom);
     }, [])
 
+    function handleKeyPress(e: any) {
+        if (e.key === 'Enter') {
+            handleBuscar();
+        }
+    }
+
+    const [txtFiltro, setTxtFiltro] = useState('');
+    function handleBuscar() {
+        console.log('handleBuscar():', txtFiltro);
+    }
+
     return (
         <Fragment>
             <div className='esconder'>
@@ -62,9 +73,11 @@ export default function NavbarFiltro() {
                     placeholder={`Busque por ${efeitoTypewriter__wrapper}`}
                     onFocus={() => handleEnter()}
                     onBlur={() => handleLeave()}
+                    onChange={(e) => setTxtFiltro(e.target.value)}
+                    onKeyPress={handleKeyPress}
                 />
 
-                <div className={Styles.lupa} title='Buscar'>
+                <div className={Styles.lupa} title='Buscar' onClick={() => handleBuscar()}>
                     <Lupa width='1.5rem' cor='var(--preto)' />
                 </div>
             </div>
