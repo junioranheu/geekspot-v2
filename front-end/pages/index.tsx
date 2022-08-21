@@ -19,7 +19,7 @@ export default function Home({ listaItens }: any) {
     useEffect(() => {
         setListaItensRandom(randomizarArray(listaItens))
         paginaCarregada(false, 100, 300, setIsLoaded);
-    }, []);
+    }, [listaItens]);
 
     if (!isLoaded) {
         return false;

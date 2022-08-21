@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { Dispatch, Fragment, useState } from 'react';
+import { Dispatch, Fragment } from 'react';
 import Styles from '../../styles/navbar.padrao.module.scss';
+import { Auth } from '../../utils/context/usuarioContext';
+import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Geekspot from '../svg/geekspot';
-import Lupa from '../svg/lupa';
 import Botao from './botao';
 import InputFiltroNavbar from './inputFiltroNavbar';
 
@@ -14,12 +15,9 @@ interface iParametros {
     setIsAuth: Dispatch<boolean>;
 }
 
-export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
-    const [isLupa, setIsLupa] = useState(false);
+export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametros) {
 
-    function handleLupa() {
-        setIsLupa(!isLupa);
-    }
+    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
 
     function deslogar() {
         NProgress.start();
@@ -39,48 +37,30 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
     return (
         <nav className={Styles.navbar}>
-            {
-                !isLupa ? (
-                    <div className={Styles.wrapper}>
-                        <div className={Styles.divEsquerda}>
-                            <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' />&nbsp;&nbsp;GeekSpot</a></Link>
-                            <Link href='/xxx'><a>Produtos</a></Link>
-                            <Link href='/xxx'><a>Promoções 🔥</a></Link>
+            <div className={Styles.wrapper}>
+                <div className={Styles.divEsquerda}>
+                    <Link href='/'><a title='Voltar ao início do GeekSpot'><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
+                    <InputFiltroNavbar />
+                </div>
 
-                            {
-                                isAuth && (
-                                    <Fragment>
-                                        <Link href='/xxx'><a>xxx</a></Link>
-                                        <Link href='/xxx'><a>xxx</a></Link>
-                                    </Fragment>
-                                )
-                            }
+                <div className={Styles.divDireita}>
+                    <Link href='/xxx'><a>Produtos</a></Link>
+                    <Link href='/xxx'><a>Promoções</a></Link>
+                    <span className='separador'></span>
 
-                            <a onClick={() => handleLupa()}><Lupa width='1.5rem' cor='var(--preto)' /></a>
-                        </div>
-
-                        <div className={Styles.divDireita}>
-                            {
-                                isAuth ? (
-                                    <Fragment>
-                                        <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
-                                    </Fragment>
-                                ) : (
-                                    <Fragment>
-                                        <Link href='/usuario/criar-conta'><a>Crie sua conta</a></Link>
-
-                                        <span className={Styles.margemBotao}>
-                                            <Botao texto='Entrar' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
-                                        </span>
-                                    </Fragment>
-                                )
-                            }
-                        </div>
-                    </div>
-                ) : (
-                    <InputFiltroNavbar handleLupa={handleLupa} />
-                )
-            }
+                    {
+                        isAuth ? (
+                            <Fragment>
+                                <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                                <span className='separador'></span>
+                                <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
+                            </Fragment>
+                        ) : (
+                            <Botao texto='Entrar agora mesmo' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                        )
+                    }
+                </div>
+            </div>
         </nav>
     )
 }

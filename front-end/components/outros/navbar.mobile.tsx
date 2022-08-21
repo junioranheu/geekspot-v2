@@ -5,7 +5,6 @@ import { Dispatch, Fragment, useEffect, useState } from 'react';
 import Styles from '../../styles/navbar.mobile.module.scss';
 import Geekspot from '../svg/geekspot';
 import Hamburguer from '../svg/hamburguer';
-import Lupa from '../svg/lupa';
 import Xis from '../svg/xis';
 import Botao from './botao';
 import InputFiltroNavbar from './inputFiltroNavbar';
@@ -17,12 +16,7 @@ interface iParametros {
 }
 
 export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
-    const [isLupa, setIsLupa] = useState(false);
     const [isHamburguer, setIsHamburguer] = useState(false);
-
-    function handleLupa() {
-        setIsLupa(!isLupa);
-    }
 
     function handleHamburguer() {
         setIsHamburguer(!isHamburguer);
@@ -70,22 +64,16 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
         <Fragment>
             {/* #01 - Navbar */}
             <nav className={Styles.navbar}>
-                {
-                    !isLupa ? (
-                        <div className={Styles.wrapper}>
-                            <div className={Styles.divEsquerda}>
-                                <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
-                                <a onClick={() => handleLupa()}><Lupa width='1.5rem' cor='var(--preto)' /></a>
-                            </div>
+                <div className={Styles.wrapper}>
+                    <div className={Styles.divEsquerda}>
+                        <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
+                        <InputFiltroNavbar />
+                    </div>
 
-                            <div className={Styles.divDireita}>
-                                <a onClick={() => handleHamburguer()}><Hamburguer width='1rem' cor='var(--preto)' /></a>
-                            </div>
-                        </div>
-                    ) : (
-                        <InputFiltroNavbar handleLupa={handleLupa} />
-                    )
-                }
+                    <div className={Styles.divDireita}>
+                        <a onClick={() => handleHamburguer()}><Hamburguer width='1rem' cor='var(--preto)' /></a>
+                    </div>
+                </div>
             </nav>
 
             {/* #02 - Hamburguer */}

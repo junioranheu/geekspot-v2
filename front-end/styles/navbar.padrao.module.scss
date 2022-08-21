@@ -1,210 +1,141 @@
+$altura-navbar: 70px;
+
 .navbar {
     background-color: var(--branco);
     color: var(--preto);
-    height: 80px;
+    height: $altura-navbar;
     width: 100vw;
     border-bottom: var(--border);
-
     display: flex;
     justify-content: center;
-    align-items: center;
 
     .wrapper {
         /* background-color: pink; */
         width: 66%;
         display: flex;
-        align-items: center;
 
         .divEsquerda {
             // background-color: red; 
             width: 100%;
             display: flex;
             justify-content: left;
-            gap: 0.5rem;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .divDireita {
-            /* background-color: turquoise; */
+            // background-color: turquoise;
             width: 100%;
             display: flex;
             justify-content: right;
-            margin-right: 10px; 
+            align-items: center;
+            gap: 1.5rem;
 
-            .margemBotao {
-                margin-left: 10px;
+            .divOla {
+                color: var(--super-preto);
+                font-size: 0.9rem;
+                font-weight: 600;
+                white-space: nowrap;
+                opacity: 0.9;
+                height: $altura-navbar;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .ola {
+                    color: var(--cor-principal);
+                }
+            }
+
+            a {
+                &:hover {
+                    // background-color: red;
+                    border-bottom: 2px solid var(--cor-principal);
+                    margin-top: 2px; // Gambi para não bugar ao hover;
+                }
             }
         }
 
         a {
-            /* background-color: pink; */
-            color: var(--preto);
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1;
+            // background-color: pink;
+            color: var(--super-preto);
+            font-size: 0.9rem;
+            font-weight: 600;
             white-space: nowrap;
-
-            padding: 5px 14px;
-            opacity: 0.7;
-            border-radius: 12px;
+            opacity: 0.9;
+            height: $altura-navbar;
 
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity .2s, color .2s;
-
-            &:hover {
-                opacity: 1;
-                height: 40px;
-                background: var(--cinza);
-                color: var(--branco);
-                transition: opacity .2s, color .2s;
-
-                svg {
-                    path {
-                        stroke: var(--branco) !important;
-                    }
-                }
-            }
-
-            &:nth-child(1) {
-                &:hover {
-                    svg {
-                        path {
-                            stroke: var(--cor-principal) !important;
-                            fill: var(--cor-principal) !important;
-                        }
-                    }
-                }
-            }
         }
     }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Div lupa =-=-=-=-=-=-=-=-=-=-= */
-.divLupa {
-    // background-color: red; 
-    width: 30%;
+.divPesquisa {
+    // background-color: red;
+    width: 50%;
     display: flex;
     justify-content: center;
 
-    div {
-        /* background-color: blueviolet; */
+    .inputPesquisaNavbar {
+        top: 0;
+        left: 0;
         width: 100%;
-        display: flex;
-
-        .inputPesquisaNavbar {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 0 3.2em 0 1rem;
-            border: none;
-            -webkit-appearance: textfield;
-            appearance: textfield;
-            background: transparent;
-            color: inherit;
-            font-family: inherit;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1;
-            outline: none;
-        }
-
-        .botaoXis {
-            border-radius: 50%;
-            width: 50px;
-            height: 40px;
-            position: relative;
-            display: flex;
-            overflow: hidden;
-            padding: 0;
-            border: none;
-            margin: 0;
-            border-radius: 20px;
-            color: hsla(0, 0%, 100%, 0.7);
-            cursor: pointer;
-            font: inherit;
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 1;
-            outline: none;
-            place-content: center;
-            place-items: center;
-            -webkit-transition: opacity .2s;
-            transition: opacity .2s;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
+        height: 100%;
+        padding: 0.5rem;
+        border: none;
+        -webkit-appearance: textfield;
+        appearance: textfield;
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        outline: none;
     }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
-@media (max-width:1439px) {
-    .wrapper {
-        // background-color: pink;
-        width: 75%;
-    }
-}
-
-@media (max-width:1039px) {
-    .navbar {
-        .wrapper {
-            /* background-color: pink; */
-            width: 95%;
-
-            .divDireita {
-                .margemBotao {
-                    margin-right: 20px;
-                }
-            }
-        }
-    }
-
-    .divLupa {
-        // background-color: red; 
+@media (max-width:1450px) {
+    .divPesquisa {
+        // background-color: red;
         width: 60%;
     }
 }
 
-@media (max-width:879px) {
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
     .navbar {
-        /* background-color: pink; */
-        /* height: fit-content; */
-        height: 130px;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        // background-color: red !important;
 
         .wrapper {
-            /* background-color: red; */
-            justify-content: space-evenly;
-            align-items: center;
-            flex-wrap: wrap;
-            row-gap: 10px;
-        }
-
-        a {
-            :hover {
-                /* Remover o efeito, para tirar um bug chato */
-                height: 0px;
-                background: inherit;
-            }
+            /* background-color: pink; */
+            width: 80%;
         }
     }
 }
 
-@media (max-width:739px) {
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
     .navbar {
-        /* background-color: red; */
-        height: fit-content;
+        // background-color: red !important;
+
+        .wrapper {
+            //  background-color: pink; 
+            width: 90%;
+        }
     }
 }
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {
-    .divLupa {
-        // background-color: red;
-        width: 80%;
-    }
-}
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

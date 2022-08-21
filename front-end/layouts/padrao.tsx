@@ -3,7 +3,7 @@ import nProgress from 'nprogress';
 import { useContext, useEffect, useState } from 'react';
 import Footer from '../components/outros/footer';
 import NavbarMobile from '../components/outros/navbar.mobile';
-import NavbarPadrao2 from '../components/outros/navbar.padrao2';
+import NavbarPadrao from '../components/outros/navbar.padrao';
 import Navbar1 from '../components/outros/navbar1';
 import useWindowSize from '../hooks/useWindowSize';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
@@ -60,7 +60,7 @@ export default function Padrao({ Component, pageProps }: any) {
 
             {
                 tamanhoTela.width && tamanhoTela?.width >= 1025 ? (
-                    <NavbarPadrao2 auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
+                    <NavbarPadrao auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 ) : (
                     <NavbarMobile auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 )
