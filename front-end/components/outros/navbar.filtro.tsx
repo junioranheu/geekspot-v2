@@ -19,29 +19,29 @@ export default function NavbarFiltro() {
         return () => clearInterval(interval);
     }, [tw])
 
+    const [isDivPesquisaFullWidth, setIsDivPesquisaFullWidth] = useState('');
+    function handleEnter() {
+        // console.log('handleEnter');
+        setIsDivPesquisaFullWidth(Styles.divPesquisaFullWidth);
+    }
+
+    function handleLeave() {
+        // console.log('handleLeave');
+        setIsDivPesquisaFullWidth('');
+    }
+
     const [listaOpcoes, setListaOpcoes] = useState<string[]>([]);
     useEffect(() => {
         const lista = [
             '"PS4"', '"Xbox"', '"Naruto"', '"iPhone"', '"Breaking bad"',
             '"Headset"', '"Guitarra"', '"Nintendo"', '"Pink Floyd"', '"Oasis"',
-            '"Violão"', '"Walter White"', '"Harry Potter"', '"GTA San Andreas"', '"PS5"',
-            '"LOL"', '"Dota 2"'
+            '"Violão"', '"Walter White"', '"Harry Potter"', '"GTA SA"', '"PS5"',
+            '"LOL"', '"Dota 2"', '"GTA 5"', '"Celulares"'
         ];
 
         const listaRandom = randomizarArray(lista);
         setListaOpcoes(listaRandom);
     }, [])
-
-    const [isDivPesquisaFullWidth, setIsDivPesquisaFullWidth] = useState('');
-    function handleEnter() {
-        console.log('handleEnter');
-        setIsDivPesquisaFullWidth(Styles.divPesquisaFullWidth);
-    }
-
-    function handleLeave() {
-        console.log('handleLeave');
-        setIsDivPesquisaFullWidth('');
-    }
 
     return (
         <Fragment>
