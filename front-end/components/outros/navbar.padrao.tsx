@@ -7,7 +7,7 @@ import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Geekspot from '../svg/geekspot';
 import Botao from './botao';
-import InputFiltroNavbar from './inputFiltroNavbar';
+import NavbarFiltro from './navbar.filtro';
 
 interface iParametros {
     auth: any;
@@ -40,12 +40,12 @@ export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametro
             <div className={Styles.wrapper}>
                 <div className={Styles.divEsquerda}>
                     <Link href='/'><a title='Voltar ao início do GeekSpot'><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
-                    <InputFiltroNavbar />
+                    <NavbarFiltro />
                 </div>
 
                 <div className={Styles.divDireita}>
                     <Link href='/xxx'><a>Produtos</a></Link>
-                    <Link href='/xxx'><a>Promoções</a></Link>
+                    <Link href='/xxx'><a>Promoções 🔥</a></Link>
                     <span className='separador'></span>
 
                     {

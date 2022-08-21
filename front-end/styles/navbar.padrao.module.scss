@@ -29,6 +29,7 @@ $altura-navbar: 70px;
             display: flex;
             justify-content: right;
             align-items: center;
+            line-height: 0;
             gap: 1.5rem;
 
             .divOla {
@@ -73,39 +74,8 @@ $altura-navbar: 70px;
     }
 }
 
-/* =-=-=-=-=-=-=-=-=-=-= Div lupa =-=-=-=-=-=-=-=-=-=-= */
-.divPesquisa {
-    // background-color: red;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-
-    .inputPesquisaNavbar {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 0.5rem;
-        border: none;
-        -webkit-appearance: textfield;
-        appearance: textfield;
-        background: transparent;
-        color: inherit;
-        font-family: inherit;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1;
-        outline: none;
-    }
-}
-
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
-@media (max-width:1450px) {
-    .divPesquisa {
-        // background-color: red;
-        width: 60%;
-    }
-}
+@media (max-width:1450px) {}
 
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {

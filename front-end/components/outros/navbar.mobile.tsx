@@ -3,11 +3,13 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import { Dispatch, Fragment, useEffect, useState } from 'react';
 import Styles from '../../styles/navbar.mobile.module.scss';
+import { Auth } from '../../utils/context/usuarioContext';
+import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Geekspot from '../svg/geekspot';
 import Hamburguer from '../svg/hamburguer';
 import Xis from '../svg/xis';
 import Botao from './botao';
-import InputFiltroNavbar from './inputFiltroNavbar';
+import NavbarFiltro from './navbar.filtro';
 
 interface iParametros {
     auth: any;
@@ -16,7 +18,9 @@ interface iParametros {
 }
 
 export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
+
     const [isHamburguer, setIsHamburguer] = useState(false);
+    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
 
     function handleHamburguer() {
         setIsHamburguer(!isHamburguer);
@@ -66,8 +70,8 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
             <nav className={Styles.navbar}>
                 <div className={Styles.wrapper}>
                     <div className={Styles.divEsquerda}>
-                        <Link href='/'><a><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
-                        <InputFiltroNavbar />
+                        <Link href='/'><a title='Voltar ao início do GeekSpot'><Geekspot width='0.9rem' cor='var(--preto)' /></a></Link>
+                        <NavbarFiltro />
                     </div>
 
                     <div className={Styles.divDireita}>
@@ -83,6 +87,8 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                         <div className={Styles.divDireita}>
                             <a onClick={() => handleHamburguer()}><Xis height='1.7rem' width='1.7rem' cor='var(--branco)' /></a>
                         </div>
+
+                        <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
 
                         <div className={Styles.divAtalhos} onClick={() => handleHamburguer()}>
                             <Link href='/xxx'><a>Produtos</a></Link>

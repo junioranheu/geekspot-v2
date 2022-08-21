@@ -1,10 +1,10 @@
 import { Fragment, useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect'; // https://www.npmjs.com/package/typewriter-effect
-import Styles from '../../styles/navbar.padrao.module.scss';
+import Styles from '../../styles/navbar.filtro.module.scss';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import Lupa from '../svg/lupa';
 
-export default function InputFiltroNavbar() {
+export default function NavbarFiltro() {
 
     // Pegar os dados a cada X ms do elemento #Typewriter__wrapper;
     const tw = document.getElementsByClassName('Typewriter__wrapper');
@@ -32,6 +32,17 @@ export default function InputFiltroNavbar() {
         setListaOpcoes(listaRandom);
     }, [])
 
+    const [isDivPesquisaFullWidth, setIsDivPesquisaFullWidth] = useState('');
+    function handleEnter() {
+        console.log('handleEnter');
+        setIsDivPesquisaFullWidth(Styles.divPesquisaFullWidth);
+    }
+
+    function handleLeave() {
+        console.log('handleLeave');
+        setIsDivPesquisaFullWidth('');
+    }
+
     return (
         <Fragment>
             <div className='esconder'>
@@ -44,9 +55,18 @@ export default function InputFiltroNavbar() {
                 />
             </div>
 
-            <div className={`${Styles.divPesquisa} animate__animated animate__fadeIn`}>
-                <input className={Styles.inputPesquisaNavbar} type='text' placeholder={`Busque por ${efeitoTypewriter__wrapper}`} />
-                <Lupa width='1.5rem' cor='var(--preto)' />
+            <div className={`${Styles.divPesquisa} ${isDivPesquisaFullWidth} animate__animated animate__fadeIn`}>
+                <input
+                    className={Styles.inputPesquisaNavbar}
+                    type='text'
+                    placeholder={`Busque por ${efeitoTypewriter__wrapper}`}
+                    onFocus={() => handleEnter()}
+                    onBlur={() => handleLeave()}
+                />
+
+                <div className={Styles.lupa} title='Buscar'>
+                    <Lupa width='1.5rem' cor='var(--preto)' />
+                </div>
             </div>
         </Fragment>
     )
