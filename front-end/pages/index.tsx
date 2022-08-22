@@ -4,15 +4,16 @@ import ModuloAlternativo from '../components/modulo/modulo.alternativo';
 import ModuloPrincipal from '../components/modulo/modulo.principal';
 import CarouselDois from '../static/image/carousel/dois.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
-import CONSTANTS_ITENS from '../utils/data/constItens';
-import CONSTANTS_USUARIOS from '../utils/data/constUsuarios';
+import CONSTS_SISTEMA from '../utils/consts/sistema';
+import CONSTS_ITENS from '../utils/data/constItens';
+import CONSTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
 import HabilitarHttp from '../utils/outros/habilitarHttp';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 import randomizarArray from '../utils/outros/randomizarArray';
 
 export default function Home({ listaItens }: any) {
-    document.title = 'GeekSpot — Início';
+    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — Início`;
 
     const [listaItensRandom, setListaItensRandom] = useState<any>();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -71,13 +72,13 @@ export async function getStaticProps() {
     let listaItens = [];
 
     // Pegar todos os usuários;
-    const urlUsuarios = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
+    const urlUsuarios = CONSTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(urlUsuarios, null);
 
     if (usuarios) {
         for (const u of usuarios) {
             // Encontrar os itens com base no usuário;
-            const urlItens = `${CONSTANTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
+            const urlItens = `${CONSTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
             const itens = await Fetch.getApi(urlItens, null);
 
             if (itens?.length) {

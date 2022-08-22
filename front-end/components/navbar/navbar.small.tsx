@@ -1,3 +1,4 @@
+import CONSTS_SISTEMA from '../../utils/consts/sistema';
 import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Seta from '../svg/seta';
 import Styles from './navbar.small.module.scss';
@@ -5,8 +6,7 @@ import Styles from './navbar.small.module.scss';
 export default function NavbarSmall() {
     return (
         <nav className={Styles.navbar}>
-            {/* <span>GeekSpot: plataforma digital para compras, vendas e trocas de artigos geek</span> */}
-            <span>GeekSpot — Um upgrade ao seu inventário</span>
+            <span>{CONSTS_SISTEMA.NOME_SISTEMA} — {CONSTS_SISTEMA.SLOGAN}</span>
 
             <span>{EmojiAleatorio()}</span>
 

@@ -4,11 +4,12 @@ import nProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
-import GeekSpot from '../../../components/svg/geekspot';
 import Google from '../../../components/svg/google';
+import Logo from '../../../components/svg/logo';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
+import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
-import CONSTANTS_AUTENTICAR from '../../../utils/data/constAutenticar';
+import CONSTS_AUTENTICAR from '../../../utils/data/constAutenticar';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../../utils/outros/fetch';
@@ -49,7 +50,7 @@ export default function SessaoEntrar() {
             return false;
         }
 
-        const url = CONSTANTS_AUTENTICAR.API_URL_POST_LOGIN;
+        const url = CONSTS_AUTENTICAR.API_URL_POST_LOGIN;
         const dto = {
             email: formData.usuario,
             nomeUsuarioSistema: formData.usuario,
@@ -92,8 +93,8 @@ export default function SessaoEntrar() {
 
     return (
         <section className={Styles.divPrincipal}>
-            <GeekSpot width='0.9rem' cor='var(--branco)' />
-            <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao GeekSpot</span>
+            <Logo width='0.9rem' cor='var(--branco)' />
+            <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
             {/* Inputs */}
             <div className={Styles.divLogin}>

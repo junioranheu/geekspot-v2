@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Botao from '../components/outros/botao';
 import Styles from '../styles/404.module.scss';
+import CONSTS_SISTEMA from '../utils/consts/sistema';
 import Lottie404 from '../utils/lotties/404.json';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 
 export default function Erro() {
-    document.title = 'GeekSpot — 404';
+    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — 404`;
     const router = useRouter();
 
     const [isLoaded, setIsLoaded] = useState(false);

@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
+import CONSTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import Styles from './modulo.alternativo.module.scss';
@@ -52,7 +52,7 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
                         listaItensAleatorio?.map((item, i) => (
                             <div className={Styles.wrapImagem} title={item.nome} key={i}>
                                 <Image
-                                    src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                    src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                     width={500}
                                     height={500}
                                     alt=''

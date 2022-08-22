@@ -2,13 +2,14 @@ import Lottie from 'lottie-react';
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
+import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { UsuarioContext } from '../../../utils/context/usuarioContext';
 import LottieAnimacao from '../../../utils/lotties/pessoas.json';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import SessaoEntrar from './sessaoEntrar';
 
 export default function Entrar() {
-    document.title = 'GeekSpot — Entrar';
+    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — Entrar`;
  
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];

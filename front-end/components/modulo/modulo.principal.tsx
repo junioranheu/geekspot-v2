@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
+import CONSTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import ModuloHeader from './modulo.header';
@@ -122,7 +122,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                     // Tamanho grande;
                                     <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
                                         <Image
-                                            src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                            src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                             width={tamanhoGrande}
                                             height={tamanhoGrande}
                                             alt=''
@@ -137,7 +137,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                         <div className={Styles.divGrupoImagens}>
                                             <div className={Styles.wrapImagem} title={item.nome}>
                                                 <Image
-                                                    src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                                    src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
@@ -149,7 +149,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
 
                                             <div className={Styles.wrapImagem} title={listaItens[i + 1].nome}>
                                                 <Image
-                                                    src={(listaItens[i + 1].imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].imagem}` : ImgCinza)}
+                                                    src={(listaItens[i + 1].imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].imagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''

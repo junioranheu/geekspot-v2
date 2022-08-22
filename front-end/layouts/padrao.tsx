@@ -6,6 +6,7 @@ import NavbarMobile from '../components/navbar/navbar.mobile';
 import NavbarPadraoDois from '../components/navbar/navbar.padrao';
 import NavbarSmall from '../components/navbar/navbar.small';
 import useWindowSize from '../hooks/useWindowSize';
+import CONSTS_SISTEMA from '../utils/consts/sistema';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
 import { Aviso } from '../utils/outros/aviso';
 import diferencaEmHoras from '../utils/outros/diferencaEmHoras';
@@ -31,8 +32,8 @@ export default function Padrao({ Component, pageProps }: any) {
             const limiteExpirarTokenHoras = 24;
             if (diferencaHoras >= limiteExpirarTokenHoras) {
                 nProgress.start();
-                Aviso.custom('A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no GeekSpot 😎', 15000);
-
+                Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
+   
                 // Desatribuir autenticação ao contexto de usuário;
                 setIsAuth(false);
 

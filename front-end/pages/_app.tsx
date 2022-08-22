@@ -10,6 +10,7 @@ import '../fonts/GTWalsheim/GTWalsheim.css';
 import '../fonts/NanumPenScript/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao';
 import '../styles/globals.scss';
+import CONSTS_SISTEMA from '../utils/consts/sistema';
 import { ModoDarkProvider } from '../utils/context/modoDarkContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
 
@@ -41,7 +42,7 @@ export default function App({ Component, pageProps }: any) {
             <Fragment>
                 <Head>
                     <meta name='viewport' content='width=device-width, initial-scale=1' />
-                    <meta name='description' content='GeekSpot — Um upgrade ao seu inventário' />
+                    <meta name='description' content={`${CONSTS_SISTEMA.NOME_SISTEMA} — ${CONSTS_SISTEMA.SLOGAN}`} />
                     <meta name='keywords' content='geek, produtos, compra, troca, venda, e-commerce' />
                     <meta name='author' content='@junioranheu' />
                     <meta name='theme-color' content='#9a6bff' />

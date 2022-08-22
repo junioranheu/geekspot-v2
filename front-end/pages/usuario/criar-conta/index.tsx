@@ -2,14 +2,15 @@ import Lottie from 'lottie-react';
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
+import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { UsuarioContext } from '../../../utils/context/usuarioContext';
 import LottieAnimacao from '../../../utils/lotties/pessoas.json';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import SessaoCriarConta from './sessaoCriarConta';
 
 export default function CriarConta() {
-    document.title = 'GeekSpot — Criar conta';
-
+    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — Criar conta`;
+    
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 

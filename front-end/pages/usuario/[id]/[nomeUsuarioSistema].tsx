@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { Auth } from '../../../utils/context/usuarioContext';
-import CONSTANTS_USUARIOS from '../../../utils/data/constUsuarios';
+import CONSTS_USUARIOS from '../../../utils/data/constUsuarios';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
@@ -11,7 +12,7 @@ export default function Perfil({ usuario }: any) {
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         // Título da página;
-        document.title = usuario ? `GeekSpot — Perfil de @${usuario?.nomeUsuarioSistema}` : 'GeekSpot';
+        document.title = usuario ? `${CONSTS_SISTEMA.NOME_SISTEMA} — Perfil de @${usuario?.nomeUsuarioSistema}` : CONSTS_SISTEMA.NOME_SISTEMA;
 
         paginaCarregada(true, 200, 500, setIsLoaded);
     }, [usuarioId, usuario]);
@@ -40,7 +41,7 @@ export async function getStaticPaths() {
     // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
 
     // Todas os usuários;
-    const url = CONSTANTS_USUARIOS.API_URL_GET_TODOS;
+    const url = CONSTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(url, null);
 
     // Gerar o "paths";
@@ -61,7 +62,7 @@ export async function getStaticProps(context: any) {
     const id = context.params.id;
 
     // Usuário;
-    const url = `${CONSTANTS_USUARIOS.API_URL_GET_POR_ID}/${id}`;
+    const url = `${CONSTS_USUARIOS.API_URL_GET_POR_ID}/${id}`;
     const usuario = await Fetch.getApi(url, null);
     // console.log(usuario);
 

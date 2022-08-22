@@ -4,11 +4,12 @@ import nProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
-import GeekSpot from '../../../components/svg/geekspot';
 import Google from '../../../components/svg/google';
+import Logo from '../../../components/svg/logo';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
+import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
-import CONSTANTS_AUTENTICAR from '../../../utils/data/constAutenticar';
+import CONSTS_AUTENTICAR from '../../../utils/data/constAutenticar';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../../utils/outros/fetch';
@@ -65,7 +66,7 @@ export default function SessaoCriarConta() {
         formData.nomeCompleto = padronizarNomeCompletoUsuario(formData.nomeCompleto);
 
         // Criar conta;
-        const url = CONSTANTS_AUTENTICAR.API_URL_POST_REGISTRAR;
+        const url = CONSTS_AUTENTICAR.API_URL_POST_REGISTRAR;
         const dto = {
             nomeCompleto: formData.nomeCompleto,
             email: formData.email,
@@ -120,7 +121,7 @@ export default function SessaoCriarConta() {
     //         dataGeracaoUrl: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
     //         isAtivo: 1
     //     };
-    //     const urlGerarUrlTemporaria = `${CONSTANTS_URL_TEMPORARIA.API_URL_POST_CRIAR}?urlTipo=${urlTipo}`;
+    //     const urlGerarUrlTemporaria = `${CONSTS_URL_TEMPORARIA.API_URL_POST_CRIAR}?urlTipo=${urlTipo}`;
     //     let urlTemporaria = await Fetch.postApi(urlGerarUrlTemporaria, jsonGerarUrlTemporaria, null);
     //     if (!urlTemporaria) {
     //         // Aviso.error('Houve um erro ao gerar uma url temporária!', 5000);
@@ -128,7 +129,7 @@ export default function SessaoCriarConta() {
     //     }
 
     //     // Disparar e-mail;
-    //     const urlEnviarEmail = `${CONSTANTS.API_URL_POST_ENVIAR_EMAIL_BEM_VINDO}?email=${email}&nomeUsuario=${nomeCompleto}&urlTemporaria=${urlTemporaria}`;
+    //     const urlEnviarEmail = `${CONSTS.API_URL_POST_ENVIAR_EMAIL_BEM_VINDO}?email=${email}&nomeUsuario=${nomeCompleto}&urlTemporaria=${urlTemporaria}`;
     //     const enviarEmail = await Fetch.postApi(urlEnviarEmail, null, null);
     //     if (!enviarEmail) {
     //         // Aviso.error('Houve um erro ao disparar um e-mail para você!', 5000);
@@ -150,8 +151,8 @@ export default function SessaoCriarConta() {
 
     return (
         <section className={Styles.divPrincipal}>
-            <GeekSpot width='0.9rem' cor='var(--branco)' />
-            <span className={Styles.titulo}>Crie sua conta no GeekSpot</span>
+            <Logo width='0.9rem' cor='var(--branco)' />
+            <span className={Styles.titulo}>Crie sua conta no {CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
             {/* Inputs */}
             {

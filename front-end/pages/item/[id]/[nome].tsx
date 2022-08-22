@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import ImgCinza from '../../../static/image/outros/cinza.webp';
+import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { Auth } from '../../../utils/context/usuarioContext';
-import CONSTANTS_ITENS from '../../../utils/data/constItens';
-import CONSTANTS_UPLOAD from '../../../utils/data/constUpload';
+import CONSTS_ITENS from '../../../utils/data/constItens';
+import CONSTS_UPLOAD from '../../../utils/data/constUpload';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
@@ -19,7 +20,7 @@ export default function Item({ item }: any) {
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         // Título da página;
-        document.title = item ? `GeekSpot — ${item?.nome}` : 'GeekSpot';
+        document.title = item ? `${CONSTS_SISTEMA.NOME_SISTEMA} — ${item?.nome}` : CONSTS_SISTEMA.NOME_SISTEMA;
 
         paginaCarregada(true, 200, 500, setIsLoaded);
     }, [usuarioId, item]);
@@ -38,7 +39,7 @@ export default function Item({ item }: any) {
             <section className={`${Styles.sessaoPrincipal} margem3`}>
                 <div className={Styles.sessaoEsquerda}>
                     <Image
-                        src={(item.imagem ? `${CONSTANTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                        src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
                         width={500}
                         height={500}
                         alt=''
@@ -87,7 +88,7 @@ export async function getStaticPaths() {
     // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
 
     // Todas os itens;
-    const url = CONSTANTS_ITENS.API_URL_GET_TODOS;
+    const url = CONSTS_ITENS.API_URL_GET_TODOS;
     const itens = await Fetch.getApi(url, null);
     // console.log(itens);
 
@@ -109,7 +110,7 @@ export async function getStaticProps(context: any) {
     const id = context.params.id;
 
     // Item;
-    const url = `${CONSTANTS_ITENS.API_URL_GET_POR_ID}/${id}`;
+    const url = `${CONSTS_ITENS.API_URL_GET_POR_ID}/${id}`;
     const item = await Fetch.getApi(url, null);
     // console.log(item);
 

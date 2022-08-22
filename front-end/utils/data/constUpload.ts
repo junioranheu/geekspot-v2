@@ -16,6 +16,6 @@ const PROD = {
 };
 
 // Definir se as constantes para a API é DEV ou PROD;
-const CONSTANTS = process.env.NODE_ENV === 'development' ? DEV : PROD;
+const CONSTS = process.env.NODE_ENV === 'development' ? DEV : PROD;
 
-export default CONSTANTS;
+export default CONSTS;

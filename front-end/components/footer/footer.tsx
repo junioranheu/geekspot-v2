@@ -3,6 +3,7 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
+import CONSTS_SISTEMA from '../../utils/consts/sistema';
 import { ModoDarkContext, StorageModoDark } from '../../utils/context/modoDarkContext';
 import Styles from './footer.module.scss';
 
@@ -54,7 +55,7 @@ export default function Footer() {
             {/* Principal */}
             <div className={Styles.principal}>
                 <div className={Styles.sessao}>
-                    <span className={Styles.tituloSessao}>GeekSpot</span>
+                    <span className={Styles.tituloSessao}>{CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
                     <Link href='/'><a>Sobre</a></Link>
                     <Link href='/'><a>Time</a></Link>
@@ -93,7 +94,7 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>Suporte</span>
 
-                    <Link href='/'><a>Usando o GeekSpot</a></Link>
+                    <Link href='/'><a>Usando o {CONSTS_SISTEMA.NOME_SISTEMA}</a></Link>
                     <Link href='/'><a>Contas</a></Link>
                     <Link href='/'><a>Compras</a></Link>
                     <Link href='/'><a>Trocas</a></Link>
@@ -106,7 +107,7 @@ export default function Footer() {
                 {/* Esquerda */}
                 <div>
                     <span>
-                        Copyright © {new Date().getFullYear()} — GeekSpot — Desenvolvido por
+                        Copyright © {new Date().getFullYear()} — {CONSTS_SISTEMA.NOME_SISTEMA} — Desenvolvido por
 
                         <Link href='https://github.com/junioranheu'>
                             <a target='_blank' className='cor-principal-hover'>
