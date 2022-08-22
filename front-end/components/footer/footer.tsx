@@ -3,8 +3,8 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
-import Styles from '../../styles/footer.module.scss';
 import { ModoDarkContext, StorageModoDark } from '../../utils/context/modoDarkContext';
+import Styles from './footer.module.scss';
 
 export default function Footer() {
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;

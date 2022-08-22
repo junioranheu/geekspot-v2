@@ -1,15 +1,15 @@
 import Lottie from 'lottie-react';
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import SessaoEntrar from '../../components/usuario/entrar';
-import Styles from '../../styles/entrar.module.scss';
-import { UsuarioContext } from '../../utils/context/usuarioContext';
-import LottieAnimacao from '../../utils/lotties/pessoas.json';
-import paginaCarregada from '../../utils/outros/paginaCarregada';
+import Styles from '../../../styles/usuario.autenticar.module.scss';
+import { UsuarioContext } from '../../../utils/context/usuarioContext';
+import LottieAnimacao from '../../../utils/lotties/pessoas.json';
+import paginaCarregada from '../../../utils/outros/paginaCarregada';
+import SessaoCriarConta from './sessaoCriarConta';
 
-export default function Entrar() {
-    document.title = 'GeekSpot — Entrar';
- 
+export default function CriarConta() {
+    document.title = 'GeekSpot — Criar conta';
+
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
@@ -34,11 +34,11 @@ export default function Entrar() {
 
     return (
         <div className={Styles.flexEntrar}>
-            <SessaoEntrar />
-
             <div className={Styles.divLottie}>
                 <Lottie animationData={LottieAnimacao} loop={true} />
             </div>
+
+            <SessaoCriarConta />
         </div>
     )
 }

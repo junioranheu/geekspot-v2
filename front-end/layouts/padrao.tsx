@@ -1,10 +1,10 @@
 import Router, { useRouter } from 'next/router';
 import nProgress from 'nprogress';
 import { useContext, useEffect, useState } from 'react';
-import Footer from '../components/outros/footer';
-import NavbarMobile from '../components/outros/navbar.mobile';
-import NavbarPadrao from '../components/outros/navbar.padrao';
-import Navbar1 from '../components/outros/navbar1';
+import Footer from '../components/footer/footer';
+import NavbarMobile from '../components/navbar/navbar.mobile';
+import NavbarPadraoDois from '../components/navbar/navbar.padrao';
+import NavbarSmall from '../components/navbar/navbar.small';
 import useWindowSize from '../hooks/useWindowSize';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
 import { Aviso } from '../utils/outros/aviso';
@@ -56,11 +56,11 @@ export default function Padrao({ Component, pageProps }: any) {
 
     return (
         <section className='main semHighlight'>
-            <Navbar1 />
+            <NavbarSmall />
 
             {
                 tamanhoTela.width && tamanhoTela?.width >= 1025 ? (
-                    <NavbarPadrao auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
+                    <NavbarPadraoDois auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 ) : (
                     <NavbarMobile auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 )

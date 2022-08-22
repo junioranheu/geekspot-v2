@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
+import Carousel from '../components/carousel/carousel';
 import ModuloAlternativo from '../components/modulo/modulo.alternativo';
 import ModuloPrincipal from '../components/modulo/modulo.principal';
-import Carousel from '../components/outros/carousel';
 import CarouselDois from '../static/image/carousel/dois.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
 import CONSTANTS_ITENS from '../utils/data/constItens';

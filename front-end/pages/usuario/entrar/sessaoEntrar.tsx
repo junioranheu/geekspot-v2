@@ -2,24 +2,24 @@ import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
-import Styles from '../../styles/entrar.module.scss';
-import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
-import CONSTANTS_AUTENTICAR from '../../utils/data/constAutenticar';
-import { Aviso } from '../../utils/outros/aviso';
-import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
-import { Fetch } from '../../utils/outros/fetch';
-import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
-import Botao from '../outros/botao';
-import Facebook from '../svg/facebook';
-import GeekSpot from '../svg/geekspot';
-import Google from '../svg/google';
+import Botao from '../../../components/outros/botao';
+import Facebook from '../../../components/svg/facebook';
+import GeekSpot from '../../../components/svg/geekspot';
+import Google from '../../../components/svg/google';
+import Styles from '../../../styles/usuario.autenticar.module.scss';
+import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
+import CONSTANTS_AUTENTICAR from '../../../utils/data/constAutenticar';
+import { Aviso } from '../../../utils/outros/aviso';
+import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
+import { Fetch } from '../../../utils/outros/fetch';
+import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
 
 interface iFormData {
     usuario: string;
     senha: string;
 }
 
-export default function SessaoEsquerda() {
+export default function SessaoEntrar() {
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
     const usuarioGenero = Auth?.get()?.genero ?? 'o';

@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import Styles from '../../styles/modulo.principal.module.scss';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import ModuloHeader from './modulo.header';
+import Styles from './modulo.principal.module.scss';
 
 interface iParametros {
     i: number;

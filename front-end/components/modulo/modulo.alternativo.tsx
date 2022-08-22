@@ -3,10 +3,10 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import Styles from '../../styles/modulo.alternativo.module.scss';
 import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
+import Styles from './modulo.alternativo.module.scss';
 import ModuloHeader from './modulo.header';
 
 interface iParametros {

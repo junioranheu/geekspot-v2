@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import Router from 'next/router';
-import NProgress from 'nprogress';
+import nProgress from 'nprogress';
 import { Dispatch, Fragment, useEffect, useState } from 'react';
-import Styles from '../../styles/navbar.mobile.module.scss';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
+import Botao from '../outros/botao';
 import Geekspot from '../svg/geekspot';
 import Hamburguer from '../svg/hamburguer';
 import Xis from '../svg/xis';
-import Botao from './botao';
 import NavbarFiltro from './navbar.filtro';
+import Styles from './navbar.mobile.module.scss';
 
 interface iParametros {
     auth: any;
@@ -49,11 +49,11 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
     }, []);
 
     function deslogar() {
-        NProgress.start();
+        nProgress.start();
 
         // Deslogar;
         auth.delete();
-        NProgress.done();
+        nProgress.done();
 
         // Voltar à tela principal;
         Router.push('/');

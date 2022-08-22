@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import Router from 'next/router';
-import NProgress from 'nprogress';
+import nProgress from 'nprogress';
 import { Dispatch, Fragment } from 'react';
-import Styles from '../../styles/navbar.padrao.module.scss';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
+import Botao from '../outros/botao';
 import Geekspot from '../svg/geekspot';
-import Botao from './botao';
 import NavbarFiltro from './navbar.filtro';
+import Styles from './navbar.padrao.module.scss';
 
 interface iParametros {
     auth: any;
@@ -20,11 +20,11 @@ export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametro
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
 
     function deslogar() {
-        NProgress.start();
+        nProgress.start();
 
         // Deslogar;
         auth.delete();
-        NProgress.done();
+        nProgress.done();
 
         // Voltar à tela principal;
         Router.push('/');

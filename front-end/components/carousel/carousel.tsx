@@ -4,7 +4,7 @@ import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Styles from '../../styles/carousel.module.scss';
+import Styles from './carousel.module.scss';
 
 interface iParametros {
     listaSlides: {

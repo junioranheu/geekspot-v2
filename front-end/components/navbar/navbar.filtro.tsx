@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect'; // https://www.npmjs.com/package/typewriter-effect
-import Styles from '../../styles/navbar.filtro.module.scss';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import Lupa from '../svg/lupa';
+import Styles from './navbar.filtro.module.scss';
 
 export default function NavbarFiltro() {
 

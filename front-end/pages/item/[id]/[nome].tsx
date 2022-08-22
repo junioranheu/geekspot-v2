@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import ImgCinza from '../../../static/image/outros/cinza.webp';
-import Styles from '../../../styles/item.module.scss';
 import { Auth } from '../../../utils/context/usuarioContext';
 import CONSTANTS_ITENS from '../../../utils/data/constItens';
 import CONSTANTS_UPLOAD from '../../../utils/data/constUpload';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
+import Styles from './index.module.scss';
 
 export default function Item({ item }: any) {
     const usuarioId = Auth?.get()?.usuarioId ?? 0;

@@ -1,4 +1,4 @@
-import NProgress from 'nprogress';
+import nProgress from 'nprogress';
 import { Aviso } from './aviso';
 
 export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha) {
@@ -6,7 +6,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação 0;
     if (!form) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('Preencha os dados para continuar', 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
@@ -16,7 +16,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação do nome #1: nome preenchido?;
     if (!form.nomeCompleto) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('Parece que você esqueceu de colocar o seu nome', 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
@@ -26,7 +26,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação do nome #2: pelo menos 03 caracteres?;
     if (form.nomeCompleto.length < 3) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('Seu nome não pode ter menos de 03 caracteres!', 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
@@ -37,7 +37,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     // Verificação do nome #3: se existe pelo menos um espaço (dois nomes), false = não;
     var reg = new RegExp("(\\w+)(\\s+)(\\w+)");
     if (reg.test(form.nomeCompleto) === false) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn(form.nomeCompleto + ' é um belo nome, mas cadê seu sobrenome?', 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
@@ -47,7 +47,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação de e-mail #1: e-mail preenchido?;
     if (!form.email) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('Parece que você esqueceu de colocar o seu e-mail', 5000);
         refEmail.current.select();
         refSenha.current.value = '';
@@ -57,7 +57,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação de e-mail #2: e-mail válido?;
     if (checarEmail(form.email) === false) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('Parece que esse e-mail não é válido...', 5000);
         refEmail.current.select();
         refSenha.current.value = '';
@@ -67,7 +67,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação de nome de usuário #1: nome de usuário preenchido?;
     if (!form.nomeUsuarioSistema) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('Parece que você esqueceu de colocar um nome de usuário', 5000);
         refNomeUsuario.current.select();
         refSenha.current.value = '';
@@ -77,7 +77,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
     // Verificação de nome de usuário #2: pelo menos 03 caracteres?;
     if (form.nomeUsuarioSistema.length > 20 || form.nomeUsuarioSistema.length < 4) {
-        NProgress.done();
+        nProgress.done();
         Aviso.warn('O nome de usuário não pode ter não pode ter menos de 4 e nem mais de 10 caracteres, e agora está com ' + form.nomeUsuarioSistema.length + '!', 5000);
         refNomeUsuario.current.select();
         refSenha.current.value = '';
@@ -89,7 +89,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     if (isTrocouSenha) {
         // Verificação de senha #1: senha preenchida?;
         if (!form.senha) {
-            NProgress.done();
+            nProgress.done();
             Aviso.warn('Parece que você esqueceu de colocar sua senha', 5000);
             refSenha.current.select();
             return false;
@@ -97,13 +97,13 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
 
         // Verificação da senha #2: realizar uma série de verificações, se alguma retornar falso, aborte;
         if (checarSenha(form.senha, form, refSenha, refConfirmarSenha) === false) {
-            NProgress.done();
+            nProgress.done();
             return false;
         }
 
         // Checar se os dois campos de senha coincidem;
         if (form.senha !== form.confirmarSenha) {
-            NProgress.done();
+            nProgress.done();
             Aviso.warn('As senhas não estão idênticas! Tente novamente', 5000);
             refSenha.current.select();
             refSenha.current.value = '';

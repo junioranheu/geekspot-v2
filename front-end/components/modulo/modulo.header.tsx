@@ -1,9 +1,9 @@
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
-import Styles from '../../styles/modulo.principal.module.scss';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import gerarFraseAleatoria from '../../utils/outros/gerarFraseAleatoria';
 import Seta from '../svg/seta';
+import Styles from './modulo.principal.module.scss';
 
 interface iParametros {
     i: number;

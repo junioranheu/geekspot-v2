@@ -1,21 +1,21 @@
 import Link from 'next/link';
 import Router from 'next/router';
-import NProgress from 'nprogress';
+import nProgress from 'nprogress';
 import { useContext, useRef, useState } from 'react';
-import Styles from '../../styles/entrar.module.scss';
-import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
-import CONSTANTS_AUTENTICAR from '../../utils/data/constAutenticar';
-import { Aviso } from '../../utils/outros/aviso';
-import consultarGeneroPorNomePessoa from '../../utils/outros/consultarGeneroPorNomePessoa';
-import { Fetch } from '../../utils/outros/fetch';
-import horarioBrasilia from '../../utils/outros/horarioBrasilia';
-import padronizarNomeCompletoUsuario from '../../utils/outros/padronizarNomeCompletoUsuario';
-import pegarPrimeiraPalavraDaFrase from '../../utils/outros/pegarPrimeiraPalavraDaFrase';
-import verificarDadosCriarConta from '../../utils/outros/verificarDadosCriarConta';
-import Botao from '../outros/botao';
-import Facebook from '../svg/facebook';
-import GeekSpot from '../svg/geekspot';
-import Google from '../svg/google';
+import Botao from '../../../components/outros/botao';
+import Facebook from '../../../components/svg/facebook';
+import GeekSpot from '../../../components/svg/geekspot';
+import Google from '../../../components/svg/google';
+import Styles from '../../../styles/usuario.autenticar.module.scss';
+import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
+import CONSTANTS_AUTENTICAR from '../../../utils/data/constAutenticar';
+import { Aviso } from '../../../utils/outros/aviso';
+import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
+import { Fetch } from '../../../utils/outros/fetch';
+import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
+import padronizarNomeCompletoUsuario from '../../../utils/outros/padronizarNomeCompletoUsuario';
+import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
+import verificarDadosCriarConta from '../../../utils/outros/verificarDadosCriarConta';
 
 interface iFormData {
     nomeCompleto: string,
@@ -25,7 +25,7 @@ interface iFormData {
     confirmarSenha: string;
 }
 
-export default function SessaoEsquerda() {
+export default function SessaoCriarConta() {
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
@@ -49,7 +49,7 @@ export default function SessaoEsquerda() {
 
     // Ao clicar no botão para entrar;
     async function handleSubmit(e: any) {
-        NProgress.start();
+        nProgress.start();
         refBtnCriar.current.disabled = true;
         e.preventDefault();
 
@@ -82,7 +82,7 @@ export default function SessaoEsquerda() {
         const resposta = await Fetch.postApi(url, dto, null);
 
         if (resposta?.erro) {
-            NProgress.done();
+            nProgress.done();
             refEmail.current.select();
             refSenha.current.value = '';
             refConfirmarSenha.current.value = '';
@@ -109,7 +109,7 @@ export default function SessaoEsquerda() {
 
         // Atribuir autenticação ao contexto de usuário;
         setIsAuth(true);
-        NProgress.done();
+        nProgress.done();
     };
 
     // async function enviarEmail(email: string, nomeCompleto: string) {

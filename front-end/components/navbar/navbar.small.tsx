@@ -1,8 +1,8 @@
-import Styles from '../../styles/navbar1.module.scss';
 import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Seta from '../svg/seta';
+import Styles from './navbar.small.module.scss';
 
-export default function Navbar1() {
+export default function NavbarSmall() {
     return (
         <nav className={Styles.navbar}>
             {/* <span>GeekSpot: plataforma digital para compras, vendas e trocas de artigos geek</span> */}
