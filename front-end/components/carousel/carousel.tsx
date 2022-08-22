@@ -1,8 +1,9 @@
 import Image, { StaticImageData } from 'next/image';
 import Router from 'next/router';
-import { Autoplay, Navigation } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Styles from './carousel.module.scss';
 
@@ -21,6 +22,7 @@ export default function Carousel({ listaSlides }: iParametros) {
             centeredSlides={true}
             spaceBetween={50}
             speed={900}
+            pagination={true}
 
             autoplay={{
                 delay: 4000,
@@ -34,7 +36,7 @@ export default function Carousel({ listaSlides }: iParametros) {
                 }
             }}
 
-            modules={[Autoplay, Navigation]}
+            modules={[Autoplay, Navigation, Pagination]}
             navigation
         >
             {

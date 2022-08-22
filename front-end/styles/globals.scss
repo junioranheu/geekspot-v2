@@ -561,6 +561,12 @@ select {
             opacity: 1;
         }
     }
+
+    .swiper-pagination {
+        .swiper-pagination-bullet-active {
+            background-color: var(--cor-principal) !important;
+        }
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
