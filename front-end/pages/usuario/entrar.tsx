@@ -9,7 +9,7 @@ import paginaCarregada from '../../utils/outros/paginaCarregada';
 
 export default function Entrar() {
     document.title = 'GeekSpot — Entrar';
-
+ 
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 

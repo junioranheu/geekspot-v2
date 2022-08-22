@@ -37,7 +37,7 @@ export default function Home({ listaItens }: any) {
                     listaItensRandom && listaItensRandom?.map((item: any, i: number) => (
                         <Fragment key={i}>
                             {
-                                i === 0 ? (
+                                item?.length < 6 ? (
                                     <ModuloAlternativo
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}

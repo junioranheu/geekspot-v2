@@ -113,7 +113,7 @@
     }
 
     .divPrincipal {
-        /* background-color: pink; */
+        // background-color: pink;
         width: 100%;
     }
 }
@@ -130,3 +130,34 @@
         }
     }
 }
+
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {
+    .divPrincipal {
+        // background-color: red;
+
+        .titulo {
+            // background-color: red;
+            font-size: 1.7rem;
+        }
+    }
+
+    .flexEntrar {
+        // background-color: red;
+        height: fit-content;
+        margin-top: 2rem;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {
+    .flexEntrar {
+        // background-color: red;
+        height: fit-content;
+        margin-top: 0rem;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

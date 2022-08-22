@@ -5667,6 +5667,7 @@ namespace GeekSpot.Infraestructure.Data
                     Bairro = "Vila Passos",
                     DataUltimaAlteracao = null,
                     TituloLojinha = "Lojinha do Jr",
+                    DescricaoLojinha = "Aea pe",
                     QtdEstrelas = null
                 });
             }

@@ -21,6 +21,7 @@ namespace GeekSpot.Domain.Entities
         public string? Bairro { get; set; } = null;
 
         public string? TituloLojinha { get; set; } = null;
+        public string? DescricaoLojinha { get; set; } = null;
         public double? QtdEstrelas { get; set; } = 0;
 
         public DateTime? DataUltimaAlteracao { get; set; } = HorarioBrasilia();
