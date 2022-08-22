@@ -28,10 +28,14 @@ export default function Home({ listaItens }: any) {
 
     return (
         <main className={'paddingPadrao margem3_5'}>
-            <Carousel listaSlides={[
-                { imagem: CarouselUm, url: '/xxx' },
-                { imagem: CarouselDois, url: '/xxx' }
-            ]} />
+            <Carousel
+                isLoop={true}
+                isShowPagination={false}
+                listaSlides={[
+                    { imagem: CarouselUm, url: '/xxx' },
+                    { imagem: CarouselDois, url: '/xxx' }
+                ]}
+            />
 
             <div className='margem3'>
                 {

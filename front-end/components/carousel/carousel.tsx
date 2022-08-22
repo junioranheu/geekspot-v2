@@ -8,21 +8,23 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Styles from './carousel.module.scss';
 
 interface iParametros {
+    isLoop: boolean;
+    isShowPagination: boolean;
     listaSlides: {
         imagem: StaticImageData;
         url: string;
     }[];
 }
 
-export default function Carousel({ listaSlides }: iParametros) {
+export default function Carousel({ listaSlides, isLoop, isShowPagination }: iParametros) {
     return (
         <Swiper className={Styles.carousel}
-            slidesPerView={2}
-            loop={true}
+            slidesPerView={1}
+            loop={isLoop}
             centeredSlides={true}
             spaceBetween={50}
             speed={900}
-            pagination={true}
+            pagination={isShowPagination}
 
             autoplay={{
                 delay: 4000,
