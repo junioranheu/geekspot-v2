@@ -3,7 +3,7 @@ import nProgress from 'nprogress';
 import { useContext, useEffect, useState } from 'react';
 import Footer from '../components/footer/footer';
 import NavbarMobile from '../components/navbar/navbar.mobile';
-import NavbarPadraoDois from '../components/navbar/navbar.padrao';
+import NavbarPadrao from '../components/navbar/navbar.padrao';
 import NavbarSmall from '../components/navbar/navbar.small';
 import useWindowSize from '../hooks/useWindowSize';
 import CONSTS_SISTEMA from '../utils/consts/sistema';
@@ -15,9 +15,10 @@ import horarioBrasilia from '../utils/outros/horarioBrasilia';
 export default function Padrao({ Component, pageProps }: any) {
     const router = useRouter();
     const tamanhoTela = useWindowSize();
-   
+
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
+    const [isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao] = useState(false);
 
     // Verificar se o token ainda é válido;
     useEffect(() => {
@@ -33,7 +34,7 @@ export default function Padrao({ Component, pageProps }: any) {
             if (diferencaHoras >= limiteExpirarTokenHoras) {
                 nProgress.start();
                 Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
-   
+
                 // Desatribuir autenticação ao contexto de usuário;
                 setIsAuth(false);
 
@@ -55,13 +56,26 @@ export default function Padrao({ Component, pageProps }: any) {
         }, 1000);
     }, [router.asPath]);
 
+    function checarClickExibirPainelNavbarPadrao(e: any) {
+        // console.log(e.target);
+        if (!e.target.className.toString().includes('navbar_padrao_divPainel')) {
+            setIsExibirPainelNavbarPadrao(false);
+        }
+    }
+
     return (
-        <section className='main semHighlight'>
+        <section className='main semHighlight' onClick={(e) => checarClickExibirPainelNavbarPadrao(e)}>
             <NavbarSmall />
 
             {
                 tamanhoTela.width && tamanhoTela?.width >= 1025 ? (
-                    <NavbarPadraoDois auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
+                    <NavbarPadrao
+                        auth={Auth}
+                        isAuth={isAuth}
+                        setIsAuth={setIsAuth}
+                        isExibirPainelNavbarPadrao={isExibirPainelNavbarPadrao}
+                        setIsExibirPainelNavbarPadrao={setIsExibirPainelNavbarPadrao}
+                    />
                 ) : (
                     <NavbarMobile auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 )

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { Dispatch, Fragment, useEffect, useState } from 'react';
+import { Dispatch, Fragment, useEffect } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_SISTEMA from '../../utils/consts/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
@@ -17,13 +17,14 @@ interface iParametros {
     auth: any;
     isAuth: boolean | undefined;
     setIsAuth: Dispatch<boolean>;
+    isExibirPainelNavbarPadrao: boolean;
+    setIsExibirPainelNavbarPadrao: Dispatch<boolean>;
 }
 
-export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametros) {
+export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
     const fotoPerfilRandom = Auth?.get()?.fotoPerfilAlternativa ?? ImgCinza;
-    const [isExibirPainel, setIsExibirPainel] = useState(false);
 
     function deslogar() {
         nProgress.start();
@@ -61,14 +62,17 @@ export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametro
                     {
                         isAuth ? (
                             <Fragment>
-                                <div className={Styles.divPerfil} onMouseEnter={() => setIsExibirPainel(true)} onMouseLeave={() => setIsExibirPainel(false)}>
+                                <div className={Styles.divPerfil} onMouseEnter={() => setIsExibirPainelNavbarPadrao(true)}>
                                     <Image src={fotoPerfilRandom} />
                                 </div>
 
                                 {
-                                    isExibirPainel && (
-                                        <div className={Styles.divPainel}>
-                                            <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                                    isExibirPainelNavbarPadrao && (
+                                        <div className={`${Styles.divPainel} animate__animated animate__fadeInDown animate__faster`}>
+                                            <div className={Styles.wrapperDivPainel}>
+                                                <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                                                <span>aea</span>
+                                            </div>
                                         </div>
                                     )
                                 }

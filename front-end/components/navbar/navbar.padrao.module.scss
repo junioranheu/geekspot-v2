@@ -47,17 +47,31 @@ $altura-navbar: 70px;
 
                 img {
                     border-radius: 50%;
-                    cursor: pointer;
+                    cursor: pointer !important;
                 }
             }
 
+            // Classes para o painél;
             .divPainel {
-                background-color: red;
-                height: 100px;
-
+                height: fit-content;
+                width: fit-content;
                 position: absolute;
+                top: 8rem;
+                right: 20%;
                 z-index: 99999;
-                top: 15%;
+
+                .wrapperDivPainel {
+                    // background-color: blue !important;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    border-radius: 10px;
+                    box-shadow: 0 0 0 4px #f4f2f0;
+                    background-color: var(--branco);
+                    padding: 1rem;
+                    line-height: 1rem;
+                }
             }
         }
 
