@@ -13,6 +13,7 @@ import CONSTS_AUTENTICAR from '../../../utils/data/constAutenticar';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../../utils/outros/fetch';
+import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRandom';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
 
 interface iFormData {
@@ -66,6 +67,7 @@ export default function SessaoEntrar() {
 
         // Inserir o token no json final para gravar localmente a sessão do login;
         resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
+        resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
         Auth.set(resposta);
 
         // Atribuir autenticação ao contexto de usuário;

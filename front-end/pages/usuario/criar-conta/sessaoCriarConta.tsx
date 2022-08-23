@@ -13,6 +13,7 @@ import CONSTS_AUTENTICAR from '../../../utils/data/constAutenticar';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
 import { Fetch } from '../../../utils/outros/fetch';
+import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRandom';
 import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
 import padronizarNomeCompletoUsuario from '../../../utils/outros/padronizarNomeCompletoUsuario';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
@@ -94,6 +95,7 @@ export default function SessaoCriarConta() {
         }
 
         resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
+        resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
         Auth.set(resposta);
 
         // Enviar e-mail de "bem-vindo";

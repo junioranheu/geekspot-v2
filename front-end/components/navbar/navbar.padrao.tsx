@@ -1,10 +1,13 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { Dispatch, Fragment } from 'react';
+import { Dispatch, Fragment, useEffect, useState } from 'react';
+import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_SISTEMA from '../../utils/consts/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
+import gerarImagemPerfilRandom from '../../utils/outros/gerarImagemPerfilRandom';
 import Botao from '../outros/botao';
 import Logo from '../svg/logo';
 import NavbarFiltro from './navbar.filtro';
@@ -19,6 +22,8 @@ interface iParametros {
 export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
+    const fotoPerfilRandom = Auth?.get()?.fotoPerfilAlternativa ?? ImgCinza;
+    const [isExibirPainel, setIsExibirPainel] = useState(false);
 
     function deslogar() {
         nProgress.start();
@@ -36,6 +41,10 @@ export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametro
         }, 100);
     }
 
+    useEffect(() => {
+        gerarImagemPerfilRandom();
+    }, []);
+
     return (
         <nav className={Styles.navbar}>
             <div className={Styles.wrapper}>
@@ -52,7 +61,18 @@ export default function NavbarPadraoDois({ auth, isAuth, setIsAuth }: iParametro
                     {
                         isAuth ? (
                             <Fragment>
-                                <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                                <div className={Styles.divPerfil} onMouseEnter={() => setIsExibirPainel(true)} onMouseLeave={() => setIsExibirPainel(false)}>
+                                    <Image src={fotoPerfilRandom} />
+                                </div>
+
+                                {
+                                    isExibirPainel && (
+                                        <div className={Styles.divPainel}>
+                                            <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                                        </div>
+                                    )
+                                }
+
                                 <span className='separador'></span>
                                 <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
                             </Fragment>

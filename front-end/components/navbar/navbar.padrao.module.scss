@@ -32,29 +32,32 @@ $altura-navbar: 70px;
             line-height: 0;
             gap: 1.5rem;
 
-            .divOla {
-                color: var(--super-preto);
-                font-size: 0.9rem;
-                font-weight: 600;
-                white-space: nowrap;
-                opacity: 0.9;
-                height: $altura-navbar;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .ola {
-                    color: var(--cor-principal);
-                }
-            }
-
             a {
                 &:hover {
                     // background-color: red;
                     border-bottom: 2px solid var(--cor-principal);
                     margin-top: 2px; // Gambi para não bugar ao hover;
                 }
+            }
+
+            .divPerfil {
+                // background-color: red !important;
+                width: 30px;
+                height: 30px;
+
+                img {
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+            }
+
+            .divPainel {
+                background-color: red;
+                height: 100px;
+
+                position: absolute;
+                z-index: 99999;
+                top: 15%;
             }
         }
 

@@ -31,7 +31,8 @@ export const Auth = {
             isVerificado: data.isVerificado,
             token: data.token,
             dataAutenticacao: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
-            genero: data.genero
+            genero: data.genero,
+            fotoPerfilAlternativa: data.fotoPerfilAlternativa
         };
 
         let parsedData = JSON.stringify(dadosUsuario);
@@ -56,15 +57,16 @@ export const Auth = {
     update(data: any) {
         const dadosUsuario = {
             usuarioId: (data.usuarioId ?? Auth.get().usuarioId),
-            nome: (data.usuarioId ?? Auth.get().nome),
-            nomeUsuarioSistema: (data.usuarioId ?? Auth.get().nomeUsuarioSistema),
-            email: (data.usuarioId ?? Auth.get().email),
-            usuarioTipoId: (data.usuarioId ?? Auth.get().usuarioTipoId),
-            foto: (data.usuarioId ?? Auth.get().foto),
-            isVerificado: (data.usuarioId ?? Auth.get().isVerificado),
-            token: (data.usuarioId ?? Auth.get().token),
-            dataAutenticacao: (data.usuarioId ?? Auth.get().dataAutenticacao),
-            genero: (data.usuarioId ?? Auth.get().genero)
+            nome: (data.nome ?? Auth.get().nome),
+            nomeUsuarioSistema: (data.nomeUsuarioSistema ?? Auth.get().nomeUsuarioSistema),
+            email: (data.email ?? Auth.get().email),
+            usuarioTipoId: (data.usuarioTipoId ?? Auth.get().usuarioTipoId),
+            foto: (data.foto ?? Auth.get().foto),
+            isVerificado: (data.isVerificado ?? Auth.get().isVerificado),
+            token: (data.token ?? Auth.get().token),
+            dataAutenticacao: (data.dataAutenticacao ?? Auth.get().dataAutenticacao),
+            genero: (data.genero ?? Auth.get().genero),
+            fotoPerfilAlternativa: (data.fotoPerfilAlternativa ?? Auth.get().fotoPerfilAlternativa),
         };
 
         let parsedData = JSON.stringify(dadosUsuario);
