@@ -18,7 +18,6 @@ export default function Padrao({ Component, pageProps }: any) {
 
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
-    const [isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao] = useState(false);
 
     // Verificar se o token ainda é válido;
     useEffect(() => {
@@ -56,26 +55,13 @@ export default function Padrao({ Component, pageProps }: any) {
         }, 1000);
     }, [router.asPath]);
 
-    function checarClickExibirPainelNavbarPadrao(e: any) {
-        // console.log(e.target);
-        if (!e.target.className.toString().includes('navbar_padrao_divPainel')) {
-            setIsExibirPainelNavbarPadrao(false);
-        }
-    }
-
     return (
-        <section className='main semHighlight' onClick={(e) => checarClickExibirPainelNavbarPadrao(e)}>
+        <section className='main semHighlight'>
             <NavbarSmall />
 
             {
                 tamanhoTela.width && tamanhoTela?.width >= 1025 ? (
-                    <NavbarPadrao
-                        auth={Auth}
-                        isAuth={isAuth}
-                        setIsAuth={setIsAuth}
-                        isExibirPainelNavbarPadrao={isExibirPainelNavbarPadrao}
-                        setIsExibirPainelNavbarPadrao={setIsExibirPainelNavbarPadrao}
-                    />
+                    <NavbarPadrao auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 ) : (
                     <NavbarMobile auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
                 )

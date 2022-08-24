@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { Dispatch, Fragment, useEffect } from 'react';
+import { Dispatch, Fragment, useEffect, useState } from 'react';
+import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_SISTEMA from '../../utils/consts/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
@@ -17,14 +18,15 @@ interface iParametros {
     auth: any;
     isAuth: boolean | undefined;
     setIsAuth: Dispatch<boolean>;
-    isExibirPainelNavbarPadrao: boolean;
-    setIsExibirPainelNavbarPadrao: Dispatch<boolean>;
 }
 
-export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao }: iParametros) {
+export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
     const fotoPerfilRandom = Auth?.get()?.fotoPerfilAlternativa ?? ImgCinza;
+
+    const [isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao] = useState(false);
+    const debounceFecharPainelNavbarPadrao = debounce(() => setIsExibirPainelNavbarPadrao(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     useEffect(() => {
         gerarImagemPerfilRandom();
@@ -46,6 +48,11 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
         }, 100);
     }
 
+    function abrirPainelNavbarPadrao() {
+        setIsExibirPainelNavbarPadrao(true);
+        debounceFecharPainelNavbarPadrao.cancel();
+    }
+
     return (
         <nav className={Styles.navbar}>
             <div className={Styles.wrapper}>
@@ -54,7 +61,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
                     <NavbarFiltro />
                 </div>
 
-                <div className={Styles.divDireita}>
+                <div className={Styles.divDireita} onMouseLeave={() => debounceFecharPainelNavbarPadrao()}>
                     <Link href='/xxx'><a>Produtos</a></Link>
                     <Link href='/xxx'><a>Promoções 🔥</a></Link>
                     <span className='separador'></span>
@@ -62,7 +69,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
                     {
                         isAuth ? (
                             <Fragment>
-                                <div className={Styles.divPerfil} onMouseEnter={() => setIsExibirPainelNavbarPadrao(true)}>
+                                <div className={Styles.divPerfil} onMouseEnter={() => abrirPainelNavbarPadrao()}>
                                     <Image src={fotoPerfilRandom} />
 
                                     {
