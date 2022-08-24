@@ -47,9 +47,9 @@ export default function App({ Component, pageProps }: any) {
                     <meta name='keywords' content='geek, produtos, compra, troca, venda, e-commerce' />
                     <meta name='author' content='@junioranheu' />
                     <meta name='theme-color' content='#9a6bff' />
-
-                    <Script src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5929346454358482' />
                 </Head>
+
+                <Script src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5929346454358482' />
 
                 <ModoDarkProvider>
                     <UsuarioProvider>
