@@ -21,7 +21,7 @@ interface iParametros {
 export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
 
     const [isHamburguer, setIsHamburguer] = useState(false);
-    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
+    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
 
     function handleHamburguer() {
         setIsHamburguer(!isHamburguer);
@@ -89,7 +89,11 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                             <a onClick={() => handleHamburguer()}><Xis height='1.7rem' width='1.7rem' cor='var(--branco)' /></a>
                         </div>
 
-                        <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                        {
+                            nomeUsuario && (
+                                <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                            )
+                        }
 
                         <div className={Styles.divAtalhos} onClick={() => handleHamburguer()}>
                             <Link href='/xxx'><a>Produtos</a></Link>

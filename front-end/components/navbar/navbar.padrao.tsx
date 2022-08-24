@@ -26,6 +26,10 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
     const fotoPerfilRandom = Auth?.get()?.fotoPerfilAlternativa ?? ImgCinza;
 
+    useEffect(() => {
+        gerarImagemPerfilRandom();
+    }, []);
+
     function deslogar() {
         nProgress.start();
 
@@ -41,10 +45,6 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
             setIsAuth(false);
         }, 100);
     }
-
-    useEffect(() => {
-        gerarImagemPerfilRandom();
-    }, []);
 
     return (
         <nav className={Styles.navbar}>
@@ -67,10 +67,15 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
 
                                     {
                                         isExibirPainelNavbarPadrao && (
-                                            <div className={`${Styles.divPainel} animate__animated animate__fadeInDown animate__faster`}>
-                                                <div className={Styles.wrapperDivPainel}>
-                                                    <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
-                                                    <span>aea</span>
+                                            <div className={Styles.divPainel}>
+                                                <div className={`${Styles.wrapperDivPainel} animate__animated animate__fadeInUp animate__faster`}>
+                                                    <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
+
+                                                    <div className={`${Styles.divItens} margem0_5`}>
+                                                        <span>aea</span>
+                                                        <span>aea</span>
+                                                        <span>aea</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         )

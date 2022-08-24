@@ -62,8 +62,8 @@ $altura-navbar: 70px;
                     flex-direction: column;
                     position: absolute;
 
-                    top: 3rem;
-                    right: -80%;
+                    top: 2rem;
+                    right: -92%;
                     height: fit-content;
                     width: fit-content;
                     padding: 1rem;
@@ -83,6 +83,13 @@ $altura-navbar: 70px;
                         border-bottom: 20px solid #f4f2f0;
                         border-left: 20px solid transparent;
                         border-right: 20px solid transparent;
+                    }
+
+                    .divItens {
+                        background-color: turquoise;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.3rem;
                     }
                 }
             }
