@@ -64,18 +64,18 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth, isExibirPainelNa
                             <Fragment>
                                 <div className={Styles.divPerfil} onMouseEnter={() => setIsExibirPainelNavbarPadrao(true)}>
                                     <Image src={fotoPerfilRandom} />
-                                </div>
 
-                                {
-                                    isExibirPainelNavbarPadrao && (
-                                        <div className={`${Styles.divPainel} animate__animated animate__fadeInDown animate__faster`}>
-                                            <div className={Styles.wrapperDivPainel}>
-                                                <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
-                                                <span>aea</span>
+                                    {
+                                        isExibirPainelNavbarPadrao && (
+                                            <div className={`${Styles.divPainel} animate__animated animate__fadeInDown animate__faster`}>
+                                                <div className={Styles.wrapperDivPainel}>
+                                                    <span className={Styles.divOla}>Olá,&nbsp;<span className={Styles.ola}>@{nomeUsuario}</span> {emojiAleatorio()}</span>
+                                                    <span>aea</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    )
-                                }
+                                        )
+                                    }
+                                </div>
 
                                 <span className='separador'></span>
                                 <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
