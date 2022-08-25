@@ -71,7 +71,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
             <nav className={Styles.navbar}>
                 <div className={Styles.wrapper}>
                     <div className={Styles.divEsquerda}>
-                        <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`}><Logo width='0.9rem' cor='var(--preto)' /></a></Link>
+                        <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`}><Logo width='2rem' /></a></Link>
                         <NavbarFiltro />
                     </div>
 

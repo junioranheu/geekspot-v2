@@ -5,7 +5,6 @@ import { useContext, useRef, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
-import Logo from '../../../components/svg/logo';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
 import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
@@ -95,7 +94,6 @@ export default function SessaoEntrar() {
 
     return (
         <section className={Styles.divPrincipal}>
-            <Logo width='0.9rem' cor='var(--branco)' />
             <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
             {/* Inputs */}

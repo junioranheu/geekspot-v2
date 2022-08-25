@@ -59,7 +59,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
         <nav className={Styles.navbar}>
             <div className={Styles.wrapper}>
                 <div className={Styles.divEsquerda}>
-                    <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`}><Logo width='0.9rem' cor='var(--preto)' /></a></Link>
+                    <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`}><Logo width='2rem' /></a></Link>
                     <NavbarFiltro />
                 </div>
 
@@ -80,7 +80,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                                                 <div className={`${Styles.wrapperDivPainel} animate__animated animate__fadeInUp animate__faster`}>
                                                     <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
 
-                                                    <div className={`${Styles.divItens} margem1`}>                                          
+                                                    <div className={`${Styles.divItens} margem1`}>
                                                         <Botao texto='Meus negócios' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                                         <Link href='/'><a><FontAwesomeIcon icon={faStoreAlt} size='sm' />&nbsp;Minha lojinha</a></Link>
                                                         <Link href='/'><a><FontAwesomeIcon icon={faGear} size='sm' />&nbsp;Configurações</a></Link>
