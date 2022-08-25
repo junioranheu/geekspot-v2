@@ -1,3 +1,5 @@
+import { faGear, faQuestionCircle, faStoreAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -78,10 +80,11 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                                                 <div className={`${Styles.wrapperDivPainel} animate__animated animate__fadeInUp animate__faster`}>
                                                     <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
 
-                                                    <div className={`${Styles.divItens} margem0_5`}>
-                                                        <span>aea</span>
-                                                        <span>aea</span>
-                                                        <span>aea</span>
+                                                    <div className={`${Styles.divItens} margem1`}>                                          
+                                                        <Botao texto='Meus negócios' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                                                        <Link href='/'><a><FontAwesomeIcon icon={faStoreAlt} size='sm' />&nbsp;Minha lojinha</a></Link>
+                                                        <Link href='/'><a><FontAwesomeIcon icon={faGear} size='sm' />&nbsp;Configurações</a></Link>
+                                                        <Link href='/'><a><FontAwesomeIcon icon={faQuestionCircle} size='sm' />&nbsp;Ajuda</a></Link>
                                                     </div>
                                                 </div>
                                             </div>
