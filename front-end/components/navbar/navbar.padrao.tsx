@@ -72,7 +72,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                         isAuth ? (
                             <Fragment>
                                 <div className={Styles.divPerfil} onMouseEnter={() => abrirPainelNavbarPadrao()}>
-                                    <Image src={fotoPerfilRandom} />
+                                    <Image src={fotoPerfilRandom} alt='' />
 
                                     {
                                         isExibirPainelNavbarPadrao && (

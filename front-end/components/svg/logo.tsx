@@ -4,7 +4,7 @@ interface iParametros {
 
 export default function Logo({ width }: iParametros) {
     return (
-        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width={width} height={width} viewBox='0 0 50 57' enable-background='new 0 0 50 57'>
+        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width={width} height={width} viewBox='0 0 50 57' enableBackground='new 0 0 50 57'>
             <image width='100%' height='100%' x='0' y='0'
                 href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA5CAYAAAB0+HhyAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAABmJLR0QA/wD/AP+gvaeTAAAA
