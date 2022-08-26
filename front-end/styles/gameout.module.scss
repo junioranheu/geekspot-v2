@@ -1,0 +1,30 @@
+.wrapper {
+    // background-color: red;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    .divType {
+        // background-color: red;
+        max-height: 30rem;
+        overflow-y: auto !important;
+
+        span {
+            color: var(--preto);
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+    }
+
+    button {
+        height: 5rem;
+        font-size: 1.5rem;
+    }
+}

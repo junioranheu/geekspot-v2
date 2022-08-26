@@ -27,7 +27,7 @@ export default function Home({ listaItens }: any) {
     }
 
     return (
-        <main className={'paddingPadrao margem3_5'}>
+        <main className='paddingPadrao margem3_5'>
             <Carousel
                 isLoop={true}
                 isShowPagination={false}
