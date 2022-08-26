@@ -1,6 +1,6 @@
 .wrapper {
     // background-color: red;
-    height: 90vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,4 +27,19 @@
         height: 5rem;
         font-size: 1.5rem;
     }
+}
+
+.backgroundFull {
+    // background-color: red;
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden !important;
+
+    background: url(/static/image/geekspot_fatec/gameout_2017.webp) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
