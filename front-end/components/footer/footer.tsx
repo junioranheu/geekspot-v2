@@ -22,14 +22,14 @@ export default function Footer() {
 
     function alterarModo(isModoDark: boolean | undefined | null) {
         // console.log(isModoDark);
-
+ 
         if (isModoDark === true) {
             // console.log('Ativar modo dark'); 
             document.documentElement.style.setProperty('--preto', '#FFFFFF'); // Preto fica branco;
-            document.documentElement.style.setProperty('--super-preto', '#F2F2F2'); // Super preto fica creme;
+            document.documentElement.style.setProperty('--super-preto', '#f4f2f0'); // Super preto fica bege;
             document.documentElement.style.setProperty('--branco', '#1A1A1A'); // Branco fica preto;
             document.documentElement.style.setProperty('--cinza', '#F2F2F2'); // Cinza fica creme acinzentado;
-            document.documentElement.style.setProperty('--cinza-secundario', '#F2F2F2'); // Cinza escuro fica creme acinzentado;  
+            document.documentElement.style.setProperty('--cinza-secundario', '#f4f2f0'); // Cinza escuro fica bege;  
             document.documentElement.style.setProperty('--cor-border-hr', 'rgba(255, 255, 255, 10%)'); // Cinza "apagado" para branco "apagado";
 
             // Atualizar no localStorage;

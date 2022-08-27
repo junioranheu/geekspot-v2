@@ -15,9 +15,9 @@ export default function FlipClockCountdown({ dataAlvo, isShowLabel, msgAoFinaliz
             labels={['DIAS', 'HORAS', 'MINUTOS', 'SEGUNDOS']}
             labelStyle={{ fontSize: 10, fontWeight: 500, textTransform: 'uppercase', color: 'var(--cor-principal)' }}
             showLabels={isShowLabel}
-            digitBlockStyle={{ background: 'var(--super-preto)', width: 20, height: 20, fontSize: 12 }}
+            digitBlockStyle={{ background: '#000000', width: 20, height: 20, fontSize: 12 }}
             dividerStyle={{ color: '#cor-invalida-para-tirar-o-divider', height: 1 }}
-            separatorStyle={{ color: 'var(--cor-principal)', size: '6px' }}
+            separatorStyle={{ color: 'var(--cor-principal)', size: '3.5px' }}
             showSeparators={true}
             duration={0.5}
             onComplete={() => handleCompleteCountdown && handleCompleteCountdown()}
