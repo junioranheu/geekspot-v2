@@ -1,10 +1,11 @@
-import { faCcMastercard, faCcPaypal, faCcVisa } from '@fortawesome/free-brands-svg-icons';
-import { faMoneyBill1 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Head from 'next/head';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
+import Boleto from '../../../components/svg/boleto';
+import Mastercard from '../../../components/svg/mastercard';
+import Pix from '../../../components/svg/pix';
+import Visa from '../../../components/svg/visa';
 import ImgCinza from '../../../static/image/outros/cinza.webp';
 import CONSTS_SISTEMA from '../../../utils/consts/sistema';
 import { Auth } from '../../../utils/context/usuarioContext';
@@ -63,13 +64,13 @@ export default function Item({ item }: any) {
                                 <span className={Styles.texto}>{gerarTextoParcelas(item?.preco)}</span>
 
                                 <div className={Styles.divFormasPagamento}>
-                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcVisa} size='lg' title='Visa' />
-                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcMastercard} size='lg' title='Mastercard' />
-                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcPaypal} size='lg' title='PayPal' />
-                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faMoneyBill1} size='lg' title='Dinheiro ou pix' />
+                                    <Pix />
+                                    <Visa />
+                                    <Mastercard />
+                                    <Boleto />
                                 </div>
 
-                                <div className={`${Styles.botaoCustom} margem1`}>
+                                <div className={Styles.botaoCustom}>
                                     <Botao texto='Eu quero' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                 </div>
                             </div>
