@@ -17,6 +17,7 @@ import { UsuarioProvider } from '../utils/context/usuarioContext';
 
 export default function App({ Component, pageProps }: any) {
     const { asPath } = useRouter();
+    const router = useRouter();
 
     const [url, setUrl] = useState('');
     useEffect(() => {
@@ -37,6 +38,12 @@ export default function App({ Component, pageProps }: any) {
 
         return <LayoutPadrao Component={Component} pageProps={pageProps} />
     }
+
+    // Scrollar pro top automaticamente;
+    useEffect(() => {
+        // console.log('useEffect fired!', {asPath: router.asPath});
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }, [router.asPath]);
 
     return url ?
         (
