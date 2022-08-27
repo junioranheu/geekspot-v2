@@ -570,6 +570,22 @@ select {
     }
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= FlipClockCountdown =-=-=-=-=-=-=-=-=-=-= */
+// Esconder o "dia" do FlipClockCountdown;
+._qWTcH {
+    ._3cpN7 {
+        &:first-child {
+            display: none !important;
+        }
+    }
+
+    ._2hRXr {
+        &:nth-child(2) {
+            display: none !important;
+        }
+    }
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
 @media (max-width:1400px) {
     .sessaoPrincipal {

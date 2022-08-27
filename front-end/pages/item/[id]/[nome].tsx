@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
+import FlipClockCountdown from '../../../components/outros/flipClockCountdown';
 import Boleto from '../../../components/svg/boleto';
 import Mastercard from '../../../components/svg/mastercard';
 import Pix from '../../../components/svg/pix';
@@ -13,14 +14,19 @@ import CONSTS_ITENS from '../../../utils/data/constItens';
 import CONSTS_UPLOAD from '../../../utils/data/constUpload';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
+import gerarNumeroAleatorio from '../../../utils/outros/gerarNumeroAleatorio';
+import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import Styles from './index.module.scss';
 
 export default function Item({ item }: any) {
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
+    const [dataAlvo, setDataAlvo] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
+        const data = horarioBrasilia().add(gerarNumeroAleatorio(1, 24), 'hours').format();
+        setDataAlvo(data);
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, []);
 
@@ -57,6 +63,15 @@ export default function Item({ item }: any) {
                         <div className={`${Styles.divDados} margem1 flexColumn`}>
                             <div className={Styles.headerDivDados}>
                                 Preço especial por tempo limitado
+
+                                <div>
+                                    <FlipClockCountdown
+                                        dataAlvo={dataAlvo}
+                                        isShowLabel={false}
+                                        msgAoFinalizar={null}
+                                        handleCompleteCountdown={(() => null)}
+                                    />
+                                </div>
                             </div>
 
                             <div className={Styles.bodyDivDados}>
