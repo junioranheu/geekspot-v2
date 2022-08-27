@@ -9,7 +9,7 @@ import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import SessaoCriarConta from './sessaoCriarConta';
 
 export default function CriarConta() {
-    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — Criar conta`;
+    document.title = `Criar conta — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];

@@ -11,9 +11,7 @@ export default function Perfil({ usuario }: any) {
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        // Título da página;
-        document.title = usuario ? `${CONSTS_SISTEMA.NOME_SISTEMA} — Perfil de @${usuario?.nomeUsuarioSistema}` : CONSTS_SISTEMA.NOME_SISTEMA;
-
+        document.title = usuario ? `Perfil de @${usuario?.nomeUsuarioSistema} — ${CONSTS_SISTEMA.NOME_SISTEMA}` : CONSTS_SISTEMA.NOME_SISTEMA;
         paginaCarregada(true, 200, 500, setIsLoaded);
     }, [usuarioId, usuario]);
 

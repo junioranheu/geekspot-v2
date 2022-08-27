@@ -1,6 +1,7 @@
 import { faCcMastercard, faCcPaypal, faCcVisa } from '@fortawesome/free-brands-svg-icons';
 import { faMoneyBill1 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Head from 'next/head';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
@@ -19,11 +20,8 @@ export default function Item({ item }: any) {
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        // Título da página;
-        document.title = item ? `${CONSTS_SISTEMA.NOME_SISTEMA} — ${item?.nome}` : CONSTS_SISTEMA.NOME_SISTEMA;
-
-        paginaCarregada(true, 200, 500, setIsLoaded);
-    }, [usuarioId, item]);
+        paginaCarregada(true, 300, 600, setIsLoaded);
+    }, []);
 
     function gerarTextoParcelas(preco: number) {
         const msg = `2x de R$ ${(preco / 2)} sem juros`;
@@ -36,50 +34,59 @@ export default function Item({ item }: any) {
 
     return (
         <Fragment>
-            <section className={`${Styles.sessaoPrincipal} margem3`}>
-                <div className={Styles.sessaoEsquerda}>
-                    <Image
-                        src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
-                        width={500}
-                        height={500}
-                        alt=''
-                        className={Styles.efeitoImagemHover}
-                    />
-                </div>
+            <Head>
+                <title>{(item?.nome ? `${item?.nome} — ${CONSTS_SISTEMA.NOME_SISTEMA}` : CONSTS_SISTEMA.NOME_SISTEMA)}</title>
+            </Head>
 
-                <div className={Styles.sessaoDireita}>
-                    <span className='titulo'>{item?.nome}</span>
-
-                    <div className='margem1_5 flexColumn'>
-                        <span className={Styles.textoNegrito}>R$ {item?.preco}</span>
-                        <span className='texto'>{gerarTextoParcelas(item?.preco)}</span>
-
-                        <div className={Styles.divFormasPagamento}>
-                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcVisa} size='lg' title='Visa' />
-                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcMastercard} size='lg' title='Mastercard' />
-                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcPaypal} size='lg' title='PayPal' />
-                            <FontAwesomeIcon className='pointer cor-principal-hover' icon={faMoneyBill1} size='lg' title='Dinheiro ou pix' />
-                        </div>
+            <section className={`${Styles.wrapper} margem3`}>
+                <div className={Styles.sessaoPrincipal}>
+                    <div className={Styles.sessaoEsquerda}>
+                        <Image
+                            src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                            width={500}
+                            height={500}
+                            alt=''
+                            className={Styles.efeitoImagemHover}
+                        />
                     </div>
 
-                    <div className='margem1_5 flexColumn'>
-                        <div className={Styles.botaoCustom}>
-                            <Botao texto='Eu quero' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                    <div className={Styles.sessaoDireita}>
+                        <span className='titulo'>{item?.nome}</span>
+
+                        <div className={`${Styles.divDados} margem1 flexColumn`}>
+                            <div className={Styles.headerDivDados}>
+                                Preço especial por tempo limitado
+                            </div>
+
+                            <div className={Styles.bodyDivDados}>
+                                <span className={Styles.textoNegrito}>R$ {item?.preco}</span>
+                                <span className={Styles.texto}>{gerarTextoParcelas(item?.preco)}</span>
+
+                                <div className={Styles.divFormasPagamento}>
+                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcVisa} size='lg' title='Visa' />
+                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcMastercard} size='lg' title='Mastercard' />
+                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faCcPaypal} size='lg' title='PayPal' />
+                                    <FontAwesomeIcon className='pointer cor-principal-hover' icon={faMoneyBill1} size='lg' title='Dinheiro ou pix' />
+                                </div>
+
+                                <div className={`${Styles.botaoCustom} margem1`}>
+                                    <Botao texto='Eu quero' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                                </div>
+                            </div>
                         </div>
 
-                        <div className={`${Styles.botaoCustom} margem1`}>
-                            <Botao texto='Adicionar ao carrinho' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
-                        </div>
+                        <div className='margem1 flexColumn'>
+                            <div className={Styles.botaoCustom2}>
+                                <Botao texto='Fazer oferta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                            </div>
 
-                        <div className={`${Styles.botaoCustom} margem1`}>
-                            <Botao texto='Fazer oferta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                            <div className={`${Styles.botaoCustom2} margem1`}>
+                                <Botao texto='Adicionar ao carrinho' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* Espaço a mais */}
-            <div className='espacoBottom'></div>
         </Fragment>
     )
 }

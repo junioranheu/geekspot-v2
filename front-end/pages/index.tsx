@@ -13,7 +13,7 @@ import paginaCarregada from '../utils/outros/paginaCarregada';
 import randomizarArray from '../utils/outros/randomizarArray';
 
 export default function Home({ listaItens }: any) {
-    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — Início`;
+    document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const [listaItensRandom, setListaItensRandom] = useState<any>();
     const [isLoaded, setIsLoaded] = useState(false);

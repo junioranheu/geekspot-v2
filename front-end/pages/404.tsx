@@ -8,7 +8,7 @@ import Lottie404 from '../utils/lotties/404.json';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 
 export default function Erro() {
-    document.title = `${CONSTS_SISTEMA.NOME_SISTEMA} — 404`;
+    document.title = `404 — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const router = useRouter();
 
     const [isLoaded, setIsLoaded] = useState(false);
