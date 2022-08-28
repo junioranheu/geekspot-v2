@@ -4,6 +4,7 @@ import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
+import definirPreco from '../../utils/outros/definirPreco';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import ModuloHeader from './modulo.header';
 import Styles from './modulo.principal.module.scss';
@@ -90,19 +91,6 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
         // #02;
         setListaItensAleatorio(randomizarArray(listaItens));
     }, [listaItens]);
-
-    function definirPreco(preco: string, precoDesconto: string) {
-        let precoFinal = `R$ ${preco}`;
-
-        if (precoDesconto) {
-            precoFinal = `<b style='color: var(--cor-principal);'>R$ ${precoDesconto}</b> 
-                          <span style='text-decoration: line-through; white-space: nowrap;''>R$ ${preco}</span>`;
-        }
-
-        return (
-            <div dangerouslySetInnerHTML={{ __html: precoFinal }} />
-        )
-    }
 
     return (
         <div className={`flexColumn ${i > 0 && 'margem3_5'}`}>

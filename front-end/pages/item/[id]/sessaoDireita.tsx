@@ -5,6 +5,7 @@ import Boleto from '../../../components/svg/boleto';
 import Mastercard from '../../../components/svg/mastercard';
 import Pix from '../../../components/svg/pix';
 import Visa from '../../../components/svg/visa';
+import definirPreco from '../../../utils/outros/definirPreco';
 import gerarNumeroAleatorio from '../../../utils/outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
 import Styles from './index.module.scss';
@@ -18,7 +19,8 @@ export default function SessaoDireita({ item }: any) {
     }, []);
 
     function gerarTextoParcelas(preco: number) {
-        const msg = `2x de R$ ${(preco / 2)} sem juros`;
+        const numeroAleatorio = gerarNumeroAleatorio(2, 5);
+        const msg = `Em até ${numeroAleatorio}x de R$ ${Math.round(preco / numeroAleatorio)} sem juros`;
         return msg;
     }
 
@@ -26,7 +28,7 @@ export default function SessaoDireita({ item }: any) {
         <div className={Styles.sessaoDireita}>
             <span className='titulo'>{item?.nome}</span>
 
-            <div className={`${Styles.divDados} margem1 flexColumn`}>
+            <div className={`${Styles.divDados} margem0_5 flexColumn`}>
                 <div className={Styles.headerDivDados}>
                     Preço especial por tempo limitado
 
@@ -45,7 +47,7 @@ export default function SessaoDireita({ item }: any) {
                 </div>
 
                 <div className={Styles.bodyDivDados}>
-                    <span className={Styles.textoNegrito}>R$ {item?.preco}</span>
+                    <span className={Styles.textoNegrito}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                     <span className={Styles.texto}>{gerarTextoParcelas(item?.preco)}</span>
 
                     <div className={Styles.divFormasPagamento}>
