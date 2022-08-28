@@ -37,7 +37,20 @@ namespace GeekSpot.Application.Services.Authentication
                 return erro;
             }
 
-            // #2 - Criar usuário;
+            // #2 - Verificar requisitos de senha;
+            if (!ValidarSenha(dto?.Senha))
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido,
+                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.RequisitosSenhaNaoCumprido)
+                };
+
+                return erro;
+            }
+
+            // #3 - Criar usuário;
             var novoUsuario = new UsuarioSenhaDTO
             {
                 NomeCompleto = dto?.NomeCompleto,
@@ -59,11 +72,11 @@ namespace GeekSpot.Application.Services.Authentication
 
             await _usuarioRepository.Adicionar(novoUsuario);
 
-            // #3 - Criar token JWT;
+            // #4 - Criar token JWT;
             var token = _jwtTokenGenerator.GerarToken(novoUsuario);
             novoUsuario.Token = token;
 
-            // #4 - Converter de UsuarioSenhaDTO para UsuarioDTO;
+            // #5 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(novoUsuario);
 
             return usuarioDto;

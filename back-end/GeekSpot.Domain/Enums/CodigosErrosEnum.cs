@@ -13,7 +13,7 @@ namespace GeekSpot.Domain.Enums
         [Description("Tipo de usuário não encontrado")]
         TipoUsuarioNaoEncontrado = 103,
 
-        [Description("Requisitos de senha não cumprido")]
+        [Description("Os requisitos de senha não foram cumpridos. A senha deve ser mais segura")]
         RequisitosSenhaNaoCumprido = 104,
 
         [Description("Usuário ou senha incorretos")]

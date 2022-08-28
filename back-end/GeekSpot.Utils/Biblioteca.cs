@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using TimeZoneConverter;
 
 namespace GeekSpot.Utils
@@ -74,6 +75,18 @@ namespace GeekSpot.Utils
             MemberInfo[] memInfo = enumVal.GetType().GetMember(enumVal.ToString());
             DescriptionAttribute attribute = CustomAttributeExtensions.GetCustomAttribute<DescriptionAttribute>(memInfo[0]);
             return attribute.Description;
+        }
+
+        // Validar se a senha do usuário é forte o sufiuciente verificando requisitos de senha;
+        public static bool ValidarSenha(string senha)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+
+            var isValidated = hasNumber.IsMatch(senha) && hasUpperChar.IsMatch(senha) && hasMinimum8Chars.IsMatch(senha);
+
+            return isValidated;
         }
 
         // Gerar um número aleatório com base na em um valor mínimo e máximo;
