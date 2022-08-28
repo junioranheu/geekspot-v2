@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Domain.DTO
@@ -10,7 +11,11 @@ namespace GeekSpot.Domain.DTO
 
         public string? Nome { get; set; } = null;
         public string? Descricao { get; set; } = null;
-        public string? Imagem { get; set; } = null;
+
+        // Fk (De cá pra lá);
+        [JsonIgnore]
+        public List<ItemImagemDTO>? ItensImagens { get; set; }
+
         public double? Preco { get; set; } = 0;
         public double? PrecoDesconto { get; set; } = 0;
 

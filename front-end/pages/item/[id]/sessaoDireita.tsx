@@ -18,11 +18,12 @@ export default function SessaoDireita({ item }: any) {
         setDataAlvo(data);
     }, []);
 
-    function gerarTextoParcelas(preco: number) {
+    const [textoParcelas, setTextoParcelas] = useState('');
+    useEffect(() => {
         const numeroAleatorio = gerarNumeroAleatorio(2, 5);
-        const msg = `Em até ${numeroAleatorio}x de R$ ${Math.round(preco / numeroAleatorio)} sem juros`;
-        return msg;
-    }
+        const msg = `Em até ${numeroAleatorio}x de R$ ${Math.round(item?.preco / numeroAleatorio)} sem juros`;
+        setTextoParcelas(msg);
+    }, [item?.preco]);
 
     return (
         <div className={Styles.sessaoDireita}>
@@ -48,7 +49,7 @@ export default function SessaoDireita({ item }: any) {
 
                 <div className={Styles.bodyDivDados}>
                     <span className={Styles.textoNegrito}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
-                    <span className={Styles.texto}>{gerarTextoParcelas(item?.preco)}</span>
+                    <span className={Styles.texto}>{textoParcelas}</span>
 
                     <div className={Styles.divFormasPagamento}>
                         <Pix />

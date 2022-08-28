@@ -22,6 +22,7 @@ namespace GeekSpot.Infraestructure.Data
         // Itens;
         public DbSet<ItemTipo> ItensTipos { get; set; }
         public DbSet<Item> Itens { get; set; }
+        public DbSet<ItemImagem> ItensImagens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -52,6 +52,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var todos = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
                         Include(it => it.ItensTipos).
+                        Include(ii => ii.ItensImagens).
                         OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(todos);
@@ -63,6 +64,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var porId = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
                         Include(it => it.ItensTipos).
+                        Include(ii => ii.ItensImagens).
                         Where(i => i.ItemId == id).AsNoTracking().FirstOrDefaultAsync();
 
             ItemDTO dto = _map.Map<ItemDTO>(porId);
@@ -74,6 +76,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var itens = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
                         Include(it => it.ItensTipos).
+                        Include(ii => ii.ItensImagens).
                         Where(it => it.ItemTipoId == itemTipoId).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);
@@ -85,6 +88,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var itens = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
                         Include(it => it.ItensTipos).
+                        Include(ii => ii.ItensImagens).
                         Where(it => it.UsuarioId == usuarioId).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);

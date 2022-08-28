@@ -11,10 +11,12 @@ namespace GeekSpot.Infraestructure.AutoMapper
             CreateMap<UsuarioTipo, UsuarioTipoDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioSenhaDTO>().ReverseMap();
+            CreateMap<UsuarioInformacao, UsuarioInformacaoDTO>().ReverseMap();
             CreateMap<UsuarioSenhaDTO, UsuarioDTO>().ReverseMap();
+
             CreateMap<ItemTipo, ItemTipoDTO>().ReverseMap();
             CreateMap<Item, ItemDTO>().ReverseMap();
-            CreateMap<UsuarioInformacao, UsuarioInformacaoDTO>().ReverseMap();
+            CreateMap<ItemImagem, ItemImagemDTO>().ReverseMap();
         }
     }
 }
