@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Microsoft.Extensions.Configuration;
+using Xunit;
 using Xunit.Abstractions;
 using static GeekSpot.Utils.Biblioteca;
 

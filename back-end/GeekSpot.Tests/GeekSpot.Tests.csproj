@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GeekSpot.API\GeekSpot.API.csproj" />
     <ProjectReference Include="..\GeekSpot.Utils\GeekSpot.Utils.csproj" />
   </ItemGroup>
 
