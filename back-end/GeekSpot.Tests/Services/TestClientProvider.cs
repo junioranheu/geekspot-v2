@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace GeekSpot.Tests.Services
 {
@@ -16,15 +15,6 @@ namespace GeekSpot.Tests.Services
         {
             application = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => { builder.ConfigureServices(services => { }); });
             Client = application.CreateClient();
-        }
-
-        public async Task<string> AutenticarTesteUnitario()
-        {
-            var responseAutenticar = await Client.GetAsync($"/api/Usuarios/autenticarTesteUnitario");
-            responseAutenticar.EnsureSuccessStatusCode();
-            var token = await responseAutenticar.Content.ReadAsStringAsync();
-
-            return token;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1816:Os métodos Dispose devem chamar SuppressFinalize", Justification = "<Pendente>")]
