@@ -92,6 +92,8 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
         setListaItensAleatorio(randomizarArray(listaItens));
     }, [listaItens]);
 
+    console.log(listaItens);
+
     return (
         <div className={`flexColumn ${i > 0 && 'margem3_5'}`}>
             <ModuloHeader
