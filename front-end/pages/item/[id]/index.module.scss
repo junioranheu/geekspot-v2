@@ -161,7 +161,25 @@
 @media (max-width:801px) {}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {}
+@media (max-width:600px) {
+    .wrapper {
+        // background-color: blue;
+
+        .sessaoPrincipal {
+            // background-color: red;
+
+            .sessaoEsquerda {
+                // background-color: yellow;
+                padding: 0rem 0.5rem 0.5rem 0.5rem;
+            }
+
+            .sessaoDireita {
+                // background-color: blue;
+                padding: 0rem 0.5rem 0.5rem 0.5rem;
+            }
+        }
+    }
+}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}
