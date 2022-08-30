@@ -59,7 +59,7 @@ export default function Footer() {
 
                     <Link href='/'><a>Sobre</a></Link>
                     <Link href='/'><a>Time</a></Link>
-                    <Link href='/game-out' scroll={true}><a>{CONSTS_SISTEMA.NOME_SISTEMA} em 2017<span className='efeito-new'>novo</span></a></Link>
+                    <Link href='/'><a>{CONSTS_SISTEMA.NOME_SISTEMA} em 2017<span className='efeito-new'>novo</span></a></Link>
                     <Link href='/'><a>Blog</a></Link>
                     <Link href='/'><a>Atualizações</a></Link>
                 </div>

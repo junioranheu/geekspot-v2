@@ -143,7 +143,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
-                                                    onClick={() => Router.push(`/item/${listaItens[i + 1]?.itemId}/${ajustarUrl(listaItens[i + 1]?.nome[0])}`)}
+                                                    onClick={() => Router.push(`/item/${listaItens[i + 1]?.itemId}/${ajustarUrl(listaItens[i + 1]?.nome)}`)}
                                                 />
 
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(listaItens[i + 1]?.preco, listaItens[i + 1]?.precoDesconto)}</span>

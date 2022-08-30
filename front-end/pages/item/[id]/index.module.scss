@@ -34,6 +34,29 @@
                     transition: 0.5s ease-in-out;
                 }
             }
+
+            .divListaImagens {
+                // background-color: red;
+                display: flex;
+                gap: 1rem;
+
+                .divListaImagensWrapper {
+                    // background-color: red;
+                    display: flex;
+                    flex-direction: column;
+
+                    img {
+                        border-radius: 2px 2px 0px 0px;
+                        cursor: pointer;
+                    }
+                }
+
+                .efeitoImagemSelecionada {
+                    height: 3px;
+                    border-radius: 0px 0px 2px 2px;
+                    background-color: var(--cor-principal) !important;
+                }
+            }
         }
 
         .sessaoDireita {
