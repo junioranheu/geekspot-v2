@@ -19,7 +19,7 @@ export default function SessaoEsquerda({ item }: any) {
             <div>
                 {
                     item.itensImagens?.map((item: any, i: number) => (
-                        <h1>{item.caminhoImagem}</h1>
+                        <h1 key={i}>{item.caminhoImagem}</h1>
                     ))
                 }
             </div>
