@@ -17,7 +17,9 @@ interface iParametros {
     listaItens: {
         nome: string;
         descricao: string;
-        imagem: string;
+        itensImagens: {
+            caminhoImagem: string;
+        }[];
         isAtivo: number;
         itemId: number;
         itemTipoId: number;
@@ -26,7 +28,7 @@ interface iParametros {
         usuarios: {
             usuarioId: number;
             nomeCompleto: string;
-        }
+        };
     }[];
 }
 
@@ -92,8 +94,6 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
         setListaItensAleatorio(randomizarArray(listaItens));
     }, [listaItens]);
 
-    console.log(listaItens);
-
     return (
         <div className={`flexColumn ${i > 0 && 'margem3_5'}`}>
             <ModuloHeader
@@ -112,7 +112,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                     // Tamanho grande;
                                     <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
                                         <Image
-                                            src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                            src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0]?.caminhoImagem}` : ImgCinza)}
                                             width={tamanhoGrande}
                                             height={tamanhoGrande}
                                             alt=''
@@ -127,7 +127,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                         <div className={Styles.divGrupoImagens}>
                                             <div className={Styles.wrapImagem} title={item.nome}>
                                                 <Image
-                                                    src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0].caminhoImagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
@@ -139,11 +139,11 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
 
                                             <div className={Styles.wrapImagem} title={listaItens[i + 1].nome}>
                                                 <Image
-                                                    src={(listaItens[i + 1].imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].imagem}` : ImgCinza)}
+                                                    src={(listaItens[i + 1]?.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].itensImagens[0]?.caminhoImagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
-                                                    onClick={() => Router.push(`/item/${listaItens[i + 1]?.itemId}/${ajustarUrl(listaItens[i + 1]?.nome)}`)}
+                                                    onClick={() => Router.push(`/item/${listaItens[i + 1]?.itemId}/${ajustarUrl(listaItens[i + 1]?.nome[0])}`)}
                                                 />
 
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(listaItens[i + 1]?.preco, listaItens[i + 1]?.precoDesconto)}</span>

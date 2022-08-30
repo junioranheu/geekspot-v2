@@ -6,13 +6,23 @@ import Styles from './index.module.scss';
 export default function SessaoEsquerda({ item }: any) {
     return (
         <div className={Styles.sessaoEsquerda}>
-            <Image
-                src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
-                width={500}
-                height={500}
-                alt=''
-                className={Styles.efeitoImagemHover}
-            />
+            <div>
+                <Image
+                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0]?.caminhoImagem}` : ImgCinza)}
+                    width={500}
+                    height={500}
+                    alt=''
+                    className={Styles.efeitoImagemHover}
+                />
+            </div>
+
+            <div>
+                {
+                    item.itensImagens?.map((item: any, i: number) => (
+                        <h1>{item.caminhoImagem}</h1>
+                    ))
+                }
+            </div>
         </div>
     )
 }

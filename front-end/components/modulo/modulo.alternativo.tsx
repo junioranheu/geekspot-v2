@@ -48,11 +48,11 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
 
             <ScrollContainer>
                 <div className={`${Styles.container} margem1`}>
-                    {
+                    { 
                         listaItensAleatorio?.map((item, i) => (
                             <div className={Styles.wrapImagem} title={item.nome} key={i}>
                                 <Image
-                                    src={(item.imagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.imagem}` : ImgCinza)}
+                                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0]?.caminhoImagem}` : ImgCinza)}
                                     width={500}
                                     height={500}
                                     alt=''

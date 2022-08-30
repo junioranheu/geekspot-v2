@@ -10,7 +10,7 @@ namespace GeekSpot.Infraestructure.Data
         public static async Task Initialize(Context context)
         {
             // Exclui o esquema, copia as queries, cria esquema/tabelas, popula o BD;
-            bool resetarBd = false;
+            bool resetarBd = true;
 
             if (resetarBd)
             {
@@ -5729,8 +5729,8 @@ namespace GeekSpot.Infraestructure.Data
                 await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 3, CaminhoImagem = "3-1.webp", ItemId = 3, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 4, CaminhoImagem = "4-1.webp", ItemId = 4, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 5, CaminhoImagem = "5-1.webp", ItemId = 5, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 6, CaminhoImagem = "5-2.webp", ItemId = 5, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 7, CaminhoImagem = "6-1.webp", ItemId = 6, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 6, CaminhoImagem = "6-1.webp", ItemId = 6, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 7, CaminhoImagem = "6-2.webp", ItemId = 6, IsAtivo = 1, DataRegistro = dataAgora });
 
                 // Itens do usuário @chaleco (5);
                 await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 8, CaminhoImagem = "7-1.webp", ItemId = 7, IsAtivo = 1, DataRegistro = dataAgora });
