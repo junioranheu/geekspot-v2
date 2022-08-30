@@ -23,9 +23,8 @@ export default function SessaoEsquerda({ item }: any) {
             <div className={`${Styles.divListaImagens} margem0_5`}>
                 {
                     item.itensImagens?.map((item: any, i: number) => (
-                        <div className={Styles.divListaImagensWrapper}>
+                        <div className={Styles.divListaImagensWrapper} key={i}>
                             <Image
-                                key={i}
                                 src={(item.caminhoImagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.caminhoImagem}` : ImgCinza)}
                                 width={60}
                                 height={60}
