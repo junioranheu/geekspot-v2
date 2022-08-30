@@ -14,6 +14,7 @@ namespace GeekSpot.Domain.DTO
         // Fk (De lá pra cá);
         public int ItemId { get; set; }
 
+        public int IsFotoPrincipal { get; set; } = 0;
         public int IsAtivo { get; set; } = 1;
         public DateTime? DataRegistro { get; set; } = HorarioBrasilia();
     }

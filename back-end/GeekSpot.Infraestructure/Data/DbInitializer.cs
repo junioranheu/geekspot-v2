@@ -10,7 +10,7 @@ namespace GeekSpot.Infraestructure.Data
         public static async Task Initialize(Context context)
         {
             // Exclui o esquema, copia as queries, cria esquema/tabelas, popula o BD;
-            bool resetarBd = true;
+            bool resetarBd = false;
 
             if (resetarBd)
             {
@@ -5672,7 +5672,7 @@ namespace GeekSpot.Infraestructure.Data
                 });
             }
             #endregion
-   
+
             #region seed_itens
             if (!await context.ItensTipos.AnyAsync())
             {
@@ -5724,29 +5724,29 @@ namespace GeekSpot.Infraestructure.Data
             if (!await context.ItensImagens.AnyAsync())
             {
                 // Itens do usuário @junioranheu (2);
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 1, CaminhoImagem = "1-1.webp", ItemId = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 2, CaminhoImagem = "2-1.webp", ItemId = 2, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 3, CaminhoImagem = "3-1.webp", ItemId = 3, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 4, CaminhoImagem = "4-1.webp", ItemId = 4, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 5, CaminhoImagem = "5-1.webp", ItemId = 5, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 6, CaminhoImagem = "6-1.webp", ItemId = 6, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 7, CaminhoImagem = "6-2.webp", ItemId = 6, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 1, CaminhoImagem = "1-1.webp", ItemId = 1, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 2, CaminhoImagem = "2-1.webp", ItemId = 2, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 3, CaminhoImagem = "3-1.webp", ItemId = 3, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 4, CaminhoImagem = "4-1.webp", ItemId = 4, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 5, CaminhoImagem = "5-1.webp", ItemId = 5, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 6, CaminhoImagem = "6-1.webp", ItemId = 6, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 7, CaminhoImagem = "6-2.webp", ItemId = 6, IsAtivo = 1, IsFotoPrincipal = 0, DataRegistro = dataAgora });
 
                 // Itens do usuário @chaleco (5);
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 8, CaminhoImagem = "7-1.webp", ItemId = 7, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 9, CaminhoImagem = "8-1.webp", ItemId = 8, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 10, CaminhoImagem = "9-1.webp", ItemId = 9, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 11, CaminhoImagem = "10-1.webp", ItemId = 10, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 12, CaminhoImagem = "11-1.webp", ItemId = 11, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 13, CaminhoImagem = "12-1.webp", ItemId = 12, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 14, CaminhoImagem = "12-2.webp", ItemId = 12, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 8, CaminhoImagem = "7-1.webp", ItemId = 7, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 9, CaminhoImagem = "8-1.webp", ItemId = 8, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 10, CaminhoImagem = "9-1.webp", ItemId = 9, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 11, CaminhoImagem = "10-1.webp", ItemId = 10, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 12, CaminhoImagem = "11-1.webp", ItemId = 11, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 13, CaminhoImagem = "12-1.webp", ItemId = 12, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 14, CaminhoImagem = "12-2.webp", ItemId = 12, IsAtivo = 1, IsFotoPrincipal = 0, DataRegistro = dataAgora });
 
                 // Itens do usuário @ateu (6);
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 15, CaminhoImagem = "13-1.webp", ItemId = 13, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 16, CaminhoImagem = "14-1.webp", ItemId = 14, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 17, CaminhoImagem = "15-1.webp", ItemId = 15, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 18, CaminhoImagem = "16-1.webp", ItemId = 16, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 19, CaminhoImagem = "17-1.webp", ItemId = 17, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 15, CaminhoImagem = "13-1.webp", ItemId = 13, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 16, CaminhoImagem = "14-1.webp", ItemId = 14, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 17, CaminhoImagem = "15-1.webp", ItemId = 15, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 18, CaminhoImagem = "16-1.webp", ItemId = 16, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 19, CaminhoImagem = "17-1.webp", ItemId = 17, IsAtivo = 1, IsFotoPrincipal = 1, DataRegistro = dataAgora });
             }
             #endregion
 

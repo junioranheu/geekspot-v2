@@ -112,7 +112,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                     // Tamanho grande;
                                     <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
                                         <Image
-                                            src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0]?.caminhoImagem}` : ImgCinza)}
+                                            src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
                                             width={tamanhoGrande}
                                             height={tamanhoGrande}
                                             alt=''
@@ -127,7 +127,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                                         <div className={Styles.divGrupoImagens}>
                                             <div className={Styles.wrapImagem} title={item.nome}>
                                                 <Image
-                                                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0].caminhoImagem}` : ImgCinza)}
+                                                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''
@@ -139,7 +139,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
 
                                             <div className={Styles.wrapImagem} title={listaItens[i + 1].nome}>
                                                 <Image
-                                                    src={(listaItens[i + 1]?.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].itensImagens[0]?.caminhoImagem}` : ImgCinza)}
+                                                    src={(listaItens[i + 1]?.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
                                                     height={tamanhoPequeno}
                                                     alt=''

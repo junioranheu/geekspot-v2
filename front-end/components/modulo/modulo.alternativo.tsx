@@ -52,7 +52,7 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
                         listaItensAleatorio?.map((item, i) => (
                             <div className={Styles.wrapImagem} title={item.nome} key={i}>
                                 <Image
-                                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens[0]?.caminhoImagem}` : ImgCinza)}
+                                    src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
                                     width={500}
                                     height={500}
                                     alt=''
