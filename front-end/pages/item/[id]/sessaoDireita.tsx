@@ -27,6 +27,7 @@ export default function SessaoDireita({ item }: any) {
 
     return (
         <div className={Styles.sessaoDireita}>
+             <span className={Styles.textoCinza}>{item?.itensTipos?.tipo}</span>
             <span className='titulo'>{item?.nome}</span>
 
             <div className={`${Styles.divDados} margem0_5 flexColumn`}>

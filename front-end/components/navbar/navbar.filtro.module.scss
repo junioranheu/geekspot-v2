@@ -48,10 +48,20 @@
 @media (max-width:1025px) {}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
-@media (max-width:801px) {}
+@media (max-width:801px) {
+    .divPesquisa {
+        // background-color: red;
+        width: 60%;
+    }
+}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {}
+@media (max-width:600px) {
+    .divPesquisa {
+        // background-color: red;
+        width: 70%;
+    }
+}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}

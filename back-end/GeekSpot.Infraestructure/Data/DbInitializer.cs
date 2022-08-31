@@ -5710,7 +5710,7 @@ namespace GeekSpot.Infraestructure.Data
                 await context.Itens.AddAsync(new Item() { ItemId = 8, Nome = "Violão acústico (baby)", Descricao = "xxx", Preco = 1200, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 14, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 9, Nome = "Headset pro", Descricao = "xxx", Preco = 500, PrecoDesconto = 350, UsuarioId = 5, ItemTipoId = 2, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 10, Nome = "Nintendo Switch V2", Descricao = "xxx", Preco = 1700, PrecoDesconto = 1350.99, UsuarioId = 5, ItemTipoId = 6, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.Itens.AddAsync(new Item() { ItemId = 11, Nome = "PS4", Descricao = "xxx", Preco = 3500, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 5, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.Itens.AddAsync(new Item() { ItemId = 11, Nome = "PS4", Descricao = "xxx", Preco = 3500, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 6, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 12, Nome = "Guatona Kla", Descricao = "xxx", Preco = 10000, PrecoDesconto = 9999.99, UsuarioId = 5, ItemTipoId = 1, IsAtivo = 1, DataRegistro = dataAgora });
 
                 // Itens do usuário @ateu (6);

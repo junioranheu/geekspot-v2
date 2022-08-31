@@ -7,7 +7,7 @@ import Styles from './index.module.scss';
 export default function SessaoEsquerda({ item }: any) {
 
     const [imagemSelecionada, setImagemSelecionada] = useState<string>(item.itensImagens.find((x: any) => x.isAtivo).caminhoImagem);
- 
+
     return (
         <div className={Styles.sessaoEsquerda}>
             <div>
