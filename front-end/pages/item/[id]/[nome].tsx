@@ -35,6 +35,9 @@ export default function Item({ item }: any) {
                     <SessaoDireita item={item} />
                 </div>
             </section>
+
+            {/* Espaço a mais */}
+            <div className='espacoBottom'></div>
         </Fragment>
     )
 }

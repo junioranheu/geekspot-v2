@@ -27,7 +27,7 @@ export default function SessaoDireita({ item }: any) {
 
     return (
         <div className={Styles.sessaoDireita}>
-             <span className={Styles.textoCinza}>{item?.itensTipos?.tipo}</span>
+            <span className={Styles.textoCinza}>{item?.itensTipos?.tipo}</span>
             <span className='titulo'>{item?.nome}</span>
 
             <div className={`${Styles.divDados} margem0_5 flexColumn`}>
@@ -52,11 +52,15 @@ export default function SessaoDireita({ item }: any) {
                     <span className={Styles.textoNegrito}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                     <span className={Styles.texto}>{textoParcelas}</span>
 
-                    <div className={Styles.divFormasPagamento}>
+                    <div className={`${Styles.divFormasPagamento} margem0_5`}>
                         <Pix />
                         <Visa />
                         <Mastercard />
                         <Boleto />
+                    </div>
+
+                    <div>
+                        <span className={Styles.texto}>R$ 0,99 de frete para o cep 12605-110</span>
                     </div>
 
                     <div className={Styles.botaoCustom}>

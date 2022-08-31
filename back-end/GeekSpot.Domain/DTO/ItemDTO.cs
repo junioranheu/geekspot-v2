@@ -11,6 +11,9 @@ namespace GeekSpot.Domain.DTO
 
         public string? Nome { get; set; } = null;
         public string? Descricao { get; set; } = null;
+        public string? Tamanho { get; set; } = null;
+        public string? Marca { get; set; } = null;
+        public string? Condicao { get; set; } = null;
 
         // Fk (De cá pra lá);
         [JsonIgnore]
