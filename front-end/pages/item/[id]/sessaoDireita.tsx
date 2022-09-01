@@ -6,6 +6,7 @@ import Boleto from '../../../components/svg/boleto';
 import Mastercard from '../../../components/svg/mastercard';
 import Pix from '../../../components/svg/pix';
 import Visa from '../../../components/svg/visa';
+import arredondarNumero from '../../../utils/outros/arredondarNumero';
 import definirPreco from '../../../utils/outros/definirPreco';
 import gerarNumeroAleatorio from '../../../utils/outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
@@ -22,7 +23,7 @@ export default function SessaoDireita({ item }: any) {
     const [textoParcelas, setTextoParcelas] = useState('');
     useEffect(() => {
         const numeroAleatorio = gerarNumeroAleatorio(2, 5);
-        const parcela = Math.round(item?.preco / numeroAleatorio);
+        const parcela = arredondarNumero((item?.preco / numeroAleatorio), 2);
         let msg = `Em até ${numeroAleatorio}x de R$ ${parcela} sem juros`;
 
         if (parcela === 0) {
@@ -72,7 +73,7 @@ export default function SessaoDireita({ item }: any) {
                     </div>
 
                     <div>
-                        <Cep />
+                        <Cep precoProduto={(item?.precoDesconto ?? item?.preco)} />
                     </div>
 
                     <div className={Styles.botaoCustom}>

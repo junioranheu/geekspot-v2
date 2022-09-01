@@ -3,10 +3,15 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/cep.module.scss';
 import CONSTS_CEP from '../../utils/consts/cep';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
+import arredondarNumero from '../../utils/outros/arredondarNumero';
 import { Aviso } from '../../utils/outros/aviso';
 import removerCaracter from '../../utils/outros/removerCaracter';
 
-export default function Cep() {
+interface iParametros {
+    precoProduto: number | null;
+}
+
+export default function Cep({ precoProduto }: iParametros) {
 
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
@@ -78,7 +83,7 @@ export default function Cep() {
         }
     }
 
-    function verificarFrete(cep: string) {
+    function verificarFrete(cep: string, precoProduto: number | null) {
         // console.log(cep);
         if (!cep) {
             return false;
@@ -97,10 +102,16 @@ export default function Cep() {
             return false;
         }
 
-        console.log(cepNoRangeCorreto);
+        if (!precoProduto) {
+            return false;
+        }
+
+        // Simular frete: valor simulado de frete (com base na lista de CEPs) + 1% do preço do produto;
+        const freteSimulado = cepNoRangeCorreto[4] + ((1 / 100) * precoProduto);
+        // console.log(precoProduto, freteSimulado);
 
         // Retornar mensagem;
-        const msg = `R$ 0,99 de frete para o CEP ${cep}`;
+        const msg = `R$ ${arredondarNumero(freteSimulado, 2)} de frete para o CEP ${cep}`;
         return msg;
     }
 
@@ -109,7 +120,7 @@ export default function Cep() {
             {
                 isCepOk && cep ? (
                     <div className={Styles.divInputCep}>
-                        <span className={Styles.texto}>{verificarFrete(removerCaracter(cep?.cep, '-'))}</span>
+                        <span className={Styles.texto}>{verificarFrete(removerCaracter(cep?.cep, '-'), precoProduto)}</span>
                         <span className={`${Styles.texto} cor-principal pointer`} onClick={() => { setIsCepOk(false), setData(''), setIsMostrarInputCep(true) }} ref={refSalvar}>Alterar CEP</span>
                     </div>
                 ) : (
