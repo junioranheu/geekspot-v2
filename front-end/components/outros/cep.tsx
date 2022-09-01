@@ -1,12 +1,17 @@
 import useViaCep from '@rsiqueira/use-viacep'; // https://www.npmjs.com/package/@rsiqueira/use-viacep
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/cep.module.scss';
 import CONSTS_CEP from '../../utils/consts/cep';
-import { Auth } from '../../utils/context/usuarioContext';
+import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import { Aviso } from '../../utils/outros/aviso';
+import removerCaracter from '../../utils/outros/removerCaracter';
 
 export default function Cep() {
 
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
+    const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
+
+    const refInputCep = useRef<any>(null);
     const refSalvar = useRef<any>(null);
     const [isMostrarInputCep, setIsMostrarInputCep] = useState(false);
     const [data, setData] = useState('');
@@ -22,6 +27,7 @@ export default function Cep() {
         if (cepAuth && cepAuth?.toString().length === 8) {
             setIsMostrarInputCep(true);
             setData(cepAuth?.toString());
+            setIsCepOk(true);
         }
     }, [cepAuth])
 
@@ -46,27 +52,55 @@ export default function Cep() {
 
         if (data.length === 0) {
             Aviso.warn('Nenhum <b>CEP</b> foi inserido', 5000);
+            refInputCep.current.select();
             return false;
         }
 
         if (qtdCaracteresFaltantes > 0) {
             Aviso.warn(`O CEP <b>${data}</b> é inválido... parece que ainda ${(qtdCaracteresFaltantes === 1 ? 'falta' : 'faltam')} ${qtdCaracteresFaltantes} ${(qtdCaracteresFaltantes === 1 ? 'carácter' : 'caracteres')}`, 5000);
+            refInputCep.current.select();
             return false;
         }
 
         if (error) {
             Aviso.warn(`Os dados do CEP <b>${data}</b> não foram encontrados`, 5000);
+            refInputCep.current.select();
             return false;
         }
 
-        // console.log(cep);
+        // Se passou por todas as verificações, o CEP está ok;
         setIsCepOk(true);
+
+        // Atribuir CEP ao Local Storage se o usuário estiver logado;
+        if (isAuth) {
+            const dadosUsuario = { cep: removerCaracter(cep?.cep, '-') }
+            Auth.update(dadosUsuario);
+        }
     }
 
     function verificarFrete(cep: string) {
-        console.log(CONSTS_CEP);
+        // console.log(cep);
+        if (!cep) {
+            return false;
+        }
 
-        const msg = `R$ 0,99 de frete para o cep ${cep}`;
+        // Verificar em qual CEP o parâmetro se encaixa;
+        let cepNoRangeCorreto;
+        CONSTS_CEP.forEach(element => {
+            if (cep >= element[2] && cep <= element[3]) {
+                // console.log(element);
+                cepNoRangeCorreto = element;
+            }
+        });
+
+        if (!cepNoRangeCorreto) {
+            return false;
+        }
+
+        console.log(cepNoRangeCorreto);
+
+        // Retornar mensagem;
+        const msg = `R$ 0,99 de frete para o CEP ${cep}`;
         return msg;
     }
 
@@ -74,12 +108,15 @@ export default function Cep() {
         <div className={Styles.main}>
             {
                 isCepOk && cep ? (
-                    <span className={Styles.texto}>{verificarFrete(cep?.cep)}</span>
+                    <div className={Styles.divInputCep}>
+                        <span className={Styles.texto}>{verificarFrete(removerCaracter(cep?.cep, '-'))}</span>
+                        <span className={`${Styles.texto} cor-principal pointer`} onClick={() => { setIsCepOk(false), setData(''), setIsMostrarInputCep(true) }} ref={refSalvar}>Alterar CEP</span>
+                    </div>
                 ) : (
                     isMostrarInputCep ? (
                         <div className={Styles.divInputCep}>
                             <span className={Styles.texto}>Digite seu cep</span>
-                            <input type='text' placeholder='_____-__' onChange={(e) => handleChange(e)} onKeyPress={handleKeyPress} value={data} maxLength={8} />
+                            <input type='text' placeholder='_____-__' onChange={(e) => handleChange(e)} onKeyPress={handleKeyPress} ref={refInputCep} value={data} maxLength={8} />
                             <span className={`${Styles.texto} cor-principal pointer`} onClick={() => salvarCep()} ref={refSalvar}>Verificar frete</span>
                         </div>
                     ) : (
