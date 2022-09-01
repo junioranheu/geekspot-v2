@@ -58,6 +58,7 @@ export default function SessaoEntrar() {
         };
 
         const resposta = await Fetch.postApi(url, dto, null);
+        console.log(resposta);
 
         if (resposta?.erro) {
             instrucaoErro('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!');

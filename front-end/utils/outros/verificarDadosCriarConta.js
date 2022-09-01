@@ -4,20 +4,10 @@ import { Aviso } from './aviso';
 export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha) {
     // console.log(form);
 
-    // Verificação 0;
-    if (!form) {
-        nProgress.done();
-        Aviso.warn('Preencha os dados para continuar', 5000);
-        refNomeCompleto.current.select();
-        refSenha.current.value = '';
-        refConfirmarSenha.current.value = '';
-        return false;
-    }
-
     // Verificação do nome #1: nome preenchido?;
     if (!form.nomeCompleto) {
         nProgress.done();
-        Aviso.warn('Parece que você esqueceu de colocar o seu nome', 5000);
+        Aviso.warn('Parece que você esqueceu de colocar o seu <b>nome</b>', 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -27,7 +17,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     // Verificação do nome #2: pelo menos 03 caracteres?;
     if (form.nomeCompleto.length < 3) {
         nProgress.done();
-        Aviso.warn('Seu nome não pode ter menos de 03 caracteres!', 5000);
+        Aviso.warn('Seu <b>nome</b> não pode ter menos de 03 caracteres!', 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -38,7 +28,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     var reg = new RegExp("(\\w+)(\\s+)(\\w+)");
     if (reg.test(form.nomeCompleto) === false) {
         nProgress.done();
-        Aviso.warn(form.nomeCompleto + ' é um belo nome, mas cadê seu sobrenome?', 5000);
+        Aviso.warn(`<b>${form.nomeCompleto}</b> é um belo nome, mas cadê seu sobrenome?`, 5000);
         refNomeCompleto.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -48,7 +38,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     // Verificação de e-mail #1: e-mail preenchido?;
     if (!form.email) {
         nProgress.done();
-        Aviso.warn('Parece que você esqueceu de colocar o seu e-mail', 5000);
+        Aviso.warn('Parece que você esqueceu de colocar o seu <b>e-mail</b>', 5000);
         refEmail.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -58,7 +48,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     // Verificação de e-mail #2: e-mail válido?;
     if (checarEmail(form.email) === false) {
         nProgress.done();
-        Aviso.warn('Parece que esse e-mail não é válido...', 5000);
+        Aviso.warn('Parece que esse <b>e-mail</b> não é válido...', 5000);
         refEmail.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -68,7 +58,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     // Verificação de nome de usuário #1: nome de usuário preenchido?;
     if (!form.nomeUsuarioSistema) {
         nProgress.done();
-        Aviso.warn('Parece que você esqueceu de colocar um nome de usuário', 5000);
+        Aviso.warn('Parece que você esqueceu de colocar um <b>nome de usuário</b>', 5000);
         refNomeUsuario.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -78,7 +68,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     // Verificação de nome de usuário #2: pelo menos 03 caracteres?;
     if (form.nomeUsuarioSistema.length > 20 || form.nomeUsuarioSistema.length < 4) {
         nProgress.done();
-        Aviso.warn('O nome de usuário não pode ter não pode ter menos de 4 e nem mais de 10 caracteres, e agora está com ' + form.nomeUsuarioSistema.length + '!', 5000);
+        Aviso.warn('O <b>nome de usuário</b> não pode ter não pode ter menos de 4 e nem mais de 10 caracteres, e agora está com ' + form.nomeUsuarioSistema.length + '!', 5000);
         refNomeUsuario.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -90,7 +80,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
         // Verificação de senha #1: senha preenchida?;
         if (!form.senha) {
             nProgress.done();
-            Aviso.warn('Parece que você esqueceu de colocar sua senha', 5000);
+            Aviso.warn('Parece que você esqueceu de colocar sua <b>senha</b>', 5000);
             refSenha.current.select();
             return false;
         }
@@ -104,7 +94,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
         // Checar se os dois campos de senha coincidem;
         if (form.senha !== form.confirmarSenha) {
             nProgress.done();
-            Aviso.warn('As senhas não estão idênticas! Tente novamente', 5000);
+            Aviso.warn('As <b>senhas</b> não estão idênticas! Tente novamente', 5000);
             refSenha.current.select();
             refSenha.current.value = '';
             refConfirmarSenha.current.value = '';
@@ -121,7 +111,7 @@ function checarSenha(senha, form, refSenha, refConfirmarSenha) {
     // var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
 
     if (senha.length < 6) {
-        Aviso.warn('Sua senha deve ter pelo menos 06 caracteres', 6000);
+        Aviso.warn('Sua <b>senha</b> deve ter pelo menos 06 caracteres', 6000);
         refSenha.current.select();
         refSenha.current.value = '';
         refConfirmarSenha.current.value = '';
@@ -132,7 +122,7 @@ function checarSenha(senha, form, refSenha, refConfirmarSenha) {
             // Aviso.success('Sua senha é bem forte!', 6000);
             return true;
         } else {
-            Aviso.warn('Sua senha não é forte o suficiente<br/>Lembre-se de usar: letras e números!', 6000);
+            Aviso.warn('Sua <b>senha</b> não é forte o suficiente<br/>Lembre-se de usar: letras e números!', 6000);
             refSenha.current.select();
             refSenha.current.value = '';
             refConfirmarSenha.current.value = '';

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Botao from '../../../components/outros/botao';
+import Cep from '../../../components/outros/cep';
 import FlipClockCountdown from '../../../components/outros/flipClockCountdown';
 import Boleto from '../../../components/svg/boleto';
 import Mastercard from '../../../components/svg/mastercard';
@@ -21,7 +22,18 @@ export default function SessaoDireita({ item }: any) {
     const [textoParcelas, setTextoParcelas] = useState('');
     useEffect(() => {
         const numeroAleatorio = gerarNumeroAleatorio(2, 5);
-        const msg = `Em até ${numeroAleatorio}x de R$ ${Math.round(item?.preco / numeroAleatorio)} sem juros`;
+        const parcela = Math.round(item?.preco / numeroAleatorio);
+        let msg = `Em até ${numeroAleatorio}x de R$ ${parcela} sem juros`;
+
+        if (parcela === 0) {
+            msg = '';
+        }
+
+        const verificarSeTotalEMaiorQueOPreco = (numeroAleatorio * parcela) > item?.preco;
+        if (verificarSeTotalEMaiorQueOPreco) {
+            msg = '';
+        }
+
         setTextoParcelas(msg);
     }, [item?.preco]);
 
@@ -50,7 +62,7 @@ export default function SessaoDireita({ item }: any) {
 
                 <div className={Styles.bodyDivDados}>
                     <span className={Styles.textoNegrito}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
-                    <span className={Styles.texto}>{textoParcelas}</span>
+                    {textoParcelas && <span className={Styles.texto}>{textoParcelas}</span>}
 
                     <div className={`${Styles.divFormasPagamento} margem0_5`}>
                         <Pix />
@@ -60,7 +72,7 @@ export default function SessaoDireita({ item }: any) {
                     </div>
 
                     <div>
-                        <span className={Styles.texto}>R$ 0,99 de frete para o cep 12605-110</span>
+                        <Cep />
                     </div>
 
                     <div className={Styles.botaoCustom}>

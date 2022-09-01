@@ -15,10 +15,10 @@ namespace GeekSpot.Domain.DTO
         public DateTime DataAniversario { get; set; } 
         public string? CPF { get; set; } = null;
         public string? Telefone { get; set; } = null;
-        public string? Rua { get; set; } = null;
-        public string? NumeroResidencia { get; set; } = null;
+
         public string? CEP { get; set; } = null;
-        public string? Bairro { get; set; } = null;
+        public string? NumeroResidencia { get; set; } = null;
+        public string? ReferenciaLocal { get; set; } = null;
 
         public string? TituloLojinha { get; set; } = null;
         public string? DescricaoLojinha { get; set; } = null;
