@@ -16,7 +16,7 @@ export default function Padrao({ Component, pageProps }: any) {
     const router = useRouter();
     const tamanhoTela = useWindowSize();
 
-    const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
     // Verificar se o token ainda é válido;
