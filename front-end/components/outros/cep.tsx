@@ -1,5 +1,5 @@
 import useViaCep from '@rsiqueira/use-viacep'; // https://www.npmjs.com/package/@rsiqueira/use-viacep
-import { useContext, useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/cep.module.scss';
 import CONSTS_CEP from '../../utils/consts/cep';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
@@ -111,12 +111,12 @@ export default function Cep({ precoProduto }: iParametros) {
         // console.log(precoProduto, freteSimulado);
 
         // Retornar mensagem;
-        const msg = `R$ ${arredondarNumero(freteSimulado, 2)} de frete para o CEP ${cep}`;
+        const msg = `R$ ${arredondarNumero(freteSimulado, 2)} de frete para ${cep}`;
         return msg;
     }
 
     return (
-        <div className={Styles.main}>
+        <Fragment>
             {
                 isCepOk && cep ? (
                     <div className={Styles.divInputCep}>
@@ -131,10 +131,12 @@ export default function Cep({ precoProduto }: iParametros) {
                             <span className={`${Styles.texto} cor-principal pointer`} onClick={() => salvarCep()} ref={refSalvar}>Verificar frete</span>
                         </div>
                     ) : (
-                        <span className={`${Styles.texto} cor-principal-hover pointer`} onClick={() => setIsMostrarInputCep(true)}>Verificar frete</span>
+                        <div className={Styles.divInputCep}>
+                            <span className={`${Styles.texto} cor-principal-hover pointer`} onClick={() => setIsMostrarInputCep(true)}>Verificar frete</span>
+                        </div>
                     )
                 )
             }
-        </div>
+        </Fragment>
     )
 }

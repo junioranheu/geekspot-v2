@@ -1,24 +1,20 @@
-.main {
-    // background-color: red;
+.divInputCep {
+    // background-color: blue;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
 
-    .divInputCep {
-        // background-color: blue;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        width: fit-content;
+    input {
+        // background-color: coral;
+        border: 0;
+        color: var(--cinza);
+        font-weight: 400;
+        font-size: 0.7rem;
+        width: 3.5rem;
 
-        input {
-            // background-color: coral;
-            border: 0;
-            color: var(--cinza);
-            font-weight: 400;
-            font-size: 0.7rem;
-            width: 4rem;
-
-            &:focus {
-                outline: none;
-            }
+        &:focus {
+            outline: none;
         }
     }
 
