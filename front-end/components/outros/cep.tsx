@@ -1,6 +1,7 @@
 import useViaCep from '@rsiqueira/use-viacep'; // https://www.npmjs.com/package/@rsiqueira/use-viacep
 import { useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/cep.module.scss';
+import CONSTS_CEP from '../../utils/consts/cep';
 import { Auth } from '../../utils/context/usuarioContext';
 import { Aviso } from '../../utils/outros/aviso';
 
@@ -14,7 +15,7 @@ export default function Cep() {
 
     const cepAuth = Auth?.get()?.cep ?? '';
     useEffect(() => {
-        console.log(cepAuth?.toString());
+        // console.log(cepAuth?.toString());
         // console.log(cepAuth?.toString().length);
 
         // Se o usuário já tiver um cep, use-o como referência;
@@ -63,6 +64,8 @@ export default function Cep() {
     }
 
     function verificarFrete(cep: string) {
+        console.log(CONSTS_CEP);
+
         const msg = `R$ 0,99 de frete para o cep ${cep}`;
         return msg;
     }
