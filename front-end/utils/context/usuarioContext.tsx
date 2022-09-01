@@ -32,7 +32,8 @@ export const Auth = {
             token: data.token,
             dataAutenticacao: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
             genero: data.genero,
-            fotoPerfilAlternativa: data.fotoPerfilAlternativa
+            fotoPerfilAlternativa: data.fotoPerfilAlternativa,
+            cep: data.cep
         };
 
         let parsedData = JSON.stringify(dadosUsuario);
@@ -67,6 +68,7 @@ export const Auth = {
             dataAutenticacao: (data.dataAutenticacao ?? Auth.get().dataAutenticacao),
             genero: (data.genero ?? Auth.get().genero),
             fotoPerfilAlternativa: (data.fotoPerfilAlternativa ?? Auth.get().fotoPerfilAlternativa),
+            cep: (data.cep ?? Auth.get().cep)
         };
 
         let parsedData = JSON.stringify(dadosUsuario);

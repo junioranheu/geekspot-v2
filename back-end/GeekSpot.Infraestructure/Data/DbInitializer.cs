@@ -53,11 +53,10 @@ namespace GeekSpot.Infraestructure.Data
                 {
                     UsuarioInformacaoId = 1,
                     UsuarioId = 2,
-                    Genero = 1,
                     DataAniversario = dataAgora,
                     CPF = "44571955880",
                     Telefone = "12 98271-3939",
-                    CEP = "12605-110",
+                    CEP = 12605110,
                     NumeroResidencia = "480",
                     ReferenciaLocal = "Atrás da antiga fábrica G.A",
                     DataUltimaAlteracao = null,

@@ -58,9 +58,7 @@ export default function SessaoEntrar() {
         };
 
         const resposta = await Fetch.postApi(url, dto, null);
-        console.log(resposta);
-
-        if (resposta?.erro) {
+        if (!resposta || resposta?.erro) {
             instrucaoErro('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!');
             return false;
         }
@@ -68,6 +66,7 @@ export default function SessaoEntrar() {
         // Inserir o token no json final para gravar localmente a sessão do login;
         resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
         resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
+        resposta.cep = resposta?.usuariosInformacoes?.cep ?? '';
         Auth.set(resposta);
 
         // Atribuir autenticação ao contexto de usuário;

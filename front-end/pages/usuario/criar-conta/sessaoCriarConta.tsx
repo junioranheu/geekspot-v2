@@ -82,7 +82,7 @@ export default function SessaoCriarConta() {
 
         const resposta = await Fetch.postApi(url, dto, null);
 
-        if (resposta?.erro) {
+        if (!resposta || resposta?.erro) {
             nProgress.done();
             refEmail.current.select();
             refSenha.current.value = '';
@@ -95,6 +95,7 @@ export default function SessaoCriarConta() {
 
         resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
         resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
+        resposta.cep = '';
         Auth.set(resposta);
 
         // Enviar e-mail de "bem-vindo";

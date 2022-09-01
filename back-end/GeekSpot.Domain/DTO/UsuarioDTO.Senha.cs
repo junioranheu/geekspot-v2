@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Domain.DTO
@@ -23,5 +24,9 @@ namespace GeekSpot.Domain.DTO
         public DateTime ValidadeCodigoVerificacao { get; set; }
         public string? HashUrlTrocarSenha { get; set; } = null;
         public DateTime ValidadeHashUrlTrocarSenha { get; set; }
+
+        // Fk (De cá pra lá);
+        [JsonIgnore]
+        public UsuarioInformacaoDTO? UsuariosInformacoes { get; set; }
     }
 }

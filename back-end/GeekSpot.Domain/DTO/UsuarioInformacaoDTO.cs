@@ -11,12 +11,11 @@ namespace GeekSpot.Domain.DTO
         // Fk (De lá pra cá);
         public int UsuarioId { get; set; }
 
-        public int Genero { get; set; }
         public DateTime DataAniversario { get; set; } 
         public string? CPF { get; set; } = null;
         public string? Telefone { get; set; } = null;
 
-        public string? CEP { get; set; } = null;
+        public int? CEP { get; set; } = null;
         public string? NumeroResidencia { get; set; } = null;
         public string? ReferenciaLocal { get; set; } = null;
 
