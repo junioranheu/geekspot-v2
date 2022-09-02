@@ -325,12 +325,12 @@ select {
 /* =-=-=-=-=-=-=-=-=-=-= react-medium-image-zoom =-=-=-=-=-=-=-=-=-=-= */
 dialog[aria-labelledby*=rmiz-modal-img] {
     div[data-rmiz-modal-overlay=visible]{
-        background-color: var(--preto) !important;
+        background-color: var(--branco) !important;
     }
 
     button {
         display: none !important;
-        background-color: var(--branco);
+        background-color: var(--preto);
 
         svg {
             fill: var(--cor-principal)
