@@ -1,4 +1,3 @@
 https://www.enjoei.com.br/
 
 --
-permitir que o modulo principal diversifique a ordem dos itens menores
