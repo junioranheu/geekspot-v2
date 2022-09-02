@@ -323,13 +323,13 @@ select {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= react-medium-image-zoom =-=-=-=-=-=-=-=-=-=-= */
-dialog[aria-labelledby=rmiz-modal-img-31d6b05369cf] {
+dialog[aria-labelledby*=rmiz-modal-img] {
     div[data-rmiz-modal-overlay=visible]{
         background-color: var(--preto) !important;
     }
 
     button {
-        display: none;
+        display: none !important;
         background-color: var(--branco);
 
         svg {
