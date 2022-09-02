@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/react-medium-image-zoom
+import 'react-medium-image-zoom/dist/styles.css';
 import ImgCinza from '../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../utils/data/constUpload';
 import Styles from './index.module.scss';
@@ -11,13 +13,15 @@ export default function SessaoEsquerda({ item }: any) {
     return (
         <div className={Styles.sessaoEsquerda}>
             <div>
-                <Image
-                    src={(imagemSelecionada ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${imagemSelecionada}` : ImgCinza)}
-                    width={500}
-                    height={500}
-                    alt=''
-                    className={Styles.efeitoImagemHover}
-                />
+                <Zoom>
+                    <Image
+                        src={(imagemSelecionada ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${imagemSelecionada}` : ImgCinza)}
+                        width={500}
+                        height={500}
+                        alt=''
+                        className={Styles.efeitoImagemHover}
+                    />
+                </Zoom>
             </div>
 
             {

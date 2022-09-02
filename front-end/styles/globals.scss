@@ -322,6 +322,22 @@ select {
     }
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= react-medium-image-zoom =-=-=-=-=-=-=-=-=-=-= */
+dialog[aria-labelledby=rmiz-modal-img-31d6b05369cf] {
+    div[data-rmiz-modal-overlay=visible]{
+        background-color: var(--preto) !important;
+    }
+
+    button {
+        display: none;
+        background-color: var(--branco);
+
+        svg {
+            fill: var(--cor-principal)
+        }
+    }
+}
+
 /* =-=-=-=-=-=-=-=-=-=-=-=- Geral =-=-=-=-=-=-=-=-=-=-=-=- */
 .flexColumn {
     /* background-color: pink; */
