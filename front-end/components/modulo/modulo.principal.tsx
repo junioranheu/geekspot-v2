@@ -13,7 +13,8 @@ interface iParametros {
     i: number;
     usuarioId: number;
     usuarioNomeSistema: string;
-    descricao: string;
+    titulo: string | null;
+    descricao: string | null;
     listaItens: {
         nome: string;
         descricao: string;
@@ -32,7 +33,7 @@ interface iParametros {
     }[];
 }
 
-export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, descricao, listaItens }: iParametros) {
+export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, titulo, descricao, listaItens }: iParametros) {
     const tamanhoGrande = 406;
     const tamanhoPequeno = 196;
 
@@ -100,6 +101,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                 i={i}
                 usuarioId={usuarioId}
                 usuarioNomeSistema={usuarioNomeSistema}
+                titulo={titulo}
                 descricao={descricao}
                 textoTagTitle='Ver tudo'
             />

@@ -9,11 +9,12 @@ interface iParametros {
     i: number;
     usuarioId: number;
     usuarioNomeSistema: string;
-    descricao: string;
+    titulo: string | null;
+    descricao: string | null;
     textoTagTitle: string;
 }
 
-export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, descricao, textoTagTitle }: iParametros) {
+export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, titulo, descricao, textoTagTitle }: iParametros) {
 
     const [fraseAleatoria, setFraseAleatoria] = useState('');
     useEffect(() => {
@@ -24,7 +25,7 @@ export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, descric
         <div className='flexRow'>
             <div className='flexColumn'>
                 <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
-                    Itens do usuário @{usuarioNomeSistema}
+                    {titulo ?? `Itens do usuário @${usuarioNomeSistema}`}
                 </b>
 
                 <span className='texto'>{descricao}</span>

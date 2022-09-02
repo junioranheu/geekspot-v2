@@ -13,7 +13,8 @@ interface iParametros {
     i: number;
     usuarioId: number;
     usuarioNomeSistema: string;
-    descricao: string;
+    titulo: string | null;
+    descricao: string | null;
     listaItens: {
         nome: string;
         descricao: string;
@@ -30,7 +31,7 @@ interface iParametros {
     }[];
 }
 
-export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, descricao, listaItens }: iParametros) {
+export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, titulo, descricao, listaItens }: iParametros) {
 
     const [listaItensAleatorio, setListaItensAleatorio] = useState<Array<any>>([]);
     useEffect(() => {
@@ -43,13 +44,14 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
                 i={i}
                 usuarioId={usuarioId}
                 usuarioNomeSistema={usuarioNomeSistema}
+                titulo={titulo}
                 descricao={descricao}
                 textoTagTitle='Ver tudo'
             />
 
             <ScrollContainer>
                 <div className={`${Styles.container} margem1`}>
-                    { 
+                    {
                         listaItensAleatorio?.map((item, i) => (
                             <div className={Styles.wrapImagem} title={item.nome} key={i}>
                                 <Image
