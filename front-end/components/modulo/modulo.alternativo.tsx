@@ -44,6 +44,7 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, de
                 usuarioId={usuarioId}
                 usuarioNomeSistema={usuarioNomeSistema}
                 descricao={descricao}
+                textoTagTitle='Ver tudo'
             />
 
             <ScrollContainer>

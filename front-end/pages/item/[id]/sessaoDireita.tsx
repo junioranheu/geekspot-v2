@@ -24,7 +24,7 @@ export default function SessaoDireita({ item }: any) {
     useEffect(() => {
         const numeroAleatorio = gerarNumeroAleatorio(2, 5);
         const parcela = arredondarNumero((item?.preco / numeroAleatorio), 2);
-        let msg = `Em até ${numeroAleatorio}x de R$ ${parcela} sem juros`;
+        let msg = `Em até ${numeroAleatorio}x de R$ ${parcela.toFixed(2)} sem juros`;
 
         if (parcela === 0) {
             msg = '';
