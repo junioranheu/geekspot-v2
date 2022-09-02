@@ -51,6 +51,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             var todos = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
                         Where(i => i.IsAtivo == 1).
@@ -64,6 +65,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             var porId = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
                         Where(i => i.IsAtivo == 1).
@@ -77,6 +79,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             var itens = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
                         Where(i => i.IsAtivo == 1).
@@ -90,6 +93,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             var itens = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
                         Where(i => i.IsAtivo == 1).

@@ -15,6 +15,8 @@ import randomizarArray from '../utils/outros/randomizarArray';
 export default function Home({ listaItens }: any) {
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
+    console.log(listaItens);
+
     const [listaItensRandom, setListaItensRandom] = useState<any>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -47,7 +49,7 @@ export default function Home({ listaItens }: any) {
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}
                                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                                        descricao='Isso é apenas um teste'
+                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.descricaoLojinha}
                                         listaItens={item}
                                     />
                                 ) : (
@@ -55,7 +57,7 @@ export default function Home({ listaItens }: any) {
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}
                                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                                        descricao='Isso é apenas um teste'
+                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.descricaoLojinha}
                                         listaItens={item}
                                     />
                                 )
