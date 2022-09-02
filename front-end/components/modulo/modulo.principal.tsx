@@ -101,6 +101,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, desc
                 usuarioId={usuarioId}
                 usuarioNomeSistema={usuarioNomeSistema}
                 descricao={descricao}
+                textoTagTitle='Ver tudo'
             />
 
             <div className={`${Styles.container} margem1`}>

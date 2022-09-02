@@ -10,9 +10,10 @@ interface iParametros {
     usuarioId: number;
     usuarioNomeSistema: string;
     descricao: string;
+    textoTagTitle: string;
 }
 
-export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, descricao }: iParametros) {
+export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, descricao, textoTagTitle }: iParametros) {
 
     const [fraseAleatoria, setFraseAleatoria] = useState('');
     useEffect(() => {
@@ -29,7 +30,7 @@ export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, descric
                 <span className='texto'>{descricao}</span>
             </div>
 
-            <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
+            <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)} title={textoTagTitle}>
                 {fraseAleatoria}
                 <Seta width='1rem' />
             </div>
