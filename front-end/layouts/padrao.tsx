@@ -5,7 +5,7 @@ import Footer from '../components/footer/footer';
 import NavbarMobile from '../components/navbar/navbar.mobile';
 import NavbarPadrao from '../components/navbar/navbar.padrao';
 import NavbarSmall from '../components/navbar/navbar.small';
-import useWindowSize from '../hooks/useWindowSize';
+import useWindowSize from '../hooks/outros/useWindowSize';
 import CONSTS_SISTEMA from '../utils/consts/sistema';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
 import { Aviso } from '../utils/outros/aviso';

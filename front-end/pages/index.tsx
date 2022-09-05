@@ -1,10 +1,13 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import Carousel from '../components/carousel/carousel';
 import ModuloAlternativo from '../components/modulo/modulo.alternativo';
 import ModuloPrincipal from '../components/modulo/modulo.principal';
 import CarouselDois from '../static/image/carousel/dois.webp';
+import CarouselDoisBlack from '../static/image/carousel/dois_black.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
+import CarouselUmBlack from '../static/image/carousel/um_black.webp';
 import CONSTS_SISTEMA from '../utils/consts/sistema';
+import { ModoDarkContext } from '../utils/context/modoDarkContext';
 import CONSTS_ITENS from '../utils/data/constItens';
 import CONSTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
@@ -14,6 +17,9 @@ import randomizarArray from '../utils/outros/randomizarArray';
 
 export default function Home({ listaItens }: any) {
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+
+    const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
+    const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 
     const [listaItensRandom, setListaItensRandom] = useState<any>();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -32,8 +38,8 @@ export default function Home({ listaItens }: any) {
                 isLoop={true}
                 isShowPagination={false}
                 listaSlides={[
-                    { imagem: CarouselUm, url: '/xxx' },
-                    { imagem: CarouselDois, url: '/xxx' }
+                    { imagem: (isModoDark ? CarouselUmBlack : CarouselUm), url: '/xxx' },
+                    { imagem: (isModoDark ? CarouselDoisBlack : CarouselDois), url: '/xxx' }
                 ]}
             />
 

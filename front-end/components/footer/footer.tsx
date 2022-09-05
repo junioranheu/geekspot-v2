@@ -8,6 +8,7 @@ import { ModoDarkContext, StorageModoDark } from '../../utils/context/modoDarkCo
 import Styles from './footer.module.scss';
 
 export default function Footer() {
+    
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
     const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
     const [teste, setTeste] = [modoDarkContext?.testeContext[0], modoDarkContext?.testeContext[1]];
