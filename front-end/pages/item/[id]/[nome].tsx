@@ -22,7 +22,7 @@ export default function Item({ item }: any) {
     if (!isLoaded) {
         return false;
     }
-
+ 
     return (
         <Fragment>
             <Head>

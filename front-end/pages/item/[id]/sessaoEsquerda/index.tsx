@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/react-medium-image-zoom
 import 'react-medium-image-zoom/dist/styles.css';
-import ImgCinza from '../../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../../utils/data/constUpload';
+import ImgCinza from '../../../../static/image/outros/cinza.webp';
+import CONSTS_UPLOAD from '../../../../utils/data/constUpload';
 import Styles from './index.module.scss';
 
 export default function SessaoEsquerda({ item }: any) {
@@ -20,6 +20,7 @@ export default function SessaoEsquerda({ item }: any) {
                         height={500}
                         alt=''
                         className={Styles.efeitoImagemHover}
+                        title={`Visualizar ${item.nome.toLowerCase()}`}
                     />
                 </Zoom>
             </div>

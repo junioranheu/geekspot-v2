@@ -36,7 +36,7 @@ export default function Home({ listaItens }: any) {
         <main className='paddingPadrao margem3_5'>
             <Carousel
                 isLoop={true}
-                isShowPagination={false}
+                isShowPagination={true}
                 listaSlides={[
                     { imagem: (isModoDark ? CarouselUmBlack : CarouselUm), url: '/xxx' },
                     { imagem: (isModoDark ? CarouselDoisBlack : CarouselDois), url: '/xxx' }

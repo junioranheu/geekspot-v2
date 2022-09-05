@@ -1,0 +1,81 @@
+.sessaoEsquerda {
+    // background-color: yellow;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+        border-radius: 10px;
+    }
+
+    .efeitoImagemHover {
+        border-radius: 5px;
+        cursor: pointer;
+        filter: grayscale(10%);
+        /* filter: grayscale(100%) blur(0.5px); */
+        transition: 0.5s ease-in-out;
+
+        &:hover {
+            // filter: grayscale(0%) blur(0px) contrast(110%);
+            // transform: scale(1.01);
+            filter: grayscale(0%) blur(0px) contrast(101%);
+            transition: 0.5s ease-in-out;
+        }
+    }
+
+    .divListaImagens {
+        // background-color: red;
+        display: flex;
+        gap: 1rem;
+
+        .divListaImagensWrapper {
+            // background-color: red;
+            display: flex;
+            flex-direction: column;
+
+            img {
+                border-radius: 2px 2px 0px 0px;
+                cursor: pointer;
+            }
+        }
+
+        .efeitoImagemSelecionada {
+            height: 3px;
+            border-radius: 0px 0px 2px 2px;
+            background-color: var(--cor-principal) !important;
+        }
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+@media (max-width:1600px) {
+    .wrapper {
+        .sessaoPrincipal {
+            // background-color: red;
+            width: 100%;
+        }
+    }
+}
+
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {
+
+    .sessaoEsquerda {
+        // background-color: yellow;
+        padding: 0rem 0.5rem 0.5rem 0.5rem;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}
