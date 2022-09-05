@@ -13,8 +13,9 @@
         transition: 0.5s ease-in-out;
 
         &:hover {
-            filter: grayscale(0%) blur(0px) contrast(110%);
-            transform: scale(1.01);
+            // filter: grayscale(0%) blur(0px) contrast(110%);
+            // transform: scale(1.01);
+            filter: grayscale(0%) blur(0px) contrast(101%);
             transition: 0.5s ease-in-out;
         }
     }

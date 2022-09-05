@@ -58,10 +58,10 @@ export default function Footer() {
                     <span className={Styles.tituloSessao}>{CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
                     <Link href='/'><a>Sobre</a></Link>
-                    <Link href='/'><a>Time</a></Link>
-                    <Link href='/'><a>{CONSTS_SISTEMA.NOME_SISTEMA} em 2017<span className='efeito-new'>novo</span></a></Link>
                     <Link href='/'><a>Blog</a></Link>
                     <Link href='/'><a>Atualizações</a></Link>
+                    <Link href='/'><a>Time</a></Link>
+                    <Link href='/'><a>{CONSTS_SISTEMA.NOME_SISTEMA} v.1<span className='efeito-new'>novo</span></a></Link>
                 </div>
 
                 <div className={Styles.sessao}>
@@ -85,10 +85,10 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>Sobre</span>
 
+                    <Link href='/'><a>Legal</a></Link>
                     <Link href='/'><a>Comunidade</a></Link>
                     <Link href='/'><a>Empresa</a></Link>
                     <Link href='/'><a>Carreiras</a></Link>
-                    <Link href='/'><a>Legal</a></Link>
                 </div>
 
                 <div className={Styles.sessao}>
