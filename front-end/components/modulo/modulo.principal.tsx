@@ -24,8 +24,8 @@ interface iParametros {
         isAtivo: number;
         itemId: number;
         itemTipoId: number;
-        preco: string;
-        precoDesconto: string;
+        preco: number;
+        precoDesconto: number | null;
         usuarios: {
             usuarioId: number;
             nomeCompleto: string;

@@ -10,9 +10,10 @@ import arredondarNumero from '../../../../utils/outros/arredondarNumero';
 import definirPreco from '../../../../utils/outros/definirPreco';
 import gerarNumeroAleatorio from '../../../../utils/outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
+import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function DivDados1({ item }: any) {
+export default function DivDados1({ item }: iItem) {
 
     const [dataAlvo, setDataAlvo] = useState('');
     useEffect(() => {

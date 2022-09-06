@@ -1,13 +1,21 @@
+import { Fragment } from 'react';
+import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function DivDados2({ item }: any) {
+export default function DivDados2({ item }: iItem) {
     return (
         <div className={`${Styles.divDados2} margem1_5 flexColumn`}>
-            <div className={`${Styles.texto} flexColumn`}>
-                <span>{(item.descricao ?? '-')}</span>
-            </div>
+            {
+                item.descricao && (
+                    <Fragment>
+                        <div className={`${Styles.texto} flexColumn`}>
+                            <span>{(item.descricao ?? '-')}</span>
+                        </div>
 
-            <span className='separadorHorizontal'></span>
+                        <span className='separadorHorizontal'></span>
+                    </Fragment>
+                )
+            }
 
             <div className={Styles.divDados2Interna}>
                 <div className='flexColumn'>

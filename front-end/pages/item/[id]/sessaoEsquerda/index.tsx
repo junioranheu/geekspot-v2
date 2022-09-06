@@ -4,11 +4,13 @@ import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/rea
 import 'react-medium-image-zoom/dist/styles.css';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../utils/data/constUpload';
+import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function SessaoEsquerda({ item }: any) {
+export default function SessaoEsquerda({ item }: iItem) {
 
-    const [imagemSelecionada, setImagemSelecionada] = useState<string>(item.itensImagens.find((x: any) => x.isAtivo).caminhoImagem);
+    // @ts-ignore;
+    const [imagemSelecionada, setImagemSelecionada] = useState<string>(item?.itensImagens?.find((x: any) => x.isAtivo)?.caminhoImagem);
 
     return (
         <div className={Styles.sessaoEsquerda}>
@@ -26,7 +28,7 @@ export default function SessaoEsquerda({ item }: any) {
             </div>
 
             {
-                item.itensImagens?.length > 1 && (
+                item?.itensImagens && item?.itensImagens?.length > 1 && (
                     <div className={`${Styles.divListaImagens} margem0_5`}>
                         {
                             item.itensImagens?.map((item: any, i: number) => (

@@ -6,11 +6,12 @@ import CONSTS_ITENS from '../../../utils/data/constItens';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
+import iItem from '../../../utils/types/item';
 import Styles from './index.module.scss';
 import SessaoDireita from './sessaoDireita';
 import SessaoEsquerda from './sessaoEsquerda';
 
-export default function Item({ item }: any) {
+export default function Item({ item }: iItem) {
     // console.log(item);
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
@@ -22,7 +23,7 @@ export default function Item({ item }: any) {
     if (!isLoaded) {
         return false;
     }
- 
+
     return (
         <Fragment>
             <Head>
@@ -69,7 +70,7 @@ export async function getStaticProps(context: any) {
 
     // Item;
     const url = `${CONSTS_ITENS.API_URL_GET_POR_ID}/${id}`;
-    const item = await Fetch.getApi(url, null);
+    const item = await Fetch.getApi(url, null) as iItem;
     // console.log(item);
 
     return {

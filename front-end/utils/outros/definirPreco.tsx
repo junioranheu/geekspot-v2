@@ -1,4 +1,4 @@
-export default function definirPreco(preco: string, precoDesconto: string) {
+export default function definirPreco(preco: number, precoDesconto: number | null) {
     let precoFinal = `R$ ${preco}`;
 
     if (precoDesconto) {

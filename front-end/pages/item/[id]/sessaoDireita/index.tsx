@@ -1,9 +1,10 @@
+import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 import DivBotoes from './sessaoDireita.divBotoes';
 import DivDados1 from './sessaoDireita.divDados1';
 import DivDados2 from './sessaoDireita.divDados2';
 
-export default function SessaoDireita({ item }: any) {
+export default function SessaoDireita({ item }: iItem) {
     return (
         <div className={Styles.sessaoDireita}>
             <span className={Styles.textoCinza}>{item?.itensTipos?.tipo}</span>
