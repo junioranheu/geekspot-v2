@@ -12,6 +12,8 @@ export default function SessaoDireita({ item }: any) {
             <DivDados1 item={item} />
             <DivBotoes item={item} />
             <DivDados2 item={item} />
+            <span className='separadorHorizontal'></span>
+            <span>SVG DE SEGURANÇA AQUI</span>
         </div>
     )
 }

@@ -3,11 +3,11 @@ import Styles from './index.module.scss';
 export default function DivDados2({ item }: any) {
     return (
         <div className={`${Styles.divDados2} margem1_5 flexColumn`}>
-            <div className='flexColumn'>
+            <div className={`${Styles.texto} flexColumn`}>
                 <span>{(item.descricao ?? '-')}</span>
             </div>
 
-            <span className={Styles.separadorHorizontal}></span>
+            <span className='separadorHorizontal'></span>
 
             <div className={Styles.divDados2Interna}>
                 <div className='flexColumn'>

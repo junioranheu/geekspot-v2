@@ -48,14 +48,6 @@
         justify-content: center;
         align-items: center;
 
-        .separadorHorizontal {
-            border-top: 1px solid var(--bege);
-            height: 1px;
-            width: 90%;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
         .divDados2Interna {
             // background-color: red;
             width: 100%;
@@ -73,10 +65,12 @@
                     &:nth-child(1) {
                         // background-color: blue;
                         font-weight: 600;
+                        color: var(--preto);
                     }
 
                     &:nth-child(2) {
                         // background-color: coral;     
+                        color: var(--preto);
                     }
                 }
             }

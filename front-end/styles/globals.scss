@@ -324,7 +324,7 @@ select {
 
 /* =-=-=-=-=-=-=-=-=-=-= react-medium-image-zoom =-=-=-=-=-=-=-=-=-=-= */
 dialog[aria-labelledby*=rmiz-modal-img] {
-    div[data-rmiz-modal-overlay=visible]{
+    div[data-rmiz-modal-overlay=visible] {
         background-color: var(--branco) !important;
     }
 
@@ -411,6 +411,14 @@ dialog[aria-labelledby*=rmiz-modal-img] {
     height: 2rem;
     background: var(--cor-border-hr);
     margin: 0 5px;
+}
+
+.separadorHorizontal {
+    border-top: 1px solid var(--bege);
+    height: 1px;
+    width: 95%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
