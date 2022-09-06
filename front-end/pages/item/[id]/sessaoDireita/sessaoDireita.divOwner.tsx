@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Router from 'next/router';
 import Botao from '../../../../components/outros/botao';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
+import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import formatarData from '../../../../utils/outros/formatarData';
 import gerarImagemPerfilRandom from '../../../../utils/outros/gerarImagemPerfilRandom';
 import letraMaiusculaPrimeiraPalavraApenas from '../../../../utils/outros/letraMaiusculaPrimeiraPalavraApenas';
@@ -9,16 +11,22 @@ import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
 export default function DivOwner({ item }: iItem) {
+
+    const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/${item?.usuarios?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
+
     return (
         <div className={`${Styles.divOwner} margem1_5 flexColumn`}>
             <div className={Styles.divOwnerInner}>
                 <div className='flexRow'>
-                    <div className={Styles.divFoto}>
-                        <Image src={(item?.usuarios?.foto ?? gerarImagemPerfilRandom() ?? ImgCinza)} alt='' />
+                    <div className={Styles.divFoto} onClick={() => Router.push(urlPerfilDonoItem)}>
+                        <Image src={(item?.usuarios?.foto ?? gerarImagemPerfilRandom() ?? ImgCinza)} alt='' title={`Visitar perfil de @${item?.usuarios?.nomeUsuarioSistema}`} />
                     </div>
 
                     <div>
-                        <span>{(item?.usuarios?.nomeUsuarioSistema ? `@${item?.usuarios?.nomeUsuarioSistema}` : '-')}</span>
+                        <span className='pointer cor-principal-hover' onClick={() => Router.push(urlPerfilDonoItem)} title={`Visitar perfil de @${item?.usuarios?.nomeUsuarioSistema}`}>
+                            {(item?.usuarios?.nomeUsuarioSistema ? `@${item?.usuarios?.nomeUsuarioSistema}` : '-')}
+                        </span>
+
                         <span>{(item?.usuarios?.nomeCompleto ?? '-')}</span>
                     </div>
                 </div>
