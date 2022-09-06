@@ -1,6 +1,6 @@
 import Styles from './index.module.scss';
 
-export default function divDados2({ item }: any) {
+export default function DivDados2({ item }: any) {
     return (
         <div className={`${Styles.divDados2} margem1_5 flexColumn`}>
             <div className='flexColumn'>

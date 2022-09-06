@@ -1,7 +1,7 @@
 import Botao from '../../../../components/outros/botao';
 import Styles from './index.module.scss';
 
-export default function divBotoes({ item }: any) {
+export default function DivBotoes({ item }: any) {
     return (
         <div className='margem1_5 flexColumn'>
             <div className={Styles.botaoCustom2}>

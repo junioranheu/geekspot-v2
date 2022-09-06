@@ -12,7 +12,7 @@ import gerarNumeroAleatorio from '../../../../utils/outros/gerarNumeroAleatorio'
 import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
 import Styles from './index.module.scss';
 
-export default function divDados1({ item }: any) {
+export default function DivDados1({ item }: any) {
 
     const [dataAlvo, setDataAlvo] = useState('');
     useEffect(() => {
