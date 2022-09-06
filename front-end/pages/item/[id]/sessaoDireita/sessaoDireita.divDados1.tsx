@@ -12,7 +12,7 @@ import gerarNumeroAleatorio from '../../../../utils/outros/gerarNumeroAleatorio'
 import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
 import Styles from './index.module.scss';
 
-export default function divDados({ item }: any) {
+export default function divDados1({ item }: any) {
 
     const [dataAlvo, setDataAlvo] = useState('');
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function divDados({ item }: any) {
     }, [item?.preco]);
 
     return (
-        <div className={`${Styles.divDados} margem0_5 flexColumn`}>
+        <div className={`${Styles.divDados1} margem0_5 flexColumn`}>
             <div className={Styles.headerDivDados}>
                 Preço especial por tempo limitado
 

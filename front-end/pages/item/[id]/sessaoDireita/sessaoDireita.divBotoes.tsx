@@ -3,7 +3,7 @@ import Styles from './index.module.scss';
 
 export default function divBotoes({ item }: any) {
     return (
-        <div className='margem1 flexColumn'>
+        <div className='margem1_5 flexColumn'>
             <div className={Styles.botaoCustom2}>
                 <Botao
                     texto={`Fazer oferta ${(item?.usuarios?.nomeUsuarioSistema && `à @${item?.usuarios?.nomeUsuarioSistema}`)}`}
