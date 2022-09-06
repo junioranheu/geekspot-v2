@@ -19,8 +19,9 @@ export default function ajustarUrl(url: string) {
     urlAjustada = urlAjustada.replaceAll('*', '');
     urlAjustada = urlAjustada.replaceAll('+', '');
     urlAjustada = urlAjustada.replaceAll('¨', '');
+    urlAjustada = urlAjustada.replaceAll('.', ''); 
     urlAjustada = urlAjustada.replaceAll('/', '-'); // Trocar barras por traços;
-    urlAjustada = urlAjustada.replaceAll('.', '-'); // Trocar pontos por traços;
+    urlAjustada = urlAjustada.replaceAll('\\', '-'); // Trocar barras invertidas por traços;
     urlAjustada = urlAjustada.replaceAll(',', '-'); // Trocar vírgulas por traços;
     urlAjustada = urlAjustada.replaceAll('#', 'sharp'); // # por Sharp;
 

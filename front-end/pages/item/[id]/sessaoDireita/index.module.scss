@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
 
+    // sessaoDirieta.divDados1;
     .divDados1 {
         box-shadow: 0 0 0 1px var(--bege);
         border-radius: 5px;
@@ -38,6 +39,7 @@
         }
     }
 
+    // sessaoDirieta.divDados2;
     .divDados2 {
         // background-color: red;
         box-shadow: 0 0 0 1px var(--bege);
@@ -54,7 +56,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            
+
 
             div {
                 // background-color: red;
@@ -81,6 +83,50 @@
         }
     }
 
+    // sessaoDirieta.divAvisoProtecao;
+    .divAvisoProtecao {
+        // background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0rem;
+
+        .divInnerAvisoProtecao {
+            // background-color: coral;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            .divSvgSeguranca{
+                // background-color: red;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .textoAviso {
+                color: var(--cinza);
+                font-weight: 400;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    // sessaoDirieta.divOwner;
+    .divOwner {
+        background-color: coral;
+        box-shadow: 0 0 0 1px var(--bege);
+        border-radius: 5px;
+        padding: 2rem 1.75rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // Outros;
     .textoNegrito {
         color: var(--cinza);
         font-size: 1.5rem;
