@@ -15,7 +15,7 @@ export default function SessaoDireita({ item }: iItem) {
             <DivDados1 item={item} />
             <DivBotoes item={item} />
             <DivDados2 item={item} />
-            <DivAvisoProtecao />
+            <DivAvisoProtecao /> 
             <DivOwner item={item} />
         </div>
     )
