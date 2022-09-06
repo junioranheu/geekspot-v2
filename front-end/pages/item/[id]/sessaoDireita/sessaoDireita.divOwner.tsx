@@ -44,7 +44,7 @@ export default function DivOwner({ item }: iItem) {
 
             <div className={Styles.divOwnerInner}>
                 <div>
-                    <span>À venda/troca</span>
+                    <span>À troca/venda</span>
                     <span>xxx</span>
                 </div>
 

@@ -9,7 +9,7 @@ import alterarModo from './alterarModo';
 import Styles from './footer.module.scss';
 
 export default function Footer() {
-    
+
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
     const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 
@@ -24,21 +24,9 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>{CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
-                    <Link href='/'><a>Sobre</a></Link>
-                    <Link href='/'><a>Blog</a></Link>
-                    <Link href='/'><a>Atualizações</a></Link>
+                    <Link href='/'><a>Sobre</a></Link>   
+                    <Link href='/'><a>Blog<span className='efeito-new'>novo</span></a></Link>
                     <Link href='/'><a>Time</a></Link>
-                    <Link href='/'><a>{CONSTS_SISTEMA.NOME_SISTEMA} v.1<span className='efeito-new'>novo</span></a></Link>
-                </div>
-
-                <div className={Styles.sessao}>
-                    <span className={Styles.tituloSessao}>Plataformas</span>
-
-                    <Link href='/'><a>Web</a></Link>
-                    <Link href='/'><a>macOS</a></Link>
-                    <Link href='/'><a>Windows</a></Link>
-                    <Link href='/'><a>iOS</a></Link>
-                    <Link href='/'><a>Android</a></Link>
                 </div>
 
                 <div className={Styles.sessao}>
@@ -47,6 +35,16 @@ export default function Footer() {
                     <Link href='/'><a>Usuário</a></Link>
                     <Link href='/'><a>Loja</a></Link>
                     <Link href='/'><a>Investidor</a></Link>
+                </div>
+
+                <div className={Styles.sessao}>
+                    <span className={Styles.tituloSessao}>Plataformas</span>
+
+                    <Link href='/'><a>Web</a></Link>
+                    {/* <Link href='/'><a>macOS</a></Link>
+                    <Link href='/'><a>Windows</a></Link> */}
+                    <Link href='/'><a>iOS<span className='efeito-new'>em breve</span></a></Link>
+                    <Link href='/'><a>Android<span className='efeito-new'>em breve</span></a></Link>
                 </div>
 
                 <div className={Styles.sessao}>
@@ -61,10 +59,9 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>Suporte</span>
 
-                    <Link href='/'><a>Usando o {CONSTS_SISTEMA.NOME_SISTEMA}</a></Link>
-                    <Link href='/'><a>Contas</a></Link>
-                    <Link href='/'><a>Compras</a></Link>
                     <Link href='/'><a>Trocas</a></Link>
+                    <Link href='/'><a>Compras</a></Link>   
+                    <Link href='/'><a>Vendas</a></Link>      
                     <Link href='/'><a>Contato</a></Link>
                 </div>
             </div>
