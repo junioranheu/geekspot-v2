@@ -64,7 +64,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                     <Link href='/xxx'><a>Promoções 🔥</a></Link>
                     <span className='separador'></span>
 
-                    <Ajuda />
+                    <Ajuda url='/ajuda/' />
 
                     {
                         isAuth ? (
@@ -82,7 +82,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                                                         <Botao texto='Meus negócios' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                                         <Link href='/'><a><FontAwesomeIcon icon={faStoreAlt} size='sm' />&nbsp;Minha lojinha</a></Link>
                                                         <Link href='/'><a><FontAwesomeIcon icon={faGear} size='sm' />&nbsp;Configurações</a></Link>
-                                                        <Link href='/'><a><FontAwesomeIcon icon={faQuestionCircle} size='sm' />&nbsp;Ajuda</a></Link>
+                                                        <Link href='/ajuda/'><a><FontAwesomeIcon icon={faQuestionCircle} size='sm' />&nbsp;Ajuda</a></Link>
                                                     </div>
                                                 </div>
                                             </div>

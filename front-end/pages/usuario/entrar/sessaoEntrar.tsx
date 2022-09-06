@@ -115,7 +115,7 @@ export default function SessaoEntrar() {
                         </div>
                     ) : (
                         <div className={Styles.botaoCustom}>
-                            <Botao texto='Entrar com e-mail' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />
+                            <Botao texto='Entrar com e-mail ou usuário' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />
                         </div>
                     )
                 }

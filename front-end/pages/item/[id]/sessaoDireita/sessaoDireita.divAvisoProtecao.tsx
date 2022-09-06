@@ -22,7 +22,7 @@ export default function DivAvisoProtecao() {
                 `Não aceite doces de estranhos!`,
                 `${CONSTS_SISTEMA.NOME_SISTEMA} é um lugar seguro. Faça seus negócios de forma segura aqui.`
             ];
- 
+
             const random = Math.floor(Math.random() * frases.length);
             setAviso(frases[random]);
         }
@@ -39,7 +39,7 @@ export default function DivAvisoProtecao() {
                     <Seguranca />
                 </div>
 
-                <span className={Styles.textoAviso}>{aviso} Veja mais <Link href='/'><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>
+                <span className={Styles.textoAviso}>{aviso} Veja mais <Link href='/ajuda/'><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>
             </div>
         </div>
     )
