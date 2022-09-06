@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { Dispatch, Fragment, useEffect, useState } from 'react';
-import CONSTS_SISTEMA from '../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Botao from '../outros/botao';

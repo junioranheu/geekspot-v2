@@ -11,7 +11,7 @@ import '../fonts/GTWalsheim/GTWalsheim.css';
 import '../fonts/NanumPenScript/NanumPenScript.css';
 import LayoutPadrao from '../layouts/padrao';
 import '../styles/globals.scss';
-import CONSTS_SISTEMA from '../utils/consts/sistema';
+import CONSTS_SISTEMA from '../utils/consts/outros/sistema';
 import { ModoDarkProvider } from '../utils/context/modoDarkContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
 

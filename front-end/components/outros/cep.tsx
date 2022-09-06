@@ -1,7 +1,7 @@
 import useViaCep from '@rsiqueira/use-viacep'; // https://www.npmjs.com/package/@rsiqueira/use-viacep
 import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/cep.module.scss';
-import CONSTS_CEP from '../../utils/consts/cep';
+import CONSTS_CEP from '../../utils/consts/outros/cep';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import arredondarNumero from '../../utils/outros/arredondarNumero';
 import { Aviso } from '../../utils/outros/aviso';

@@ -7,7 +7,7 @@ import nProgress from 'nprogress';
 import { Dispatch, Fragment, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTS_SISTEMA from '../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Botao from '../outros/botao';

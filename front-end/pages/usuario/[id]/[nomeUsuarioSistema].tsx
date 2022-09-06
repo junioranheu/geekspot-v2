@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CONSTS_SISTEMA from '../../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth } from '../../../utils/context/usuarioContext';
 import CONSTS_USUARIOS from '../../../utils/data/constUsuarios';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';

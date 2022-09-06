@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Fragment, useEffect, useState } from 'react';
-import CONSTS_SISTEMA from '../../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth } from '../../../utils/context/usuarioContext';
 import CONSTS_ITENS from '../../../utils/data/constItens';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';

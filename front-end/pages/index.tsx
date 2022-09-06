@@ -6,7 +6,7 @@ import CarouselDois from '../static/image/carousel/dois.webp';
 import CarouselDoisBlack from '../static/image/carousel/dois_black.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
 import CarouselUmBlack from '../static/image/carousel/um_black.webp';
-import CONSTS_SISTEMA from '../utils/consts/sistema';
+import CONSTS_SISTEMA from '../utils/consts/outros/sistema';
 import { ModoDarkContext } from '../utils/context/modoDarkContext';
 import CONSTS_ITENS from '../utils/data/constItens';
 import CONSTS_USUARIOS from '../utils/data/constUsuarios';

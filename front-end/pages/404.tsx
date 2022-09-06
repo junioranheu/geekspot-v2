@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Botao from '../components/outros/botao';
 import Styles from '../styles/404.module.scss';
-import CONSTS_SISTEMA from '../utils/consts/sistema';
+import CONSTS_SISTEMA from '../utils/consts/outros/sistema';
 import Lottie404 from '../utils/lotties/404.json';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Seguranca from '../../../../components/svg/seguranca';
-import CONSTS_SISTEMA from '../../../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import Styles from './index.module.scss';
 
 export default function DivAvisoProtecao() {

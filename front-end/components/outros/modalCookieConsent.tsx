@@ -1,5 +1,5 @@
 import CookieConsent from 'react-cookie-consent';
-import CONSTS_SISTEMA from '../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 
 // https://www.npmjs.com/package/react-cookie-consent
 export default function ModalCookieConsent() {

@@ -6,7 +6,7 @@ import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
-import CONSTS_SISTEMA from '../../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import CONSTS_AUTENTICAR from '../../../utils/data/constAutenticar';
 import { Aviso } from '../../../utils/outros/aviso';

@@ -3,7 +3,7 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
-import CONSTS_SISTEMA from '../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 import { ModoDarkContext } from '../../utils/context/modoDarkContext';
 import alterarModo from './alterarModo';
 import Styles from './footer.module.scss';

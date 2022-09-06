@@ -2,7 +2,7 @@ import Lottie from 'lottie-react';
 import Router from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
-import CONSTS_SISTEMA from '../../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { UsuarioContext } from '../../../utils/context/usuarioContext';
 import LottieAnimacao from '../../../utils/lotties/pessoas.json';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';

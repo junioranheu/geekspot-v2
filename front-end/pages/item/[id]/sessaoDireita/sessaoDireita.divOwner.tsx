@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
-import CONSTS_SISTEMA from '../../../../utils/consts/sistema';
+import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import gerarImagemPerfilRandom from '../../../../utils/outros/gerarImagemPerfilRandom';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
@@ -16,7 +16,7 @@ export default function DivOwner({ item }: iItem) {
 
                     <div>
                         <span>{(item?.usuarios?.nomeUsuarioSistema ? `@${item?.usuarios?.nomeUsuarioSistema}` : '-')}</span>
-                        <span>{item?.usuarios?.nomeCompleto}</span>
+                        <span>{(item?.usuarios?.nomeCompleto ?? '-')}</span>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@ export default function DivOwner({ item }: iItem) {
 
                 <div>
                     <span>No {CONSTS_SISTEMA.NOME_SISTEMA} desde</span>
-                    <span>xxx</span>
+                    <span>{(item?.usuarios?.dataRegistro.toString() ?? '-')}</span>
                 </div>
             </div>
         </div>
