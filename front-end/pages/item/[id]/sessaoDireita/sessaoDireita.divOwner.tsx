@@ -12,7 +12,11 @@ import Styles from './index.module.scss';
 
 export default function DivOwner({ item }: iItem) {
 
-    const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/${item?.usuarios?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
+    const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/${item?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
+
+    function handleSeguir(usuarioId: number) {
+        alert(`handleSeguir, usuarioId: ${usuarioId}`);
+    }
 
     return (
         <div className={`${Styles.divOwner} margem1_5 flexColumn`}>
@@ -32,7 +36,7 @@ export default function DivOwner({ item }: iItem) {
                 </div>
 
                 <div className={Styles.botaoCutomDivOwner}>
-                    <Botao texto='Seguir' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                    <Botao texto='Seguir' url={null} isNovaAba={false} handleFuncao={() => handleSeguir(item?.usuarioId)} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
             </div>
 
@@ -40,12 +44,12 @@ export default function DivOwner({ item }: iItem) {
 
             <div className={Styles.divOwnerInner}>
                 <div>
-                    <span>À venda</span>
+                    <span>À venda/troca</span>
                     <span>xxx</span>
                 </div>
 
                 <div>
-                    <span>Vendidos</span>
+                    <span>Negócios feitos</span>
                     <span>xxx</span>
                 </div>
             </div>
