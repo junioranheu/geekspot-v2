@@ -4,13 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { Dispatch, Fragment, useEffect, useState } from 'react';
+import { Dispatch, Fragment, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_SISTEMA from '../../utils/consts/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
-import gerarImagemPerfilRandom from '../../utils/outros/gerarImagemPerfilRandom';
 import Botao from '../outros/botao';
 import Logo from '../svg/logo';
 import NavbarFiltro from './navbar.filtro';
@@ -25,14 +24,10 @@ interface iParametros {
 export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
-    const fotoPerfilRandom = Auth?.get()?.fotoPerfilAlternativa ?? ImgCinza;
+    const fotoPerfil = (Auth?.get()?.foto ?? Auth?.get()?.fotoPerfilAlternativa ?? ImgCinza);
 
     const [isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao] = useState(false);
     const debounceFecharPainelNavbarPadrao = debounce(() => setIsExibirPainelNavbarPadrao(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
-
-    useEffect(() => {
-        gerarImagemPerfilRandom();
-    }, []);
 
     function deslogar() {
         nProgress.start();
@@ -72,7 +67,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                         isAuth ? (
                             <Fragment>
                                 <div className={Styles.divPerfil} onMouseEnter={() => abrirPainelNavbarPadrao()}>
-                                    <Image src={fotoPerfilRandom} alt='' />
+                                    <Image src={fotoPerfil} alt='' />
 
                                     {
                                         isExibirPainelNavbarPadrao && (
