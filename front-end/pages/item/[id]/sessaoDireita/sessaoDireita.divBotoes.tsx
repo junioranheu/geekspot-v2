@@ -18,7 +18,7 @@ export default function DivBotoes({ item }: iItem) {
             </div>
 
             <div className={`${Styles.botaoCustom2} margem1`}>
-                <Botao texto='Adicionar ao carrinho' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                <Botao texto='Adicionar à lista de favoritos' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
             </div>
         </div>
     )

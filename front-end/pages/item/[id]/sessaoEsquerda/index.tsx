@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/react-medium-image-zoom
 import 'react-medium-image-zoom/dist/styles.css';
+import Comentarios from '../../../../components/comentarios/comentarios';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../utils/data/constUpload';
 import iItem from '../../../../utils/types/item';
@@ -27,32 +28,39 @@ export default function SessaoEsquerda({ item }: iItem) {
                 </Zoom>
             </div>
 
+            {/* Lista de imagens */}
             {
                 item?.itensImagens && item?.itensImagens?.length > 1 && (
-                    <div className={`${Styles.divListaImagens} margem0_5`}>
-                        {
-                            item.itensImagens?.map((item: any, i: number) => (
-                                <div className={Styles.divListaImagensWrapper} key={i}>
-                                    <Image
-                                        src={(item.caminhoImagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.caminhoImagem}` : ImgCinza)}
-                                        width={60}
-                                        height={60}
-                                        alt=''
-                                        onClick={() => setImagemSelecionada(item?.caminhoImagem)}
-                                    />
+                    <Fragment>
+                        <div className={`${Styles.divListaImagens} margem0_5`}>
+                            {
+                                item.itensImagens?.map((item: any, i: number) => (
+                                    <div className={Styles.divListaImagensWrapper} key={i}>
+                                        <Image
+                                            src={(item.caminhoImagem ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.caminhoImagem}` : ImgCinza)}
+                                            width={60}
+                                            height={60}
+                                            alt=''
+                                            onClick={() => setImagemSelecionada(item?.caminhoImagem)}
+                                        />
 
-                                    {
-                                        // Efeito de imagem selecionada;
-                                        imagemSelecionada === item?.caminhoImagem && (
-                                            <div className={Styles.efeitoImagemSelecionada}></div>
-                                        )
-                                    }
-                                </div>
-                            ))
-                        }
-                    </div>
+                                        {
+                                            // Efeito de imagem selecionada;
+                                            imagemSelecionada === item?.caminhoImagem && (
+                                                <div className={Styles.efeitoImagemSelecionada}></div>
+                                            )
+                                        }
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                    </Fragment>
                 )
             }
+
+            <Comentarios />
         </div>
     )
 }
