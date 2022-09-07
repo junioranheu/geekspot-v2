@@ -1,0 +1,106 @@
+import NProgress from 'nprogress';
+import { Dispatch, Fragment, useEffect, useState } from 'react';
+import UPLOAD_IMAGEM from '../../../utils/consts/outros/uploadImagem';
+import { Aviso } from '../../../utils/outros/aviso';
+import dataUrltoFile from '../../../utils/outros/dataURLToFile';
+import UUID from '../../../utils/outros/UUID';
+import Botao from '../../outros/botao';
+import DragDropFile from '../../outros/dragDropFile';
+import { FecharModal } from '../fecharModal';
+import ModalUploadConteudo from './modal.upload.conteudo';
+import StylesUpload from './modal.upload.module.scss';
+
+interface parametros {
+    handleModal: Dispatch<boolean>;
+    setArquivoUpload: Dispatch<File> | any;
+}
+
+export default function ModalUpload({ handleModal, setArquivoUpload }: parametros) {
+
+    const [nomeElementoInput] = useState('inputUpload_modalUpload');
+    const [arquivo, setArquivo] = useState(null);
+    const [arquivoBlob, setArquivoBlob] = useState('');
+    const [arquivoCrop, setArquivoCrop] = useState('');
+    const [isDisabled, setIsDisabled] = useState(false);
+    useEffect(() => {
+        if (arquivo) {
+            const arquivoBlob = URL.createObjectURL(arquivo);
+            setArquivoBlob(arquivoBlob);
+            setIsDisabled(true);
+        }
+    }, [arquivo]);
+
+    function handleClicarInputUpload() {
+        setIsDisabled(false);
+
+        setTimeout(function () {
+            const inputUpload = document.querySelector(`input[name="${nomeElementoInput}"]`) as HTMLInputElement;
+            inputUpload.click();
+        }, 500);
+    }
+
+    async function handleConfirmarUpload() {
+        NProgress.start();
+
+        if (!arquivoCrop) {
+            Aviso.error('Você não selecionou uma imagem para continuar', 5000);
+            NProgress.done();
+            return false;
+        }
+
+        // console.log('arquivo: ', arquivo);
+        // console.log('arquivoBlob: ', arquivoBlob);
+        // console.log('arquivoCrop: ', arquivoCrop);
+
+        if (arquivoCrop) {
+            dataUrltoFile(arquivoCrop, `file_${UUID()}.png`, 'image/png')
+                .then(function (file) {
+                    // Converter file (arquivo que passou pelo cropping) para base64;
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+
+                    reader.onload = function () {
+                        const base64 = reader.result;
+                        setArquivoUpload(base64);
+                        // console.log(arquivoCropFile, base64);
+                        // const arquivoBlobPreview = URL.createObjectURL(arquivoUpload);
+
+                        Aviso.success('Imagem enviada com sucesso', 5000);
+                        NProgress.done();
+                        FecharModal.fecharModalClicandoNoBotao(handleModal);
+                    };
+
+                    reader.onerror = function (error) {
+                        // console.log('Error: ', error);
+                        Aviso.success('Houve um erro ao enviar a imagem', 5000);
+                        NProgress.done();
+                        FecharModal.fecharModalClicandoNoBotao(handleModal);
+                    };
+                });
+        }
+    }
+
+    return (
+        <Fragment>
+            <div className={StylesUpload.divUpload}>
+                <DragDropFile
+                    nomeElemento={nomeElementoInput}
+                    tipoArquivos={['JPG', 'PNG', 'WEBP']}
+                    isMultiple={false}
+                    setArquivo={setArquivo}
+                    texto='Clique aqui ou arraste uma imagem: '
+                    maxSizeMBs={UPLOAD_IMAGEM.LIMITE_MB}
+                    isDisabled={isDisabled}
+                    conteudo={<ModalUploadConteudo arquivoBlob={arquivoBlob} setArquivoCrop={setArquivoCrop} />}
+                />
+            </div>
+
+            <div className='margem1'>
+                <Botao texto='Confirmar foto' url={null} isNovaAba={false} handleFuncao={() => handleConfirmarUpload()} Svg={null} refBtn={null} isEnabled={true} />
+            </div>
+
+            <span className='margem1 cor-principal pointer' onClick={() => handleClicarInputUpload()}>Escolher outra imagem</span>
+            <div className='margem0_5'></div>
+        </Fragment>
+    )
+}

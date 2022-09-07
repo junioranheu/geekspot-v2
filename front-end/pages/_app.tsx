@@ -68,6 +68,9 @@ export default function App({ Component, pageProps }: any) {
 
                         {/* Consentimento de cookies */}
                         <ModalCookieConsent />
+
+                        {/* Elemento para os modais */}
+                        <div id='modalWrapper'></div>
                     </UsuarioProvider>
                 </ModoDarkProvider>
             </Fragment>
