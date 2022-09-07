@@ -33,10 +33,14 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
             // console.log('Hamburguer aberto');
             document.getElementsByClassName('sessaoPrincipal')[0].classList.add('backgroundBlur');
             document.getElementsByTagName('footer')[0].classList.add('backgroundBlur');
+            document.getElementsByTagName('nav')[0].classList.add('backgroundBlur');
+            document.getElementsByTagName('nav')[1].classList.add('backgroundBlur');
         } else {
             // console.log('Hamburguer fechado');
             document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
             document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[0].classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[1].classList.remove('backgroundBlur');
         }
     }, [isHamburguer]);
 
@@ -46,6 +50,8 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
             // console.log('Componente destruído');
             document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
             document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[0].classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[1].classList.remove('backgroundBlur');
         }
     }, []);
 
