@@ -1,5 +1,6 @@
 $altura-navbar: 70px;
 
+/* =-=-=-=-=-=-=-=-=-=-= navbar.mobile.module =-=-=-=-=-=-=-=-=-=-= */
 .navbar {
     background-color: var(--branco);
     color: var(--preto);
@@ -50,102 +51,46 @@ $altura-navbar: 70px;
     }
 }
 
-/* =-=-=-=-=-=-=-=-=-=-= Sessão do Hamburguer ativo (não pensei em uma nomenclatura melhor) =-=-=-=-=-=-=-=-=-=-= */
-.sessaoHamburguer {
-    background-color: var(--super-preto);
-    position: absolute;
-    right: 0;
-    z-index: 9999 !important;
-
-    width: 60%;
-    height: 100vh;
-
-    padding: 2rem;
-    color: var(--branco);
-
+/* =-=-=-=-=-=-=-=-=-=-= Classes utilizados para estilizar os elementos que estão dentro do modal lateral em navbar.mobile.tsx =-=-=-=-=-=-=-=-=-=-= */
+.divAtalhos {
+    /* background-color: red; */
     display: flex;
     flex-direction: column;
+    row-gap: 0.8rem;
 
-    .divOla {
-        // background-color: red;
-        color: var(--branco);
-        font-size: 1.1rem;
-        font-weight: 600;
-        white-space: nowrap;
-        opacity: 0.9;
+    font-weight: 500;
+    margin-top: 1rem;
+    font-size: 1.1rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    a {
+        transition: .2s ease-in-out;
 
-        .ola {
+        &:hover {
             color: var(--cor-principal) !important;
-        }
-    }
-
-    .divDireita {
-        /* background-color: turquoise; */
-        width: 100%;
-        display: flex;
-        justify-content: right;
-
-        a {
+            opacity: 1 !important;
             transition: .2s ease-in-out;
-            
-            &:hover {
-                // background-color: red;
+        }
+    }
+}
 
-                svg {
-                    path {
-                        fill: var(--cor-principal) !important;
-                        stroke: var(--cor-principal) !important;
-                        transition: .2s ease-in-out;
-                    }
-                }
-            }
+.sessaoBotoes {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.8rem;
+    margin-top: 1rem;
+
+    .botaoCriarConta {
+        button {
+            width: 100%;
+            background: var(--branco);
+            color: var(--preto);
         }
     }
 
-    .divAtalhos {
-        /* background-color: red; */
-        display: flex;
-        flex-direction: column;
-        row-gap: 0.8rem;
-
-        font-weight: 500;
-        margin-top: 1rem;
-        font-size: 1.1rem;
-
-        a {
-            transition: .2s ease-in-out;
-
-            &:hover {
-                color: var(--cor-principal) !important;
-                opacity: 1 !important;
-                transition: .2s ease-in-out;
-            }
-        }
-    }
-
-    .sessaoBotoes {
-        /* background-color: red; */
-        display: flex;
-        flex-direction: column;
-        row-gap: 0.8rem;
-        margin-top: 1rem;
-
-        .botaoCriarConta {
-            button {
-                width: 100%;
-                background: var(--branco);
-                color: var(--preto);
-            }
-        }
-
-        .botaoPadrao {
-            button {
-                width: 100%;
-            }
+    .botaoPadrao {
+        button {
+            width: 100%;
         }
     }
 }
@@ -158,11 +103,7 @@ $altura-navbar: 70px;
 @media (max-width:801px) {}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {
-    .sessaoHamburguer {
-        width: 80%;
-    }
-}
+@media (max-width:600px) {}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}
