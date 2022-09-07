@@ -32,11 +32,17 @@ $altura-navbar: 70px;
             line-height: 0;
             gap: 1.5rem;
 
-            a {
+            .efeitoBottom {
+                // background-color: red;
+                padding-top: 7px; // Gambi para não bugar ao hover;
+                margin-top: 2px; // Gambi para não bugar ao hover;
+                border-bottom: 2px solid transparent;
+                transition: border-bottom 0.5s;
+
                 &:hover {
                     // background-color: red;
                     border-bottom: 2px solid var(--cor-principal);
-                    margin-top: 2px; // Gambi para não bugar ao hover;
+                    transition: border-bottom 0.7s;
                 }
             }
 
@@ -69,7 +75,7 @@ $altura-navbar: 70px;
                     padding: 1rem;
 
                     border-radius: 10px;
-                    box-shadow: 0 0 0 4px var(--bege); 
+                    box-shadow: 0 0 0 4px var(--bege);
                     background-color: var(--branco);
                     line-height: 1rem;
                     white-space: nowrap;
@@ -133,8 +139,6 @@ $altura-navbar: 70px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
-@media (max-width:1450px) {}
-
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
     .navbar {
