@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import ModalUpload from '../../components/modal/modal.upload/modal.upload';
 import ModalLayout from '../../components/modal/_modal.layout';
 import ModalWrapper from '../../components/modal/_modal.wrapper';
@@ -12,17 +12,23 @@ export default function Index() {
     const [isModalUploadOpen, setIsModalUploadOpen] = useState(false);
     const [arquivoUpload, setArquivoUpload] = useState(null);
 
+    useEffect(() => {
+        console.log(arquivoUpload);
+    }, [arquivoUpload]);
+
     return (
         <Fragment>
+            {/* Modal */}
             <ModalWrapper isOpen={isModalUploadOpen} >
                 <ModalLayout handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} titulo='Arraste a imagem para ajustar' tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalUpload handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} setArquivoUpload={setArquivoUpload} />
+                    <ModalUpload isBase64={false} handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} setArquivoUpload={setArquivoUpload} />
                 </ModalLayout>
             </ModalWrapper>
 
+            {/* Conteúdo */}
             <main className={`${Styles.wrapper} paddingPadrao`}>
                 <h1>Ajuda</h1>
-                <Botao texto='Abrir modal' url={null} isNovaAba={false} handleFuncao={() => setIsModalUploadOpen(true)} Svg={null} refBtn={null} isEnabled={true} />
+                <Botao texto='Abrir modal de upload' url={null} isNovaAba={false} handleFuncao={() => setIsModalUploadOpen(true)} Svg={null} refBtn={null} isEnabled={true} />
             </main>
         </Fragment>
     )

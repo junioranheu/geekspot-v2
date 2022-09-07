@@ -11,11 +11,12 @@ import ModalUploadConteudo from './modal.upload.conteudo';
 import StylesUpload from './modal.upload.module.scss';
 
 interface parametros {
+    isBase64: boolean; // true = base64, false = file;
     handleModal: Dispatch<boolean>;
     setArquivoUpload: Dispatch<File> | any;
 }
 
-export default function ModalUpload({ handleModal, setArquivoUpload }: parametros) {
+export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }: parametros) {
 
     const [nomeElementoInput] = useState('inputUpload_modalUpload');
     const [arquivo, setArquivo] = useState(null);
@@ -55,27 +56,34 @@ export default function ModalUpload({ handleModal, setArquivoUpload }: parametro
         if (arquivoCrop) {
             dataUrltoFile(arquivoCrop, `file_${UUID()}.png`, 'image/png')
                 .then(function (file) {
-                    // Converter file (arquivo que passou pelo cropping) para base64;
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
+                    if (isBase64) {
+                        // Converter file (arquivo que passou pelo cropping) para base64;
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file);
 
-                    reader.onload = function () {
-                        const base64 = reader.result;
-                        setArquivoUpload(base64);
-                        // console.log(arquivoCropFile, base64);
-                        // const arquivoBlobPreview = URL.createObjectURL(arquivoUpload);
+                        reader.onload = function () {
+                            const base64 = reader.result;
+                            setArquivoUpload(base64);
+                            // console.log(arquivoCropFile, base64);
+                            // const arquivoBlobPreview = URL.createObjectURL(arquivoUpload);
 
+                            Aviso.success('Imagem enviada com sucesso', 5000);
+                            NProgress.done();
+                            FecharModal.fecharModalClicandoNoBotao(handleModal);
+                        };
+
+                        reader.onerror = function (error) {
+                            // console.log('Error: ', error);
+                            Aviso.success('Houve um erro ao enviar a imagem', 5000);
+                            NProgress.done();
+                            FecharModal.fecharModalClicandoNoBotao(handleModal);
+                        };
+                    } else {
+                        setArquivoUpload(file);
                         Aviso.success('Imagem enviada com sucesso', 5000);
                         NProgress.done();
                         FecharModal.fecharModalClicandoNoBotao(handleModal);
-                    };
-
-                    reader.onerror = function (error) {
-                        // console.log('Error: ', error);
-                        Aviso.success('Houve um erro ao enviar a imagem', 5000);
-                        NProgress.done();
-                        FecharModal.fecharModalClicandoNoBotao(handleModal);
-                    };
+                    }
                 });
         }
     }
