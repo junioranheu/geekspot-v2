@@ -1,5 +1,5 @@
 .sessaoModalLateral {
-    background-color: var(--super-preto);
+    background-color: var(--branco);
     position: absolute;
     right: 0;
     z-index: 9999 !important;
@@ -8,7 +8,7 @@
     height: 100vh;
 
     padding: 2rem;
-    color: var(--branco);
+    color: var(--preto);
 
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
         .titulo {
             // background-color: red;
             width: 100%;
-            color: var(--branco);
+            color: var(--preto);
             font-size: 1.2rem;
             font-weight: 600;
             white-space: nowrap;
@@ -41,6 +41,14 @@
                 justify-content: center;
                 align-items: center;
                 transition: .2s ease-in-out;
+
+                svg {
+                    path {
+                        fill: var(--preto) !important;
+                        stroke: var(--preto) !important;
+                        transition: .2s ease-in-out;
+                    }
+                }
 
                 &:hover {
                     // background-color: red;
