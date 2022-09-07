@@ -63,6 +63,8 @@ $altura-navbar: 70px;
     font-size: 1.1rem;
 
     a {
+        // background-color: red;
+        width: fit-content;
         transition: .2s ease-in-out;
 
         &:hover {

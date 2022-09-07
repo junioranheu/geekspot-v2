@@ -63,7 +63,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
             >
                 <div className={Styles.divAtalhos} onClick={() => setIsModalLateralOpen(false)}>
                     <Link href='/xxx'><a>Produtos</a></Link>
-                    <Link href='/xxx'><a>Promoções 🔥</a></Link>
+                    <Link href='/xxx'><a>Promoções</a></Link>
 
                     {
                         isAuth && (

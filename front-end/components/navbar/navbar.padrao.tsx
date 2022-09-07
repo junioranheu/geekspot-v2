@@ -61,7 +61,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
                 <div className={Styles.divDireita} onMouseLeave={() => debounceFecharPainelNavbarPadrao()}>
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Produtos</a></Link>
-                    <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções 🔥</a></Link>
+                    <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>
 
                     <Ajuda url='/ajuda/' />

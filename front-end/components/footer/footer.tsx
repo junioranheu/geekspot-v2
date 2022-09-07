@@ -27,6 +27,9 @@ export default function Footer() {
                     <Link href='/'><a>Sobre</a></Link>   
                     <Link href='/'><a>Blog<span className='efeito-new'>novo</span></a></Link>
                     <Link href='/'><a>Time</a></Link>
+                    <Link href='/'><a>Facebook</a></Link>
+                    <Link href='/'><a>Twitter</a></Link>
+                    <Link href='/'><a>Instagram</a></Link>
                 </div>
 
                 <div className={Styles.sessao}>
@@ -41,10 +44,10 @@ export default function Footer() {
                     <span className={Styles.tituloSessao}>Plataformas</span>
 
                     <Link href='/'><a>Web</a></Link>
-                    {/* <Link href='/'><a>macOS</a></Link>
-                    <Link href='/'><a>Windows</a></Link> */}
                     <Link href='/'><a>iOS<span className='efeito-new'>em breve</span></a></Link>
                     <Link href='/'><a>Android<span className='efeito-new'>em breve</span></a></Link>
+                    <Link href='/'><a>macOS</a></Link>
+                    <Link href='/'><a>Windows</a></Link>
                 </div>
 
                 <div className={Styles.sessao}>
@@ -59,6 +62,9 @@ export default function Footer() {
                     <span className={Styles.tituloSessao}>Suporte</span>
 
                     <Link href='/'><a>Ajuda</a></Link>  
+                    <Link href='/'><a>Como trocar</a></Link>  
+                    <Link href='/'><a>Como comprar</a></Link>  
+                    <Link href='/'><a>Como vender</a></Link>   
                     <Link href='/'><a>Contato</a></Link>
                 </div>
             </div>
