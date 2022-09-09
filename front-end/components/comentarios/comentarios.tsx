@@ -11,7 +11,7 @@ export default function Comentarios() {
             <Textarea
                 placeholder='Pergunte ao vendedor'
                 height={null}
-                max={50}
+                max={255}
                 texto={texto}
                 setTexto={setTexto}
             />

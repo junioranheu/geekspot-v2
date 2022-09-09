@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch } from 'react';
+import { ChangeEvent, Dispatch, useState } from 'react';
 import Styles from './styles/textarea.module.scss';
 
 interface iParametros {
@@ -11,7 +11,15 @@ interface iParametros {
 
 export default function Textarea({ placeholder, height, max, texto, setTexto }: iParametros) {
 
+    const [qtdCaracteresRestantes, setQtdCaracteresRestantes] = useState(max);
     function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
+        const verificarQtdCaracteresRestantes = max - e.target.value.length;
+
+        if (verificarQtdCaracteresRestantes < 0) {
+            return false;
+        }
+
+        setQtdCaracteresRestantes(verificarQtdCaracteresRestantes);
         setTexto(e.target.value);
     }
 
@@ -22,11 +30,13 @@ export default function Textarea({ placeholder, height, max, texto, setTexto }: 
                 placeholder={placeholder}
                 style={(height ? { height: `${height}px` } : {})}
                 onChange={(e) => handleChange(e)}
+                value={texto}
             >
-                {texto}
             </textarea>
 
-            <p>111</p>
-        </div >
+            <div className={Styles.contador}>
+                {qtdCaracteresRestantes}
+            </div>
+        </div>
     )
 }
