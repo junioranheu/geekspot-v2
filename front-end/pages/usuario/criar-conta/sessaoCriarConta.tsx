@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { useContext, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useContext, useRef, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
@@ -41,18 +41,17 @@ export default function SessaoCriarConta() {
 
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ nomeCompleto: '', email: '', nomeUsuarioSistema: '', senha: '', confirmarSenha: '' });
-    function handleChange(e: any) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
-    };
+    }
 
     // Ao clicar no botão para entrar;
-    async function handleSubmit(e: any) {
+    async function handleSubmit() {
         nProgress.start();
         refBtnCriar.current.disabled = true;
-        e.preventDefault();
 
         // Verificações;
         const isTrocouSenha = true;
@@ -113,7 +112,7 @@ export default function SessaoCriarConta() {
         // Atribuir autenticação ao contexto de usuário;
         setIsAuth(true);
         nProgress.done();
-    };
+    }
 
     // async function enviarEmail(email: string, nomeCompleto: string) {
     //     // Gerar uma url temporária;
@@ -141,13 +140,13 @@ export default function SessaoCriarConta() {
     //     return true;
     // }
 
-    function handleKeyPress(e: any) {
+    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
             refBtnCriar.current.click();
         }
     }
 
-    function handleKeyPressNaoPermitirEspaco(e: any) {
+    function handleKeyPressNaoPermitirEspaco(e: ChangeEvent<HTMLInputElement>) {
         e.target.value = e.target.value.replace(' ', '');
     }
 

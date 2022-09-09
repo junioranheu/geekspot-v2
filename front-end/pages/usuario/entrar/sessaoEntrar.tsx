@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { useContext, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useContext, useRef, useState } from 'react';
 import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
@@ -33,15 +33,15 @@ export default function SessaoEntrar() {
 
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ usuario: '', senha: '' });
-    function handleChange(e: any) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
-    };
+    }
 
     // Ao clicar no botão para entrar;
-    async function handleSubmit(e: any) {
+    async function handleSubmit() {
         nProgress.start();
         refBtn.current.disabled = true;
 
@@ -77,7 +77,7 @@ export default function SessaoEntrar() {
         nProgress.done();
     }
 
-    function handleKeyPress(e: any) {
+    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
             refBtn.current.click();
         }

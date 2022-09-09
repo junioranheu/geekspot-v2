@@ -1,11 +1,11 @@
 import useViaCep from '@rsiqueira/use-viacep'; // https://www.npmjs.com/package/@rsiqueira/use-viacep
-import { Fragment, useContext, useEffect, useRef, useState } from 'react';
-import Styles from '../../styles/cep.module.scss';
+import { ChangeEvent, Fragment, KeyboardEvent, useContext, useEffect, useRef, useState } from 'react';
 import CONSTS_CEP from '../../utils/consts/outros/cep';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import arredondarNumero from '../../utils/outros/arredondarNumero';
 import { Aviso } from '../../utils/outros/aviso';
 import removerCaracter from '../../utils/outros/removerCaracter';
+import Styles from './styles/cep.module.scss';
 
 interface iParametros {
     precoProduto: number | null;
@@ -36,15 +36,15 @@ export default function Cep({ precoProduto }: iParametros) {
         }
     }, [cepAuth])
 
-    function handleChange(e: any) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const re = /^[0-9\b]+$/;
 
         if (e.target.value === '' || re.test(e.target.value)) {
             setData(e.target.value);
         }
     }
-
-    function handleKeyPress(e: any) {
+ 
+    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
             refSalvar.current.click();
         }

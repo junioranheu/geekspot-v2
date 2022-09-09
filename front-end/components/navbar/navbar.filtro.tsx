@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, KeyboardEvent, useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect'; // https://www.npmjs.com/package/typewriter-effect
 import randomizarArray from '../../utils/outros/randomizarArray';
 import Lupa from '../svg/lupa';
@@ -43,7 +43,7 @@ export default function NavbarFiltro() {
         setListaOpcoes(listaRandom);
     }, [])
 
-    function handleKeyPress(e: any) {
+    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
             handleBuscar();
         }
