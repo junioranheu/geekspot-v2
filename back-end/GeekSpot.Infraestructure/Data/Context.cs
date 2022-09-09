@@ -24,6 +24,9 @@ namespace GeekSpot.Infraestructure.Data
         public DbSet<Item> Itens { get; set; }
         public DbSet<ItemImagem> ItensImagens { get; set; }
 
+        // Comentários;
+        public DbSet<Comentario> Comentarios { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

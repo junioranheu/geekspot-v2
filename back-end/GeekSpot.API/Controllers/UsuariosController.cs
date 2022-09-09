@@ -30,7 +30,7 @@ namespace GeekSpot.API.Controllers
                 {
                     Erro = true,
                     CodigoErro = (int)CodigoErrosEnum.NaoAutorizado,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.NaoAutorizado)
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoAutorizado)
                 };
 
                 return erro;

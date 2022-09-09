@@ -31,7 +31,7 @@ namespace GeekSpot.Application.Services.Authentication
                 {
                     Erro = true,
                     CodigoErro = (int)CodigoErrosEnum.UsuarioExistente,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
                 };
 
                 return erro;
@@ -44,7 +44,7 @@ namespace GeekSpot.Application.Services.Authentication
                 {
                     Erro = true,
                     CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.RequisitosSenhaNaoCumprido)
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosSenhaNaoCumprido)
                 };
 
                 return erro;
@@ -93,7 +93,7 @@ namespace GeekSpot.Application.Services.Authentication
                 {
                     Erro = true,
                     CodigoErro = (int)CodigoErrosEnum.UsuarioNaoEncontrado,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioNaoEncontrado)
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioNaoEncontrado)
                 };
 
                 return erro;
@@ -106,7 +106,7 @@ namespace GeekSpot.Application.Services.Authentication
                 {
                     Erro = true,
                     CodigoErro = (int)CodigoErrosEnum.UsuarioSenhaIncorretos,
-                    Mensagem = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos)
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos)
                 };
 
                 return erro;
