@@ -1,4 +1,41 @@
+/* =-=-=-=-=-=-=-=-=-=-=-=- comentarios.main.tsx =-=-=-=-=-=-=-=-=-=-=-=- */
 .main {
     // background-color: coral;
     width: 100%;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- comentarios.lista.tsx =-=-=-=-=-=-=-=-=-=-=-=- */
+.mainLista {
+    // background-color: red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--preto);
+
+    .texto {
+        // background-color: blue;
+        font-weight: 600;   
+    }
+
+    .textoPequeno {
+        // background-color: coral;     
+        font-size: 0.8rem;
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

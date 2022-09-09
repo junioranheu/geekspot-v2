@@ -1,4 +1,5 @@
 .wrapper {
+    // background-color: coral;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,7 +33,7 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
-            gap: 2rem;
+            gap: 0rem !important;
             width: 100%;
         }
     }
@@ -42,16 +43,7 @@
 @media (max-width:801px) {}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {
-    .wrapper {
-        // background-color: blue;
-
-        .sessaoPrincipal {
-            // background-color: red;
-            gap: 1rem !important;
-        }
-    }
-}
+@media (max-width:600px) {}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}

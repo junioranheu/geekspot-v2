@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/react-medium-image-zoom
 import 'react-medium-image-zoom/dist/styles.css';
-import Comentarios from '../../../../components/comentarios/comentarios';
+import ComentariosMain from '../../../../components/comentarios/comentarios.main';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../utils/data/constUpload';
 import iItem from '../../../../utils/types/item';
@@ -56,18 +56,10 @@ export default function SessaoEsquerda({ item }: iItem) {
                 )
             }
 
-            {/* Separador ou margem */}
-            {
-                item?.itensImagens && item?.itensImagens?.length > 1 ? (
-                    <span className='separadorHorizontal'></span>
-                ) : (
-                    <div className='margem1_5'></div>
-                )
-            }
-
-            {/* Input para comentar e lista de comentários */}
+            {/* Div com input para comentar e lista de comentários */}
             <div className={Styles.divComentarios}>
-                <Comentarios />
+                <div className='margem1_5'></div>
+                <ComentariosMain />
             </div>
         </div>
     )
