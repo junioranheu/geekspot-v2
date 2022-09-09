@@ -2,7 +2,7 @@
     // background-color: yellow;
     width: 100%;
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 
@@ -47,17 +47,16 @@
             background-color: var(--cor-principal) !important;
         }
     }
+
+    .divComentarios {
+        // background-color: red;
+        width: 100%;
+        padding: 0rem 2rem 2rem 2rem;
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
-@media (max-width:1600px) {
-    .wrapper {
-        .sessaoPrincipal {
-            // background-color: red;
-            width: 100%;
-        }
-    }
-}
+@media (max-width:1600px) {}
 
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {}
@@ -70,10 +69,14 @@
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {
-
     .sessaoEsquerda {
         // background-color: yellow;
         padding: 0rem 0.5rem 0.5rem 0.5rem;
+
+        .divComentarios {
+            // background-color: red;
+            padding: 0rem !important;
+        }
     }
 }
 

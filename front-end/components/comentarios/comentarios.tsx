@@ -5,8 +5,8 @@ import Styles from './comentarios.module.scss';
 export default function Comentarios() {
 
     const [texto, setTexto] = useState('');
-
     const refTextarea = useRef<any>(null);
+    
     function handleEnviar() {
         refTextarea.current.disabled = true;
         alert('handleEnviar');
