@@ -202,7 +202,7 @@ img {
     pointer-events: none !important;
 }
 
-/* =-=-=-=-=-=-=-=-= Input "padrão" =-=-=-=-=-=-=-=-= */
+/* =-=-=-=-=-=-=-=-= Input, textarea e select "padrão" =-=-=-=-=-=-=-=-= */
 .input {
     font-size: 16px;
     font-weight: 600;
@@ -221,17 +221,43 @@ img {
     padding: 0px 20px;
     transition: box-shadow 0.2s ease 0s, color 0.2s ease 0s;
     width: 100%;
+
+    &:focus{
+        box-shadow: inset 0 0 0 1px var(--cor-principal);
+        outline-width: 0px;
+    }
 }
 
-.input:focus,
-.textarea:focus {
-    box-shadow: inset 0 0 0 1px var(--cor-principal);
-    outline-width: 0px;
-}
+.textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    height: 48px;
+    padding: 0.95rem 1rem !important;
+    color: var(--cinza);
+    background-color: var(--branco);
 
-textarea {
-    padding-top: 0.55rem !important;
+    display: block;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
     resize: none;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(202, 197, 191, .5);
+    font-weight: 400;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: box-shadow .25s ease, border-color .25s ease;
+
+    &::placeholder {
+        color: rgba(202, 197, 191, 0.9);
+    }
+
+    &:focus {
+        box-shadow: inset 0 0 0 1px var(--cor-principal);
+        outline-width: 0px;
+    }
 }
 
 select {
