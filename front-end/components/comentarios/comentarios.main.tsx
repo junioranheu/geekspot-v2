@@ -29,7 +29,7 @@ export default function ComentariosMain() {
                 referenciaTextarea={refTextarea}
 
                 isMostrarBotao={true}
-                textoBotao='Enviar'
+                textoBotao='Perguntar'
                 handleFuncaoBotao={handleEnviar}
                 referenciaBotao={null}
                 isEnabledBotao={true}
