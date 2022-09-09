@@ -1,4 +1,5 @@
-import { ChangeEvent, Dispatch, useState } from 'react';
+import { ChangeEvent, Dispatch, MutableRefObject, useState } from 'react';
+import Botao from './botao';
 import Styles from './styles/textarea.module.scss';
 
 interface iParametros {
@@ -7,9 +8,19 @@ interface iParametros {
     max: number;
     texto: string;
     setTexto: Dispatch<string>;
+    referenciaTextarea: MutableRefObject<any> | null;
+
+    isMostrarBotao: boolean;
+    textoBotao: string | null;
+    handleFuncaoBotao: any | null;
+    referenciaBotao: MutableRefObject<any> | null;
+    isEnabledBotao: boolean | null;
 }
 
-export default function Textarea({ placeholder, height, max, texto, setTexto }: iParametros) {
+export default function Textarea({
+    placeholder, height, max, texto, setTexto, referenciaTextarea,
+    isMostrarBotao, textoBotao, handleFuncaoBotao, referenciaBotao, isEnabledBotao
+}: iParametros) {
 
     const [qtdCaracteresRestantes, setQtdCaracteresRestantes] = useState(max);
     function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
@@ -31,12 +42,29 @@ export default function Textarea({ placeholder, height, max, texto, setTexto }: 
                 style={(height ? { height: `${height}px` } : {})}
                 onChange={(e) => handleChange(e)}
                 value={texto}
+                ref={referenciaTextarea}
             >
             </textarea>
 
             <div className={Styles.contador}>
                 {qtdCaracteresRestantes}
             </div>
+
+            {
+                isMostrarBotao && (
+                    <div>
+                        <Botao
+                            texto={(textoBotao ?? '')}
+                            url={null}
+                            isNovaAba={false}
+                            handleFuncao={handleFuncaoBotao}
+                            Svg={null}
+                            refBtn={referenciaBotao}
+                            isEnabled={(isEnabledBotao ?? false)}
+                        />
+                    </div>
+                )
+            }
         </div>
     )
 }
