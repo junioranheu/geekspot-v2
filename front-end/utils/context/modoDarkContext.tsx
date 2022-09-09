@@ -1,8 +1,8 @@
-import { createContext, Dispatch, useState } from 'react';
+import { createContext, useState } from 'react';
 
 interface iContext {
-    isModoDarkContext: [isModoDark: boolean | null, setIsModoDark: Dispatch<boolean>];
-    testeContext: [teste: boolean, setTeste: Dispatch<boolean>];
+    isModoDarkContext: [isModoDark: boolean | null, setIsModoDark: any];
+    testeContext: [teste: boolean, setTeste: any];
 }
 
 export const ModoDarkContext = createContext<iContext | null>(null);
