@@ -68,8 +68,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(i => i.IsAtivo == 1).
-                        Where(i => i.ItemId == id).AsNoTracking().FirstOrDefaultAsync();
+                        Where(i => i.ItemId == id && i.IsAtivo == 1).AsNoTracking().FirstOrDefaultAsync();
 
             ItemDTO dto = _map.Map<ItemDTO>(porId);
             return dto;
@@ -82,8 +81,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(i => i.IsAtivo == 1).
-                        Where(it => it.ItemTipoId == itemTipoId).AsNoTracking().ToListAsync();
+                        Where(it => it.ItemTipoId == itemTipoId && it.IsAtivo == 1).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);
             return dto;
@@ -96,8 +94,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(i => i.IsAtivo == 1).
-                        Where(it => it.UsuarioId == usuarioId).AsNoTracking().ToListAsync();
+                        Where(it => it.UsuarioId == usuarioId && it.IsAtivo == 1).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);
             return dto;

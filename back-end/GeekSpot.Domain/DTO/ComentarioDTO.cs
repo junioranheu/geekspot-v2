@@ -1,6 +1,5 @@
 ﻿using GeekSpot.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Domain.DTO

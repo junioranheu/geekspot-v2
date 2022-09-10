@@ -35,6 +35,7 @@ namespace GeekSpot.Infraestructure
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IItemTipoRepository, ItemTipoRepository>();
+            services.AddScoped<IComentarioRepository, ComentarioRepository>();
 
             return services;
         }
