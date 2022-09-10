@@ -19,5 +19,5 @@ export default interface iComentario {
         erro: boolean | null;
         codigoErro: number | null;
         mensagemErro: string | null;
-    }[]
+    }[];
 }

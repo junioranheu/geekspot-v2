@@ -9,14 +9,13 @@ interface iParametros {
 }
 
 export default function ComentariosLista({ listaComentarios }: iParametros) {
-    console.log(listaComentarios);
-
     return (
         <div className={Styles.mainLista}>
             <span className={Styles.texto}>Últimas perguntas</span>
-
             {
-                listaComentarios ? (
+                // @ts-ignore;
+                listaComentarios.length > 0 ? (
+                    // @ts-ignore;
                     listaComentarios?.map((item, i: number) => (
                         <div className={`${Styles.perguntaDiv} margem1_5`} key={i}>
                             <div className={Styles.flexRow}>
@@ -35,16 +34,20 @@ export default function ComentariosLista({ listaComentarios }: iParametros) {
                                 </div>
                             </div>
 
-                            <div className={Styles.flexRow}>
-                                <Image
-                                    src={(item?.usuarioDonoProduto?.foto ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item?.usuarioPergunta?.foto}` : ImgCinza)}
-                                    width={30}
-                                    height={30}
-                                    alt=''
-                                />
+                            {
+                                item?.resposta && (
+                                    <div className={Styles.flexRow}>
+                                        <Image
+                                            src={(item?.usuarioDonoProduto?.foto ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item?.usuarioPergunta?.foto}` : ImgCinza)}
+                                            width={30}
+                                            height={30}
+                                            alt=''
+                                        />
 
-                                <span className={Styles.perguntaResposta}>{item?.resposta}</span>
-                            </div>
+                                        <span className={Styles.perguntaResposta}>{item?.resposta}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                     ))
                 ) : (
