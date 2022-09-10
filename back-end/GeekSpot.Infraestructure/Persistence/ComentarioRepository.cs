@@ -66,7 +66,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(i => i.Itens).
                         Include(u => u.Usuarios).
                         Where(i => i.IsAtivo == 1 && i.ComentarioId == id).
-                        OrderBy(d => d.DataEnvio).AsNoTracking().ToListAsync();
+                        OrderBy(d => d.DataEnvio).AsNoTracking().FirstOrDefaultAsync();
 
             ComentarioDTO dto = _map.Map<ComentarioDTO>(porId);
             return dto;

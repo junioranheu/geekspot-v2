@@ -48,6 +48,6 @@ export default function ComentariosLista({ listaComentarios }: iParametros) {
                     <span className={Styles.textoPequeno}>Este produto ainda não recebeu nenhum comentário</span>
                 )
             }
-        </div >
+        </div>
     )
 }
