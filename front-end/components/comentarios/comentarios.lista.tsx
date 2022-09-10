@@ -5,6 +5,7 @@ import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import formatarData from '../../utils/outros/formatarData';
+import limitarTexto from '../../utils/outros/limitarTexto';
 import iListaComentarios from '../../utils/types/listaComentarios';
 import Styles from './comentarios.module.scss';
 
@@ -33,7 +34,7 @@ export default function ComentariosLista({ listaComentarios, maxCaracteres }: iP
                                 </div>
 
                                 <div className='flexColumn'>
-                                    <span className={Styles.perguntaTexto}>{item?.mensagem.substring(0, maxCaracteres)}</span>
+                                    <span className={Styles.perguntaTexto}>{limitarTexto(item?.mensagem, maxCaracteres)}</span>
                                     <span className={Styles.perguntaInfo}>@{item?.usuarios?.nomeUsuarioSistema}, {formatarData(item?.dataEnvio, 2).toLocaleLowerCase()}</span>
                                 </div>
                             </div>
@@ -53,7 +54,7 @@ export default function ComentariosLista({ listaComentarios, maxCaracteres }: iP
                                                 />
                                             </div>
 
-                                            <span className={Styles.perguntaResposta}>{item?.resposta.substring(0, maxCaracteres)}</span>
+                                            <span className={Styles.perguntaResposta}>{limitarTexto(item?.resposta, maxCaracteres)}</span>
                                         </div>
                                     </Fragment>
                                 )
