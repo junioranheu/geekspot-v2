@@ -106,6 +106,24 @@
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+@media (max-width:1600px) {
+    .flexEntrar {
+        // background-color: red;
+
+        .divLottie {
+            // background-color: blue;
+            width: 40%;
+        }
+    }
+
+    .divPrincipal {
+        .titulo {
+            // background-color: red;
+            font-size: 2.2rem;
+        }
+    }
+}
+
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
     .flexEntrar {
@@ -150,8 +168,7 @@
 }
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {
-}
+@media (max-width:600px) {}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}

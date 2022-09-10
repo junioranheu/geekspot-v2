@@ -4,7 +4,6 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GeekSpot.Infraestructure.Persistence
 {
