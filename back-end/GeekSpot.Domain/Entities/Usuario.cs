@@ -29,7 +29,6 @@ namespace GeekSpot.Domain.Entities
         public string? HashUrlTrocarSenha { get; set; } = null;
         public DateTime ValidadeHashUrlTrocarSenha { get; set; }
 
-
         // Fk (De cá pra lá);
         [JsonIgnore]
         public UsuarioInformacao? UsuariosInformacoes { get; set; }

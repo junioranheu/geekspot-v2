@@ -4,6 +4,7 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GeekSpot.Infraestructure.Persistence
 {
@@ -50,8 +51,8 @@ namespace GeekSpot.Infraestructure.Persistence
         public async Task<List<ComentarioDTO>> GetTodos()
         {
             var todos = await _context.Comentarios.
-                        Include(up => up.UsuariosPerguntas).ThenInclude(ut => ut.UsuariosTipos).
-                        Include(ur => ur.UsuariosRespostas).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(i => i.Itens).
+                        Include(u => u.Usuarios).
                         Where(i => i.IsAtivo == 1).
                         OrderBy(d => d.DataEnvio).AsNoTracking().ToListAsync();
 
@@ -62,8 +63,8 @@ namespace GeekSpot.Infraestructure.Persistence
         public async Task<ComentarioDTO> GetPorId(int id)
         {
             var porId = await _context.Comentarios.
-                        Include(up => up.UsuariosPerguntas).ThenInclude(ut => ut.UsuariosTipos).
-                        Include(ur => ur.UsuariosRespostas).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(i => i.Itens).
+                        Include(u => u.Usuarios).
                         Where(i => i.IsAtivo == 1 && i.ComentarioId == id).
                         OrderBy(d => d.DataEnvio).AsNoTracking().ToListAsync();
 
@@ -74,8 +75,8 @@ namespace GeekSpot.Infraestructure.Persistence
         public async Task<List<ComentarioDTO>> GetPorItemId(int itemId)
         {
             var itens = await _context.Comentarios.
-                        Include(up => up.UsuariosPerguntas).ThenInclude(ut => ut.UsuariosTipos).
-                        Include(ur => ur.UsuariosRespostas).ThenInclude(ut => ut.UsuariosTipos).
+                        Include(i => i.Itens).
+                        Include(u => u.Usuarios).
                         Where(i => i.ItemId == itemId && i.IsAtivo == 1).
                         OrderBy(d => d.DataEnvio).AsNoTracking().ToListAsync();
 

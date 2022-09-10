@@ -13,13 +13,10 @@ namespace GeekSpot.Domain.Entities
         public Item? Itens { get; set; }
 
         // Fk (De lá pra cá);
-        public int UsuarioPerguntaId { get; set; } // Usuário que fez a pergunta;
-        public Usuario? UsuariosPerguntas { get; set; }
-        public string? Mensagem { get; set; } = null;
+        public int UsuarioId { get; set; } // Usuário que fez a pergunta;
+        public Usuario? Usuarios { get; set; }
 
-        // Fk (De lá pra cá);
-        public int UsuarioRespostaId { get; set; } // Usuário que responde a pergunta;
-        public Usuario? UsuariosRespostas { get; set; }
+        public string? Mensagem { get; set; } = null;
         public string? Resposta { get; set; } = null;
 
         public int IsAtivo { get; set; } = 1;

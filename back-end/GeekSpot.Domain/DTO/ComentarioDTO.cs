@@ -11,16 +11,13 @@ namespace GeekSpot.Domain.DTO
 
         // Fk (De lá pra cá);
         public int ItemId { get; set; }
-        public Item? Itens { get; set; }
+        public ItemDTO? Itens { get; set; }
 
         // Fk (De lá pra cá);
-        public int UsuarioPerguntaId { get; set; } // Usuário que fez a pergunta;
-        public UsuarioDTO? UsuariosPerguntas { get; set; }
+        public int UsuarioId { get; set; } // Usuário que fez a pergunta;
+        public Usuario? Usuarios { get; set; }
+
         public string? Mensagem { get; set; } = null;
-
-        // Fk (De lá pra cá);
-        public int UsuarioRespostaId { get; set; } // Usuário que responde a pergunta;
-        public UsuarioDTO? UsuariosRespostas { get; set; }
         public string? Resposta { get; set; } = null;
 
         public int IsAtivo { get; set; } = 1;

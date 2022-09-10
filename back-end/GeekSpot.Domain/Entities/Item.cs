@@ -32,9 +32,5 @@ namespace GeekSpot.Domain.Entities
 
         public int IsAtivo { get; set; } = 1;
         public DateTime? DataRegistro { get; set; } = HorarioBrasilia();
-
-        // Fk (De cá pra lá);
-        [JsonIgnore]
-        public List<Comentario>? Comentarios { get; set; }
     }
 }
