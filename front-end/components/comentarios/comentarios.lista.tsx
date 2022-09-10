@@ -1,19 +1,22 @@
 import Image from 'next/image';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/data/constUpload';
+import iComentario from '../../utils/types/comentario';
 import Styles from './comentarios.module.scss';
 
 interface iParametros {
-    listaComentarios: Array<any>;
+    listaComentarios: iComentario;
 }
 
 export default function ComentariosLista({ listaComentarios }: iParametros) {
+    console.log(listaComentarios);
+
     return (
         <div className={Styles.mainLista}>
             <span className={Styles.texto}>Últimas perguntas</span>
 
             {
-                listaComentarios?.length > 0 ? (
+                listaComentarios ? (
                     listaComentarios?.map((item, i: number) => (
                         <div className={`${Styles.perguntaDiv} margem1_5`} key={i}>
                             <div className={Styles.flexRow}>

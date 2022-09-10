@@ -1,5 +1,4 @@
-﻿using GeekSpot.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Domain.DTO
@@ -15,7 +14,7 @@ namespace GeekSpot.Domain.DTO
 
         // Fk (De lá pra cá);
         public int UsuarioId { get; set; } // Usuário que fez a pergunta;
-        public Usuario? Usuarios { get; set; }
+        public UsuarioDTO? Usuarios { get; set; }
 
         public string? Mensagem { get; set; } = null;
         public string? Resposta { get; set; } = null;

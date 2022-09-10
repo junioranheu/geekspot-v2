@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import CONSTS_COMENTARIOS from '../../utils/data/constComentarios';
 import { Fetch } from '../../utils/outros/fetch';
+import iComentario from '../../utils/types/comentario';
 import Textarea from '../outros/textarea';
 import ComentariosLista from './comentarios.lista';
 import Styles from './comentarios.module.scss';
@@ -19,23 +20,18 @@ export default function ComentariosMain({ itemId }: iParametros) {
         alert('handleEnviar');
     }
 
+    const [comentarios, setComentarios] = useState<iComentario>();
     useEffect(() => {
         async function getComentarios(itemId: number) {
-            const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}&itemId=${itemId}`;
-            console.log(url);
-            const comentarios = await Fetch.getApi(url, null);
-            console.log(comentarios);
+            const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}/${itemId}`;
+            const comentarios = await Fetch.getApi(url, null) as iComentario;
+            setComentarios(comentarios);
         }
 
         if (itemId) {
             getComentarios(itemId);
         }
     }, [itemId])
-
-    const mockComentarios = [
-        { id: 1, mensagem: 'Ela é transparente? Vc tem as medidas da calça?', usuario: 'Mariana', data: '08/09/2022', resposta: 'não é transparente não! tecido bem grosso inclusive. não tenho as medidas' },
-        { id: 2, mensagem: 'É a mesma calça em todas as fotos?', usuario: 'Sandra', data: '08/09/2022', resposta: 'sim, é a mesma calça :)' }
-    ]
 
     return (
         <div className={Styles.main}>
@@ -54,9 +50,13 @@ export default function ComentariosMain({ itemId }: iParametros) {
                 isEnabledBotao={true}
             />
 
-            <div className='margem1'>
-                <ComentariosLista listaComentarios={mockComentarios} />
-            </div>
+            {
+                comentarios && (
+                    <div className='margem1'>
+                        <ComentariosLista listaComentarios={comentarios} />
+                    </div>
+                )
+            }
         </div>
     )
 }
