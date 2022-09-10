@@ -1,27 +1,27 @@
 import Image from 'next/image';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/data/constUpload';
-import iComentario from '../../utils/types/comentario';
+import formatarData from '../../utils/outros/formatarData';
+import iListaComentarios from '../../utils/types/listaComentarios';
 import Styles from './comentarios.module.scss';
 
 interface iParametros {
-    listaComentarios: iComentario;
+    listaComentarios: iListaComentarios[];
 }
 
 export default function ComentariosLista({ listaComentarios }: iParametros) {
     return (
         <div className={Styles.mainLista}>
             <span className={Styles.texto}>Últimas perguntas</span>
+
             {
-                // @ts-ignore;
                 listaComentarios.length > 0 ? (
-                    // @ts-ignore;
                     listaComentarios?.map((item, i: number) => (
                         <div className={`${Styles.perguntaDiv} margem1_5`} key={i}>
                             <div className={Styles.flexRow}>
                                 <div>
                                     <Image
-                                        src={(item?.usuarioPergunta?.foto ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item?.usuarioPergunta?.foto}` : ImgCinza)}
+                                        src={(item?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.usuarios?.foto}` : ImgCinza)}
                                         width={30}
                                         height={30}
                                         alt=''
@@ -30,7 +30,7 @@ export default function ComentariosLista({ listaComentarios }: iParametros) {
 
                                 <div className='flexColumn'>
                                     <span className={Styles.perguntaTexto}>{item?.mensagem}</span>
-                                    <span className={`${Styles.perguntaInfo} ${Styles.margem0_2}`}>{item?.usuario}, {item?.data}</span>
+                                    <span className={Styles.perguntaInfo}>@{item?.usuarios?.nomeUsuarioSistema}, {formatarData(item?.dataEnvio, 2).toLocaleLowerCase()}</span>
                                 </div>
                             </div>
 
@@ -38,7 +38,7 @@ export default function ComentariosLista({ listaComentarios }: iParametros) {
                                 item?.resposta && (
                                     <div className={Styles.flexRow}>
                                         <Image
-                                            src={(item?.usuarioDonoProduto?.foto ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item?.usuarioPergunta?.foto}` : ImgCinza)}
+                                            src={(item?.itens?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.itens?.usuarios?.foto}` : ImgCinza)}
                                             width={30}
                                             height={30}
                                             alt=''
