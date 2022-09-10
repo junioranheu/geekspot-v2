@@ -12,6 +12,7 @@ interface iParametros {
 
 export default function ComentariosMain({ itemId }: iParametros) {
 
+    const maxCaracteres = 200;
     const [texto, setTexto] = useState('');
     const refTextarea = useRef<any>(null);
 
@@ -38,7 +39,7 @@ export default function ComentariosMain({ itemId }: iParametros) {
             <Textarea
                 placeholder='Pergunte ao vendedor'
                 height={null}
-                max={255}
+                max={maxCaracteres}
                 texto={texto}
                 setTexto={setTexto}
                 referenciaTextarea={refTextarea}
@@ -53,7 +54,7 @@ export default function ComentariosMain({ itemId }: iParametros) {
             {
                 comentarios && (
                     <div className='margem1'>
-                        <ComentariosLista listaComentarios={comentarios} />
+                        <ComentariosLista listaComentarios={comentarios} maxCaracteres={maxCaracteres} />
                     </div>
                 )
             }
