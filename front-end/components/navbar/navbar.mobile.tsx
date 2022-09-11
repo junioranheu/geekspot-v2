@@ -59,7 +59,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
             <ModalLateralLayout
                 handleModal={setIsModalLateralOpen}
                 isOpen={isModalLateralOpen}
-                titulo={`Olá, <b>@${nomeUsuario}</b> ${emojiAleatorio()}`}
+                titulo={`Olá${(nomeUsuario && `, <b>@${nomeUsuario}</b>`)} ${emojiAleatorio()}`}
             >
                 <div className={Styles.divAtalhos} onClick={() => setIsModalLateralOpen(false)}>
                     <Link href='/xxx'><a>Produtos</a></Link>
