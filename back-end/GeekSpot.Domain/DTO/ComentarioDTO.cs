@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Domain.DTO
@@ -10,10 +11,14 @@ namespace GeekSpot.Domain.DTO
 
         // Fk (De lá pra cá);
         public int ItemId { get; set; }
+
+        [JsonIgnore]
         public ItemDTO? Itens { get; set; }
 
         // Fk (De lá pra cá);
-        public int UsuarioId { get; set; } // Usuário que fez a pergunta;
+        public int? UsuarioId { get; set; } // Usuário que fez a pergunta;
+
+        [JsonIgnore]
         public UsuarioDTO? Usuarios { get; set; }
 
         public string? Mensagem { get; set; } = null;

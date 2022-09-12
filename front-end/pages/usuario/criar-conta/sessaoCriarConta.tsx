@@ -48,7 +48,7 @@ export default function SessaoCriarConta() {
         });
     }
 
-    // Ao clicar no botão para entrar;
+    // Ao clicar no botão para criar conta;
     async function handleSubmit() {
         nProgress.start();
         refBtnCriar.current.disabled = true;
@@ -80,7 +80,6 @@ export default function SessaoCriarConta() {
         };
 
         const resposta = await Fetch.postApi(url, dto, null);
-
         if (!resposta || resposta?.erro) {
             nProgress.done();
             refEmail.current.select();
@@ -88,7 +87,7 @@ export default function SessaoCriarConta() {
             refConfirmarSenha.current.value = '';
             formData.senha = '';
             refBtnCriar.current.disabled = false;
-            Aviso.error(resposta.mensagem, 10000);
+            Aviso.error(resposta.mensagemErro, 10000);
             return false;
         }
 

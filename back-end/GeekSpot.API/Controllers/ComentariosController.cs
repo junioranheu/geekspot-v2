@@ -2,7 +2,9 @@
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace GeekSpot.API.Controllers
 {
@@ -18,9 +20,10 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpPost("adicionar")]
-        [CustomAuthorize(UsuarioTipoEnum.Administrador)]
+        [Authorize]
         public async Task<ActionResult<bool>> Adicionar(ComentarioDTO dto)
         {
+            dto.UsuarioId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             await _itemRepository.Adicionar(dto);
             return Ok(true);
         }

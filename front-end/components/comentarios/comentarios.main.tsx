@@ -1,6 +1,10 @@
+import nProgress from 'nprogress';
 import { useEffect, useRef, useState } from 'react';
-import CONSTS_COMENTARIOS from '../../utils/data/constComentarios';
+import { Auth } from '../../utils/context/usuarioContext';
+import { default as CONSTS_COMENTARIOS, default as CONSTS_MENSAGENS } from '../../utils/data/constComentarios';
+import { Aviso } from '../../utils/outros/aviso';
 import { Fetch } from '../../utils/outros/fetch';
+import horarioBrasilia from '../../utils/outros/horarioBrasilia';
 import iListaComentarios from '../../utils/types/listaComentarios';
 import Textarea from '../outros/textarea';
 import ComentariosLista from './comentarios.lista';
@@ -12,13 +16,52 @@ interface iParametros {
 
 export default function ComentariosMain({ itemId }: iParametros) {
 
+    const token = Auth?.get()?.token ?? '';
+
     const maxCaracteres = 200;
     const [texto, setTexto] = useState('');
-    const refTextarea = useRef<any>(null);
 
-    function handleEnviar() {
-        refTextarea.current.disabled = true;
-        alert('handleEnviar');
+    const refTextarea = useRef<any>(null);
+    const refBtn = useRef<any>(null);
+
+    async function handleEnviar() {
+        if (!token) {
+            Aviso.warn('Você precisa entrar em sua conta antes de deixar um comentário', 5000);
+            return false;
+        }
+
+        if (!texto) {
+            refTextarea.current.select();
+            return false;
+        }
+
+        nProgress.start();
+        refBtn.current.disabled = true;
+
+        const url = CONSTS_MENSAGENS.API_URL_POST_CRIAR;
+        const dto = {
+            itemId: itemId,
+            usuarioId: null,
+            mensagem: texto,
+            resposta: '',
+            isAtivo: 1,
+            dataEnvio: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
+        };
+
+        console.log(dto);
+
+        const resposta = await Fetch.postApi(url, dto, token);
+        if (!resposta || resposta?.erro) {
+            nProgress.done();
+            setTexto('');
+            refTextarea.current.select();
+            refBtn.current.disabled = false;
+            Aviso.warn('Houve um problema em enviar seu comentário. Tente novamente mais tarde', 5000);
+        }
+
+        nProgress.done();
+        setTexto('');
+        refBtn.current.disabled = false;
     }
 
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
@@ -47,7 +90,7 @@ export default function ComentariosMain({ itemId }: iParametros) {
                 isMostrarBotao={true}
                 textoBotao='Perguntar'
                 handleFuncaoBotao={handleEnviar}
-                referenciaBotao={null}
+                referenciaBotao={refBtn}
                 isEnabledBotao={true}
             />
 
