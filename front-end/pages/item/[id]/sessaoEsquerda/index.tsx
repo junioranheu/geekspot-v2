@@ -59,7 +59,7 @@ export default function SessaoEsquerda({ item }: iItem) {
             {/* Div com input para comentar e lista de comentários */}
             <div className={Styles.divComentarios}>
                 <div className='margem1_5'></div>
-                <ComentariosMain itemId={item?.itemId} />
+                <ComentariosMain itemId={item?.itemId} usuarioIdDonoItem={item?.usuarioId} />
             </div>
         </div>
     )

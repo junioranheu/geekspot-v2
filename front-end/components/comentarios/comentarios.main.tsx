@@ -12,11 +12,13 @@ import Styles from './comentarios.module.scss';
 
 interface iParametros {
     itemId: number;
+    usuarioIdDonoItem: number;
 }
 
-export default function ComentariosMain({ itemId }: iParametros) {
+export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametros) {
 
     const token = Auth?.get()?.token ?? '';
+    const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
     const maxCaracteres = 200;
     const [texto, setTexto] = useState('');
@@ -35,20 +37,23 @@ export default function ComentariosMain({ itemId }: iParametros) {
             return false;
         }
 
+        if (usuarioId === usuarioIdDonoItem){
+            Aviso.warn('Você não pode comentar no seu próprio item', 5000);
+            return false;
+        }
+
         nProgress.start();
         refBtn.current.disabled = true;
 
         const url = CONSTS_MENSAGENS.API_URL_POST_CRIAR;
         const dto = {
             itemId: itemId,
-            usuarioId: null,
+            usuarioId: 1,
             mensagem: texto,
             resposta: '',
             isAtivo: 1,
             dataEnvio: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
         };
-
-        console.log(dto);
 
         const resposta = await Fetch.postApi(url, dto, token);
         if (!resposta || resposta?.erro) {
@@ -62,6 +67,7 @@ export default function ComentariosMain({ itemId }: iParametros) {
         nProgress.done();
         setTexto('');
         refBtn.current.disabled = false;
+        Aviso.success('Comentário enviado com sucesso', 5000);
     }
 
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
