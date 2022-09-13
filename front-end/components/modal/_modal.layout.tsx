@@ -18,7 +18,7 @@ export default function ModalLayout({ handleModal, titulo, children, tamanho, is
     return (
         <div className={Styles.fundo} onMouseDown={(e) => FecharModal.fecharModalClicandoNoFundo(isFecharModalClicandoNoFundo, handleModal, e, setAnimarDiv)}>
             <div className={animarDiv}>
-                <div className={`${Styles.modal} ${(tamanho === 'gigante' ? Styles.modalGigante : tamanho === 'grande' ? Styles.modalGrande : tamanho === 'pequeno' ? Styles.modalPequeno : '')} ${FecharModal.animacaoOpen}`}>
+                <div className={`${Styles.modal} ${(tamanho === 'gigante' ? Styles.modalGigante : tamanho === 'grande' ? Styles.modalGrande : tamanho === 'pequeno' ? Styles.modalPequeno : '')} animate__animated animate__fadeIn animate__faster`}>
                     <div className={Styles.divCabecalho}>
                         <BotaoFecharModal fecharModal={() => FecharModal.fecharModalClicandoNoBotao(handleModal)} />
 

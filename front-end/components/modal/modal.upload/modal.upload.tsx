@@ -10,13 +10,13 @@ import { FecharModal } from '../fecharModal';
 import ModalUploadConteudo from './modal.upload.conteudo';
 import StylesUpload from './modal.upload.module.scss';
 
-interface parametros {
+interface iParametros {
     isBase64: boolean; // true = base64, false = file;
     handleModal: Dispatch<boolean>;
     setArquivoUpload: Dispatch<File> | any;
 }
 
-export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }: parametros) {
+export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }: iParametros) {
 
     const [nomeElementoInput] = useState('inputUpload_modalUpload');
     const [arquivo, setArquivo] = useState(null);

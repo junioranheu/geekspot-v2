@@ -1,11 +1,14 @@
 import nProgress from 'nprogress';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Auth } from '../../utils/context/usuarioContext';
 import { default as CONSTS_COMENTARIOS, default as CONSTS_MENSAGENS } from '../../utils/data/constComentarios';
 import { Aviso } from '../../utils/outros/aviso';
 import { Fetch } from '../../utils/outros/fetch';
 import horarioBrasilia from '../../utils/outros/horarioBrasilia';
 import iListaComentarios from '../../utils/types/listaComentarios';
+import ModalAvisoLogin from '../modal/modal.aviso/login';
+import ModalLayout from '../modal/_modal.layout';
+import ModalWrapper from '../modal/_modal.wrapper';
 import Textarea from '../outros/textarea';
 import ComentariosLista from './comentarios.lista';
 import Styles from './comentarios.module.scss';
@@ -20,15 +23,16 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     const token = Auth?.get()?.token ?? '';
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
-    const maxCaracteres = 200;
-    const [texto, setTexto] = useState('');
-
+    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
     const refTextarea = useRef<any>(null);
     const refBtn = useRef<any>(null);
 
+    const maxCaracteres = 200;
+    const [texto, setTexto] = useState('');
+
     async function handleEnviar() {
         if (!token) {
-            Aviso.warn('Você precisa entrar em sua conta antes de deixar um comentário', 5000);
+            setIsModalAvisoLoginOpen(true);
             return false;
         }
 
@@ -37,7 +41,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
             return false;
         }
 
-        if (usuarioId === usuarioIdDonoItem){
+        if (usuarioId === usuarioIdDonoItem) {
             Aviso.warn('Você não pode comentar no seu próprio item', 5000);
             return false;
         }
@@ -84,29 +88,39 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     }, [itemId])
 
     return (
-        <div className={Styles.main}>
-            <Textarea
-                placeholder='Pergunte ao vendedor'
-                height={null}
-                max={maxCaracteres}
-                texto={texto}
-                setTexto={setTexto}
-                referenciaTextarea={refTextarea}
+        <Fragment>
+            {/* Modal */}
+            <ModalWrapper isOpen={isModalAvisoLoginOpen} >
+                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                    <ModalAvisoLogin handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} />
+                </ModalLayout>
+            </ModalWrapper>
 
-                isMostrarBotao={true}
-                textoBotao='Perguntar'
-                handleFuncaoBotao={handleEnviar}
-                referenciaBotao={refBtn}
-                isEnabledBotao={true}
-            />
+            {/* Conteúdo */}
+            <div className={Styles.main}>
+                <Textarea
+                    placeholder='Pergunte ao vendedor'
+                    height={null}
+                    max={maxCaracteres}
+                    texto={texto}
+                    setTexto={setTexto}
+                    referenciaTextarea={refTextarea}
 
-            {
-                comentarios && (
-                    <div className='margem1'>
-                        <ComentariosLista listaComentarios={comentarios} maxCaracteres={maxCaracteres} />
-                    </div>
-                )
-            }
-        </div>
+                    isMostrarBotao={true}
+                    textoBotao='Perguntar'
+                    handleFuncaoBotao={handleEnviar}
+                    referenciaBotao={refBtn}
+                    isEnabledBotao={true}
+                />
+
+                {
+                    comentarios && (
+                        <div className='margem1'>
+                            <ComentariosLista listaComentarios={comentarios} maxCaracteres={maxCaracteres} />
+                        </div>
+                    )
+                }
+            </div>
+        </Fragment>
     )
 }

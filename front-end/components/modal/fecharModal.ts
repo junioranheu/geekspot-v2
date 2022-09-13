@@ -20,9 +20,5 @@ export const FecharModal = {
                 setAnimarDiv('');
             }, 700);
         }
-    },
-
-    animacaoOpen() {
-        return 'animate__animated animate__fadeInUp animate__faster';
     }
 }
