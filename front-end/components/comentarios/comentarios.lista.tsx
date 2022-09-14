@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../utils/data/constUpload';
+import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import formatarData from '../../utils/outros/formatarData';
 import limitarTexto from '../../utils/outros/limitarTexto';

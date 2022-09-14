@@ -1,7 +1,7 @@
 import nProgress from 'nprogress';
 import { Fragment, useEffect, useRef, useState } from 'react';
+import { default as CONSTS_COMENTARIOS, default as CONSTS_MENSAGENS } from '../../utils/consts/data/constComentarios';
 import { Auth } from '../../utils/context/usuarioContext';
-import { default as CONSTS_COMENTARIOS, default as CONSTS_MENSAGENS } from '../../utils/data/constComentarios';
 import { Aviso } from '../../utils/outros/aviso';
 import { Fetch } from '../../utils/outros/fetch';
 import horarioBrasilia from '../../utils/outros/horarioBrasilia';

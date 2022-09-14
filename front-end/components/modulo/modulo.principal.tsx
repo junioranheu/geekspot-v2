@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../utils/data/constUpload';
+import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import definirPreco from '../../utils/outros/definirPreco';
 import randomizarArray from '../../utils/outros/randomizarArray';

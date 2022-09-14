@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../utils/data/constUpload';
+import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
 import Styles from './modulo.alternativo.module.scss';

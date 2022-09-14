@@ -1,0 +1,24 @@
+import { API_BASE_URL_DEV, API_BASE_URL_PROD } from '../../outros/_urlApi';
+
+const ENDPOINTS = {
+    GET_TODOS_ESTADOS: 'api/Sistema/todosEstados',
+    GET_TODAS_CIDADES: 'api/Sistema/todasCidadesByEstadoId',
+    GET_LISTA_DATA_ATUAL: 'api/Sistema/listaDataAtual'
+};
+
+const DEV = {
+    API_URL_GET_TODOS_ESTADOS: `${API_BASE_URL_DEV}/${ENDPOINTS.GET_TODOS_ESTADOS}`,
+    API_URL_GET_TODAS_CIDADES: `${API_BASE_URL_DEV}/${ENDPOINTS.GET_TODAS_CIDADES}`,
+    API_URL_GET_LISTA_DATA_ATUAL: `${API_BASE_URL_DEV}/${ENDPOINTS.GET_LISTA_DATA_ATUAL}`
+};
+
+const PROD = {
+    API_URL_GET_TODOS_ESTADOS: `${API_BASE_URL_PROD}/${ENDPOINTS.GET_TODOS_ESTADOS}`,
+    API_URL_GET_TODAS_CIDADES: `${API_BASE_URL_PROD}/${ENDPOINTS.GET_TODAS_CIDADES}`,
+    API_URL_GET_LISTA_DATA_ATUAL: `${API_BASE_URL_PROD}/${ENDPOINTS.GET_LISTA_DATA_ATUAL}`
+};
+
+// Definir se as constantes para a API é DEV ou PROD;
+const CONSTS = process.env.NODE_ENV === 'development' ? DEV : PROD;
+
+export default CONSTS;

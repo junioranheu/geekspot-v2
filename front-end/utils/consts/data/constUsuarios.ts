@@ -1,4 +1,4 @@
-import { API_BASE_URL_DEV, API_BASE_URL_PROD } from '../outros/_urlApi';
+import { API_BASE_URL_DEV, API_BASE_URL_PROD } from '../../outros/_urlApi';
 
 const ENDPOINTS = {
     GET_POR_ID: 'api/Usuarios',

@@ -6,9 +6,9 @@ import Router from 'next/router';
 import nProgress from 'nprogress';
 import { Dispatch, Fragment, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
+import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
-import CONSTS_UPLOAD from '../../utils/data/constUpload';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import Botao from '../outros/botao';
 import Ajuda from '../svg/ajuda';

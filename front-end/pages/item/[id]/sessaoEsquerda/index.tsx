@@ -4,7 +4,7 @@ import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/rea
 import 'react-medium-image-zoom/dist/styles.css';
 import ComentariosMain from '../../../../components/comentarios/comentarios.main';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../../../utils/data/constUpload';
+import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 

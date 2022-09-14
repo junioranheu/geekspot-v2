@@ -6,10 +6,10 @@ import CarouselDois from '../static/image/carousel/dois.webp';
 import CarouselDoisBlack from '../static/image/carousel/dois_black.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
 import CarouselUmBlack from '../static/image/carousel/um_black.webp';
+import CONSTS_ITENS from '../utils/consts/data/constItens';
+import CONSTS_USUARIOS from '../utils/consts/data/constUsuarios';
 import CONSTS_SISTEMA from '../utils/consts/outros/sistema';
 import { ModoDarkContext } from '../utils/context/modoDarkContext';
-import CONSTS_ITENS from '../utils/data/constItens';
-import CONSTS_USUARIOS from '../utils/data/constUsuarios';
 import { Fetch } from '../utils/outros/fetch';
 import HabilitarHttp from '../utils/outros/habilitarHttp';
 import paginaCarregada from '../utils/outros/paginaCarregada';
@@ -17,7 +17,7 @@ import randomizarArray from '../utils/outros/randomizarArray';
 
 export default function Home({ listaItens }: any) {
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
-
+    
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
     const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 
