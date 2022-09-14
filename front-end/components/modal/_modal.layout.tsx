@@ -25,17 +25,17 @@ export default function ModalLayout({ handleModal, isExibirApenasLogo, titulo, c
                         <BotaoFecharModal fecharModal={() => FecharModal.fecharModalClicandoNoBotao(handleModal)} />
 
                         {
-                            titulo && (
-                                <div className={Styles.cabecalhoTitulo}>
-                                    {
-                                        isExibirApenasLogo ? (
-                                            <Logo width='2rem' />
-                                        ) : (
+                            <div className={Styles.cabecalhoTitulo}>
+                                {
+                                    isExibirApenasLogo ? (
+                                        <Logo width='2rem' />
+                                    ) : (
+                                        titulo && (
                                             <div dangerouslySetInnerHTML={{ __html: titulo }} />
                                         )
-                                    }
-                                </div>
-                            )
+                                    )
+                                }
+                            </div>
                         }
                     </div>
 

@@ -1,6 +1,7 @@
 import nProgress from 'nprogress';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { default as CONSTS_COMENTARIOS, default as CONSTS_MENSAGENS } from '../../utils/consts/data/constComentarios';
+import COMENTARIOS from '../../utils/consts/outros/comentarios';
 import { Auth } from '../../utils/context/usuarioContext';
 import { Aviso } from '../../utils/outros/aviso';
 import { Fetch } from '../../utils/outros/fetch';
@@ -26,10 +27,8 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
     const refTextarea = useRef<any>(null);
     const refBtn = useRef<any>(null);
-
-    const maxCaracteres = 200;
     const [texto, setTexto] = useState('');
-
+    
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
     async function getComentarios(itemId: number) {
         const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}/${itemId}`;
@@ -56,6 +55,12 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
 
         if (usuarioId === usuarioIdDonoItem) {
             Aviso.warn('Você não pode comentar no seu próprio item', 5000);
+            return false;
+        }
+
+        if (texto.length < 10) {
+            Aviso.warn('O texto está muito curto, escreva mais algumas palavrinhas, por favor', 5000);
+            refTextarea.current.select();
             return false;
         }
 
@@ -103,7 +108,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
                 <Textarea
                     placeholder='Pergunte ao vendedor'
                     height={null}
-                    max={maxCaracteres}
+                    max={COMENTARIOS.MAX_CARACTERES}
                     texto={texto}
                     setTexto={setTexto}
                     referenciaTextarea={refTextarea}
@@ -118,7 +123,12 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
                 {
                     comentarios && (
                         <div className='margem1'>
-                            <ComentariosLista listaComentarios={comentarios} maxCaracteres={maxCaracteres} />
+                            <ComentariosLista
+                                id={usuarioIdDonoItem}
+                                isExibirOpcaoResponder={true}
+                                listaComentarios={comentarios}
+                                maxCaracteres={COMENTARIOS.MAX_CARACTERES}
+                            />
                         </div>
                     )
                 }
