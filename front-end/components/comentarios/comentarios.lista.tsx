@@ -21,7 +21,7 @@ export default function ComentariosLista({ listaComentarios, maxCaracteres }: iP
 
             {
                 listaComentarios.length > 0 ? (
-                    listaComentarios?.map((item, i: number) => (
+                    listaComentarios?.slice(0, 100).map((item, i: number) => (
                         <div className={`${Styles.perguntaDiv} margem1_5`} key={i}>
                             <div className={Styles.flexRow}>
                                 <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/${item?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema)}`)}>

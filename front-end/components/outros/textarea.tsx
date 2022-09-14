@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, MutableRefObject, useState } from 'react';
+import { ChangeEvent, Dispatch, MutableRefObject, useEffect, useState } from 'react';
 import Botao from './botao';
 import Styles from './styles/textarea.module.scss';
 
@@ -33,6 +33,12 @@ export default function Textarea({
         setQtdCaracteresRestantes(verificarQtdCaracteresRestantes);
         setTexto(e.target.value);
     }
+
+    useEffect(() => {
+        if (texto === '') {
+            setQtdCaracteresRestantes(max);
+        }
+    }, [texto])
 
     return (
         <div className={Styles.textarea}>
