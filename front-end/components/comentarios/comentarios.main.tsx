@@ -28,7 +28,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     const refTextarea = useRef<any>(null);
     const refBtn = useRef<any>(null);
     const [texto, setTexto] = useState('');
-    
+
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
     async function getComentarios(itemId: number) {
         const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}/${itemId}`;
@@ -125,10 +125,12 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
                     comentarios && (
                         <div className='margem1'>
                             <ComentariosLista
-                                id={usuarioIdDonoItem}
+                                itemId={itemId}
+                                usuarioIdDonoItem={usuarioIdDonoItem}
                                 isExibirOpcaoResponder={true}
                                 listaComentarios={comentarios}
                                 maxCaracteres={COMENTARIOS.MAX_CARACTERES}
+                                getComentarios={getComentarios}
                             />
                         </div>
                     )

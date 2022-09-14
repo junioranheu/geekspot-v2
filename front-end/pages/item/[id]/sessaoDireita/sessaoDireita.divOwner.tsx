@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import Botao from '../../../../components/outros/botao';
+import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import formatarData from '../../../../utils/outros/formatarData';
-import gerarImagemPerfilRandom from '../../../../utils/outros/gerarImagemPerfilRandom';
 import letraMaiusculaPrimeiraPalavraApenas from '../../../../utils/outros/letraMaiusculaPrimeiraPalavraApenas';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
@@ -24,7 +24,7 @@ export default function DivOwner({ item }: iItem) {
                 <div className='flexRow'>
                     <div className={Styles.divFoto} onClick={() => Router.push(urlPerfilDonoItem)}>
                         <Image
-                            src={(item?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.usuarios?.foto}` : gerarImagemPerfilRandom())}
+                            src={(item?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.usuarios?.foto}` : ImgCinza)}
                             title={`Visitar perfil de @${item?.usuarios?.nomeUsuarioSistema}`}
                             width={30}
                             height={30}

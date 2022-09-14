@@ -15,13 +15,15 @@ import ModalWrapper from '../modal/_modal.wrapper';
 import Styles from './comentarios.module.scss';
 
 interface iParametros {
-    id: number | null; // Concernente ao id em questão. Ex: comentário, usuário, etc;
+    itemId: number | null;
+    usuarioIdDonoItem: number | null;
     isExibirOpcaoResponder: boolean;
     listaComentarios: iListaComentarios[];
     maxCaracteres: number;
+    getComentarios: (itemId: number) => Promise<void>;
 }
 
-export default function ComentariosLista({ id, isExibirOpcaoResponder, listaComentarios, maxCaracteres }: iParametros) {
+export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOpcaoResponder, listaComentarios, maxCaracteres, getComentarios }: iParametros) {
 
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
@@ -37,7 +39,12 @@ export default function ComentariosLista({ id, isExibirOpcaoResponder, listaCome
             {/* Modal */}
             <ModalWrapper isOpen={isModalResponderComentarioOpen} >
                 <ModalLayout handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalResponderComentario handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)} dados={comentarioClicadoParaResponder} />
+                    <ModalResponderComentario
+                        handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)}
+                        dados={comentarioClicadoParaResponder}
+                        itemId={itemId}
+                        getComentarios={getComentarios}
+                    />
                 </ModalLayout>
             </ModalWrapper>
 
@@ -48,7 +55,7 @@ export default function ComentariosLista({ id, isExibirOpcaoResponder, listaCome
                 {
                     listaComentarios.length > 0 ? (
                         listaComentarios?.slice(0, 100).map((item, i: number) => (
-                            <div className={`${Styles.perguntaDiv} margem1_5`} key={i}>
+                            <div className={`${Styles.perguntaDiv} margem1_5 animate__animated animate__fadeIn`} key={i}>
                                 <div className={Styles.flexRow}>
                                     <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/${item?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema)}`)}>
                                         <Image
@@ -65,8 +72,8 @@ export default function ComentariosLista({ id, isExibirOpcaoResponder, listaCome
                                     </div>
 
                                     {
-                                        // Se o comentário ainda não tem uma resposta && se "id concernente" (#id) é o usuário logado (#usuarioId);
-                                        (!item?.resposta) && (id === usuarioId) && (isExibirOpcaoResponder) && (
+                                        // Se o comentário ainda não tem uma resposta && se usuarioIdDonoItem é o usuário logado (#usuarioId);
+                                        (!item?.resposta) && (usuarioIdDonoItem === usuarioId) && (isExibirOpcaoResponder) && (
                                             <div>
                                                 <span
                                                     className={`${Styles.perguntaInfo} cor-principal-hover pointer`}
@@ -85,7 +92,7 @@ export default function ComentariosLista({ id, isExibirOpcaoResponder, listaCome
                                         <Fragment>
                                             <div className={Styles.conector}></div>
 
-                                            <div className={Styles.flexRow}>
+                                            <div className={`${Styles.flexRow} animate__animated animate__fadeIn`}>
                                                 <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.itens?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/${item?.itens?.usuarios?.usuarioId}/${ajustarUrl(item?.itens?.usuarios?.nomeUsuarioSistema)}`)}>
                                                     <Image
                                                         src={fotoPerfil()}

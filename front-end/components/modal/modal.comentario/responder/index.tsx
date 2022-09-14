@@ -14,9 +14,11 @@ import Styles from './index.module.scss';
 interface iParametros {
     handleModal: Dispatch<boolean>;
     dados: any;
+    itemId: number | null;
+    getComentarios: (itemId: number) => Promise<void>;
 }
 
-export default function ModalResponderComentario({ handleModal, dados }: iParametros) {
+export default function ModalResponderComentario({ handleModal, dados, itemId, getComentarios }: iParametros) {
 
     const token = Auth?.get()?.token ?? '';
 
@@ -83,7 +85,7 @@ export default function ModalResponderComentario({ handleModal, dados }: iParame
         setTexto('');
         refBtn.current.disabled = false;
         Aviso.success('Resposta enviada com sucesso', 5000);
-        // getComentarios(itemId);
+        itemId && getComentarios(itemId);
         FecharModal.fecharModalClicandoNoBotao(handleModal);
     }
 
