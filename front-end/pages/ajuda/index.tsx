@@ -20,7 +20,7 @@ export default function Index() {
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalUploadOpen} >
-                <ModalLayout handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} titulo='Arraste a imagem para ajustar' tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} isExibirApenasLogo={false} titulo='Arraste a imagem para ajustar' tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalUpload isBase64={false} handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} setArquivoUpload={setArquivoUpload} />
                 </ModalLayout>
             </ModalWrapper>

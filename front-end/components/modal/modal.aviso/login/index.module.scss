@@ -1,5 +1,34 @@
 .main {
-    background-color: red;
+    // background-color: red;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .titulo {
+        // background-color: red;
+        color: var(--preto);
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .texto {
+        // background-color: red;
+        color: var(--preto);
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .termos {
+        // background-color: red;
+        width: 70%;
+        color: var(--preto);
+        font-size: 0.7rem;
+        font-weight: 400;
+
+        a {
+            color: var(--cor-principal);
+        }
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */

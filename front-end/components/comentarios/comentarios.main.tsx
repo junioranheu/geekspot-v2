@@ -91,7 +91,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen} >
-                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAvisoLogin handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} />
                 </ModalLayout>
             </ModalWrapper>

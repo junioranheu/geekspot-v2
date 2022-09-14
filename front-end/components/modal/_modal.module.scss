@@ -26,7 +26,7 @@
 
         overflow-x: hidden;
         overflow-y: auto;
-
+ 
         .divCabecalho {
             // background-color: red;
             border-bottom: 1px solid var(--bege);
@@ -94,6 +94,7 @@
                 // background-color: red;
                 justify-content: center;
                 align-items: center;
+                text-align: center;
             }
         }
     }

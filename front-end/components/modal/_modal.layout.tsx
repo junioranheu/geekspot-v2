@@ -1,10 +1,12 @@
 import { Dispatch, ReactNode, useState } from 'react';
+import Logo from '../svg/logo';
 import { FecharModal } from './fecharModal';
 import BotaoFecharModal from './_botaoFecharModal';
 import Styles from './_modal.module.scss';
 
 interface parametros {
     handleModal: Dispatch<boolean>;
+    isExibirApenasLogo: boolean;
     titulo: string | null;
     children: ReactNode;
     tamanho: string; // 'gigante', 'grande', 'medio' ou '';
@@ -12,7 +14,7 @@ interface parametros {
     isFecharModalClicandoNoFundo: boolean;
 }
 
-export default function ModalLayout({ handleModal, titulo, children, tamanho, isCentralizado, isFecharModalClicandoNoFundo }: parametros) {
+export default function ModalLayout({ handleModal, isExibirApenasLogo, titulo, children, tamanho, isCentralizado, isFecharModalClicandoNoFundo }: parametros) {
     const [animarDiv, setAnimarDiv] = useState('');
 
     return (
@@ -25,7 +27,13 @@ export default function ModalLayout({ handleModal, titulo, children, tamanho, is
                         {
                             titulo && (
                                 <div className={Styles.cabecalhoTitulo}>
-                                    <div dangerouslySetInnerHTML={{ __html: titulo }} />
+                                    {
+                                        isExibirApenasLogo ? (
+                                            <Logo width='2rem' />
+                                        ) : (
+                                            <div dangerouslySetInnerHTML={{ __html: titulo }} />
+                                        )
+                                    }
                                 </div>
                             )
                         }
