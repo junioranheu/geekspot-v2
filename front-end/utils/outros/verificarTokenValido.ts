@@ -53,7 +53,7 @@ function getJWTExpireDate(jwtToken: string) {
                 return new Date(expires * 1000);
             }
         } catch {
-            // ignore
+            
         }
     }
 

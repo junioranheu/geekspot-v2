@@ -1,8 +1,6 @@
 ﻿using GeekSpot.Application.Common.Interfaces.Authentication;
 using GeekSpot.Application.Common.Interfaces.Services;
 using GeekSpot.Domain.DTO;
-using GeekSpot.Domain.Entities;
-using GeekSpot.Utils;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

@@ -32,6 +32,7 @@ namespace GeekSpot.Infraestructure
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
             // Interfaces e repositórios;
+            services.AddScoped<ISistemaRepository, SistemaRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IItemTipoRepository, ItemTipoRepository>();
