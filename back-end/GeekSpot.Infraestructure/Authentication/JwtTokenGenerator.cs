@@ -27,16 +27,18 @@ namespace GeekSpot.Infraestructure.Authentication
             JwtSecurityTokenHandler tokenHandler = new();
 
             SigningCredentials signingCredentials = new(
-                                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret ?? "")),
-                                        algorithm: SecurityAlgorithms.HmacSha256Signature
-                                     );
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret ?? "")),
+                algorithm: SecurityAlgorithms.HmacSha256Signature
+            );
 
-            ClaimsIdentity claims = new(new Claim[]
-                           {
-                                new Claim(type: ClaimTypes.Name, usuario.NomeCompleto ?? ""),
-                                new Claim(type: ClaimTypes.Role, usuario.UsuarioTipoId.ToString()),
-                                new Claim(type: ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
-                           });
+            ClaimsIdentity claims = new(
+                new Claim[]
+                {
+                    new Claim(type: ClaimTypes.Name, usuario.NomeCompleto ?? ""),
+                    new Claim(type: ClaimTypes.Role, usuario.UsuarioTipoId.ToString()),
+                    new Claim(type: ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
+                }
+            );
 
             SecurityTokenDescriptor tokenDescriptor = new()
             {

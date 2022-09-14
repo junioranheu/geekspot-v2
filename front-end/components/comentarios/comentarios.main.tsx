@@ -30,6 +30,19 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     const maxCaracteres = 200;
     const [texto, setTexto] = useState('');
 
+    const [comentarios, setComentarios] = useState<iListaComentarios[]>();
+    async function getComentarios(itemId: number) {
+        const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}/${itemId}`;
+        const comentarios = await Fetch.getApi(url, null) as iListaComentarios[];
+        setComentarios(comentarios);
+    }
+
+    useEffect(() => {
+        if (itemId) {
+            getComentarios(itemId);
+        }
+    }, [itemId])
+
     async function handleEnviar() {
         if (!token) {
             setIsModalAvisoLoginOpen(true);
@@ -66,26 +79,15 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
             refTextarea.current.select();
             refBtn.current.disabled = false;
             Aviso.warn('Houve um problema em enviar seu comentário. Tente novamente mais tarde', 5000);
+            return false;
         }
 
         nProgress.done();
         setTexto('');
         refBtn.current.disabled = false;
         Aviso.success('Comentário enviado com sucesso', 5000);
+        getComentarios(itemId);
     }
-
-    const [comentarios, setComentarios] = useState<iListaComentarios[]>();
-    useEffect(() => {
-        async function getComentarios(itemId: number) {
-            const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}/${itemId}`;
-            const comentarios = await Fetch.getApi(url, null) as iListaComentarios[];
-            setComentarios(comentarios);
-        }
-
-        if (itemId) {
-            getComentarios(itemId);
-        }
-    }, [itemId])
 
     return (
         <Fragment>

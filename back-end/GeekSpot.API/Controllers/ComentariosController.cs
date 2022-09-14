@@ -23,7 +23,7 @@ namespace GeekSpot.API.Controllers
         [Authorize]
         public async Task<ActionResult<bool>> Adicionar(ComentarioDTO dto)
         {
-            dto.UsuarioId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            dto.UsuarioId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
             await _itemRepository.Adicionar(dto);
             return Ok(true);
         }
