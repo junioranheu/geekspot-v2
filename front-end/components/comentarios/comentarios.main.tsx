@@ -1,6 +1,6 @@
 import nProgress from 'nprogress';
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { default as CONSTS_COMENTARIOS, default as CONSTS_MENSAGENS } from '../../utils/consts/data/constComentarios';
+import CONSTS_COMENTARIOS from '../../utils/consts/data/constComentarios';
 import COMENTARIOS from '../../utils/consts/outros/comentarios';
 import { Auth } from '../../utils/context/usuarioContext';
 import { Aviso } from '../../utils/outros/aviso';
@@ -67,14 +67,15 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
         nProgress.start();
         refBtn.current.disabled = true;
 
-        const url = CONSTS_MENSAGENS.API_URL_POST_CRIAR;
+        const url = CONSTS_COMENTARIOS.API_URL_POST_CRIAR;
         const dto = {
             itemId: itemId,
-            usuarioId: 1,
+            usuarioId: null,
             mensagem: texto,
             resposta: '',
             isAtivo: 1,
-            dataEnvio: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
+            dataMensagem: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
+            dataResposta: null
         };
 
         const resposta = await Fetch.postApi(url, dto, token);

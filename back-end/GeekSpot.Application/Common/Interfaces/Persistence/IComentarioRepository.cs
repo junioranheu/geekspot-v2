@@ -10,5 +10,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task<List<ComentarioDTO>>? GetTodos();
         Task<ComentarioDTO>? GetPorId(int id);
         Task<List<ComentarioDTO>>? GetPorItemId(int itemId);
+        Task ResponderComentario(ComentarioDTO dto);
     }
 }

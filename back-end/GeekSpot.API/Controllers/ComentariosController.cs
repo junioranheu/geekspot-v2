@@ -5,6 +5,7 @@ using GeekSpot.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.API.Controllers
 {
@@ -12,11 +13,11 @@ namespace GeekSpot.API.Controllers
     [ApiController]
     public class ComentariosController : BaseController<ComentariosController>
     {
-        private readonly IComentarioRepository _itemRepository;
+        private readonly IComentarioRepository _comentarioRepository;
 
         public ComentariosController(IComentarioRepository comentarioRepository)
         {
-            _itemRepository = comentarioRepository;
+            _comentarioRepository = comentarioRepository;
         }
 
         [HttpPost("adicionar")]
@@ -24,7 +25,7 @@ namespace GeekSpot.API.Controllers
         public async Task<ActionResult<bool>> Adicionar(ComentarioDTO dto)
         {
             dto.UsuarioId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
-            await _itemRepository.Adicionar(dto);
+            await _comentarioRepository.Adicionar(dto);
             return Ok(true);
         }
 
@@ -32,7 +33,7 @@ namespace GeekSpot.API.Controllers
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Atualizar(ComentarioDTO dto)
         {
-            await _itemRepository.Atualizar(dto);
+            await _comentarioRepository.Atualizar(dto);
             return Ok(true);
         }
 
@@ -40,7 +41,7 @@ namespace GeekSpot.API.Controllers
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<int>> Deletar(int id)
         {
-            await _itemRepository.Deletar(id);
+            await _comentarioRepository.Deletar(id);
             return Ok(true);
         }
 
@@ -48,14 +49,14 @@ namespace GeekSpot.API.Controllers
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<List<ComentarioDTO>>> GetTodos()
         {
-            var todos = await _itemRepository.GetTodos();
+            var todos = await _comentarioRepository.GetTodos();
             return Ok(todos);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ComentarioDTO>> GetPorId(int id)
         {
-            var porId = await _itemRepository.GetPorId(id);
+            var porId = await _comentarioRepository.GetPorId(id);
 
             if (porId == null)
             {
@@ -68,7 +69,7 @@ namespace GeekSpot.API.Controllers
         [HttpGet("porItemId/{itemId}")]
         public async Task<ActionResult<List<ComentarioDTO>>> GetPorItemId(int itemId)
         {
-            var porItemId = await _itemRepository.GetPorItemId(itemId);
+            var porItemId = await _comentarioRepository.GetPorItemId(itemId);
 
             if (porItemId == null)
             {
@@ -76,6 +77,29 @@ namespace GeekSpot.API.Controllers
             }
 
             return Ok(porItemId);
+        }
+
+        [HttpPut("responderComentario")]
+        [Authorize]
+        public async Task<ActionResult<ComentarioDTO>> ResponderComentario(ComentarioDTO dto)
+        {
+            int idUsuarioDonoItem = dto?.Itens?.UsuarioId ?? 0;
+            var isMesmoUsuario = await IsUsuarioSolicitadoMesmoDoToken(idUsuarioDonoItem);
+
+            if (!isMesmoUsuario)
+            {
+                ComentarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.NaoAutorizado,
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoAutorizado)
+                };
+
+                return erro;
+            }
+
+            await _comentarioRepository.ResponderComentario(dto);
+            return Ok(true);
         }
     }
 }

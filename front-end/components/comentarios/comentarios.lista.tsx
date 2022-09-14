@@ -60,7 +60,7 @@ export default function ComentariosLista({ id, isExibirOpcaoResponder, listaCome
 
                                     <div className='flexColumn'>
                                         <span className={Styles.perguntaTexto}>{limitarTexto(item?.mensagem, maxCaracteres)}</span>
-                                        <span className={`${Styles.perguntaInfo} ${Styles.margem0_2}`}>@{item?.usuarios?.nomeUsuarioSistema}, {formatarData(item?.dataEnvio, 2).toLocaleLowerCase()}</span>
+                                        <span className={`${Styles.perguntaInfo} ${Styles.margem0_2}`}>@{item?.usuarios?.nomeUsuarioSistema}, {formatarData(item?.dataMensagem, 2).toLocaleLowerCase()}</span>
                                     </div>
 
                                     {

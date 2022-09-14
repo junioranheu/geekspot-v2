@@ -17,9 +17,11 @@ namespace GeekSpot.Domain.Entities
         public Usuario? Usuarios { get; set; }
 
         public string? Mensagem { get; set; } = null;
+        public DateTime? DataMensagem { get; set; } = HorarioBrasilia();
+
         public string? Resposta { get; set; } = null;
+        public DateTime? DataResposta { get; set; } = null;
 
         public int IsAtivo { get; set; } = 1;
-        public DateTime? DataEnvio { get; set; } = HorarioBrasilia();
     }
 }

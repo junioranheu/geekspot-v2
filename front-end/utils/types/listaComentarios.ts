@@ -17,9 +17,10 @@ export default interface iListaComentarios {
         foto: string | null;
     };
     mensagem: string;
+    dataMensagem: Date;
     resposta: string | null;
+    dataResposta: Date | null;
     isAtivo: number;
-    dataEnvio: Date;
 
     erro: boolean | null;
     codigoErro: number | null;

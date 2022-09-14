@@ -1,9 +1,12 @@
 import nProgress from 'nprogress';
 import { Dispatch, useEffect, useRef, useState } from 'react';
+import CONSTS_COMENTARIOS from '../../../../utils/consts/data/constComentarios';
 import COMENTARIOS from '../../../../utils/consts/outros/comentarios';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import { Auth } from '../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../utils/outros/aviso';
+import { Fetch } from '../../../../utils/outros/fetch';
+import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
 import Textarea from '../../../outros/textarea';
 import { FecharModal } from '../../fecharModal';
 import Styles from './index.module.scss';
@@ -58,25 +61,30 @@ export default function ModalResponderComentario({ handleModal, dados }: iParame
         nProgress.start();
         refBtn.current.disabled = true;
 
-        // const url = CONSTS_MENSAGENS.API_URL_POST_CRIAR;
-        // const dto = {
-        //     itemId: itemId,
-        //     usuarioId: 1,
-        //     mensagem: texto,
-        //     resposta: '',
-        //     isAtivo: 1,
-        //     dataEnvio: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
-        // };
+        const url = CONSTS_COMENTARIOS.API_URL_PUT_RESPONDER_COMENTARIO;
+        const dto = {
+            comentarioId: dados?.comentarioId,
+            itemId: dados?.itemId,
+            // usuarioId: null,
+            // mensagem: texto,
+            resposta: texto,
+            // isAtivo: 1,
+            // dataMensagem: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
+            dataResposta: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
+        };
 
-        // const resposta = await Fetch.postApi(url, dto, token);
-        // if (!resposta || resposta?.erro) {
-        //     nProgress.done();
-        //     setTexto('');
-        //     refTextarea.current.select();
-        //     refBtn.current.disabled = false;
-        //     Aviso.warn('Houve um problema em enviar seu comentário. Tente novamente mais tarde', 5000);
-        //     return false;
-        // }
+        console.log(token);
+        console.log(dto);
+
+        const resposta = await Fetch.postApi(url, dto, token);
+        if (!resposta || resposta?.erro) {
+            nProgress.done();
+            setTexto('');
+            refTextarea.current.select();
+            refBtn.current.disabled = false;
+            Aviso.warn('Houve um problema em enviar sua resposta. Tente novamente mais tarde', 5000);
+            return false;
+        }
 
         nProgress.done();
         setTexto('');

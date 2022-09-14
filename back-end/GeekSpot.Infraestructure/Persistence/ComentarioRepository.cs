@@ -4,6 +4,7 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
+using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Infraestructure.Persistence
 {
@@ -53,7 +54,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
                         Where(i => i.IsAtivo == 1).
-                        OrderBy(d => d.DataEnvio).AsNoTracking().ToListAsync();
+                        OrderBy(d => d.DataMensagem).AsNoTracking().ToListAsync();
 
             List<ComentarioDTO> dto = _map.Map<List<ComentarioDTO>>(todos);
             return dto;
@@ -65,7 +66,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
                         Where(i => i.IsAtivo == 1 && i.ComentarioId == id).
-                        OrderBy(d => d.DataEnvio).AsNoTracking().FirstOrDefaultAsync();
+                        OrderBy(d => d.DataMensagem).AsNoTracking().FirstOrDefaultAsync();
 
             ComentarioDTO dto = _map.Map<ComentarioDTO>(porId);
             return dto;
@@ -77,10 +78,28 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
                         Where(i => i.ItemId == itemId && i.IsAtivo == 1).
-                        OrderBy(d => d.DataEnvio).AsNoTracking().ToListAsync();
+                        OrderBy(d => d.DataMensagem).AsNoTracking().ToListAsync();
 
             List<ComentarioDTO> dto = _map.Map<List<ComentarioDTO>>(itens);
             return dto;
+        }
+
+        public async Task ResponderComentario(ComentarioDTO dto)
+        {
+            Comentario comentario = _map.Map<Comentario>(dto);
+
+            var comentarioBd = await _context.Comentarios.FindAsync(comentario.ComentarioId);
+
+            if (comentarioBd is null)
+            {
+                throw new Exception("Registro com o id " + comentario.ComentarioId + " não foi encontrado");
+            }
+
+            comentarioBd.Resposta = comentario.Resposta;
+            comentarioBd.DataResposta = HorarioBrasilia();
+
+            _context.Update(comentarioBd);
+            await _context.SaveChangesAsync();
         }
     }
 }
