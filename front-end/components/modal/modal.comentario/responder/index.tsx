@@ -31,7 +31,7 @@ export default function ModalResponderComentario({ handleModal, dados }: iParame
                 `Não se esqueça de sempre ser cordial ao responder à essa pergunta, ein?`,
                 `O ${CONSTS_SISTEMA.NOME_SISTEMA} é um lugar legal, portanto seja legal ao responder essa pergunta também, beleza?`,
                 `Não digite aqui informações pessoais que você não gostaria que fossem publicamente vistas, ok?`,
-                `Nós, do $${CONSTS_SISTEMA.NOME_SISTEMA}, nunca pediremos sua senha ou informações que podem ser danosas à sua imagem. Cuidado, ok?`
+                `Nós, do ${CONSTS_SISTEMA.NOME_SISTEMA}, nunca pediremos sua senha ou informações que podem ser danosas à sua imagem. Cuidado, ok?`
             ];
 
             const random = Math.floor(Math.random() * frases.length);
@@ -65,24 +65,17 @@ export default function ModalResponderComentario({ handleModal, dados }: iParame
         const dto = {
             comentarioId: dados?.comentarioId,
             itemId: dados?.itemId,
-            // usuarioId: null,
-            // mensagem: texto,
             resposta: texto,
-            // isAtivo: 1,
-            // dataMensagem: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
             dataResposta: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
         };
 
-        console.log(token);
-        console.log(dto);
-
-        const resposta = await Fetch.postApi(url, dto, token);
+        const resposta = await Fetch.putApi(url, dto, token);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             setTexto('');
             refTextarea.current.select();
             refBtn.current.disabled = false;
-            Aviso.warn('Houve um problema em enviar sua resposta. Tente novamente mais tarde', 5000);
+            Aviso.warn(`${resposta?.mensagemErro}. Houve um problema em enviar sua resposta. Tente novamente mais tarde`, 5000);
             return false;
         }
 

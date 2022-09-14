@@ -84,6 +84,47 @@ export const Fetch = {
         return respostaJson;
     },
 
+    async putApi(url: string, body: string | any | null, token: string | null) {
+        let respostaJson;
+        let headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+
+        try {
+            let resposta = await fetch(url, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+
+            respostaJson = await resposta.json();
+            // console.log(respostaJson);
+            // console.log(respostaJson.status);
+
+            // Caso o respostaJson.status seja diferente de nulo, é porque algo deu erro...
+            // Exemplo: erros 404, 400 ou 401, quando um usuário escreve na barra e procura por um ID que não existe;
+            if (respostaJson.status) {
+                console.log(`Erro ${respostaJson.status} em ${url}. Tipo de erro: ${respostaJson.title}`);
+                respostaJson = null;
+            }
+        } catch (erro: any) {
+            const e = {
+                'url': url,
+                'body': body,
+                'token': token,
+                'erro': erro.message,
+                'data': horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
+            }
+
+            console.table(e);
+            // Aviso.error('Houve uma falha na requisição POST ao servidor!', 5000);
+        }
+
+        return respostaJson;
+    },
+
     async postUparImagemApi(url: string, formData: FormData, token: string | null) {
         let resposta;
         let headers = {

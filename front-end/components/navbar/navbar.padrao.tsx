@@ -6,10 +6,10 @@ import Router from 'next/router';
 import nProgress from 'nprogress';
 import { Dispatch, Fragment, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
-import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 import { Auth } from '../../utils/context/usuarioContext';
 import emojiAleatorio from '../../utils/outros/emojiAleatorio';
+import fotoPerfil from '../../utils/outros/fotoPerfil';
 import Botao from '../outros/botao';
 import Ajuda from '../svg/ajuda';
 import Logo from '../svg/logo';
@@ -25,7 +25,6 @@ interface iParametros {
 export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
-    const fotoPerfil = (Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : Auth?.get()?.fotoPerfilAlternativa);
 
     const [isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao] = useState(false);
     const debounceFecharPainelNavbarPadrao = debounce(() => setIsExibirPainelNavbarPadrao(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
@@ -70,7 +69,7 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                         isAuth ? (
                             <Fragment>
                                 <div className={Styles.divPerfil} onMouseEnter={() => abrirPainelNavbarPadrao()}>
-                                    <Image src={fotoPerfil} width={30} height={30} alt='' />
+                                    <Image src={fotoPerfil()} width={30} height={30} alt='' />
 
                                     {
                                         isExibirPainelNavbarPadrao && (

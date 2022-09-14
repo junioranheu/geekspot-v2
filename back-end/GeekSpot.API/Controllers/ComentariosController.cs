@@ -14,10 +14,12 @@ namespace GeekSpot.API.Controllers
     public class ComentariosController : BaseController<ComentariosController>
     {
         private readonly IComentarioRepository _comentarioRepository;
+        private readonly IItemRepository _itemRepository;
 
-        public ComentariosController(IComentarioRepository comentarioRepository)
+        public ComentariosController(IComentarioRepository comentarioRepository, IItemRepository itemRepository)
         {
             _comentarioRepository = comentarioRepository;
+            _itemRepository = itemRepository;
         }
 
         [HttpPost("adicionar")]
@@ -83,7 +85,22 @@ namespace GeekSpot.API.Controllers
         [Authorize]
         public async Task<ActionResult<ComentarioDTO>> ResponderComentario(ComentarioDTO dto)
         {
-            int idUsuarioDonoItem = dto?.Itens?.UsuarioId ?? 0;
+            // Buscar o usuario dono do item em questão que vem do parâmetro dto;
+            var item = await _itemRepository.GetPorId(dto.ItemId);
+
+            if (item is null)
+            {
+                ComentarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.NaoEncontrado,
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoEncontrado)
+                };
+
+                return erro;
+            }
+
+            int idUsuarioDonoItem = item.UsuarioId > 0 ? item.UsuarioId : 0;
             var isMesmoUsuario = await IsUsuarioSolicitadoMesmoDoToken(idUsuarioDonoItem);
 
             if (!isMesmoUsuario)

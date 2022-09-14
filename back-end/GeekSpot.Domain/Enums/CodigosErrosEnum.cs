@@ -4,6 +4,7 @@ namespace GeekSpot.Domain.Enums
 {
     public enum CodigoErrosEnum
     {
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 100 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         [Description("Já existe outro usuário cadastrado com este e-mail ou nome de usuário")]
         UsuarioExistente = 101,
 
@@ -28,7 +29,8 @@ namespace GeekSpot.Domain.Enums
         [Description("Não autorizado")]
         NaoAutorizado = 108,
 
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         [Description("Dado não encontrado")]
-        NaoEncontrado = 500,
+        NaoEncontrado = 404,
     }
 }
