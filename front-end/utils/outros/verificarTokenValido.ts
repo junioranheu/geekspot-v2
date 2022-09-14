@@ -2,8 +2,10 @@ import moment from 'moment';
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import CONSTS_SISTEMA from '../consts/outros/sistema';
+import TIPOS_DURACAO_MOMENT from '../consts/outros/tiposDuracaoMoment';
 import { Auth } from '../context/usuarioContext';
 import { Aviso } from './aviso';
+import converterTempoDecimalEmFormatoPadrao from './converterTempoDecimalEmFormatoPadrao';
 import diferencaDatasEmHoras from './diferencaDatasEmHoras';
 import horarioBrasilia from './horarioBrasilia';
 
@@ -12,13 +14,14 @@ export default function verificarTokenValido(isAuth: boolean | undefined, setIsA
         const token = Auth?.get()?.token ?? '';
         const dataExpiracaoToken = moment(getJWTExpireDate(token));
         const horaAgora = moment(horarioBrasilia());
-
+        
         if (process.env.NODE_ENV === 'development') {
             try {
                 const info = {
+                    'Token': token,
                     'Data atual': horaAgora.format('YYYY-MM-DD HH:mm:ss'),
                     'Data de expiração do token': dataExpiracaoToken.format('YYYY-MM-DD HH:mm:ss'),
-                    'Horas faltantes': diferencaDatasEmHoras(dataExpiracaoToken, horaAgora)
+                    'Horas até a expiração': converterTempoDecimalEmFormatoPadrao(diferencaDatasEmHoras(dataExpiracaoToken, horaAgora), TIPOS_DURACAO_MOMENT.HORAS)
                 }
 
                 console.table(info);
@@ -42,7 +45,7 @@ export default function verificarTokenValido(isAuth: boolean | undefined, setIsA
     }
 }
 
-// https://stackoverflow.com/a/67802771
+// https://stackoverflow.com/a/67802771;
 function getJWTExpireDate(jwtToken: string) {
     if (jwtToken) {
         try {
@@ -53,9 +56,10 @@ function getJWTExpireDate(jwtToken: string) {
                 return new Date(expires * 1000);
             }
         } catch {
-            
+
         }
     }
 
     return null;
 }
+
