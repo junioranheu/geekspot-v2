@@ -6,7 +6,6 @@ import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import { Auth } from '../../utils/context/usuarioContext';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import formatarData from '../../utils/outros/formatarData';
-import fotoPerfil from '../../utils/outros/fotoPerfil';
 import limitarTexto from '../../utils/outros/limitarTexto';
 import iListaComentarios from '../../utils/types/listaComentarios';
 import ModalResponderComentario from '../modal/modal.comentario/responder';
@@ -95,7 +94,7 @@ export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOp
                                             <div className={`${Styles.flexRow} animate__animated animate__fadeIn`}>
                                                 <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.itens?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/${item?.itens?.usuarios?.usuarioId}/${ajustarUrl(item?.itens?.usuarios?.nomeUsuarioSistema)}`)}>
                                                     <Image
-                                                        src={fotoPerfil()}
+                                                        src={(item?.itens?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.itens?.usuarios?.foto }` : ImgCinza)}
                                                         width={30}
                                                         height={30}
                                                         alt=''
