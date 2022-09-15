@@ -3,7 +3,7 @@ import { API_BASE_URL_DEV, API_BASE_URL_PROD } from '../../outros/_urlApi';
 const ENDPOINTS = {
     GET_TODOS: 'api/Itens/todos',
     GET_POR_ID: 'api/Itens',
-    POST_CRIAR: 'api/Itens/criar',
+    POST_CRIAR: 'api/Itens/adicionar',
     PUT_ATUALIZAR: 'api/Itens/atualizar',
     POST_DELETAR: 'api/Itens/deletar',
     GET_POR_ITEM_TIPO_ID: 'api/Itens/porItemTipoId',
