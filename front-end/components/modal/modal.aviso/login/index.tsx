@@ -6,13 +6,15 @@ import Styles from './index.module.scss';
 
 interface iParametros {
     handleModal: Dispatch<boolean>;
+    titulo: string | null;
+    descricao: string;
 }
 
-export default function ModalAvisoLogin({ handleModal }: iParametros) {
+export default function ModalAvisoLogin({ handleModal, titulo, descricao }: iParametros) {
     return (
         <div className={Styles.main}>
-            <span className={Styles.titulo}>Opa, pera aí...</span>
-            <span className={`${Styles.texto} margem1`}>Para enviar sua pergunta ao vendendor é necessário entrar em sua conta antes</span>
+            <span className={Styles.titulo}>{(titulo ?? 'Opa, pera aí...')}</span>
+            <span className={`${Styles.texto} margem1`}>{descricao}</span>
 
             <div className='margem1'>
                 <Botao texto='Entrar agora mesmo' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => handleModal(false)} Svg={null} refBtn={null} isEnabled={true} />

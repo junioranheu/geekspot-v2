@@ -67,7 +67,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
         nProgress.start();
         refBtn.current.disabled = true;
 
-        const url = CONSTS_COMENTARIOS.API_URL_POST_CRIAR;
+        const url = CONSTS_COMENTARIOS.API_URL_POST_ADICIONAR;
         const dto = {
             itemId: itemId,
             usuarioId: null,
@@ -100,7 +100,11 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
             {/* Modal */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen} >
                 <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalAvisoLogin handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} />
+                    <ModalAvisoLogin
+                        handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
+                        titulo={null}
+                        descricao='Para enviar sua pergunta ao vendendor é necessário entrar em sua conta antes'
+                    />
                 </ModalLayout>
             </ModalWrapper>
 

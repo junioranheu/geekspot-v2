@@ -121,7 +121,7 @@ export default function SessaoCriarConta() {
     //         dataGeracaoUrl: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
     //         isAtivo: 1
     //     };
-    //     const urlGerarUrlTemporaria = `${CONSTS_URL_TEMPORARIA.API_URL_POST_CRIAR}?urlTipo=${urlTipo}`;
+    //     const urlGerarUrlTemporaria = `${CONSTS_URL_TEMPORARIA.API_URL_POST_ADICIONAR}?urlTipo=${urlTipo}`;
     //     let urlTemporaria = await Fetch.postApi(urlGerarUrlTemporaria, jsonGerarUrlTemporaria, null);
     //     if (!urlTemporaria) {
     //         // Aviso.error('Houve um erro ao gerar uma url temporária!', 5000);
