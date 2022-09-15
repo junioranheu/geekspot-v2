@@ -52,8 +52,8 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>
 
-                    <Ajuda width={24} url='/ajuda/' />
-                    <Inbox width={24} url='/xxx' />
+                    <Ajuda width={24} url='/ajuda/' title='Acessar página de ajuda' />
+                    <Inbox width={24} url='/xxx' title='Acessar inbox para visualizar suas mensagens' />
 
                     {
                         isAuth && (

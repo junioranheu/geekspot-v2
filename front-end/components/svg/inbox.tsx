@@ -3,9 +3,10 @@ import Router from 'next/router';
 interface iParametros {
     width: number | null
     url: string | null;
+    title: string | null;
 }
 
-export default function Inbox({ width, url }: iParametros) {
+export default function Inbox({ width, url, title }: iParametros) {
     return (
         <svg width={width ?? 24} height={width ?? 24} className='pointer' onClick={() => url && Router.push(url)}>
             <defs>
@@ -14,6 +15,7 @@ export default function Inbox({ width, url }: iParametros) {
                 </symbol>
             </defs>
             &gt;
+            {title && <title>{title}</title>}
             <use xlinkHref='#icon-inbox' fill='#222222'></use>
         </svg>
     )

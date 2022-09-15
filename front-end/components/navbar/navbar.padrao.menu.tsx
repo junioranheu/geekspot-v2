@@ -40,12 +40,12 @@ export default function NavbarPadraoDivMenu({ isExibirPainelNavbarPadrao, setIsE
 
                                 <div className={`${Styles.divItens} margem1`}>
                                     <Botao texto='Meu perfil' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
-                                    
-                                    <Link href='/xxx'><a><Inbox width={16} url={null} />&nbsp;&nbsp;Inbox</a></Link>
-                                    <Link href='/xxx'><a><Coracao width={16} url={null} />&nbsp;&nbsp;Favoritos</a></Link>
-                                    <Link href='/ajuda'><a><Ajuda width={16} url={null} />&nbsp;&nbsp;Ajuda</a></Link>
-                                    <Link href='/xxx'><a><Seguranca width={16} url={null} />&nbsp;&nbsp;Segurança</a></Link>
-                                    <Link href='/xxx'><a><Configuracao width={16} url={null} />&nbsp;&nbsp;Configurações</a></Link>
+
+                                    <Link href='/xxx'><a><Inbox width={16} url={null} title={null} />&nbsp;&nbsp;Inbox</a></Link>
+                                    <Link href='/xxx'><a><Coracao width={16} url={null} title={null} />&nbsp;&nbsp;Favoritos</a></Link>
+                                    <Link href='/ajuda'><a><Ajuda width={16} url={null} title={null} />&nbsp;&nbsp;Ajuda</a></Link>
+                                    <Link href='/xxx'><a><Seguranca width={16} url={null} title={null} />&nbsp;&nbsp;Segurança</a></Link>
+                                    <Link href='/xxx'><a><Configuracao width={16} url={null} title={null} />&nbsp;&nbsp;Configurações</a></Link>
                                 </div>
                             </div>
                         </div>
