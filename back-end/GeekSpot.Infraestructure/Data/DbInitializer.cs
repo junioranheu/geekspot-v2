@@ -57,7 +57,7 @@ namespace GeekSpot.Infraestructure.Data
 
             if (!await context.UsuariosSeguir.AnyAsync())
             {
-                await context.UsuariosSeguir.AddAsync(new UsuarioSeguir() { UsuarioSeguirId = 1, UsuarioSeguidoId = 5, UsuarioSeguidorId = 2, DataRegistro = dataAgora });
+                await context.UsuariosSeguir.AddAsync(new UsuarioSeguir() { Id = 1, UsuarioSeguidoId = 5, UsuarioSeguidorId = 2, DataRegistro = dataAgora });
             }
             #endregion
 

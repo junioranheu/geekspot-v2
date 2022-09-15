@@ -35,7 +35,7 @@ namespace GeekSpot.API.Controllers
 
         [HttpPost("deletar")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
-        public async Task<ActionResult<int>> Deletar(int id)
+        public async Task<ActionResult<bool>> Deletar(int id)
         {
             await _itemRepository.Deletar(id);
             return Ok(true);

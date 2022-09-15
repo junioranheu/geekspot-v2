@@ -32,5 +32,12 @@ namespace GeekSpot.Domain.Enums
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         [Description("Dado não encontrado")]
         NaoEncontrado = 404,
+
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 500 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        [Description("Este usuário já está sendo seguido por você")]
+        UsuarioJaSegue = 510,
+
+        [Description("Esse usuário não existe, portanto não é possível realizar essa ação")]
+        UsuarioNaoExiste = 511,
     }
 }

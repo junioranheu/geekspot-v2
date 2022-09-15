@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace GeekSpot.Domain.DTO
 {
     public class UsuarioSeguirDTO: _RetornoApiDTO
     {
         [Key]
-        public int UsuarioSeguirId { get; set; }
+        public int Id { get; set; }
 
         /////////////////////////////////////////////////////////
         // Como fazer duas FKs da mesma classe se relacionarem //
@@ -16,13 +17,18 @@ namespace GeekSpot.Domain.DTO
         // Fk (De lá pra cá);
         [ForeignKey(nameof(UsuariosSeguidos))]
         public int UsuarioSeguidoId { get; set; } // Usuário que é seguido;
+
+        [JsonIgnore]
         public UsuarioDTO? UsuariosSeguidos { get; set; }
 
         // Fk (De lá pra cá);
         [ForeignKey(nameof(UsuariosSeguidores))]
         public int UsuarioSeguidorId { get; set; } // Usuário que segue o "UsuarioSeguidoId"; 
+
+        [JsonIgnore]
         public UsuarioDTO? UsuariosSeguidores { get; set; }
 
+        public int IsAtivo { get; set; } = 1;
         public DateTime? DataRegistro { get; set; }
     }
 }

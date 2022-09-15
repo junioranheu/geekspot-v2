@@ -8,12 +8,13 @@ namespace GeekSpot.Infraestructure.AutoMapper
     {
         public AutoMapperConfig()
         {
-            // Usuário;
+            // Usuário e afins;
             CreateMap<UsuarioTipo, UsuarioTipoDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioSenhaDTO>().ReverseMap();
             CreateMap<UsuarioInformacao, UsuarioInformacaoDTO>().ReverseMap();
             CreateMap<UsuarioSenhaDTO, UsuarioDTO>().ReverseMap();
+            CreateMap<UsuarioSeguirDTO, UsuarioSeguir>().ReverseMap();
 
             // Logradouro;
             CreateMap<Estado, EstadoDTO>().ReverseMap();

@@ -33,9 +33,13 @@ namespace GeekSpot.Infraestructure
 
             // Interfaces e repositórios;
             services.AddScoped<ISistemaRepository, SistemaRepository>();
+
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioSeguirRepository, UsuarioSeguirRepository>();
+
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IItemTipoRepository, ItemTipoRepository>();
+
             services.AddScoped<IComentarioRepository, ComentarioRepository>();
 
             return services;

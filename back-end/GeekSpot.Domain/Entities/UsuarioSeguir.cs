@@ -6,7 +6,7 @@ namespace GeekSpot.Domain.Entities
     public class UsuarioSeguir
     {
         [Key]
-        public int UsuarioSeguirId { get; set; }
+        public int Id { get; set; }
 
         /////////////////////////////////////////////////////////
         // Como fazer duas FKs da mesma classe se relacionarem //
@@ -23,6 +23,7 @@ namespace GeekSpot.Domain.Entities
         public int UsuarioSeguidorId { get; set; } // Usuário que segue o "UsuarioSeguidoId"; 
         public Usuario? UsuariosSeguidores { get; set; }
 
+        public int IsAtivo { get; set; } = 1;
         public DateTime? DataRegistro { get; set; }
     }
 }
