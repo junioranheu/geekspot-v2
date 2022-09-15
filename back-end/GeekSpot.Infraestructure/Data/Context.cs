@@ -18,6 +18,7 @@ namespace GeekSpot.Infraestructure.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<UsuarioTipo> UsuariosTipos { get; set; }
         public DbSet<UsuarioInformacao> UsuariosInformacoes { get; set; }
+        public DbSet<UsuarioSeguir> UsuariosSeguir { get; set; }
 
         // Itens;
         public DbSet<ItemTipo> ItensTipos { get; set; }

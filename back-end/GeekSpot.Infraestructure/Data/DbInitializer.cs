@@ -45,6 +45,7 @@ namespace GeekSpot.Infraestructure.Data
                 await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 4, NomeCompleto = "Usuário Loja", Email = "loja@Hotmail.com", NomeUsuarioSistema = "loja", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Loja, Foto = "" });
                 await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 5, NomeCompleto = "Israel Cabrera", Email = "chaleco@Hotmail.com", NomeUsuarioSistema = "chaleco", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "6.webp" });
                 await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 6, NomeCompleto = "Marcelo Sallerno", Email = "ateu@Hotmail.com", NomeUsuarioSistema = "ateu", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "" });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 7, NomeCompleto = "Mariana Scalzaretto", Email = "mariana@Hotmail.com", NomeUsuarioSistema = "elfamscal", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "" });
             }
 
             if (!await context.UsuariosInformacoes.AnyAsync())
@@ -52,6 +53,11 @@ namespace GeekSpot.Infraestructure.Data
                 await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 1, UsuarioId = 2, DataAniversario = dataAgora, CPF = "44571955880", Telefone = "12 98271-3939", CEP = 12605110, NumeroResidencia = "480", ReferenciaLocal = "Atrás da antiga fábrica G.A", DataUltimaAlteracao = null, TituloLojinha = "Lojinha Anheu", DescricaoLojinha = "Vendo tudo na metade do preço, só vem", QtdEstrelas = null });
                 await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 2, UsuarioId = 5, DataAniversario = dataAgora, CPF = "11111111111", Telefone = "12 99999-9999", CEP = 12606150, NumeroResidencia = "481", ReferenciaLocal = "", DataUltimaAlteracao = null, TituloLojinha = "Lojinha do Chalequito", DescricaoLojinha = "Toy pal hoyo po weon", QtdEstrelas = null });
                 await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 3, UsuarioId = 6, DataAniversario = dataAgora, CPF = "22222222222", Telefone = "12 99999-9998", CEP = 12604440, NumeroResidencia = "482", ReferenciaLocal = "", DataUltimaAlteracao = null, TituloLojinha = "Lojinha do Ateu", DescricaoLojinha = "Oi, né?", QtdEstrelas = null });
+            }
+
+            if (!await context.UsuariosSeguir.AnyAsync())
+            {
+                await context.UsuariosSeguir.AddAsync(new UsuarioSeguir() { UsuarioSeguirId = 1, UsuarioSeguidoId = 5, UsuarioSeguidorId = 2, DataRegistro = dataAgora });
             }
             #endregion
 
