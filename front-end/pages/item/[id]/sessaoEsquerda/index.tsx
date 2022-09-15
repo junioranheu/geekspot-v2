@@ -3,12 +3,15 @@ import { useState } from 'react';
 import Zoom from 'react-medium-image-zoom'; // https://www.npmjs.com/package/react-medium-image-zoom
 import 'react-medium-image-zoom/dist/styles.css';
 import ComentariosMain from '../../../../components/comentarios/comentarios.main';
+import useWindowSize from '../../../../hooks/outros/useWindowSize';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
 export default function SessaoEsquerda({ item }: iItem) {
+
+    const tamanhoTela = useWindowSize();
 
     // @ts-ignore;
     const [imagemSelecionada, setImagemSelecionada] = useState<string>(item?.itensImagens?.find((x: any) => x.isAtivo)?.caminhoImagem);
@@ -56,11 +59,19 @@ export default function SessaoEsquerda({ item }: iItem) {
                 )
             }
 
-            {/* Div com input para comentar e lista de comentários */}
-            <div className={Styles.divComentarios}>
-                <div className='margem1_5'></div>
-                <ComentariosMain itemId={item?.itemId} usuarioIdDonoItem={item?.usuarioId} />
-            </div>
+            {/* 
+                ComentariosMain: Div com input para comentar e lista de comentários;
+                Se o width for maior ou igual a 600 fica em /item/[id]/sessaoDireita/index.tsx;
+                Se o width for menor que 600px fica em /item/[id]/sessaoEsquerda/index.tsx;
+            */}
+            {
+                tamanhoTela.width && tamanhoTela?.width >= 600 && (
+                    <div className={Styles.divComentarios}>
+                        <div className='margem1_5'></div>
+                        <ComentariosMain itemId={item?.itemId} usuarioIdDonoItem={item?.usuarioId} />
+                    </div>
+                )
+            }
         </div>
     )
 }

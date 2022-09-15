@@ -118,7 +118,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
                     textoBotao='Perguntar'
                     handleFuncaoBotao={handleEnviar}
                     referenciaBotao={refBtn}
-                    isEnabledBotao={true}
+                    isEnabledBotao={(usuarioId !== usuarioIdDonoItem)}
                 />
 
                 {

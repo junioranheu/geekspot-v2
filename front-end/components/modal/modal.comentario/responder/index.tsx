@@ -92,11 +92,11 @@ export default function ModalResponderComentario({ handleModal, dados, itemId, g
     return (
         <div className={Styles.main}>
             <span className={Styles.titulo}>Responda à pergunta de @{dados?.usuarios?.nomeUsuarioSistema}</span>
-            <span className={`${Styles.texto} margem1`}><q>{dados?.mensagem}</q></span>
+            <span className={`${Styles.texto} margem1`}>&#8220;{dados?.mensagem}&#8221;</span>
 
             <div className={`${Styles.div100} margem1`}>
                 <Textarea
-                    placeholder='Pergunte ao vendedor'
+                    placeholder='Responda à pergunta'
                     height={null}
                     max={COMENTARIOS.MAX_CARACTERES}
                     texto={texto}
@@ -104,7 +104,7 @@ export default function ModalResponderComentario({ handleModal, dados, itemId, g
                     referenciaTextarea={refTextarea}
 
                     isMostrarBotao={true}
-                    textoBotao='Perguntar'
+                    textoBotao='Responder'
                     handleFuncaoBotao={handleEnviar}
                     referenciaBotao={refBtn}
                     isEnabledBotao={true}
