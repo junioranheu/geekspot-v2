@@ -18,7 +18,7 @@ export default function SessaoEsquerda({ item }: iItem) {
 
     return (
         <div className={Styles.sessaoEsquerda}>
-            <div>
+            <div className={Styles.cursorDiferente}>
                 <Zoom>
                     <Image
                         src={(imagemSelecionada ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${imagemSelecionada}` : ImgCinza)}

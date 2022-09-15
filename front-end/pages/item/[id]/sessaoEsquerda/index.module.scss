@@ -6,6 +6,14 @@
     align-items: center;
     flex-direction: column;
 
+    .cursorDiferente {
+        // background-color: red;
+
+        img {
+            cursor: alias !important;
+        }
+    }
+
     img {
         border-radius: 10px;
     }

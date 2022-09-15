@@ -1,5 +1,3 @@
-import { faGear, faQuestionCircle, faStoreAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -12,7 +10,11 @@ import emojiAleatorio from '../../utils/outros/emojiAleatorio';
 import fotoPerfil from '../../utils/outros/fotoPerfil';
 import Botao from '../outros/botao';
 import Ajuda from '../svg/ajuda';
+import Configuracao from '../svg/configuracao';
+import Coracao from '../svg/coracao';
+import Inbox from '../svg/inbox';
 import Logo from '../svg/logo';
+import Seguranca from '../svg/seguranca';
 import NavbarFiltro from './navbar.filtro';
 import Styles from './navbar.padrao.module.scss';
 
@@ -63,7 +65,8 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>
 
-                    <Ajuda url='/ajuda/' />
+                    <Ajuda width={24} url='/ajuda/' />
+                    <Inbox width={24} url='/xxx' />
 
                     {
                         isAuth ? (
@@ -78,10 +81,12 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                                                     <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
 
                                                     <div className={`${Styles.divItens} margem1`}>
-                                                        <Botao texto='Meus negócios' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
-                                                        <Link href='/'><a><FontAwesomeIcon icon={faStoreAlt} size='sm' />&nbsp;Minha lojinha</a></Link>
-                                                        <Link href='/'><a><FontAwesomeIcon icon={faGear} size='sm' />&nbsp;Configurações</a></Link>
-                                                        <Link href='/ajuda/'><a><FontAwesomeIcon icon={faQuestionCircle} size='sm' />&nbsp;Ajuda</a></Link>
+                                                        <Botao texto='Meu perfil' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                                                        <Link href='/xxx'><a><Inbox width={16} url={null} />&nbsp;&nbsp;Inbox</a></Link>
+                                                        <Link href='/xxx'><a><Coracao width={16} url={null} />&nbsp;&nbsp;Favoritos</a></Link>
+                                                        <Link href='/ajuda'><a><Ajuda width={16} url={null} />&nbsp;&nbsp;Ajuda</a></Link>
+                                                        <Link href='/xxx'><a><Seguranca width={16} url={null} />&nbsp;&nbsp;Segurança</a></Link>
+                                                        <Link href='/xxx'><a><Configuracao width={16} url={null} />&nbsp;&nbsp;Configurações</a></Link>
                                                     </div>
                                                 </div>
                                             </div>
