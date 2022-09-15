@@ -11,7 +11,13 @@ export default function formatarData(data: Date | string, estilo: number) {
         // console.log(diferencaDias);
 
         if (diferencaDias === 0) {
-            dataFormatada = `Hoje, ${Moment(data).locale('pt-br').format('[às] HH:mm:ss')}`;
+            const isMesmoDia = Moment(data).isSame(Moment(), 'day');
+
+            if (isMesmoDia) {
+                dataFormatada = `Hoje, ${Moment(data).locale('pt-br').format('[às] HH:mm:ss')}`;
+            } else {
+                dataFormatada = `Ontem, ${Moment(data).locale('pt-br').format('[às] HH:mm:ss')}`;
+            }
         } else if (diferencaDias === 1) {
             dataFormatada = `Ontem, ${Moment(data).locale('pt-br').format('[às] HH:mm:ss')}`;
         } else {
