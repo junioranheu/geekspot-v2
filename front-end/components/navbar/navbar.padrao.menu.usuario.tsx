@@ -13,27 +13,27 @@ import Seguranca from '../svg/seguranca';
 import Styles from './navbar.padrao.module.scss';
 
 interface iParametros {
-    isExibirPainelNavbarPadrao: boolean;
-    setIsExibirPainelNavbarPadrao: Dispatch<boolean>;
-    debounceFecharPainelNavbarPadrao: { (this: unknown, ...args: [] & any[]): Promise<void>; cancel: (reason?: any) => void; }; // debounce;
+    isExibirMenuUsuario: boolean;
+    setIsExibirMenuUsuario: Dispatch<boolean>;
+    debounceFecharMenuUsuario: { (this: unknown, ...args: [] & any[]): Promise<void>; cancel: (reason?: any) => void; }; // debounce;
 }
 
-export default function NavbarPadraoDivMenu({ isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao, debounceFecharPainelNavbarPadrao }: iParametros) {
+export default function NavbarPadraoMenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
 
-    function abrirPainelNavbarPadrao() {
-        setIsExibirPainelNavbarPadrao(true);
-        debounceFecharPainelNavbarPadrao.cancel();
+    function abrirMenuUsuario() {
+        setIsExibirMenuUsuario(true);
+        debounceFecharMenuUsuario.cancel();
     }
 
     return (
         <Fragment>
-            <div className={Styles.divMenu} onMouseEnter={() => abrirPainelNavbarPadrao()}>
+            <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
                 <Image src={fotoPerfil()} width={30} height={30} alt='' />
 
                 {
-                    isExibirPainelNavbarPadrao && (
+                    isExibirMenuUsuario && (
                         <div className={Styles.divPainel}>
                             <div className={`${Styles.wrapperDivPainel} animate__animated animate__fadeInUp animate__faster`}>
                                 <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
@@ -44,7 +44,7 @@ export default function NavbarPadraoDivMenu({ isExibirPainelNavbarPadrao, setIsE
                                     <Link href='/xxx'><a><Inbox width={16} url={null} title={null} />&nbsp;&nbsp;Inbox</a></Link>
                                     <Link href='/xxx'><a><Coracao width={16} url={null} title={null} />&nbsp;&nbsp;Favoritos</a></Link>
                                     <Link href='/ajuda'><a><Ajuda width={16} url={null} title={null} />&nbsp;&nbsp;Ajuda</a></Link>
-                                    <Link href='/xxx'><a><Seguranca width={16} url={null} title={null} />&nbsp;&nbsp;Segurança</a></Link>
+                                    <Link href='/seguranca'><a><Seguranca width={16} url={null} title={null} />&nbsp;&nbsp;Segurança</a></Link>
                                     <Link href='/xxx'><a><Configuracao width={16} url={null} title={null} />&nbsp;&nbsp;Configurações</a></Link>
                                 </div>
                             </div>

@@ -9,7 +9,7 @@ import Ajuda from '../svg/ajuda';
 import Inbox from '../svg/inbox';
 import Logo from '../svg/logo';
 import NavbarFiltro from './navbar.filtro';
-import NavbarPadraoDivMenu from './navbar.padrao.menu';
+import NavbarPadraoMenuUsuario from './navbar.padrao.menu.usuario';
 import Styles from './navbar.padrao.module.scss';
 
 interface iParametros {
@@ -20,8 +20,8 @@ interface iParametros {
 
 export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
-    const [isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao] = useState(false);
-    const debounceFecharPainelNavbarPadrao = debounce(() => setIsExibirPainelNavbarPadrao(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
+    const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
+    const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     function deslogar() {
         nProgress.start();
@@ -47,20 +47,27 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                     <NavbarFiltro />
                 </div>
 
-                <div className={Styles.divDireita} onMouseLeave={() => debounceFecharPainelNavbarPadrao()}>
+                <div className={Styles.divDireita} onMouseLeave={() => debounceFecharMenuUsuario()}>
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Produtos</a></Link>
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>
 
                     <Ajuda width={24} url='/ajuda/' title='Acessar página de ajuda' />
-                    <Inbox width={24} url='/xxx' title='Acessar inbox para visualizar suas mensagens' />
 
                     {
                         isAuth && (
-                            <NavbarPadraoDivMenu
-                                isExibirPainelNavbarPadrao={isExibirPainelNavbarPadrao}
-                                setIsExibirPainelNavbarPadrao={setIsExibirPainelNavbarPadrao}
-                                debounceFecharPainelNavbarPadrao={debounceFecharPainelNavbarPadrao}
+                            <Fragment>
+                                <Inbox width={24} url='/xxx' title='Acessar inbox para visualizar suas mensagens' />
+                            </Fragment>
+                        )
+                    }
+
+                    {
+                        isAuth && (
+                            <NavbarPadraoMenuUsuario
+                                isExibirMenuUsuario={isExibirMenuUsuario}
+                                setIsExibirMenuUsuario={setIsExibirMenuUsuario}
+                                debounceFecharMenuUsuario={debounceFecharMenuUsuario}
                             />
                         )
                     }

@@ -39,7 +39,7 @@ export default function DivAvisoProtecao() {
                     <Seguranca width={24} url={null} title={null} />
                 </div>
 
-                <span className={Styles.textoAviso}>{aviso} Veja mais <Link href='/ajuda/'><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>
+                <span className={Styles.textoAviso}>{aviso} Veja mais <Link href='/seguranca'><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>
             </div>
         </div>
     )
