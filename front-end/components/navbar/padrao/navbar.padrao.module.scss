@@ -1,0 +1,98 @@
+$altura-navbar: 70px;
+
+.navbar {
+    background-color: var(--branco);
+    color: var(--preto);
+    height: $altura-navbar;
+    width: 100vw;
+    border-bottom: var(--border);
+    display: flex;
+    justify-content: center;
+
+    .wrapper {
+        /* background-color: pink; */
+        width: 66%;
+        display: flex;
+
+        .divEsquerda {
+            // background-color: red; 
+            width: 100%;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .divDireita {
+            // background-color: turquoise;
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            line-height: 0;
+            gap: 1.5rem;
+
+            .efeitoBottom {
+                // background-color: red;
+                padding-top: 7px; // Gambi para não bugar ao hover;
+                margin-top: 2px; // Gambi para não bugar ao hover;
+                border-bottom: 2px solid transparent;
+                transition: border-bottom 0.5s;
+
+                &:hover {
+                    // background-color: red;
+                    border-bottom: 2px solid var(--cor-principal);
+                    transition: border-bottom 0.7s;
+                }
+            }
+        }
+
+        a {
+            // background-color: pink;
+            color: var(--super-preto);
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0.9;
+            height: $altura-navbar;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .navbar {
+        // background-color: red !important;
+
+        .wrapper {
+            /* background-color: pink; */
+            width: 80%;
+        }
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .navbar {
+        // background-color: red !important;
+
+        .wrapper {
+            //  background-color: pink; 
+            width: 90%;
+        }
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

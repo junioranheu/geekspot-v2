@@ -3,13 +3,13 @@ import Router from 'next/router';
 import nProgress from 'nprogress';
 import { Dispatch, Fragment, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
-import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
-import Botao from '../outros/botao';
-import Ajuda from '../svg/ajuda';
-import Inbox from '../svg/inbox';
-import Logo from '../svg/logo';
-import NavbarFiltro from './navbar.filtro';
-import NavbarPadraoMenuUsuario from './navbar.padrao.menu.usuario';
+import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
+import Botao from '../../outros/botao';
+import Ajuda from '../../svg/ajuda';
+import Inbox from '../../svg/inbox';
+import Logo from '../../svg/logo';
+import NavbarFiltro from '../outros/navbar.filtro';
+import NavbarPadraoMenuUsuario from './menus/menu.usuario';
 import Styles from './navbar.padrao.module.scss';
 
 interface iParametros {

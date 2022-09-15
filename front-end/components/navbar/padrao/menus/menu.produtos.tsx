@@ -6,9 +6,9 @@ interface iParametros {
     debounceFecharPainelNavbarPadrao: { (this: unknown, ...args: [] & any[]): Promise<void>; cancel: (reason?: any) => void; }; // debounce;
 }
 
-export default function NavbarPadraoDivMenuProdutos({ isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao, debounceFecharPainelNavbarPadrao }: iParametros) {
+export default function MenuProdutos({ isExibirPainelNavbarPadrao, setIsExibirPainelNavbarPadrao, debounceFecharPainelNavbarPadrao }: iParametros) {
 
-    function abrirPainelNavbarPadrao() {
+    function abrirMenuProdutos() {
         setIsExibirPainelNavbarPadrao(true);
         debounceFecharPainelNavbarPadrao.cancel();
     }

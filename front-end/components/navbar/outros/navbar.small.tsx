@@ -1,6 +1,6 @@
-import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
-import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
-import Seta from '../svg/seta';
+import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
+import EmojiAleatorio from '../../../utils/outros/emojiAleatorio';
+import Seta from '../../svg/seta';
 import Styles from './navbar.small.module.scss';
 
 export default function NavbarSmall() {

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import Footer from '../components/footer/footer';
-import NavbarMobile from '../components/navbar/navbar.mobile';
-import NavbarPadrao from '../components/navbar/navbar.padrao';
-import NavbarSmall from '../components/navbar/navbar.small';
+import NavbarMobile from '../components/navbar/mobile/navbar.mobile';
+import NavbarSmall from '../components/navbar/outros/navbar.small';
+import NavbarPadrao from '../components/navbar/padrao/navbar.padrao';
 import useWindowSize from '../hooks/outros/useWindowSize';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
 import verificarTokenValido from '../utils/outros/verificarTokenValido';

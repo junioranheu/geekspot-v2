@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Dispatch, Fragment } from 'react';
-import { Auth } from '../../utils/context/usuarioContext';
-import emojiAleatorio from '../../utils/outros/emojiAleatorio';
-import fotoPerfil from '../../utils/outros/fotoPerfil';
-import Botao from '../outros/botao';
-import Ajuda from '../svg/ajuda';
-import Configuracao from '../svg/configuracao';
-import Coracao from '../svg/coracao';
-import Inbox from '../svg/inbox';
-import Seguranca from '../svg/seguranca';
-import Styles from './navbar.padrao.module.scss';
+import { Auth } from '../../../../utils/context/usuarioContext';
+import emojiAleatorio from '../../../../utils/outros/emojiAleatorio';
+import fotoPerfil from '../../../../utils/outros/fotoPerfil';
+import Botao from '../../../outros/botao';
+import Ajuda from '../../../svg/ajuda';
+import Configuracao from '../../../svg/configuracao';
+import Coracao from '../../../svg/coracao';
+import Inbox from '../../../svg/inbox';
+import Seguranca from '../../../svg/seguranca';
+import Styles from './menu.usuario.module.scss';
 
 interface iParametros {
     isExibirMenuUsuario: boolean;
@@ -18,7 +18,7 @@ interface iParametros {
     debounceFecharMenuUsuario: { (this: unknown, ...args: [] & any[]): Promise<void>; cancel: (reason?: any) => void; }; // debounce;
 }
 
-export default function NavbarPadraoMenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
+export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
 
