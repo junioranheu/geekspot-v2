@@ -24,9 +24,6 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
     const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
     const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
-    const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState(false);
-    const debounceFecharMenuProdutos = debounce(() => setIsExibirMenuProdutos(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
-
     function deslogar() {
         nProgress.start();
 
@@ -51,13 +48,8 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                     <NavbarFiltro />
                 </div>
 
-                <div className={Styles.divDireita} onMouseLeave={() => { debounceFecharMenuUsuario(), debounceFecharMenuProdutos() }}>
-                    <MenuProdutos
-                        isExibirMenuProdutos={isExibirMenuProdutos}
-                        setIsExibirMenuProdutos={setIsExibirMenuProdutos}
-                        debounceFecharMenuProdutos={debounceFecharMenuProdutos}
-                        efeitoBottomCSS={Styles.efeitoBottom}
-                    />
+                <div className={Styles.divDireita} onMouseLeave={() => debounceFecharMenuUsuario()}>
+                    <MenuProdutos efeitoBottomCSS={Styles.efeitoBottom} />
 
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>

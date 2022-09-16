@@ -1,15 +1,16 @@
 import Link from 'next/link';
-import { Dispatch, Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import Styles from './menu.produtos.module.scss';
 
 interface iParametros {
-    isExibirMenuProdutos: boolean;
-    setIsExibirMenuProdutos: Dispatch<boolean>;
-    debounceFecharMenuProdutos: { (this: unknown, ...args: [] & any[]): Promise<void>; cancel: (reason?: any) => void; }; // debounce;
     efeitoBottomCSS: string;
 }
 
-export default function MenuProdutos({ isExibirMenuProdutos, setIsExibirMenuProdutos, debounceFecharMenuProdutos, efeitoBottomCSS }: iParametros) {
+export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
+
+    const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState(false);
+    const debounceFecharMenuProdutos = debounce(() => setIsExibirMenuProdutos(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     function abrirMenuProdutos() {
         setIsExibirMenuProdutos(true);
@@ -37,7 +38,7 @@ export default function MenuProdutos({ isExibirMenuProdutos, setIsExibirMenuProd
 
             {
                 isExibirMenuProdutos && (
-                    <div className={`${Styles.divMenu} animate__animated animate__fadeIn`}>
+                    <div className={`${Styles.divMenu} animate__animated animate__fadeIn`} onMouseLeave={() => debounceFecharMenuProdutos()}>
                         <div className={Styles.wrapperDivPainel}>
                             <div className={Styles.conteudo}>
                                 <h1>aea</h1>
