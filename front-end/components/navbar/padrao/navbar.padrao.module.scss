@@ -59,6 +59,8 @@ $altura-navbar: 70px;
             display: flex;
             justify-content: center;
             align-items: center;
+
+            z-index: 9999999999 !important;
         }
     }
 }
