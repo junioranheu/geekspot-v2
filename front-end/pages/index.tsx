@@ -17,7 +17,7 @@ import randomizarArray from '../utils/outros/randomizarArray';
 
 export default function Home({ listaItens }: any) {
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
-    
+
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
     const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 

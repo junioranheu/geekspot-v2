@@ -1,9 +1,10 @@
-export default function formatarDadosParaDropDown(dados: Array<any>) {
-    const dadosFormatados = [];
+export default function formatarDadosParaDropDown(dados: any[], label: string, value: string) {
+    const dadosFormatados = [] as any;
 
-    for (const [key, value] of Object.entries(dados)) {
-        dadosFormatados.push({ label: value as string, value: key as string });
-    }
+    dados.forEach(element => {
+        dadosFormatados.push({ label: element[label] as string, value: element[value] as string });
+    });
 
     return dadosFormatados;
 }
+

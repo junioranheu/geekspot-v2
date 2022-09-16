@@ -1,30 +1,27 @@
 import { useEffect, useState } from 'react';
 import CONSTS_SISTEMA from '../../utils/consts/data/constSistema';
-import { Auth } from '../../utils/context/usuarioContext';
 import { Fetch } from '../../utils/outros/fetch';
 import formatarDadosParaDropDown from '../../utils/outros/formatarDadosParaDropDown';
+import iEstado from '../../utils/types/estado';
 
 export default function useEstados(isFormatarDadosParaDropdown: boolean) {
 
-    const token = Auth?.get()?.token ?? null;
-    const [estados, setEstados] = useState<any>();
-
+    const [dados, setDados] = useState<iEstado>();
     useEffect(() => {
-        async function getCidades(token: string) {
+        async function get() {
             const url = CONSTS_SISTEMA.API_URL_GET_TODOS_ESTADOS;
-            const cidades = await Fetch.getApi(url, token);
+            const fetchDados = await Fetch.getApi(url, null);
+            console.log(fetchDados);
 
             if (isFormatarDadosParaDropdown) {
-                setEstados(formatarDadosParaDropDown(cidades));
+                setDados(formatarDadosParaDropDown(fetchDados, 'nome', 'estadoId'));
             } else {
-                setEstados(cidades);
+                setDados(fetchDados);
             }
         }
 
-        if (token) {
-            getCidades(token);
-        }
-    }, [token])
+        get();
+    }, [])
 
-    return estados;
+    return dados;
 }
