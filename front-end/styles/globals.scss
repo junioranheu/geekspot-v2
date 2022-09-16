@@ -197,9 +197,9 @@ img {
 }
 
 .backgroundBlur {
-    filter: blur(5px) opacity(70%) brightness(70%);
-    width: 100vw !important;
+    filter: blur(5px) opacity(70%);
     pointer-events: none !important;
+    transition: all 0.5s ease;
 }
 
 /* =-=-=-=-=-=-=-=-= Input, textarea e select "padrão" =-=-=-=-=-=-=-=-= */
@@ -222,7 +222,7 @@ img {
     transition: box-shadow 0.2s ease 0s, color 0.2s ease 0s;
     width: 100%;
 
-    &:focus{
+    &:focus {
         box-shadow: inset 0 0 0 1px var(--cor-principal);
         outline-width: 0px;
     }

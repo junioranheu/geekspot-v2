@@ -9,6 +9,7 @@ import Ajuda from '../../svg/ajuda';
 import Inbox from '../../svg/inbox';
 import Logo from '../../svg/logo';
 import NavbarFiltro from '../outros/navbar.filtro';
+import MenuProdutos from './menus/menu.produtos';
 import NavbarPadraoMenuUsuario from './menus/menu.usuario';
 import Styles from './navbar.padrao.module.scss';
 
@@ -22,6 +23,9 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
 
     const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
     const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
+
+    const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState(false);
+    const debounceFecharMenuProdutos = debounce(() => setIsExibirMenuProdutos(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     function deslogar() {
         nProgress.start();
@@ -47,8 +51,14 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                     <NavbarFiltro />
                 </div>
 
-                <div className={Styles.divDireita} onMouseLeave={() => debounceFecharMenuUsuario()}>
-                    <Link href='/xxx'><a className={Styles.efeitoBottom}>Produtos</a></Link>
+                <div className={Styles.divDireita} onMouseLeave={() => { debounceFecharMenuUsuario(), debounceFecharMenuProdutos() }}>
+                    <MenuProdutos
+                        isExibirMenuProdutos={isExibirMenuProdutos}
+                        setIsExibirMenuProdutos={setIsExibirMenuProdutos}
+                        debounceFecharMenuProdutos={debounceFecharMenuProdutos}
+                        efeitoBottomCSS={Styles.efeitoBottom}
+                    />
+
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>
 
