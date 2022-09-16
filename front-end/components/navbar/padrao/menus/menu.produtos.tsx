@@ -4,6 +4,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import useItensTipos from '../../../../hooks/api/useItensTipos';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
+import iItemTipo from '../../../../utils/types/itemTipo';
 import Styles from './menu.produtos.module.scss';
 
 interface iParametros {
@@ -60,10 +61,14 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
                         <div className={Styles.wrapperDivPainel}>
                             <div className={Styles.conteudo}>
                                 {
-                                    itensTipos?.map((item: any, i: number) => (
-                                        <div className={Styles.item} key={item.itemTipoId}>
-                                            <span className='cor-principal-hover pointer' title={item?.descricao} onClick={() => Router.push(`/produtos/${item?.itemTipoId}/${ajustarUrl(item?.tipo)}`)}>
-                                                {item.tipo}
+                                    itensTipos?.map((item: iItemTipo, i: number) => (
+                                        <div className={Styles.item} key={item?.itemTipoId}>
+                                            <span
+                                                className='cor-principal-hover pointer'
+                                                title={(item?.descricao ?? '')}
+                                                onClick={() => Router.push(`/produtos/${item?.itemTipoId}/${ajustarUrl(item?.tipo)}`)}
+                                            >
+                                                {item?.tipo} {(item?.isNovoTipo === 1 && <span className='efeito-new'>em breve</span>)}
                                             </span>
                                         </div>
                                     ))
