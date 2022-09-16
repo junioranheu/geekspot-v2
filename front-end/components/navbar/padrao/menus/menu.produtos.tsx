@@ -10,8 +10,8 @@ interface iParametros {
 
 export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
 
+    // Get todos os tipos de itens;
     const itensTipos = useItensTipos(false);
-    console.log(itensTipos);
 
     const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState(false);
     const debounceFecharMenuProdutos = debounce(() => setIsExibirMenuProdutos(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
@@ -21,8 +21,8 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
         debounceFecharMenuProdutos.cancel();
     }
 
+    // Ao exibir ou deixar de exibir o menu de produtos;
     useEffect(() => {
-        // console.log(isExibirMenuProdutos);
         if (isExibirMenuProdutos) {
             // console.log('Menu aberto');
             document.getElementsByClassName('sessaoPrincipal')[0].classList.add('backgroundBlur');
@@ -45,7 +45,13 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
                     <div className={`${Styles.divMenu} animate__animated animate__fadeIn`} onMouseLeave={() => debounceFecharMenuProdutos()}>
                         <div className={Styles.wrapperDivPainel}>
                             <div className={Styles.conteudo}>
-                                <h1>aea</h1>
+                                {
+                                    itensTipos?.map((item: any, i: number) => (
+                                        <div key={i}>
+                                            <span title={item?.descricao}>#{item.itemTipoId} {item.tipo}</span>
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>

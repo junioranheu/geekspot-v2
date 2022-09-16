@@ -1,11 +1,11 @@
 import { API_BASE_URL_DEV, API_BASE_URL_PROD } from '../../outros/_urlApi';
 
 const ENDPOINTS = {
-    GET_TODOS: 'api/Itens/todos',
-    GET_POR_ID: 'api/Itens',
-    POST_ADICIONAR: 'api/Itens/adicionar',
-    PUT_ATUALIZAR: 'api/Itens/atualizar',
-    POST_DELETAR: 'api/Itens/deletar'
+    GET_TODOS: 'api/ItensTipos/todos',
+    GET_POR_ID: 'api/ItensTipos',
+    POST_ADICIONAR: 'api/ItensTipos/adicionar',
+    PUT_ATUALIZAR: 'api/ItensTipos/atualizar',
+    POST_DELETAR: 'api/ItensTipos/deletar'
 };
 
 const DEV = {

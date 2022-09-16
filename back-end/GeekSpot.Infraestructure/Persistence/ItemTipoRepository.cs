@@ -49,7 +49,7 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<List<ItemTipoDTO>> GetTodos()
         {
-            var todos = await _context.ItensTipos.OrderBy(n => n.Tipo).AsNoTracking().ToListAsync();
+            var todos = await _context.ItensTipos.Where(i => i.IsAtivo == 1).OrderBy(n => n.Tipo).AsNoTracking().ToListAsync();
 
             List<ItemTipoDTO> dto = _map.Map<List<ItemTipoDTO>>(todos);
             return dto;
