@@ -29,7 +29,7 @@ export default function Carousel({ listaSlides, isLoop, isShowPagination }: iPar
             autoplay={{
                 delay: 4000,
                 pauseOnMouseEnter: true,
-                disableOnInteraction: false,
+                disableOnInteraction: false
             }}
 
             breakpoints={{

@@ -52,7 +52,7 @@ namespace GeekSpot.Infraestructure.Data
             {
                 await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 1, UsuarioId = 2, DataAniversario = dataAgora, CPF = "44571955880", Telefone = "12 98271-3939", CEP = 12605110, NumeroResidencia = "480", ReferenciaLocal = "Atrás da antiga fábrica G.A", DataUltimaAlteracao = null, TituloLojinha = "Lojinha Anheu", DescricaoLojinha = "Vendo tudo na metade do preço, só vem", QtdEstrelas = null });
                 await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 2, UsuarioId = 5, DataAniversario = dataAgora, CPF = "11111111111", Telefone = "12 99999-9999", CEP = 12606150, NumeroResidencia = "481", ReferenciaLocal = "", DataUltimaAlteracao = null, TituloLojinha = "Lojinha do Chalequito", DescricaoLojinha = "Toy pal hoyo po weon", QtdEstrelas = null });
-                await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 3, UsuarioId = 6, DataAniversario = dataAgora, CPF = "22222222222", Telefone = "12 99999-9998", CEP = 12604440, NumeroResidencia = "482", ReferenciaLocal = "", DataUltimaAlteracao = null, TituloLojinha = "Lojinha do Ateu", DescricaoLojinha = "Oi, né?", QtdEstrelas = null });
+                await context.UsuariosInformacoes.AddAsync(new UsuarioInformacao() { UsuarioInformacaoId = 3, UsuarioId = 6, DataAniversario = dataAgora, CPF = "22222222222", Telefone = "12 99999-9998", CEP = 12604440, NumeroResidencia = "482", ReferenciaLocal = "", DataUltimaAlteracao = null, TituloLojinha = "Lojinha do Salerno", DescricaoLojinha = "Oi, né?", QtdEstrelas = null });
             }
 
             if (!await context.UsuariosSeguir.AnyAsync())
@@ -64,7 +64,7 @@ namespace GeekSpot.Infraestructure.Data
             #region seed_itens
             if (!await context.ItensTipos.AnyAsync())
             {
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 1, Tipo = "Outro", Descricao = "Tudo que não se encaixou nos outros tipos tá aqui!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 1, Tipo = "Outros", Descricao = "Tudo que não se encaixou nos outros tipos tá aqui!", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 2, Tipo = "Acessório gamer ou PC", Descricao = "Tá procurando uma placa de vídeo, teclado gamer ou algo do tipo? Tem aqui!", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 3, Tipo = "Action figure ou boneco", Descricao = "Bonecos super legais que são réplicas ou representações de grandes personagens de séries e filmes", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 4, Tipo = "CD, DVD ou Blu-ray", Descricao = "Discos de músicas ou vídeos — hoje em dia, muitas vezes, usados para ouvir/ver os clássicos", IsAtivo = 1, DataRegistro = dataAgora });
@@ -77,7 +77,7 @@ namespace GeekSpot.Infraestructure.Data
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 11, Tipo = "Poster", Descricao = "Que tal enfeitar seu quarto com um poster bem da hora?", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 12, Tipo = "Vestuário", Descricao = "Para geeks com bom estilo", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 13, Tipo = "Música", Descricao = "Um geek sempre tem um bom gosto músical, né?", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 14, Tipo = "Instrumentos musicais e afins", Descricao = "Dó, ré, mi, fá...", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 14, Tipo = "Instrumentos musicais", Descricao = "Dó, ré, mi, fá...", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 15, Tipo = "Celular", Descricao = "Quero um iPhone 13!", IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 16, Tipo = "Relógio", Descricao = "Que horas são?", IsAtivo = 1, DataRegistro = dataAgora });
             }

@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import useItensTipos from '../../../../hooks/api/useItensTipos';
+import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import Styles from './menu.produtos.module.scss';
 
 interface iParametros {
@@ -38,7 +40,7 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
 
     return (
         <Fragment>
-            <Link href='/xxx'>
+            <Link href='/produtos'>
                 <a
                     className={efeitoBottomCSS}
                     onMouseEnter={() => abrirMenuProdutos()}
@@ -59,8 +61,10 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
                             <div className={Styles.conteudo}>
                                 {
                                     itensTipos?.map((item: any, i: number) => (
-                                        <div key={i}>
-                                            <span title={item?.descricao}>#{item.itemTipoId} {item.tipo}</span>
+                                        <div className={Styles.item} key={item.itemTipoId}>
+                                            <span className='cor-principal-hover pointer' title={item?.descricao} onClick={() => Router.push(`/produtos/${item?.itemTipoId}/${ajustarUrl(item?.tipo)}`)}>
+                                                {item.tipo}
+                                            </span>
                                         </div>
                                     ))
                                 }
