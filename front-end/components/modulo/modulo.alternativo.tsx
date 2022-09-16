@@ -6,34 +6,13 @@ import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import randomizarArray from '../../utils/outros/randomizarArray';
+import { iListaItensCompleto, iListaItensInterno } from '../../utils/types/listaItens';
 import Styles from './modulo.alternativo.module.scss';
 import ModuloHeader from './modulo.header';
 
-interface iParametros {
-    i: number;
-    usuarioId: number;
-    usuarioNomeSistema: string;
-    titulo: string | null;
-    descricao: string | null;
-    listaItens: {
-        nome: string;
-        descricao: string;
-        imagem: string;
-        isAtivo: number;
-        itemId: number;
-        itemTipoId: number;
-        preco: string;
-        precoDesconto: string;
-        usuarios: {
-            usuarioId: number;
-            nomeCompleto: string;
-        }
-    }[];
-}
+export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, titulo, descricao, listaItens }: iListaItensCompleto) {
 
-export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, titulo, descricao, listaItens }: iParametros) {
-
-    const [listaItensAleatorio, setListaItensAleatorio] = useState<Array<any>>([]);
+    const [listaItensAleatorio, setListaItensAleatorio] = useState<Array<iListaItensInterno>>([]);
     useEffect(() => {
         setListaItensAleatorio(randomizarArray(listaItens).slice(0, 4));
     }, [listaItens]);

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
+import useItensTipos from '../../../../hooks/api/useItensTipos';
 import Styles from './menu.produtos.module.scss';
 
 interface iParametros {
@@ -8,6 +9,9 @@ interface iParametros {
 }
 
 export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
+
+    const itensTipos = useItensTipos(false);
+    console.log(itensTipos);
 
     const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState(false);
     const debounceFecharMenuProdutos = debounce(() => setIsExibirMenuProdutos(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
@@ -50,3 +54,4 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
         </Fragment>
     )
 }
+

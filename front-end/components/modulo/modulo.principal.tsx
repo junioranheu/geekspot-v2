@@ -6,39 +6,16 @@ import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import definirPreco from '../../utils/outros/definirPreco';
 import randomizarArray from '../../utils/outros/randomizarArray';
+import { iListaItensCompleto, iListaItensInterno } from '../../utils/types/listaItens';
 import ModuloHeader from './modulo.header';
 import Styles from './modulo.principal.module.scss';
 
-interface iParametros {
-    i: number;
-    usuarioId: number;
-    usuarioNomeSistema: string;
-    titulo: string | null;
-    descricao: string | null;
-    listaItens: {
-        nome: string;
-        descricao: string;
-        itensImagens: {
-            caminhoImagem: string;
-        }[];
-        isAtivo: number;
-        itemId: number;
-        itemTipoId: number;
-        preco: number;
-        precoDesconto: number | null;
-        usuarios: {
-            usuarioId: number;
-            nomeCompleto: string;
-        };
-    }[];
-}
-
-export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, titulo, descricao, listaItens }: iParametros) {
+export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, titulo, descricao, listaItens }: iListaItensCompleto) {
     const tamanhoGrande = 406;
     const tamanhoPequeno = 196;
 
     const [ordemTamanhosImagens, setOrdemTamanhosImagens] = useState<number[]>([]);
-    const [listaItensAleatorio, setListaItensAleatorio] = useState<Array<any>>([]);
+    const [listaItensAleatorio, setListaItensAleatorio] = useState<Array<iListaItensInterno>>([]);
     useEffect(() => {
         function gerarOrdemTamanhosImagens(qtd: number) {
             let ordens = [];

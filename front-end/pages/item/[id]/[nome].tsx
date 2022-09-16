@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { Fragment, useEffect, useState } from 'react';
 import CONSTS_ITENS from '../../../utils/consts/data/constItens';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
-import { Auth } from '../../../utils/context/usuarioContext';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
@@ -12,8 +11,6 @@ import SessaoDireita from './sessaoDireita';
 import SessaoEsquerda from './sessaoEsquerda';
 
 export default function Item({ item }: iItem) {
-    // console.log(item);
-    const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {

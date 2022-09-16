@@ -92,3 +92,4 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
         </nav>
     )
 }
+

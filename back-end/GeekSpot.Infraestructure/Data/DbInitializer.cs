@@ -64,29 +64,28 @@ namespace GeekSpot.Infraestructure.Data
             #region seed_itens
             if (!await context.ItensTipos.AnyAsync())
             {
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 1, Tipo = "Outro", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 2, Tipo = "Acessório gamer", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 3, Tipo = "Action figure ou boneco", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 4, Tipo = "CD, DVD ou Blu-ray", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 5, Tipo = "Jogo de carta", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 6, Tipo = "Console", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 7, Tipo = "Cosplay", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 8, Tipo = "HQ ou mangá", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 9, Tipo = "Jogo eletrônico", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 10, Tipo = "Livro", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 11, Tipo = "Poster", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 12, Tipo = "Vestuário", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 13, Tipo = "Música", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 14, Tipo = "Instrumentos musicais e afins", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 15, Tipo = "PC", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 16, Tipo = "Celular", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 17, Tipo = "Relógio", Descricao = "xxx", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 1, Tipo = "Outro", Descricao = "Tudo que não se encaixou nos outros tipos tá aqui!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 2, Tipo = "Acessório gamer ou PC", Descricao = "Tá procurando uma placa de vídeo, teclado gamer ou algo do tipo? Tem aqui!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 3, Tipo = "Action figure ou boneco", Descricao = "Bonecos super legais que são réplicas ou representações de grandes personagens de séries e filmes", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 4, Tipo = "CD, DVD ou Blu-ray", Descricao = "Discos de músicas ou vídeos — hoje em dia, muitas vezes, usados para ouvir/ver os clássicos", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 5, Tipo = "Jogo de carta", Descricao = "Truco! Uno! 21!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 6, Tipo = "Console", Descricao = "Bora jogar!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 7, Tipo = "Cosplay", Descricao = "Kawaii desu", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 8, Tipo = "HQ ou mangá", Descricao = "Pros fãs de leitura", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 9, Tipo = "Jogo eletrônico", Descricao = "Bora jogar!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 10, Tipo = "Livro", Descricao = "Pros fãs de leitura", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 11, Tipo = "Poster", Descricao = "Que tal enfeitar seu quarto com um poster bem da hora?", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 12, Tipo = "Vestuário", Descricao = "Para geeks com bom estilo", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 13, Tipo = "Música", Descricao = "Um geek sempre tem um bom gosto músical, né?", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 14, Tipo = "Instrumentos musicais e afins", Descricao = "Dó, ré, mi, fá...", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 15, Tipo = "Celular", Descricao = "Quero um iPhone 13!", IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 16, Tipo = "Relógio", Descricao = "Que horas são?", IsAtivo = 1, DataRegistro = dataAgora });
             }
 
             if (!await context.Itens.AnyAsync())
             {
                 // Itens do usuário @junioranheu (2);
-                await context.Itens.AddAsync(new Item() { ItemId = 1, Nome = "MacBook", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Apple", Condicao = nameof(CondicaoEnum.Excelente), Preco = 4000, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 15, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.Itens.AddAsync(new Item() { ItemId = 1, Nome = "MacBook", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Apple", Condicao = nameof(CondicaoEnum.Excelente), Preco = 4000, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 2, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 2, Nome = "Coleção de livros do Harry Potter", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Warner Bros", Condicao = nameof(CondicaoEnum.Excelente), Preco = 120.99, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 10, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 3, Nome = "Poster do W.W.", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "NetFlix", Condicao = nameof(CondicaoEnum.Excelente), Preco = 149.99, PrecoDesconto = 99, UsuarioId = 2, ItemTipoId = 11, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 4, Nome = "Guitarra do Liam Gallagher", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Liam Gallagher", Condicao = nameof(CondicaoEnum.Usado), Preco = 12000, PrecoDesconto = 11.099, UsuarioId = 2, ItemTipoId = 14, IsAtivo = 1, DataRegistro = dataAgora });
@@ -94,7 +93,7 @@ namespace GeekSpot.Infraestructure.Data
                 await context.Itens.AddAsync(new Item() { ItemId = 6, Nome = "Bonequinhos do Harry Potter", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Warner Bros", Condicao = nameof(CondicaoEnum.Excelente), Preco = 80, PrecoDesconto = null, UsuarioId = 2, ItemTipoId = 3, IsAtivo = 1, DataRegistro = dataAgora });
 
                 // Itens do usuário @chaleco (5);
-                await context.Itens.AddAsync(new Item() { ItemId = 7, Nome = "iPhone", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Apple", Condicao = nameof(CondicaoEnum.Excelente), Preco = 2000, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 16, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.Itens.AddAsync(new Item() { ItemId = 7, Nome = "iPhone", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Apple", Condicao = nameof(CondicaoEnum.Excelente), Preco = 2000, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 15, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 8, Nome = "Violão acústico (baby)", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Shelby", Condicao = nameof(CondicaoEnum.Excelente), Preco = 1200, PrecoDesconto = null, UsuarioId = 5, ItemTipoId = 14, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 9, Nome = "Headset pro", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Razer", Condicao = nameof(CondicaoEnum.Excelente), Preco = 500, PrecoDesconto = 350, UsuarioId = 5, ItemTipoId = 2, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 10, Nome = "Nintendo Switch V2", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Nintendo", Condicao = nameof(CondicaoEnum.Novo), Preco = 1700, PrecoDesconto = 1350.99, UsuarioId = 5, ItemTipoId = 6, IsAtivo = 1, DataRegistro = dataAgora });
@@ -105,7 +104,7 @@ namespace GeekSpot.Infraestructure.Data
                 await context.Itens.AddAsync(new Item() { ItemId = 13, Nome = "Guitarra dos sonhos", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Shelter Nashville", Condicao = nameof(CondicaoEnum.Disfuncional), Preco = 3000, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 14, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 14, Nome = "Nike zika", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = "44", Marca = "Nike", Condicao = nameof(CondicaoEnum.Excelente), Preco = 890, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 12, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 15, Nome = "Palheta da Fender", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Fender", Condicao = nameof(CondicaoEnum.Excelente), Preco = 1, PrecoDesconto = 0.99, UsuarioId = 6, ItemTipoId = 14, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.Itens.AddAsync(new Item() { ItemId = 16, Nome = "Apple Watch", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Apple", Condicao = nameof(CondicaoEnum.Excelente), Preco = 1500, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 17, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.Itens.AddAsync(new Item() { ItemId = 16, Nome = "Apple Watch", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Apple", Condicao = nameof(CondicaoEnum.Excelente), Preco = 1500, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 16, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.Itens.AddAsync(new Item() { ItemId = 17, Nome = "The Dark Side Of The Moon", Descricao = LoremIpsum(10, 40, 1, 3, 1, false), Tamanho = null, Marca = "Pink Floyd", Condicao = nameof(CondicaoEnum.Excelente), Preco = 370.99, PrecoDesconto = null, UsuarioId = 6, ItemTipoId = 13, IsAtivo = 1, DataRegistro = dataAgora });
             }
 
