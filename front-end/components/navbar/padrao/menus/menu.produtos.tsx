@@ -38,11 +38,23 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
 
     return (
         <Fragment>
-            <Link href='/xxx'><a className={efeitoBottomCSS} onMouseEnter={() => abrirMenuProdutos()}>Produtos</a></Link>
+            <Link href='/xxx'>
+                <a
+                    className={efeitoBottomCSS}
+                    onMouseEnter={() => abrirMenuProdutos()}
+                    onMouseLeave={() => debounceFecharMenuProdutos()}
+                >
+                    Produtos
+                </a>
+            </Link>
 
             {
                 isExibirMenuProdutos && (
-                    <div className={`${Styles.divMenu} animate__animated animate__fadeIn`} onMouseLeave={() => debounceFecharMenuProdutos()}>
+                    <div
+                        className={`${Styles.divMenu} animate__animated animate__fadeIn`}
+                        onMouseEnter={() => abrirMenuProdutos()}
+                        onMouseLeave={() => debounceFecharMenuProdutos()}
+                    >
                         <div className={Styles.wrapperDivPainel}>
                             <div className={Styles.conteudo}>
                                 {

@@ -1,7 +1,6 @@
 https://www.enjoei.com.br/
 
 --
-corrigir bug dos menus
 css no menu 
 
 nao permitir a senha conter o nome de usuario, email ou nome da pessoa
