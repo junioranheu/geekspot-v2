@@ -19,12 +19,14 @@ export default function ModalLateralLayout({ handleModal, isOpen, titulo, childr
             document.getElementsByTagName('footer')[0].classList.add('backgroundBlur');
             document.getElementsByTagName('nav')[0].classList.add('backgroundBlur');
             document.getElementsByTagName('nav')[1].classList.add('backgroundBlur');
+            document.body.style.overflow = 'hidden';
         } else {
             // console.log('Hamburguer fechado');
             document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
             document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
             document.getElementsByTagName('nav')[0].classList.remove('backgroundBlur');
             document.getElementsByTagName('nav')[1].classList.remove('backgroundBlur');
+            document.body.style.overflow = 'auto';
         }
     }, [isOpen]);
 
