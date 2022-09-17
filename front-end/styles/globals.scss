@@ -30,10 +30,10 @@ body {
     scroll-behavior: smooth !important;
     font-family: 'GT';
 
+    background-color: var(--branco);
     width: 100vw;
     height: 100vh;
-    overflow-x: hidden;
-    background-color: var(--branco);
+    overflow-x: hidden !important;
 }
 
 .main {
@@ -45,21 +45,15 @@ body {
 }
 
 .sessaoPrincipal {
-    /* background-color: pink; */
+    // background-color: pink !important;  
     background-color: var(--branco);
-
     display: flex;
-    overflow: hidden;
     flex-direction: column;
 
     width: 70vw;
     min-height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
-}
-
-body::-webkit-scrollbar {
-    width: 0px;
 }
 
 a {
@@ -499,16 +493,20 @@ dialog[aria-labelledby*=rmiz-modal-img] {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Scroll =-=-=-=-=-=-=-=-=-=-= */
+body::-webkit-scrollbar {
+    width: 0px !important;
+}
+
 ::-webkit-scrollbar {
     width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--preto);
+    background: var(--branco);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6b6e70;
+    background: var(--cinza);
     border-radius: 0px;
 }
 
