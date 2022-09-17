@@ -1,0 +1,23 @@
+import iUsuarioInformacoes from './usuarioInformacoes';
+import iUsuarioTipo from './usuarioTipo';
+
+export default interface iUsuario {
+    usuarioId: null;
+    nomeCompleto: string;
+    email: string;
+    nomeUsuarioSistema: string;
+    token: string | null;
+    usuarioTipoId: number;
+    usuariosTipos: iUsuarioTipo;
+    foto: string | null;
+    dataRegistro: Date | null;
+    dataOnline: Date | null;
+    isAtivo: 1;
+    isPremium: number | null;
+    isVerificado: number | null;
+    usuariosInformacoes: iUsuarioInformacoes;
+    erro: boolean;
+    codigoErro: number | null;
+    mensagemErro: string | null;
+}
+

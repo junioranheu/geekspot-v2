@@ -68,7 +68,6 @@ export async function getStaticProps(context: any) {
     // Item;
     const url = `${CONSTS_ITENS.API_URL_GET_POR_ID}/${id}`;
     const item = await Fetch.getApi(url, null) as iItem;
-    // console.log(item);
 
     return {
         props: {

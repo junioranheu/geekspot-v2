@@ -6,7 +6,7 @@ import iCidade from '../../utils/types/cidade';
 
 export default function useCidades(estadoId: number, isFormatarDadosParaDropdown: boolean) {
 
-    const [dados, setDados] = useState<iCidade>();
+    const [dados, setDados] = useState<iCidade[]>();
     useEffect(() => {
         async function get(estadoId: number) {
             const url = `${CONSTS_SISTEMA.API_URL_GET_TODAS_CIDADES}?estadoId=${estadoId}`;

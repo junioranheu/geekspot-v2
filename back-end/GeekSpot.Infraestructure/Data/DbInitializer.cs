@@ -64,20 +64,20 @@ namespace GeekSpot.Infraestructure.Data
             #region seed_itens
             if (!await context.ItensTipos.AnyAsync())
             {
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 1, Tipo = "Outros", Descricao = "Tudo que não se encaixou nos outros tipos tá aqui!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 1, Tipo = "Outros", Descricao = "Tudo que não se encaixou nos outros tipos tá aqui!", IsNovoTipo = 1, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 2, Tipo = "Acessório gamer ou PC", Descricao = "Tá procurando uma placa de vídeo, teclado gamer ou algo do tipo? Tem aqui!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 3, Tipo = "Action figure ou boneco", Descricao = "Bonecos super legais que são réplicas ou representações de grandes personagens de séries e filmes", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 4, Tipo = "CD, DVD ou Blu-ray", Descricao = "Discos de músicas ou vídeos — hoje em dia, muitas vezes, usados para ouvir/ver os clássicos", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 5, Tipo = "Jogo de carta", Descricao = "Truco! Uno! 21!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 5, Tipo = "Jogo de cartas", Descricao = "Truco! Uno! 21!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 6, Tipo = "Console", Descricao = "Bora jogar!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 7, Tipo = "Cosplay", Descricao = "Kawaii desu", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 8, Tipo = "HQ ou mangá", Descricao = "Pros fãs de leitura", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 9, Tipo = "Jogo eletrônico", Descricao = "Bora jogar!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 10, Tipo = "Livro", Descricao = "Pros fãs de leitura", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 11, Tipo = "Poster", Descricao = "Que tal enfeitar seu quarto com um poster bem da hora?", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 12, Tipo = "Vestuário", Descricao = "Para geeks com bom estilo", IsNovoTipo = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 12, Tipo = "Vestuário", Descricao = "Para geeks com bom estilo", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 13, Tipo = "Música", Descricao = "Um geek sempre tem um bom gosto músical, né?", IsNovoTipo = 1, IsAtivo = 1, DataRegistro = dataAgora });
-                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 14, Tipo = "Instrumentos musicais", Descricao = "Dó, ré, mi, fá...", IsNovoTipo = 1, IsAtivo = 1, DataRegistro = dataAgora });
+                await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 14, Tipo = "Instrumentos musicais", Descricao = "Dó, ré, mi, fá...", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 15, Tipo = "Celular", Descricao = "Quero um iPhone 13!", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
                 await context.ItensTipos.AddAsync(new ItemTipo() { ItemTipoId = 16, Tipo = "Relógio", Descricao = "Que horas são?", IsNovoTipo = 0, IsAtivo = 1, DataRegistro = dataAgora });
             }

@@ -5,6 +5,7 @@ import { Auth } from '../../../utils/context/usuarioContext';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import { Fetch } from '../../../utils/outros/fetch';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
+import iUsuario from '../../../utils/types/usuario';
 
 export default function Perfil({ usuario }: any) {
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
@@ -40,7 +41,7 @@ export async function getStaticPaths() {
 
     // Todas os usuários;
     const url = CONSTS_USUARIOS.API_URL_GET_TODOS;
-    const usuarios = await Fetch.getApi(url, null);
+    const usuarios = await Fetch.getApi(url, null) as iUsuario[];
 
     // Gerar o "paths";
     const paths = usuarios?.map((u: any) => ({
@@ -61,7 +62,7 @@ export async function getStaticProps(context: any) {
 
     // Usuário;
     const url = `${CONSTS_USUARIOS.API_URL_GET_POR_ID}/${id}`;
-    const usuario = await Fetch.getApi(url, null);
+    const usuario = await Fetch.getApi(url, null) as iUsuario;
     // console.log(usuario);
 
     return {

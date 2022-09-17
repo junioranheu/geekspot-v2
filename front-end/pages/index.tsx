@@ -14,6 +14,8 @@ import { Fetch } from '../utils/outros/fetch';
 import HabilitarHttp from '../utils/outros/habilitarHttp';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 import randomizarArray from '../utils/outros/randomizarArray';
+import iItem from '../utils/types/item';
+import iUsuario from '../utils/types/usuario';
 
 export default function Home({ listaItens }: any) {
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
@@ -85,13 +87,13 @@ export async function getStaticProps() {
 
     // Pegar todos os usuários;
     const urlUsuarios = CONSTS_USUARIOS.API_URL_GET_TODOS;
-    const usuarios = await Fetch.getApi(urlUsuarios, null);
+    const usuarios = await Fetch.getApi(urlUsuarios, null) as iUsuario[];
 
     if (usuarios) {
         for (const u of usuarios) {
             // Encontrar os itens com base no usuário;
             const urlItens = `${CONSTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
-            const itens = await Fetch.getApi(urlItens, null);
+            const itens = await Fetch.getApi(urlItens, null) as iItem[];
 
             if (itens?.length) {
                 listaItens.push(itens);

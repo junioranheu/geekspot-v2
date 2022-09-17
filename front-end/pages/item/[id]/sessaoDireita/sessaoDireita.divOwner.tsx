@@ -32,7 +32,6 @@ export default function DivOwner({ item }: iItem) {
     async function getIsJaSegue(token: string, usuarioId: number) {
         const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_GET_IS_JA_SIGO_ESSE_USUARIO}?usuarioSeguidoId=${usuarioId}`;
         const isJaSigo = await Fetch.getApi(url, token);
-        // console.log(isJaSigo);
         setIsJaSigo(isJaSigo);
     }
 

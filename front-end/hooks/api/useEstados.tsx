@@ -6,12 +6,11 @@ import iEstado from '../../utils/types/estado';
 
 export default function useEstados(isFormatarDadosParaDropdown: boolean) {
 
-    const [dados, setDados] = useState<iEstado>();
+    const [dados, setDados] = useState<iEstado[]>();
     useEffect(() => {
         async function get() {
             const url = CONSTS_SISTEMA.API_URL_GET_TODOS_ESTADOS;
             const fetchDados = await Fetch.getApi(url, null);
-            console.log(fetchDados);
 
             if (isFormatarDadosParaDropdown) {
                 setDados(formatarDadosParaDropDown(fetchDados, 'nome', 'estadoId'));
