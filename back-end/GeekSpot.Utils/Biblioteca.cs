@@ -160,7 +160,7 @@ namespace GeekSpot.Utils
                 return Tuple.Create(isValido, msgErro);
             }
 
-            bool isRepeteNomeUsuario = nomeUsuario.ToLowerInvariant().Contains(senha.ToLowerInvariant());
+            bool isRepeteNomeUsuario = senha.ToLowerInvariant().Contains(nomeUsuario.ToLowerInvariant());
             if (isRepeteNomeUsuario)
             {
                 isValido = false;
@@ -168,7 +168,8 @@ namespace GeekSpot.Utils
                 return Tuple.Create(isValido, msgErro);
             }
 
-            bool isRepeteEmail = email.ToLowerInvariant().Contains(senha.ToLowerInvariant());
+            string emailAntesDoArroba = email.Split('@')[0].ToLowerInvariant();
+            bool isRepeteEmail = senha.ToLowerInvariant().Contains(emailAntesDoArroba.ToLowerInvariant());
             if (isRepeteEmail)
             {
                 isValido = false;

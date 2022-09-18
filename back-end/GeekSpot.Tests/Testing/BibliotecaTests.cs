@@ -39,6 +39,7 @@ namespace GeekSpot.Tests.Testing
                 new[] { "testetesteteste1", "Usuário Prueba", "chaleco", "usuario@hotmail.com" },
                 new[] { "T1", "Usuário teste", "junioranheu", "usuario@hotmail.com" },
                 new[] { "Mariana300", "Mariana Scalzaretto", "elfamscal", "elfamscal@hotmail.com" },
+                new[] { "Mariana300", "Mariana", "elfamscal", "elfamscal@hotmail.com" },
                 new[] { "Chaleco300", "Israel Cabrera", "chaleco", "chaleco@hotmail.com" },
                 new[] { "Chaleco300", "Israel Cabrera", "aweonao", "chaleco@hotmail.com" },
                 new[] { "Potinha500", "Junior de Souza", "junioranheu", "junior@hotmail.com" }
