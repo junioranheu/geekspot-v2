@@ -120,7 +120,7 @@ namespace GeekSpot.Utils
         // #1 - Tem número;
         // #2 - Tem letra maiúscula;
         // #3 - Tem pelo menos X caracteres;
-        // #4 - A senha não repete o nome completo, nome de usuário ou e-mail;
+        // #4 - A senha não contém o nome completo, nome de usuário ou e-mail;
         public static Tuple<bool, string> ValidarSenha(string senha, string nomeCompleto, string nomeUsuario, string email)
         {
             bool isValido = true;
@@ -156,7 +156,7 @@ namespace GeekSpot.Utils
             if (isRepeteNomeCompleto)
             {
                 isValido = false;
-                msgErro = "A senha não pode conter o seu nome";
+                msgErro = "A senha não pode conter o seu primeiro nome";
                 return Tuple.Create(isValido, msgErro);
             }
 

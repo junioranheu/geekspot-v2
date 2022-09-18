@@ -101,11 +101,11 @@ export default function SessaoEntrar() {
                 {
                     isExibirDivEmail ? (
                         <div className='animate__animated animate__fadeIn'>
-                            <input className='input' type='text' placeholder='E-mail ou nome de usuário'
+                            <input className='input' type='text' placeholder='E-mail ou nome de usuário' autoComplete='off'
                                 name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
                             />
 
-                            <input className='input margem0_5' type='password' placeholder='Senha'
+                            <input className='input margem0_5' type='password' placeholder='Senha' autoComplete='new-password'
                                 name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
                             />
 

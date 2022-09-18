@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { ChangeEvent, KeyboardEvent, useContext, useRef, useState } from 'react';
+import { ChangeEvent, Fragment, KeyboardEvent, useContext, useRef, useState } from 'react';
+import ReactTooltip from 'react-tooltip'; // https://www.npmjs.com/package/react-tooltip
 import Botao from '../../../components/outros/botao';
+import Ajuda from '../../../components/svg/ajuda';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
@@ -38,6 +40,14 @@ export default function SessaoCriarConta() {
     const refBtnCriar = useRef<any>(null);
 
     const [isExibirDivEmail, setIsExibirDivEmail] = useState(false);
+
+    const msgRequisitosSenha = `A sua senha deve conter ao menos:
+    <br />1 número;
+    <br />1 letra maiúscula;
+    <br />8 caracteres;
+    <br />E não deve conter seu primeiro nome, nome de usuário ou e-mail 👽`;
+
+    const msgTermos = `Ao criar uma conta,<br/>você está de acordo com os termos de serviço<br/>e a política de privacidade do ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ nomeCompleto: '', email: '', nomeUsuarioSistema: '', senha: '', confirmarSenha: '' });
@@ -113,32 +123,6 @@ export default function SessaoCriarConta() {
         nProgress.done();
     }
 
-    // async function enviarEmail(email: string, nomeCompleto: string) {
-    //     // Gerar uma url temporária;
-    //     const urlTipo = 'Verificar conta';
-    //     const jsonGerarUrlTemporaria = {
-    //         chaveDinamica: email,
-    //         dataGeracaoUrl: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
-    //         isAtivo: 1
-    //     };
-    //     const urlGerarUrlTemporaria = `${CONSTS_URL_TEMPORARIA.API_URL_POST_ADICIONAR}?urlTipo=${urlTipo}`;
-    //     let urlTemporaria = await Fetch.postApi(urlGerarUrlTemporaria, jsonGerarUrlTemporaria, null);
-    //     if (!urlTemporaria) {
-    //         // Aviso.error('Houve um erro ao gerar uma url temporária!', 5000);
-    //         return false;
-    //     }
-
-    //     // Disparar e-mail;
-    //     const urlEnviarEmail = `${CONSTS.API_URL_POST_ENVIAR_EMAIL_BEM_VINDO}?email=${email}&nomeUsuario=${nomeCompleto}&urlTemporaria=${urlTemporaria}`;
-    //     const enviarEmail = await Fetch.postApi(urlEnviarEmail, null, null);
-    //     if (!enviarEmail) {
-    //         // Aviso.error('Houve um erro ao disparar um e-mail para você!', 5000);
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
-
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
             refBtnCriar.current.click();
@@ -156,41 +140,50 @@ export default function SessaoCriarConta() {
             {/* Inputs */}
             {
                 isExibirDivEmail ? (
-                    <div className='animate__animated animate__fadeIn'>
-                        <div>
-                            <input className='input' type='text' placeholder='Nome completo' name='nomeCompleto'
-                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refNomeCompleto}
-                            />
-                        </div>
+                    <Fragment>
+                        <ReactTooltip multiline={true} />
 
-                        <div className='margem0_5'>
-                            <input className='input' type='email' placeholder='E-mail' name='email'
-                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refEmail}
-                            />
-                        </div>
+                        <div className='animate__animated animate__fadeIn'>
+                            <div>
+                                <input className='input' type='text' placeholder='Nome completo' name='nomeCompleto' autoComplete='nope1'
+                                    onChange={handleChange} onKeyPress={handleKeyPress} ref={refNomeCompleto}
+                                />
+                            </div>
 
-                        <div className='margem0_5'>
-                            <input className='input' type='text' placeholder='Nome de usuário' name='nomeUsuarioSistema'
-                                onChange={(e) => (handleChange(e), handleKeyPressNaoPermitirEspaco(e))} onKeyPress={handleKeyPress} ref={refNomeUsuario}
-                            />
-                        </div>
+                            <div className='margem0_5'>
+                                <input className='input' type='email' placeholder='E-mail' name='email' autoComplete='nope2'
+                                    onChange={handleChange} onKeyPress={handleKeyPress} ref={refEmail}
+                                />
+                            </div>
 
-                        <div className='margem0_5'>
-                            <input className='input' type='password' placeholder='Senha' autoComplete='new-password' name='senha'
-                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refSenha}
-                            />
-                        </div>
+                            <div className='margem0_5'>
+                                <input className='input' type='text' placeholder='Nome de usuário' name='nomeUsuarioSistema'
+                                    onChange={(e) => (handleChange(e), handleKeyPressNaoPermitirEspaco(e))} onKeyPress={handleKeyPress} ref={refNomeUsuario}
+                                />
+                            </div>
 
-                        <div className='margem0_5'>
-                            <input className='input' type='password' placeholder='Confirme sua senha' name='confirmarSenha'
-                                onChange={handleChange} onKeyPress={handleKeyPress} ref={refConfirmarSenha}
-                            />
-                        </div>
+                            <div className={`margem0_5 ${Styles.flexEspecial}`}>
+                                <input className='input' type='password' placeholder='Senha' name='senha' autoComplete='new-password'
+                                    onChange={handleChange} onKeyPress={handleKeyPress} ref={refSenha}
+                                />
 
-                        <div className={`${Styles.botaoCustom} margem0_5`} onClick={handleSubmit} >
-                            <Botao texto='Criar conta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtnCriar} isEnabled={true} />
+                                <div data-tip={msgRequisitosSenha}>
+                                    <Ajuda width={24} url={null} title={null} />
+                                </div>
+                            </div>
+
+                            <div className='margem0_5'>
+                                <input className='input' type='password' placeholder='Confirme sua senha' name='confirmarSenha'
+                                    onChange={handleChange} onKeyPress={handleKeyPress} ref={refConfirmarSenha}
+                                />
+                            </div>
+
+
+                            <div className={`${Styles.botaoCustom} margem0_5`} onClick={handleSubmit} data-tip={msgTermos}>
+                                <Botao texto='Criar conta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtnCriar} isEnabled={true} />
+                            </div>
                         </div>
-                    </div>
+                    </Fragment>
                 ) : (
                     <div className={Styles.botaoCustom}>
                         <Botao texto='Criar conta com e-mail' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />

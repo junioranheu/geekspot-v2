@@ -1,7 +1,4 @@
 https://www.enjoei.com.br/
 
 --
-nao permitir a senha conter o nome de usuario, email ou nome da pessoa
-exibir uma informação dos requisitos de senha
-
 verificar onde eu iria usar os métodos GerarHashUsuario() kkkk
