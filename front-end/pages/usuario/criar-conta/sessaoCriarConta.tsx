@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, KeyboardEvent, useContext, useRef, useState } from 'react';
@@ -205,11 +204,9 @@ export default function SessaoCriarConta() {
 
             {/* Ou #2 */}
             <div>
-                <div className={Styles.divisao}>ou</div>
-                <div className='margem1'>
-                    <span className={Styles.subtitulo}>
-                        Já tem uma conta? <Link href='/usuario/entrar'><a className={'cor-principal'}>Entre aqui</a></Link>
-                    </span>
+                <div className={Styles.divisao}>ou, já tem uma conta?</div>
+                <div className={`${Styles.botaoCustom2} margem1`}>
+                    <Botao texto='Entrar agora' url='/usuario/entrar' isNovaAba={false} handleFuncao={null} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
             </div>
         </section>

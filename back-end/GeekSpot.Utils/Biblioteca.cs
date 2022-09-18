@@ -142,7 +142,7 @@ namespace GeekSpot.Utils
                 return Tuple.Create(isValido, msgErro);
             }
 
-            int minCaracteres = 8;
+            int minCaracteres = 6;
             var temXCaracteres = new Regex(@".{" + minCaracteres + ",}");
             if (!temXCaracteres.IsMatch(senha))
             {

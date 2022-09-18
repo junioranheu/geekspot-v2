@@ -86,10 +86,10 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
         }
 
         // Verificação da senha #2: realizar uma série de verificações, se alguma retornar falso, aborte;
-        if (checarSenha(form.senha, form, refSenha, refConfirmarSenha) === false) {
-            nProgress.done();
-            return false;
-        }
+        // if (checarSenha(form.senha, form, refSenha, refConfirmarSenha) === false) {
+        //     nProgress.done();
+        //     return false;
+        // }
 
         // Checar se os dois campos de senha coincidem;
         if (form.senha !== form.confirmarSenha) {

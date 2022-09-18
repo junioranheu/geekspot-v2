@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { ChangeEvent, KeyboardEvent, useContext, useRef, useState } from 'react';
@@ -135,11 +134,9 @@ export default function SessaoEntrar() {
 
             {/* Ou #2 */}
             <div>
-                <div className={Styles.divisao}>ou</div>
-                <div className='margem1'>
-                    <span className={Styles.subtitulo}>
-                        Não tem uma conta ainda? <Link href='/usuario/criar-conta'><a className={'cor-principal'}>Crie a sua aqui</a></Link>
-                    </span>
+                <div className={Styles.divisao}>ou, não tem uma conta ainda?</div>
+                <div className={`${Styles.botaoCustom2} margem1`}>
+                    <Botao texto='Criar uma conta' url='/usuario/criar-conta' isNovaAba={false} handleFuncao={null} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
             </div>
         </section>
