@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using GeekSpot.Domain.Entities;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 using Xunit.Abstractions;
 using static GeekSpot.Utils.Biblioteca;
@@ -33,21 +34,34 @@ namespace GeekSpot.Tests.Testing
         [Fact]
         public void Test_CriptografarEValidarSenha()
         {
-            List<string> listaSenhas = new() { "123", "Teste300", "TesteTeste", "TesteTeste1" };
+            List<string[]> listaSenhas = new() {
+                new[] { "TesteTesteTeste", "Usuário Prueba", "chaleco", "chaleco@hotmail.com" },
+                new[] { "testetesteteste1", "Usuário Prueba", "chaleco", "usuario@hotmail.com" },
+                new[] { "T1", "Usuário teste", "junioranheu", "usuario@hotmail.com" },
+                new[] { "Mariana300", "Mariana Scalzaretto", "elfamscal", "elfamscal@hotmail.com" },
+                new[] { "Chaleco300", "Israel Cabrera", "chaleco", "chaleco@hotmail.com" },
+                new[] { "Chaleco300", "Israel Cabrera", "aweonao", "chaleco@hotmail.com" },
+                new[] { "Potinha500", "Junior de Souza", "junioranheu", "junior@hotmail.com" }
+            };
 
-            foreach (var senha in listaSenhas)
+            foreach (var obj in listaSenhas)
             {
-                bool isOk = ValidarSenha(senha);
+                string senha = obj[0];
+                string nomeCompleto = obj[1];
+                string nomeUsuarioSistema = obj[2];
+                string email = obj[3];
 
-                if (isOk)
+                var validarSenha = ValidarSenha(senha, nomeCompleto, nomeUsuarioSistema, email);
+
+                if (validarSenha.Item1)
                 {
                     string senhaCriptografada = Criptografar(senha);
                     Assert.True(!String.IsNullOrEmpty(senhaCriptografada));
-                    _output.WriteLine($"A senha \"{senha}\" é valida, e foi criptografada: \"{senhaCriptografada}\"");
+                    _output.WriteLine($"A senha \"{senha}\" é válida e foi criptografada: \"{senhaCriptografada}\"");
                 }
                 else
                 {
-                    _output.WriteLine($"A senha \"{senha}\" não é valida, portanto não será criptografada");
+                    _output.WriteLine($"A senha \"{senha}\" não é válida. {validarSenha.Item2}");
                 }
             }
         }

@@ -38,13 +38,15 @@ namespace GeekSpot.Application.Services.Authentication
             }
 
             // #2 - Verificar requisitos de senha;
-            if (!ValidarSenha(dto?.Senha))
+            var validarSenha = ValidarSenha(dto?.Senha, dto?.NomeCompleto, dto?.NomeUsuarioSistema, dto?.Email);
+            if (!validarSenha.Item1)
             {
                 UsuarioDTO erro = new()
                 {
                     Erro = true,
                     CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosSenhaNaoCumprido)
+                    // MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosSenhaNaoCumprido)
+                    MensagemErro = validarSenha.Item2
                 };
 
                 return erro;

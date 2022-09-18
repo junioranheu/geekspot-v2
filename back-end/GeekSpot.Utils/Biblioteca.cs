@@ -116,16 +116,67 @@ namespace GeekSpot.Utils
             return attribute.Description;
         }
 
-        // Validar se a senha do usuário é forte o sufiuciente verificando requisitos de senha;
-        public static bool ValidarSenha(string senha)
+        // Validar se a senha do usuário é forte o suficiente verificando requisitos de senha:
+        // #1 - Tem número;
+        // #2 - Tem letra maiúscula;
+        // #3 - Tem pelo menos X caracteres;
+        // #4 - A senha não repete o nome completo, nome de usuário ou e-mail;
+        public static Tuple<bool, string> ValidarSenha(string senha, string nomeCompleto, string nomeUsuario, string email)
         {
-            var hasNumber = new Regex(@"[0-9]+");
-            var hasUpperChar = new Regex(@"[A-Z]+");
-            var hasMinimum8Chars = new Regex(@".{8,}");
+            bool isValido = true;
+            string msgErro = "";
 
-            var isValidated = hasNumber.IsMatch(senha) && hasUpperChar.IsMatch(senha) && hasMinimum8Chars.IsMatch(senha);
+            var temNumero = new Regex(@"[0-9]+");
+            if (!temNumero.IsMatch(senha))
+            {
+                isValido = false;
+                msgErro = "A senha deve conter ao menos um número";
+                return Tuple.Create(isValido, msgErro);
+            }
 
-            return isValidated;
+            var temMaiusculo = new Regex(@"[A-Z]+");
+            if (!temMaiusculo.IsMatch(senha))
+            {
+                isValido = false;
+                msgErro = "A senha deve conter ao menos uma letra maiúscula";
+                return Tuple.Create(isValido, msgErro);
+            }
+
+            int minCaracteres = 8;
+            var temXCaracteres = new Regex(@".{" + minCaracteres + ",}");
+            if (!temXCaracteres.IsMatch(senha))
+            {
+                isValido = false;
+                msgErro = $"A senha deve conter ao menos {minCaracteres} caracteres";
+                return Tuple.Create(isValido, msgErro);
+            }
+
+            string nomeCompletoPrimeiraParte = nomeCompleto.Split(' ')[0].ToLowerInvariant();
+            bool isRepeteNomeCompleto = senha.ToLowerInvariant().Contains(nomeCompletoPrimeiraParte);
+            if (isRepeteNomeCompleto)
+            {
+                isValido = false;
+                msgErro = "A senha não pode conter o seu nome";
+                return Tuple.Create(isValido, msgErro);
+            }
+
+            bool isRepeteNomeUsuario = nomeUsuario.ToLowerInvariant().Contains(senha.ToLowerInvariant());
+            if (isRepeteNomeUsuario)
+            {
+                isValido = false;
+                msgErro = "A senha não pode conter o seu nome de usuário";
+                return Tuple.Create(isValido, msgErro);
+            }
+
+            bool isRepeteEmail = email.ToLowerInvariant().Contains(senha.ToLowerInvariant());
+            if (isRepeteEmail)
+            {
+                isValido = false;
+                msgErro = "A senha não pode conter o seu e-mail";
+                return Tuple.Create(isValido, msgErro);
+            }
+
+            return Tuple.Create(isValido, msgErro);
         }
 
         // Gerar um número aleatório com base na em um valor mínimo e máximo;
