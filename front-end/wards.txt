@@ -2,11 +2,14 @@ https://www.enjoei.com.br/
 
 --
 
-criar tela para cadastar novo item
-
 enviar e-mail de verificação de conta para ativá-la ao criar conta;
 criar botão para reenviar verificação caso necessário;
 não permitir o usuário logar enquanto estiver não ativo;
+
+criar tela para cadastar novo item (apenas a tela mesmo para funcionar o proximo passo)
+não permitir acessar a tela de cadastro de novo item caso caso o usuario nao tenha valido perfil (email e cadastro do form)
+
+continuar desenvolvimento tela de cadastro de novo item
 
 criar botão para recuperar senha e usar o método GerarHashUsuario() no processo
 

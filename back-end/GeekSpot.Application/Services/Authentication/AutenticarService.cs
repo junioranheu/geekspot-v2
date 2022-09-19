@@ -118,7 +118,10 @@ namespace GeekSpot.Application.Services.Authentication
                 return erro;
             }
 
-            // #3 - Criar usuário;
+            // #3.1 - Gerar código de verificação para usar no processo de criação e no envio de e-mail;
+            string codigoVerificacao = GerarStringAleatoria(6, true);
+
+            // #3.2 - Criar usuário;
             var novoUsuario = new UsuarioSenhaDTO
             {
                 NomeCompleto = dto?.NomeCompleto,
@@ -132,7 +135,7 @@ namespace GeekSpot.Application.Services.Authentication
                 IsAtivo = 1,
                 IsPremium = 0,
                 IsVerificado = 0,
-                CodigoVerificacao = GerarStringAleatoria(6, true),
+                CodigoVerificacao = codigoVerificacao,
                 ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24),
                 HashUrlTrocarSenha = "",
                 ValidadeHashUrlTrocarSenha = DateTime.MinValue
@@ -153,7 +156,53 @@ namespace GeekSpot.Application.Services.Authentication
             // #7 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(novoUsuario);
 
+            // #8 - Enviar e-mail de veririficação de conta;
+            try
+            {
+                if (!String.IsNullOrEmpty(usuarioDTO?.Email) && !String.IsNullOrEmpty(usuarioDTO?.NomeCompleto) && !String.IsNullOrEmpty(codigoVerificacao))
+                {
+                    usuarioDTO.IsEmailVerificacaoContaEnviado = await EnviarEmailVerificacaoConta(usuarioDTO?.Email, usuarioDTO?.NomeCompleto, codigoVerificacao);
+                }
+            }
+            catch (Exception)
+            {
+                usuarioDTO.IsEmailVerificacaoContaEnviado = false;
+            }
+
             return usuarioDTO;
+        }
+
+        public static async Task<bool> EnviarEmailVerificacaoConta(string email, string nomeUsuario, string codigoVerificacao)
+        {
+            string assunto = "Verifique sua conta do GeekSpot";
+            string conteudoEmailSemHtml = "";
+
+            // Montar a url final;
+            string dominio = CaminhoFront();
+            string urlAlterarSenha = (dominio + $"verificar-conta/{codigoVerificacao}");
+
+            // Pegar o arquivo referente ao layout do e-mail de recuperação de senha;
+            string conteudoEmailHtml = string.Empty;
+            string root = Directory.GetCurrentDirectory() + "/Emails/";
+            string caminhoFinal = root + GetDescricaoEnum(EmailEnum.VerificarConta);
+            using (var reader = new StreamReader(caminhoFinal))
+            {
+                // Ler arquivo;
+                string readFile = reader.ReadToEnd();
+                string strContent = readFile;
+
+                // Remover tags desnecessárias;
+                strContent = strContent.Replace("\r", string.Empty);
+                strContent = strContent.Replace("\n", string.Empty);
+
+                // Replaces;
+                strContent = strContent.Replace("[Url]", urlAlterarSenha);
+                strContent = strContent.Replace("[NomeUsuario]", nomeUsuario);
+                conteudoEmailHtml = strContent.ToString();
+            }
+
+            bool resposta = await EnviarEmail(email, assunto, conteudoEmailSemHtml, conteudoEmailHtml);
+            return resposta;
         }
     }
 }

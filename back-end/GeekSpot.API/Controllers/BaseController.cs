@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace GeekSpot.API.Controllers
 {
     public abstract class BaseController<T> : Controller
-    {
+    {        
         protected async Task<bool> IsUsuarioSolicitadoMesmoDoToken(int id)
         {
             var token = await HttpContext.GetTokenAsync("access_token");

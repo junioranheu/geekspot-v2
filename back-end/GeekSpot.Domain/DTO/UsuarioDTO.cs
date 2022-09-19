@@ -23,6 +23,7 @@ namespace GeekSpot.Domain.DTO
         public int IsAtivo { get; set; } = 1;
         public int IsPremium { get; set; } = 0;
         public int IsVerificado { get; set; } = 0;
+        public bool IsEmailVerificacaoContaEnviado { get; set; } = false;
 
         // Fk (De cá pra lá);
         [JsonIgnore]

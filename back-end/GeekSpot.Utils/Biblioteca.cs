@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -12,6 +14,13 @@ namespace GeekSpot.Utils
 {
     public static class Biblioteca
     {
+        // Pegar informações do appsettings: https://stackoverflow.com/a/58432834
+        static readonly string emailApiKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["EmailApiKey"];
+        static readonly string emailPadrao = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["EmailPadrao"];
+        static readonly string emailNomeRemetente = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["NomeRemetente"];
+        static readonly string urlFrontDev = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontDev"];
+        static readonly string urlFrontProd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontProd"];
+
         // Pegar informações do appsettings: https://stackoverflow.com/a/58432834
         static readonly string encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EncryptionSettings")["EncryptionKey"];
 
@@ -231,6 +240,48 @@ namespace GeekSpot.Utils
             string hash = Criptografar(palavraAleatoria);
 
             return hash;
+        }
+
+        // Verificar se a aplicação está sendo executada em localhost ou publicada;
+        public static bool IsDebug()
+        {
+            // https://stackoverflow.com/questions/12135854/best-way-to-tell-if-in-production-or-development-environment-in-net
+#if DEBUG
+            return true;
+#else
+        return false;
+#endif
+        }
+
+        // Verificar se o front-end está sendo executado em localhost ou publicado;
+        public static string CaminhoFront()
+        {
+            string urlApi = urlFrontProd;
+
+            if (IsDebug())
+            {
+                urlApi = urlFrontDev;
+            }
+
+            return urlApi;
+        }
+
+        // Método padrão para envio de e-mails: https://app.sendgrid.com/;
+        public static async Task<bool> EnviarEmail(string emailTo, string assunto, string conteudoEmailSemHtml, string conteudoEmailHtml)
+        {
+            if (String.IsNullOrEmpty(emailTo))
+            {
+                return false;
+            }
+
+            // https://app.sendgrid.com/guide/integrate/langs/csharp
+            var client = new SendGridClient(emailApiKey);
+            var from = new EmailAddress(emailPadrao, emailNomeRemetente);
+            var to = new EmailAddress(emailTo);
+            var msg = MailHelper.CreateSingleEmail(from, to, assunto, conteudoEmailSemHtml, conteudoEmailHtml);
+            var resposta = await client.SendEmailAsync(msg);
+
+            return resposta.IsSuccessStatusCode;
         }
     }
 }

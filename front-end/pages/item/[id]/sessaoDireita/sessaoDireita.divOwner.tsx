@@ -64,7 +64,7 @@ export default function DivOwner({ item }: iItem) {
         }
 
         nProgress.done();
-        Aviso.success(`Usuário <b>@${item?.usuarios?.nomeUsuarioSistema}</b> seguido com sucesso`, 5000);
+        // Aviso.success(`Usuário <b>@${item?.usuarios?.nomeUsuarioSistema}</b> seguido com sucesso`, 5000);
         getIsJaSegue(token, item?.usuarioId)
     }
 
