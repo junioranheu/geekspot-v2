@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System.ComponentModel;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -114,6 +115,22 @@ namespace GeekSpot.Utils
             MemberInfo[] memInfo = enumVal.GetType().GetMember(enumVal.ToString());
             DescriptionAttribute attribute = CustomAttributeExtensions.GetCustomAttribute<DescriptionAttribute>(memInfo[0]);
             return attribute.Description;
+        }
+
+        // Converter Base64 para imagem;
+        public static IFormFile Base64ToImage(string base64)
+        {
+            List<IFormFile> formFiles = new();
+
+            string split = ";base64,";
+            string normalizarBase64 = base64.Substring(base64.IndexOf(split) + split.Length); 
+            byte[] bytes = Convert.FromBase64String(normalizarBase64);
+            MemoryStream stream = new(bytes);
+
+            IFormFile file = new FormFile(stream, 0, bytes.Length, Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            formFiles.Add(file);
+
+            return formFiles[0];
         }
 
         // Validar se a senha do usuário é forte o suficiente verificando requisitos de senha:

@@ -21,21 +21,22 @@ namespace GeekSpot.Infraestructure.Persistence
         public async Task<UsuarioDTO>? Adicionar(UsuarioSenhaDTO dto)
         {
             Usuario usuario = _map.Map<Usuario>(dto);
-            UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(dto);
 
             _context.Add(usuario);
             await _context.SaveChangesAsync();
-            return usuarioDto;
+
+            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);
+            return usuarioDTO;
         }
 
         public async Task<UsuarioDTO>? Atualizar(UsuarioSenhaDTO dto)
         {
             Usuario usuario = _map.Map<Usuario>(dto);
-            UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(dto);
+            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(dto);
 
             _context.Update(usuario);
             await _context.SaveChangesAsync();
-            return usuarioDto;
+            return usuarioDTO;
         }
 
         public async Task Deletar(int id)
@@ -88,9 +89,21 @@ namespace GeekSpot.Infraestructure.Persistence
                 UsuarioSenhaDTO dto1 = _map.Map<UsuarioSenhaDTO>(porNomeUsuario);
                 return dto1;
             }
- 
+
             UsuarioSenhaDTO dto2 = _map.Map<UsuarioSenhaDTO>(porEmail);
             return dto2;
+        }
+
+        public async Task? AtualizarFoto(UsuarioDTO dto, string foto)
+        {
+            Usuario usuario = _map.Map<Usuario>(dto);
+            usuario.Foto = foto;
+
+            // Desbugar o update: https://stackoverflow.com/a/57159821;
+            _context.Entry<Usuario>(usuario).State = EntityState.Detached;
+
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
         }
     }
 }

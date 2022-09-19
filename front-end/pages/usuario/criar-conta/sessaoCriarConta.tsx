@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { ChangeEvent, Fragment, KeyboardEvent, useContext, useRef, useState } from 'react';
+import { ChangeEvent, Fragment, KeyboardEvent, useContext, useEffect, useRef, useState } from 'react';
 import ReactTooltip from 'react-tooltip'; // https://www.npmjs.com/package/react-tooltip
 import Botao from '../../../components/outros/botao';
 import Ajuda from '../../../components/svg/ajuda';
@@ -12,6 +12,7 @@ import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
+import converterSrcImagemParaBase64 from '../../../utils/outros/converterSrcImagemParaBase64';
 import { Fetch } from '../../../utils/outros/fetch';
 import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRandom';
 import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
@@ -57,6 +58,16 @@ export default function SessaoCriarConta() {
         });
     }
 
+    // Gerar uma foto de perfil aleatória em Base64;
+    const [imagemPerfilRandomInicialBase64, setImagemPerfilRandomInicialBase64] = useState<File>();
+    useEffect(() => {
+        converterSrcImagemParaBase64(gerarImagemPerfilRandom()?.src)
+            .then((base64: any) => {
+                // console.log(base64);
+                setImagemPerfilRandomInicialBase64(base64)
+            });
+    }, [])
+
     // Ao clicar no botão para criar conta;
     async function handleSubmit() {
         nProgress.start();
@@ -82,7 +93,7 @@ export default function SessaoCriarConta() {
             senha: formData.senha,
             usuarioTipoId: 2, // Usuário comum;
             dataCriacao: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
-            foto: '',
+            foto: imagemPerfilRandomInicialBase64,
             isAtivo: 1,
             isPremium: 0,
             IsVerificado: 0
@@ -96,7 +107,7 @@ export default function SessaoCriarConta() {
             refConfirmarSenha.current.value = '';
             formData.senha = '';
             refBtnCriar.current.disabled = false;
-            Aviso.error(resposta.mensagemErro, 10000);
+            Aviso.error((resposta?.mensagemErro ?? 'Parece que ocorreu um erro interno. Tente novamente mais tarde'), 10000);
             return false;
         }
 

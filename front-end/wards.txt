@@ -1,5 +1,7 @@
 https://www.enjoei.com.br/
 
 --
-quando o cara se logar automaticamente aplica uma foto pra ele
+
+corrigir bug do cadastrar nova conta
+
 verificar onde eu iria usar os métodos GerarHashUsuario() kkkk

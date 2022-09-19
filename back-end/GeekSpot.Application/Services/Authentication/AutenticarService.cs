@@ -72,16 +72,22 @@ namespace GeekSpot.Application.Services.Authentication
                 ValidadeHashUrlTrocarSenha = DateTime.MinValue
             };
 
-            await _usuarioRepository.Adicionar(novoUsuario);
+            UsuarioDTO usuarioAdicionado = await _usuarioRepository.Adicionar(novoUsuario);
 
-            // #4 - Criar token JWT;
+            // #4 - Automaticamente atualizar o valor da Foto com um valor padrão após criar o novo usuário;
+            await _usuarioRepository.AtualizarFoto(usuarioAdicionado, $"{usuarioAdicionado.UsuarioId}.webp");
+
+            // #5 - Adicionar ao objeto novoUsuario o id do novo usuário;
+            novoUsuario.UsuarioId = usuarioAdicionado.UsuarioId;
+
+            // #6 - Criar token JWT;
             var token = _jwtTokenGenerator.GerarToken(novoUsuario);
             novoUsuario.Token = token;
 
-            // #5 - Converter de UsuarioSenhaDTO para UsuarioDTO;
-            UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(novoUsuario);
+            // #7 - Converter de UsuarioSenhaDTO para UsuarioDTO;
+            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(novoUsuario);
 
-            return usuarioDto;
+            return usuarioDTO;
         }
 
         public async Task<UsuarioDTO> Login(UsuarioSenhaDTO dto)
@@ -119,9 +125,9 @@ namespace GeekSpot.Application.Services.Authentication
             usuario.Token = token;
 
             // #4 - Converter de UsuarioSenhaDTO para UsuarioDTO;
-            UsuarioDTO usuarioDto = _map.Map<UsuarioDTO>(usuario);
+            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);
 
-            return usuarioDto;
+            return usuarioDTO;
         }
     }
 }

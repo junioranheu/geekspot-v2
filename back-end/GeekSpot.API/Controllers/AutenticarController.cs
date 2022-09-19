@@ -1,6 +1,7 @@
 ﻿using GeekSpot.Application.Common.Interfaces.Authentication;
 using GeekSpot.Domain.DTO;
 using Microsoft.AspNetCore.Mvc;
+using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.API.Controllers
 {
@@ -8,10 +9,12 @@ namespace GeekSpot.API.Controllers
     [Route("api/[controller]")]
     public class AutenticarController : BaseController<AutenticarController>
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IAutenticarService _autenticarService;
 
-        public AutenticarController(IAutenticarService autenticarService)
+        public AutenticarController(IWebHostEnvironment webHostEnvironment, IAutenticarService autenticarService)
         {
+            _webHostEnvironment = webHostEnvironment;
             _autenticarService = autenticarService;
         }
 
@@ -19,6 +22,20 @@ namespace GeekSpot.API.Controllers
         public async Task<ActionResult<UsuarioDTO>> Registrar(UsuarioSenhaDTO dto)
         {
             var authResultado = await _autenticarService.Registrar(dto);
+
+            try
+            {
+                if (!String.IsNullOrEmpty(dto.Foto))
+                {
+                    var file = Base64ToImage(dto.Foto);
+                    UparImagem(file, authResultado.UsuarioId.ToString(), "usuarios/imagem", dto.Foto, _webHostEnvironment);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
             return Ok(authResultado);
         }
 
