@@ -22,7 +22,7 @@ namespace GeekSpot.Application.Services.Authentication
 
         public async Task<UsuarioDTO> Registrar(UsuarioSenhaDTO dto)
         {
-            // #1.2 - Verificar se o usuário já existe com o e-mail informado. Se existir, aborte;
+            // #1 - Verificar se o usuário já existe com o e-mail informado. Se existir, aborte;
             var verificarUsuario = await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
 
             if (verificarUsuario is not null)
@@ -37,7 +37,33 @@ namespace GeekSpot.Application.Services.Authentication
                 return erro;
             }
 
-            // #2 - Verificar requisitos de senha;
+            // #2.1 - Verificar requisitos gerais;
+            if (dto?.NomeCompleto?.Length < 3 || dto?.NomeUsuarioSistema?.Length < 3)
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.RequisitosNome,
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosNome)
+                };
+
+                return erro;
+            }
+
+            // #2.2 - Verificar e-mail;
+            if (!ValidarEmail(dto?.Email))
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.EmailInvalido,
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.EmailInvalido)
+                };
+
+                return erro;
+            }
+
+            // #2.3 - Verificar requisitos de senha;
             var validarSenha = ValidarSenha(dto?.Senha, dto?.NomeCompleto, dto?.NomeUsuarioSistema, dto?.Email);
             if (!validarSenha.Item1)
             {

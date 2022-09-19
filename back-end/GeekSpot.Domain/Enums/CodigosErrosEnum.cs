@@ -17,17 +17,23 @@ namespace GeekSpot.Domain.Enums
         [Description("Os requisitos de senha não foram cumpridos. A senha deve ser mais segura")]
         RequisitosSenhaNaoCumprido = 104,
 
+        [Description("O nome completo ou nome de usuário não atingem o mínimo de caracteres necessários")]
+        RequisitosNome = 105,
+
+        [Description("E-mail inválido")]
+        EmailInvalido = 106,
+
         [Description("Usuário ou senha incorretos")]
-        UsuarioSenhaIncorretos = 105,
+        UsuarioSenhaIncorretos = 107,
 
         [Description("Conta desativada")]
-        ContaDesativada = 106,
+        ContaDesativada = 108,
 
         [Description("Usuário não encontrado")]
-        UsuarioNaoEncontrado = 107,
+        UsuarioNaoEncontrado = 109,
 
         [Description("Não autorizado")]
-        NaoAutorizado = 108,
+        NaoAutorizado = 110,
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         [Description("Dado não encontrado")]

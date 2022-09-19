@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -123,7 +124,7 @@ namespace GeekSpot.Utils
             List<IFormFile> formFiles = new();
 
             string split = ";base64,";
-            string normalizarBase64 = base64.Substring(base64.IndexOf(split) + split.Length); 
+            string normalizarBase64 = base64.Substring(base64.IndexOf(split) + split.Length);
             byte[] bytes = Convert.FromBase64String(normalizarBase64);
             MemoryStream stream = new(bytes);
 
@@ -131,6 +132,13 @@ namespace GeekSpot.Utils
             formFiles.Add(file);
 
             return formFiles[0];
+        }
+
+        // Validar se o e-mail do usuário;
+        public static bool ValidarEmail(string email)
+        {
+            EmailAddressAttribute e = new();
+            return e.IsValid(email);
         }
 
         // Validar se a senha do usuário é forte o suficiente verificando requisitos de senha:

@@ -9,12 +9,12 @@ using Xunit;
 
 namespace GeekSpot.Tests.Testing
 {
-    public class UsuariosTestes
+    public class UsuariosTests
     {
         private readonly TestClientProvider _testProvider;
         private const string caminhoApi = "/api/Usuarios";
 
-        public UsuariosTestes()
+        public UsuariosTests()
         {
             _testProvider = new TestClientProvider();
         }
