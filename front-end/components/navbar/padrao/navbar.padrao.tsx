@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import nProgress from 'nprogress';
-import { Dispatch, Fragment, useState } from 'react';
+import { Dispatch, Fragment, useEffect, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import Botao from '../../outros/botao';
@@ -20,6 +20,8 @@ interface iParametros {
 }
 
 export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
+
+    const router = useRouter();
 
     const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
     const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
@@ -40,11 +42,21 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
         }, 100);
     }
 
+    function simularLoading() {
+        if (router.asPath !== '/') {
+            nProgress.start();
+        }
+    }
+
+    useEffect(() => {
+        nProgress.done();
+    }, [router.asPath]);
+
     return (
         <nav className={Styles.navbar}>
             <div className={Styles.wrapper}>
                 <div className={Styles.divEsquerda}>
-                    <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`}><Logo width='2rem' /></a></Link>
+                    <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`} onClick={() => simularLoading()}><Logo width='2rem' /></a></Link>
                     <NavbarFiltro />
                 </div>
 
