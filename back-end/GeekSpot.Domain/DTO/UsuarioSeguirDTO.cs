@@ -28,7 +28,7 @@ namespace GeekSpot.Domain.DTO
         [JsonIgnore]
         public UsuarioDTO? UsuariosSeguidores { get; set; }
 
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
         public DateTime? DataRegistro { get; set; }
     }
 }

@@ -54,7 +54,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(i => i.IsAtivo == 1).
+                        Where(i => i.IsAtivo == true).
                         OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(todos);
@@ -68,7 +68,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(i => i.ItemId == id && i.IsAtivo == 1).AsNoTracking().FirstOrDefaultAsync();
+                        Where(i => i.ItemId == id && i.IsAtivo == true).AsNoTracking().FirstOrDefaultAsync();
 
             ItemDTO dto = _map.Map<ItemDTO>(byId);
             return dto;
@@ -81,7 +81,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(it => it.ItemTipoId == itemTipoId && it.IsAtivo == 1).AsNoTracking().ToListAsync();
+                        Where(it => it.ItemTipoId == itemTipoId && it.IsAtivo == true).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);
             return dto;
@@ -94,7 +94,7 @@ namespace GeekSpot.Infraestructure.Persistence
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
-                        Where(it => it.UsuarioId == usuarioId && it.IsAtivo == 1).AsNoTracking().ToListAsync();
+                        Where(it => it.UsuarioId == usuarioId && it.IsAtivo == true).AsNoTracking().ToListAsync();
 
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);
             return dto;

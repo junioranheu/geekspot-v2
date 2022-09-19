@@ -53,7 +53,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var todos = await _context.Comentarios.
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
-                        Where(i => i.IsAtivo == 1).
+                        Where(i => i.IsAtivo == true).
                         OrderBy(d => d.DataMensagem).AsNoTracking().ToListAsync();
 
             List<ComentarioDTO> dto = _map.Map<List<ComentarioDTO>>(todos);
@@ -65,7 +65,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var byId = await _context.Comentarios.
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
-                        Where(i => i.IsAtivo == 1 && i.ComentarioId == id).
+                        Where(i => i.IsAtivo == true && i.ComentarioId == id).
                         OrderBy(d => d.DataMensagem).AsNoTracking().FirstOrDefaultAsync();
 
             ComentarioDTO dto = _map.Map<ComentarioDTO>(byId);
@@ -77,7 +77,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var itens = await _context.Comentarios.
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
-                        Where(i => i.ItemId == itemId && i.IsAtivo == 1).
+                        Where(i => i.ItemId == itemId && i.IsAtivo == true).
                         OrderBy(d => d.DataMensagem).AsNoTracking().ToListAsync();
 
             List<ComentarioDTO> dto = _map.Map<List<ComentarioDTO>>(itens);

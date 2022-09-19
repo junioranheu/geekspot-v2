@@ -44,7 +44,7 @@ namespace GeekSpot.Infraestructure.Persistence
             var itens = await _context.UsuariosSeguir.
                         Include(us => us.UsuariosSeguidos).
                         Include(us => us.UsuariosSeguidores).
-                        Where(us => us.UsuarioSeguidoId == usuarioSeguidoId && us.IsAtivo == 1).AsNoTracking().ToListAsync();
+                        Where(us => us.UsuarioSeguidoId == usuarioSeguidoId && us.IsAtivo == true).AsNoTracking().ToListAsync();
 
             List<UsuarioSeguirDTO> dto = _map.Map<List<UsuarioSeguirDTO>>(itens);
             return dto;

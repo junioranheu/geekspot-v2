@@ -12,6 +12,6 @@ namespace GeekSpot.Domain.Entities
         public int EstadoId { get; set; }
         public Estado? Estados { get; set; }
 
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
     }
 }

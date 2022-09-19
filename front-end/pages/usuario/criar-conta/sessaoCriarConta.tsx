@@ -94,9 +94,9 @@ export default function SessaoCriarConta() {
             usuarioTipoId: 2, // Usuário comum;
             dataCriacao: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
             foto: imagemPerfilRandomInicialBase64,
-            isAtivo: 1,
-            isPremium: 0,
-            IsVerificado: 0
+            isAtivo: true,
+            isPremium: false,
+            IsVerificado: false
         };
 
         const resposta = await Fetch.postApi(url, dto, null);
@@ -116,14 +116,9 @@ export default function SessaoCriarConta() {
         resposta.cep = '';
         Auth.set(resposta);
 
-        // Enviar e-mail de "bem-vindo";
-        // const isEmailEnviado = await enviarEmail(email, nomeCompleto);
-        // if (!isEmailEnviado) {
-        //     Aviso.error('Houve um erro ao disparar um e-mail para você! Tente logar no sistema novamente mais tarde', 5000);
-        //     return false;
-        // }
-
-        // Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
+        if (resposta.isEmailVerificacaoContaEnviado) {
+            Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
+        }
 
         // Voltar à tela principal;
         Router.push('/');

@@ -20,7 +20,7 @@ export default interface iListaComentarios {
     dataMensagem: Date;
     resposta: string | null;
     dataResposta: Date | null;
-    isAtivo: number;
+    isAtivo: boolean;
 
     erro: boolean | null;
     codigoErro: number | null;

@@ -13,7 +13,7 @@ export default interface iItem {
                 caminhoImagem: string;
                 itemId: number;
                 isFotoPrincipal: number;
-                isAtivo: number;
+                isAtivo: boolean;
                 dataRegistro: Date;
             }
         ] | null;
@@ -34,16 +34,16 @@ export default interface iItem {
                 usuarioTipoId: number;
                 tipo: string;
                 descricao: string;
-                isAtivo: number;
+                isAtivo: boolean;
                 dataRegistro: Date;
             };
 
             foto: string | null;
             dataRegistro: Date;
             dataOnline: Date;
-            isAtivo: number;
-            isPremium: number;
-            isVerificado: number;
+            isAtivo: boolean;
+            isPremium: boolean;
+            isVerificado: boolean;
 
             usuariosInformacoes: {
                 usuarioInformacaoId: number;
@@ -67,7 +67,7 @@ export default interface iItem {
             descricao: string;
         };
 
-        isAtivo: number;
+        isAtivo: boolean;
         dataRegistro: Date;
 
         erro: boolean | null;

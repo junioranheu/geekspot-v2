@@ -20,9 +20,9 @@ namespace GeekSpot.Domain.DTO
         public string? Foto { get; set; } = null;
         public DateTime DataRegistro { get; set; } = HorarioBrasilia();
         public DateTime DataOnline { get; set; }
-        public int IsAtivo { get; set; } = 1;
-        public int IsPremium { get; set; } = 0;
-        public int IsVerificado { get; set; } = 0;
+        public bool IsAtivo { get; set; } = true;
+        public bool IsPremium { get; set; } = false;
+        public bool IsVerificado { get; set; } = false;
         public bool IsEmailVerificacaoContaEnviado { get; set; } = false;
 
         // Fk (De cá pra lá);

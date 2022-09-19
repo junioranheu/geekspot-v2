@@ -3,7 +3,7 @@ export default interface iItemTipo {
     tipo: string;
     descricao: string | null;
     isNovoTipo: number;
-    isAtivo: number;
+    isAtivo: boolean;
     dataRegistro: Date;
     erro: boolean;
     codigoErro: number | null;

@@ -73,7 +73,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
             usuarioId: null,
             mensagem: texto,
             resposta: '',
-            isAtivo: 1,
+            isAtivo: true,
             dataMensagem: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
             dataResposta: null
         };

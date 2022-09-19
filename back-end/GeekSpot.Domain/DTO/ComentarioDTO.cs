@@ -27,6 +27,6 @@ namespace GeekSpot.Domain.DTO
         public string? Resposta { get; set; } = null;
         public DateTime? DataResposta { get; set; } = null;
 
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
     }
 }

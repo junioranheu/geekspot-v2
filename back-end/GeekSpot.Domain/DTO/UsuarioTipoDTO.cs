@@ -9,7 +9,7 @@ namespace GeekSpot.Domain.DTO
         public int UsuarioTipoId { get; set; } 
         public string? Tipo { get; set; } = null;
         public string? Descricao { get; set; } = null;
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
         public DateTime DataRegistro { get; set; } = HorarioBrasilia();
     }
 }

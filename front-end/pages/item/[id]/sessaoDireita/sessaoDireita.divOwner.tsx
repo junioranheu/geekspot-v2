@@ -51,7 +51,7 @@ export default function DivOwner({ item }: iItem) {
         const dto = {
             usuarioSeguidoId: usuarioId,
             usuarioSeguidorId: usuarioLogadoId,
-            isAtivo: 1,
+            isAtivo: true,
             dataRegistro: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
         }
 

@@ -23,7 +23,7 @@ namespace GeekSpot.Domain.Entities
         public int UsuarioSeguidorId { get; set; } // Usuário que segue o "UsuarioSeguidoId"; 
         public Usuario? UsuariosSeguidores { get; set; }
 
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
         public DateTime? DataRegistro { get; set; }
     }
 }

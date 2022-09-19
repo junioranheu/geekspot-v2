@@ -21,7 +21,7 @@ namespace GeekSpot.Infraestructure.Persistence
         public async Task<List<EstadoDTO>>? GetTodosEstados()
         {
             var todos = await _context.Estados.
-                        Where(i => i.IsAtivo == 1).
+                        Where(i => i.IsAtivo == true).
                         OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
 
             List<EstadoDTO> dto = _map.Map<List<EstadoDTO>>(todos);
@@ -32,7 +32,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             var todos = await _context.Cidades.
                         Include(e => e.Estados).
-                        Where(e => e.EstadoId == estadoId && e.IsAtivo == 1).
+                        Where(e => e.EstadoId == estadoId && e.IsAtivo == true).
                         OrderBy(n => n.Nome).AsNoTracking().ToListAsync();
 
             List<CidadeDTO> dto = _map.Map<List<CidadeDTO>>(todos);

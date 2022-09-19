@@ -12,6 +12,6 @@ namespace GeekSpot.Domain.DTO
         public int EstadoId { get; set; }
         public EstadoDTO? Estados { get; set; }
 
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
     }
 }

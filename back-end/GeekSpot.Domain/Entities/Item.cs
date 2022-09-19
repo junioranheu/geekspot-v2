@@ -30,7 +30,7 @@ namespace GeekSpot.Domain.Entities
         public int ItemTipoId { get; set; }
         public ItemTipo? ItensTipos { get; set; }
 
-        public int IsAtivo { get; set; } = 1;
+        public bool IsAtivo { get; set; } = true;
         public DateTime? DataRegistro { get; set; } = HorarioBrasilia();
     }
 }

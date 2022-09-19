@@ -13,7 +13,7 @@ interface iListaItensInterno {
     itensImagens: {
         caminhoImagem: string;
     }[];
-    isAtivo: number;
+    isAtivo: boolean;
     itemId: number;
     itemTipoId: number;
     preco: number;

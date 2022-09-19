@@ -12,9 +12,9 @@ export default interface iUsuario {
     foto: string | null;
     dataRegistro: Date | null;
     dataOnline: Date | null;
-    isAtivo: 1;
-    isPremium: number | null;
-    isVerificado: number | null;
+    isAtivo: boolean;
+    isPremium: boolean | null;
+    isVerificado: boolean | null;
     usuariosInformacoes: iUsuarioInformacoes;
     erro: boolean;
     codigoErro: number | null;
