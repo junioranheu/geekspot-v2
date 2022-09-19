@@ -1,4 +1,12 @@
 https://www.enjoei.com.br/
 
 --
-verificar onde eu iria usar os métodos GerarHashUsuario() kkkk
+
+criar tela para cadastar novo item
+
+enviar e-mail de verificação de conta para ativá-la ao criar conta;
+criar botão para reenviar verificação caso necessário;
+não permitir o usuário logar enquanto estiver não ativo;
+
+criar botão para recuperar senha e usar o método GerarHashUsuario() no processo
+

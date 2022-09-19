@@ -20,6 +20,46 @@ namespace GeekSpot.Application.Services.Authentication
             _map = map;
         }
 
+        public async Task<UsuarioDTO> Login(UsuarioSenhaDTO dto)
+        {
+            // #1 - Verificar se o usuário existe;
+            var usuario = await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+
+            if (usuario is null)
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.UsuarioNaoEncontrado,
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioNaoEncontrado)
+                };
+
+                return erro;
+            }
+
+            // #2 - Verificar se a senha está correta;
+            if (usuario.Senha != Criptografar(dto?.Senha))
+            {
+                UsuarioDTO erro = new()
+                {
+                    Erro = true,
+                    CodigoErro = (int)CodigoErrosEnum.UsuarioSenhaIncorretos,
+                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos)
+                };
+
+                return erro;
+            }
+
+            // #3 - Criar token JWT;
+            var token = _jwtTokenGenerator.GerarToken(usuario);
+            usuario.Token = token;
+
+            // #4 - Converter de UsuarioSenhaDTO para UsuarioDTO;
+            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);
+
+            return usuarioDTO;
+        }
+
         public async Task<UsuarioDTO> Registrar(UsuarioSenhaDTO dto)
         {
             // #1 - Verificar se o usuário já existe com o e-mail informado. Se existir, aborte;
@@ -89,9 +129,9 @@ namespace GeekSpot.Application.Services.Authentication
                 Foto = "",
                 DataRegistro = HorarioBrasilia(),
                 DataOnline = HorarioBrasilia(),
-                IsAtivo = 0,
+                IsAtivo = 1,
                 IsPremium = 0,
-                IsVerificado = 1,
+                IsVerificado = 0,
                 CodigoVerificacao = GerarStringAleatoria(6, true),
                 ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24),
                 HashUrlTrocarSenha = "",
@@ -112,46 +152,6 @@ namespace GeekSpot.Application.Services.Authentication
 
             // #7 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(novoUsuario);
-
-            return usuarioDTO;
-        }
-
-        public async Task<UsuarioDTO> Login(UsuarioSenhaDTO dto)
-        {
-            // #1 - Verificar se o usuário existe;
-            var usuario = await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
-
-            if (usuario is null)
-            {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioNaoEncontrado,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioNaoEncontrado)
-                };
-
-                return erro;
-            }
-
-            // #2 - Verificar se a senha está correta;
-            if (usuario.Senha != Criptografar(dto?.Senha))
-            {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioSenhaIncorretos,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos)
-                };
-
-                return erro;
-            }
-
-            // #3 - Criar token JWT;
-            var token = _jwtTokenGenerator.GerarToken(usuario);
-            usuario.Token = token;
-
-            // #4 - Converter de UsuarioSenhaDTO para UsuarioDTO;
-            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);
 
             return usuarioDTO;
         }
