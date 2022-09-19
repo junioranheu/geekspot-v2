@@ -94,13 +94,10 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto2;
         }
 
-        public async Task? AtualizarFoto(UsuarioDTO dto, string foto)
+        public async Task? AtualizarFoto(int usuarioId, string foto)
         {
-            Usuario usuario = _map.Map<Usuario>(dto);
+            var usuario = await _context.Usuarios.Where(ui => ui.UsuarioId == usuarioId).FirstOrDefaultAsync();
             usuario.Foto = foto;
-
-            // Desbugar o update: https://stackoverflow.com/a/57159821;
-            _context.Entry<Usuario>(usuario).State = EntityState.Detached;
 
             _context.Update(usuario);
             await _context.SaveChangesAsync();
