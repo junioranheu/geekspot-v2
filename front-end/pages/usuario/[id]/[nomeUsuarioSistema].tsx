@@ -61,7 +61,7 @@ export async function getStaticProps(context: any) {
     const id = context.params.id;
 
     // Usuário;
-    const url = `${CONSTS_USUARIOS.API_URL_GET_POR_ID}/${id}`;
+    const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${id}`;
     const usuario = await Fetch.getApi(url, null) as iUsuario;
     // console.log(usuario);
 

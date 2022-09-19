@@ -33,7 +33,7 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpPost("deletar")]
+        [HttpPost("deletar/{id}")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Deletar(int id)
         {
@@ -49,16 +49,16 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemTipoDTO>> GetPorId(int id)
+        public async Task<ActionResult<ItemTipoDTO>> GetById(int id)
         {
-            var porId = await _itemTipoRepository.GetPorId(id);
+            var byId = await _itemTipoRepository.GetById(id);
 
-            if (porId == null)
+            if (byId == null)
             {
                 return NotFound();
             }
 
-            return Ok(porId);
+            return Ok(byId);
         }
     }
 }

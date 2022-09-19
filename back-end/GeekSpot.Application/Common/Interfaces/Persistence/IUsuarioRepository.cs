@@ -6,9 +6,9 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
     {
         Task<UsuarioDTO>? Adicionar(UsuarioSenhaDTO dto);
         Task<UsuarioDTO>? Atualizar(UsuarioSenhaDTO dto);
-        Task<List<UsuarioDTO>> GetTodos();
-        Task<UsuarioDTO>? GetPorId(int id);
-        Task<UsuarioSenhaDTO>? GetPorEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema);
+        Task<List<UsuarioDTO>>? GetTodos();
+        Task<UsuarioDTO>? GetById(int id);
+        Task<UsuarioSenhaDTO>? GetByEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema);
         Task? AtualizarFoto(int usuarioId, string foto);
     }
 }

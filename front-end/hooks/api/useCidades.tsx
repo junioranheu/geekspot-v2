@@ -9,7 +9,7 @@ export default function useCidades(estadoId: number, isFormatarDadosParaDropdown
     const [dados, setDados] = useState<iCidade[]>();
     useEffect(() => {
         async function get(estadoId: number) {
-            const url = `${CONSTS_SISTEMA.API_URL_GET_TODAS_CIDADES}?estadoId=${estadoId}`;
+            const url = `${CONSTS_SISTEMA.API_URL_GET_TODAS_CIDADES}/${estadoId}`;
             const fetchDados = await Fetch.getApi(url, null);
             console.log(fetchDados);
 

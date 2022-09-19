@@ -33,7 +33,7 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpPost("deletar")]
+        [HttpPost("deletar/{id}")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Deletar(int id)
         {
@@ -49,42 +49,42 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemDTO>> GetPorId(int id)
+        public async Task<ActionResult<ItemDTO>> GetById(int id)
         {
-            var porId = await _itemRepository.GetPorId(id);
+            var byId = await _itemRepository.GetById(id);
 
-            if (porId == null)
+            if (byId == null)
             {
                 return NotFound();
             }
 
-            return Ok(porId);
+            return Ok(byId);
         }
 
-        [HttpGet("porItemTipoId/{itemTipoId}")]
-        public async Task<ActionResult<List<ItemDTO>>> GetPorItemTipoId(int itemTipoId)
+        [HttpGet("byItemTipoId/{itemTipoId}")]
+        public async Task<ActionResult<List<ItemDTO>>> GetByItemTipoId(int itemTipoId)
         {
-            var porItemTipoId = await _itemRepository.GetPorItemTipoId(itemTipoId);
+            var byItemTipoId = await _itemRepository.GetByItemTipoId(itemTipoId);
 
-            if (porItemTipoId == null)
+            if (byItemTipoId == null)
             {
                 return NotFound();
             }
 
-            return Ok(porItemTipoId);
+            return Ok(byItemTipoId);
         }
 
-        [HttpGet("porUsuarioId/{usuarioId}")]
-        public async Task<ActionResult<List<ItemDTO>>> GetPorUsuarioId(int usuarioId)
+        [HttpGet("byUsuarioId/{usuarioId}")]
+        public async Task<ActionResult<List<ItemDTO>>> GetByUsuarioId(int usuarioId)
         {
-            var porUsuarioId = await _itemRepository.GetPorUsuarioId(usuarioId);
+            var byUsuarioId = await _itemRepository.GetByUsuarioId(usuarioId);
 
-            if (porUsuarioId == null)
+            if (byUsuarioId == null)
             {
                 return NotFound();
             }
 
-            return Ok(porUsuarioId);
+            return Ok(byUsuarioId);
         }
     }
 }

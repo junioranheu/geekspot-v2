@@ -54,16 +54,16 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioDTO>> GetPorId(int id)
+        public async Task<ActionResult<UsuarioDTO>> GetById(int id)
         {
-            var porId = await _usuarios.GetPorId(id);
+            var byId = await _usuarios.GetById(id);
 
-            if (porId == null)
+            if (byId == null)
             {
                 return NotFound();
             }
 
-            return porId;
+            return byId;
         }
     }
 }

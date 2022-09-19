@@ -18,7 +18,7 @@ namespace GeekSpot.Infraestructure.Persistence
             _map = map;
         }
 
-        public async Task Adicionar(ItemTipoDTO dto)
+        public async Task? Adicionar(ItemTipoDTO dto)
         {
             ItemTipo itemTipo = _map.Map<ItemTipo>(dto);
 
@@ -26,7 +26,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Atualizar(ItemTipoDTO dto)
+        public async Task? Atualizar(ItemTipoDTO dto)
         {
             ItemTipo itemTipo = _map.Map<ItemTipo>(dto);
 
@@ -34,7 +34,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Deletar(int id)
+        public async Task? Deletar(int id)
         {
             var dados = await _context.ItensTipos.FindAsync(id);
 
@@ -47,7 +47,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ItemTipoDTO>> GetTodos()
+        public async Task<List<ItemTipoDTO>>? GetTodos()
         {
             var todos = await _context.ItensTipos.Where(i => i.IsAtivo == 1).OrderBy(n => n.Tipo).AsNoTracking().ToListAsync();
 
@@ -55,7 +55,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<ItemTipoDTO> GetPorId(int id)
+        public async Task<ItemTipoDTO>? GetById(int id)
         {
             var itens = await _context.ItensTipos.AsNoTracking().FirstOrDefaultAsync();
 

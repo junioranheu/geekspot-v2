@@ -92,7 +92,7 @@ export async function getStaticProps() {
     if (usuarios) {
         for (const u of usuarios) {
             // Encontrar os itens com base no usuário;
-            const urlItens = `${CONSTS_ITENS.API_URL_GET_POR_USUARIO_ID}/${u.usuarioId}`;
+            const urlItens = `${CONSTS_ITENS.API_URL_GET_BY_USUARIO_ID}/${u.usuarioId}`;
             const itens = await Fetch.getApi(urlItens, null) as iItem[];
 
             if (itens?.length) {

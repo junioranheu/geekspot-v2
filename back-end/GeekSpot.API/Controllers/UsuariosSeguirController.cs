@@ -43,7 +43,7 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpPost("deletar")]
+        [HttpPost("deletar/{usuarioSeguidoId}")]
         [Authorize]
         public async Task<ActionResult<UsuarioSeguirDTO>> Deletar(int usuarioSeguidoId)
         {
@@ -60,20 +60,20 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpGet("todosSeguidoresPorUsuarioId")]
-        public async Task<ActionResult<List<UsuarioSeguirDTO>>> GetTodosSeguidores(int usuarioSeguidoId)
+        [HttpGet("todosSeguidoresByUsuarioSeguidoId/{usuarioSeguidoId}")]
+        public async Task<ActionResult<List<UsuarioSeguirDTO>>> GetTodosSeguidoresByUsuarioSeguidoId(int usuarioSeguidoId)
         {
-            var todosSeguidoresPorUsuarioId = await _itemUsuarioSeguirRepository.GetTodosSeguidores(usuarioSeguidoId);
+            var todosSeguidoresByUsuarioId = await _itemUsuarioSeguirRepository.GetTodosSeguidoresByUsuarioSeguidoId(usuarioSeguidoId);
 
-            if (todosSeguidoresPorUsuarioId == null)
+            if (todosSeguidoresByUsuarioId == null)
             {
                 return NotFound();
             }
 
-            return Ok(todosSeguidoresPorUsuarioId);
+            return Ok(todosSeguidoresByUsuarioId);
         }
 
-        [HttpGet("isJaSigoEsseUsuario")]
+        [HttpGet("isJaSigoEsseUsuario/{usuarioSeguidoId}")]
         [Authorize]
         public async Task<bool> GetIsJaSigoEsseUsuario(int usuarioSeguidoId)
         {

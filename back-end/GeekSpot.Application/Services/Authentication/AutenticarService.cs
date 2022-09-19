@@ -23,7 +23,7 @@ namespace GeekSpot.Application.Services.Authentication
         public async Task<UsuarioDTO> Login(UsuarioSenhaDTO dto)
         {
             // #1 - Verificar se o usuário existe;
-            var usuario = await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+            var usuario = await _usuarioRepository.GetByEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
 
             if (usuario is null)
             {
@@ -63,7 +63,7 @@ namespace GeekSpot.Application.Services.Authentication
         public async Task<UsuarioDTO> Registrar(UsuarioSenhaDTO dto)
         {
             // #1 - Verificar se o usuário já existe com o e-mail informado. Se existir, aborte;
-            var verificarUsuario = await _usuarioRepository.GetPorEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
+            var verificarUsuario = await _usuarioRepository.GetByEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
 
             if (verificarUsuario is not null)
             {

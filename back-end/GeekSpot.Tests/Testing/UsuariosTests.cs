@@ -51,7 +51,7 @@ namespace GeekSpot.Tests.Testing
         [InlineData(1, HttpStatusCode.OK)]
         [InlineData(2, HttpStatusCode.OK)]
         [InlineData(100, HttpStatusCode.NotFound)]
-        public async Task Test_GetPorId(int usuarioId, HttpStatusCode resultadoEsperado)
+        public async Task Test_GetById(int usuarioId, HttpStatusCode resultadoEsperado)
         {
             using var client = _testProvider.Client;
             var response = await client.GetAsync($"{caminhoApi}/{usuarioId}");

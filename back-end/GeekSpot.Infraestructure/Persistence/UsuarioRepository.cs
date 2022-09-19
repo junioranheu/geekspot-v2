@@ -39,7 +39,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return usuarioDTO;
         }
 
-        public async Task Deletar(int id)
+        public async Task? Deletar(int id)
         {
             var dados = await _context.Usuarios.FindAsync(id);
 
@@ -52,7 +52,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<UsuarioDTO>> GetTodos()
+        public async Task<List<UsuarioDTO>>? GetTodos()
         {
             var todos = await _context.Usuarios.
                         Include(ut => ut.UsuariosTipos).
@@ -63,34 +63,34 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<UsuarioDTO>? GetPorId(int id)
+        public async Task<UsuarioDTO>? GetById(int id)
         {
-            var porId = await _context.Usuarios.
+            var byId = await _context.Usuarios.
                         Include(ut => ut.UsuariosTipos).
                         Include(ui => ui.UsuariosInformacoes).
                         Where(ui => ui.UsuarioId == id).AsNoTracking().FirstOrDefaultAsync();
 
-            UsuarioDTO dto = _map.Map<UsuarioDTO>(porId);
+            UsuarioDTO dto = _map.Map<UsuarioDTO>(byId);
             return dto;
         }
 
-        public async Task<UsuarioSenhaDTO>? GetPorEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema)
+        public async Task<UsuarioSenhaDTO>? GetByEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema)
         {
-            var porEmail = await _context.Usuarios.
+            var byEmail = await _context.Usuarios.
                 Include(ui => ui.UsuariosInformacoes).
                 Where(e => e.Email == email).AsNoTracking().FirstOrDefaultAsync();
 
-            if (porEmail is null)
+            if (byEmail is null)
             {
-                var porNomeUsuario = await _context.Usuarios.
+                var byNomeUsuario = await _context.Usuarios.
                                      Include(ui => ui.UsuariosInformacoes).
                                      Where(n => n.NomeUsuarioSistema == nomeUsuarioSistema).AsNoTracking().FirstOrDefaultAsync();
 
-                UsuarioSenhaDTO dto1 = _map.Map<UsuarioSenhaDTO>(porNomeUsuario);
+                UsuarioSenhaDTO dto1 = _map.Map<UsuarioSenhaDTO>(byNomeUsuario);
                 return dto1;
             }
 
-            UsuarioSenhaDTO dto2 = _map.Map<UsuarioSenhaDTO>(porEmail);
+            UsuarioSenhaDTO dto2 = _map.Map<UsuarioSenhaDTO>(byEmail);
             return dto2;
         }
 

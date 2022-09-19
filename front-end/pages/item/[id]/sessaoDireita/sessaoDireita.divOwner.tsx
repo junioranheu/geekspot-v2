@@ -30,7 +30,7 @@ export default function DivOwner({ item }: iItem) {
 
     const [isJaSigo, setIsJaSigo] = useState(false);
     async function getIsJaSegue(token: string, usuarioId: number) {
-        const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_GET_IS_JA_SIGO_ESSE_USUARIO}?usuarioSeguidoId=${usuarioId}`;
+        const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_GET_IS_JA_SIGO_ESSE_USUARIO}/${usuarioId}`;
         const isJaSigo = await Fetch.getApi(url, token);
         setIsJaSigo(isJaSigo);
     }
@@ -75,7 +75,7 @@ export default function DivOwner({ item }: iItem) {
         }
 
         nProgress.start();
-        const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_POST_DELETAR}?usuarioSeguidoId=${usuarioId}`;
+        const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_POST_DELETAR}/${usuarioId}`;
         const resposta = await Fetch.postApi(url, null, token);
         if (!resposta || resposta?.erro) {
             nProgress.done();

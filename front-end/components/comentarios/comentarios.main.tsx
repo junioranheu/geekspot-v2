@@ -31,7 +31,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
 
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
     async function getComentarios(itemId: number) {
-        const url = `${CONSTS_COMENTARIOS.API_URL_GET_POR_ITEM_ID}/${itemId}`;
+        const url = `${CONSTS_COMENTARIOS.API_URL_GET_BY_ITEM_ID}/${itemId}`;
         const comentarios = await Fetch.getApi(url, null) as iListaComentarios[];
         setComentarios(comentarios);
     }

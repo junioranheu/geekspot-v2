@@ -19,7 +19,7 @@ namespace GeekSpot.Infraestructure.Persistence
             _map = map;
         }
 
-        public async Task Adicionar(ComentarioDTO dto)
+        public async Task? Adicionar(ComentarioDTO dto)
         {
             Comentario comentario = _map.Map<Comentario>(dto);
 
@@ -27,7 +27,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Atualizar(ComentarioDTO dto)
+        public async Task? Atualizar(ComentarioDTO dto)
         {
             Comentario comentario = _map.Map<Comentario>(dto);
 
@@ -35,7 +35,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Deletar(int id)
+        public async Task? Deletar(int id)
         {
             var dados = await _context.Comentarios.FindAsync(id);
 
@@ -48,7 +48,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ComentarioDTO>> GetTodos()
+        public async Task<List<ComentarioDTO>>? GetTodos()
         {
             var todos = await _context.Comentarios.
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
@@ -60,19 +60,19 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<ComentarioDTO> GetPorId(int id)
+        public async Task<ComentarioDTO>? GetById(int id)
         {
-            var porId = await _context.Comentarios.
+            var byId = await _context.Comentarios.
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
                         Include(u => u.Usuarios).
                         Where(i => i.IsAtivo == 1 && i.ComentarioId == id).
                         OrderBy(d => d.DataMensagem).AsNoTracking().FirstOrDefaultAsync();
 
-            ComentarioDTO dto = _map.Map<ComentarioDTO>(porId);
+            ComentarioDTO dto = _map.Map<ComentarioDTO>(byId);
             return dto;
         }
 
-        public async Task<List<ComentarioDTO>> GetPorItemId(int itemId)
+        public async Task<List<ComentarioDTO>>? GetByItemId(int itemId)
         {
             var itens = await _context.Comentarios.
                         Include(i => i.Itens).ThenInclude(u => u.Usuarios).
@@ -84,7 +84,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task ResponderComentario(ComentarioDTO dto)
+        public async Task? ResponderComentario(ComentarioDTO dto)
         {
             Comentario comentario = _map.Map<Comentario>(dto);
 

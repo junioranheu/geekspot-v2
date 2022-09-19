@@ -18,7 +18,7 @@ namespace GeekSpot.Infraestructure.Persistence
             _map = map;
         }
 
-        public async Task Adicionar(ItemDTO dto)
+        public async Task? Adicionar(ItemDTO dto)
         {
             Item item = _map.Map<Item>(dto);
 
@@ -26,7 +26,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Atualizar(ItemDTO dto)
+        public async Task? Atualizar(ItemDTO dto)
         {
             Item item = _map.Map<Item>(dto);
 
@@ -34,7 +34,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Deletar(int id)
+        public async Task? Deletar(int id)
         {
             var dados = await _context.Itens.FindAsync(id);
 
@@ -47,7 +47,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ItemDTO>> GetTodos()
+        public async Task<List<ItemDTO>>? GetTodos()
         {
             var todos = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
@@ -61,20 +61,20 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<ItemDTO> GetPorId(int id)
+        public async Task<ItemDTO>? GetById(int id)
         {
-            var porId = await _context.Itens.
+            var byId = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
                         Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                         Include(it => it.ItensTipos).
                         Include(ii => ii.ItensImagens).
                         Where(i => i.ItemId == id && i.IsAtivo == 1).AsNoTracking().FirstOrDefaultAsync();
 
-            ItemDTO dto = _map.Map<ItemDTO>(porId);
+            ItemDTO dto = _map.Map<ItemDTO>(byId);
             return dto;
         }
 
-        public async Task<List<ItemDTO>> GetPorItemTipoId(int itemTipoId)
+        public async Task<List<ItemDTO>>? GetByItemTipoId(int itemTipoId)
         {
             var itens = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
@@ -87,7 +87,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<List<ItemDTO>> GetPorUsuarioId(int usuarioId)
+        public async Task<List<ItemDTO>>? GetByUsuarioId(int usuarioId)
         {
             var itens = await _context.Itens.
                         Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).

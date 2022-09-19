@@ -18,7 +18,7 @@ namespace GeekSpot.Infraestructure.Persistence
             _map = map;
         }
 
-        public async Task Adicionar(UsuarioSeguirDTO dto)
+        public async Task? Adicionar(UsuarioSeguirDTO dto)
         {
             UsuarioSeguir item = _map.Map<UsuarioSeguir>(dto);
 
@@ -26,7 +26,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task Deletar(int usuarioSeguidoId, int usuarioLogadoId)
+        public async Task? Deletar(int usuarioSeguidoId, int usuarioLogadoId)
         {
             var dados = await _context.UsuariosSeguir.FirstOrDefaultAsync(us => us.UsuarioSeguidoId == usuarioSeguidoId && us.UsuarioSeguidorId == usuarioLogadoId);
 
@@ -39,7 +39,7 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<UsuarioSeguirDTO>> GetTodosSeguidores(int usuarioSeguidoId)
+        public async Task<List<UsuarioSeguirDTO>>? GetTodosSeguidoresByUsuarioSeguidoId(int usuarioSeguidoId)
         {
             var itens = await _context.UsuariosSeguir.
                         Include(us => us.UsuariosSeguidos).
@@ -50,7 +50,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<bool> GetIsJaSigoEsseUsuario(int usuarioSeguidoId, int usuarioSeguidor)
+        public async Task<bool>? GetIsJaSigoEsseUsuario(int usuarioSeguidoId, int usuarioSeguidor)
         {
             var isJaSigo = await _context.UsuariosSeguir.AnyAsync(us => us.UsuarioSeguidoId == usuarioSeguidoId && us.UsuarioSeguidorId == usuarioSeguidor);
             return isJaSigo;

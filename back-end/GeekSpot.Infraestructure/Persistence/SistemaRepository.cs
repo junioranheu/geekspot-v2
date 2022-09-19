@@ -18,7 +18,7 @@ namespace GeekSpot.Infraestructure.Persistence
             _map = map;
         }
 
-        public async Task<List<EstadoDTO>> GetTodosEstados()
+        public async Task<List<EstadoDTO>>? GetTodosEstados()
         {
             var todos = await _context.Estados.
                         Where(i => i.IsAtivo == 1).
@@ -28,7 +28,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public async Task<List<CidadeDTO>> GetTodasCidades(int estadoId)
+        public async Task<List<CidadeDTO>>? GetTodasCidades(int estadoId)
         {
             var todos = await _context.Cidades.
                         Include(e => e.Estados).
@@ -39,7 +39,7 @@ namespace GeekSpot.Infraestructure.Persistence
             return dto;
         }
 
-        public List<DateTime> GetListaDataAtual()
+        public List<DateTime>? GetListaDataAtual()
         {
             List<DateTime> listaHoraAtual = new()
             {

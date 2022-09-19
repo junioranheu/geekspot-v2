@@ -39,7 +39,7 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpPost("deletar")]
+        [HttpPost("deletar/{id}")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Deletar(int id)
         {
@@ -56,29 +56,29 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ComentarioDTO>> GetPorId(int id)
+        public async Task<ActionResult<ComentarioDTO>> GetById(int id)
         {
-            var porId = await _comentarioRepository.GetPorId(id);
+            var byId = await _comentarioRepository.GetById(id);
 
-            if (porId == null)
+            if (byId == null)
             {
                 return NotFound();
             }
 
-            return Ok(porId);
+            return Ok(byId);
         }
 
-        [HttpGet("porItemId/{itemId}")]
-        public async Task<ActionResult<List<ComentarioDTO>>> GetPorItemId(int itemId)
+        [HttpGet("byItemId/{itemId}")]
+        public async Task<ActionResult<List<ComentarioDTO>>> GetByItemId(int itemId)
         {
-            var porItemId = await _comentarioRepository.GetPorItemId(itemId);
+            var byItemId = await _comentarioRepository.GetByItemId(itemId);
 
-            if (porItemId == null)
+            if (byItemId == null)
             {
                 return NotFound();
             }
 
-            return Ok(porItemId);
+            return Ok(byItemId);
         }
 
         [HttpPut("responderComentario")]
@@ -86,7 +86,7 @@ namespace GeekSpot.API.Controllers
         public async Task<ActionResult<ComentarioDTO>> ResponderComentario(ComentarioDTO dto)
         {
             // Buscar o usuario dono do item em questão que vem do parâmetro dto;
-            var item = await _itemRepository.GetPorId(dto.ItemId);
+            var item = await _itemRepository.GetById(dto.ItemId);
 
             if (item is null)
             {

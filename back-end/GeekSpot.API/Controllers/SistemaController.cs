@@ -22,7 +22,7 @@ namespace GeekSpot.API.Controllers
             return Ok(todos);
         }
 
-        [HttpGet("todasCidadesByEstadoId")]
+        [HttpGet("todasCidadesByEstadoId/{estadoId}")]
         public async Task<ActionResult<List<CidadeDTO>>> GetTodasCidades(int estadoId)
         {
             var todos = await _sistemaRepository.GetTodasCidades(estadoId);
