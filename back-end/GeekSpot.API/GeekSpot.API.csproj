@@ -27,16 +27,20 @@
 		<Folder Include="Upload\itens\imagem\" />
 	</ItemGroup>
 
+	<!-- https://stackoverflow.com/questions/32754616/how-to-change-the-properties-of-all-the-files-of-a-folder-to-copy-always-autom -->
 	<ItemGroup>
-		<!-- https://stackoverflow.com/questions/32754616/how-to-change-the-properties-of-all-the-files-of-a-folder-to-copy-always-autom -->
 		<None Update="Upload\**">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
 
-		<None Update="Upload\**">
+	<ItemGroup>
+		<None Update="Emails\**">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
 
+	<ItemGroup>
 		<Content Update="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
