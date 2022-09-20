@@ -32,9 +32,11 @@
 		<None Update="Upload\**">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
 
-	<ItemGroup>
+		<None Update="Upload\**">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+
 		<Content Update="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>

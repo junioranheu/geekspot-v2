@@ -117,7 +117,7 @@ export default function SessaoCriarConta() {
         Auth.set(resposta);
 
         if (resposta.isEmailVerificacaoContaEnviado) {
-            Aviso.success('Um e-mail de verificação de conta foi enviado para você!', 7000);
+            Aviso.success('Um e-mail de verificação de conta foi enviado para você 👽', 7000);
         }
 
         // Voltar à tela principal;
