@@ -35,6 +35,15 @@ namespace GeekSpot.Domain.Enums
         [Description("Não autorizado")]
         NaoAutorizado = 110,
 
+        [Description("Código de verificação inválido")]
+        CodigoVerificacaoInvalido = 111,
+
+        [Description("Código de verificação expirado")]
+        CodigoVerificacaoExpirado = 112,
+
+        [Description("Conta já se encontra verificada")]
+        ContaJaVerificada = 113,
+
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         [Description("Dado não encontrado")]
         NaoEncontrado = 404,

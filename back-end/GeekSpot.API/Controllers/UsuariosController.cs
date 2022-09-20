@@ -65,5 +65,12 @@ namespace GeekSpot.API.Controllers
 
             return byId;
         }
+
+        [HttpGet("verificarConta/{codigoVerificacao}")]
+        public async Task<ActionResult<UsuarioDTO>> VerificarConta(string codigoVerificacao)
+        {
+            var usuario = await _usuarios.VerificarConta(codigoVerificacao);
+            return usuario;
+        }
     }
 }

@@ -2,8 +2,10 @@
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
+using GeekSpot.Domain.Enums;
 using GeekSpot.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
+using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Infraestructure.Persistence
 {
@@ -66,9 +68,9 @@ namespace GeekSpot.Infraestructure.Persistence
         public async Task<UsuarioDTO>? GetById(int id)
         {
             var byId = await _context.Usuarios.
-                        Include(ut => ut.UsuariosTipos).
-                        Include(ui => ui.UsuariosInformacoes).
-                        Where(ui => ui.UsuarioId == id).AsNoTracking().FirstOrDefaultAsync();
+                       Include(ut => ut.UsuariosTipos).
+                       Include(ui => ui.UsuariosInformacoes).
+                       Where(ui => ui.UsuarioId == id).AsNoTracking().FirstOrDefaultAsync();
 
             UsuarioDTO dto = _map.Map<UsuarioDTO>(byId);
             return dto;
@@ -101,6 +103,36 @@ namespace GeekSpot.Infraestructure.Persistence
 
             _context.Update(usuario);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<UsuarioDTO>? VerificarConta(string codigoVerificacao)
+        {
+            var usuario = await _context.Usuarios.Where(cv => cv.CodigoVerificacao == codigoVerificacao).AsNoTracking().FirstOrDefaultAsync();
+
+            if (usuario is null)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.CodigoVerificacaoInvalido, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.CodigoVerificacaoInvalido) };
+                return erro;
+            }
+
+            if (usuario.ValidadeCodigoVerificacao > HorarioBrasilia())
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.CodigoVerificacaoExpirado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.CodigoVerificacaoExpirado) };
+                return erro;
+            }
+
+            if (usuario.IsVerificado == true)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaJaVerificada, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaJaVerificada) };
+                return erro;
+            }
+
+            usuario.IsVerificado = false;
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
+
+            UsuarioDTO dto = _map.Map<UsuarioDTO>(usuario);
+            return dto;
         }
     }
 }

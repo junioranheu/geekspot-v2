@@ -10,5 +10,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task<UsuarioDTO>? GetById(int id);
         Task<UsuarioSenhaDTO>? GetByEmailOuUsuarioSistema(string? email, string? nomeUsuarioSistema);
         Task? AtualizarFoto(int usuarioId, string foto);
+        Task<UsuarioDTO>? VerificarConta(string codigoVerificacao);
     }
 }
