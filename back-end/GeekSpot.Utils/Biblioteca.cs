@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GeekSpot.Utils.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -267,18 +268,41 @@ namespace GeekSpot.Utils
         }
 
         // Método padrão para envio de e-mails: https://app.sendgrid.com/;
-        public static async Task<bool> EnviarEmail(string emailTo, string assunto, string conteudoEmailSemHtml, string conteudoEmailHtml)
+        public static async Task<bool> EnviarEmail(string emailTo, string assunto, string nomeArquivo, List<EmailDadosReplace> listaDadosReplace)
         {
-            if (String.IsNullOrEmpty(emailTo))
+            if (String.IsNullOrEmpty(emailTo) || String.IsNullOrEmpty(assunto) || String.IsNullOrEmpty(nomeArquivo))
             {
                 return false;
+            }
+
+            string conteudoEmailHtml = string.Empty;
+            string caminhoFinal = $"{Directory.GetCurrentDirectory()}/Emails/{nomeArquivo}";
+
+            using (var reader = new StreamReader(caminhoFinal))
+            {
+                // #1 - Ler arquivo;
+                string readFile = reader.ReadToEnd();
+                string strContent = readFile;
+
+                // #2 - Remover tags desnecessárias;
+                strContent = strContent.Replace("\r", string.Empty);
+                strContent = strContent.Replace("\n", string.Empty);
+
+                // #3 - Replaces utilizando o parâmetro "listaDadosReplace";
+                foreach (var item in listaDadosReplace)
+                {
+                    strContent = strContent.Replace($"[{item.Key}]", item.Value);
+                }
+
+                // #4 - Gerar resultado final;
+                conteudoEmailHtml = strContent.ToString();
             }
 
             // https://app.sendgrid.com/guide/integrate/langs/csharp
             var client = new SendGridClient(emailApiKey);
             var from = new EmailAddress(emailPadrao, emailNomeRemetente);
             var to = new EmailAddress(emailTo);
-            var msg = MailHelper.CreateSingleEmail(from, to, assunto, conteudoEmailSemHtml, conteudoEmailHtml);
+            var msg = MailHelper.CreateSingleEmail(from, to, assunto, string.Empty, conteudoEmailHtml);
             var resposta = await client.SendEmailAsync(msg);
 
             return resposta.IsSuccessStatusCode;

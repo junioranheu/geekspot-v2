@@ -3,6 +3,7 @@ using GeekSpot.Application.Common.Interfaces.Authentication;
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
+using GeekSpot.Utils.Entities;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Application.Services.Authentication
@@ -172,36 +173,18 @@ namespace GeekSpot.Application.Services.Authentication
             return usuarioDTO;
         }
 
-        public static async Task<bool> EnviarEmailVerificacaoConta(string email, string nomeUsuario, string codigoVerificacao)
+        public static async Task<bool> EnviarEmailVerificacaoConta(string emailTo, string nomeUsuario, string codigoVerificacao)
         {
             string assunto = "Verifique sua conta do GeekSpot";
-            string conteudoEmailSemHtml = "";
+            string nomeArquivo = GetDescricaoEnum(EmailEnum.VerificarConta);
 
-            // Montar a url final;
-            string dominio = CaminhoFront();
-            string urlAlterarSenha = (dominio + $"verificar-conta/{codigoVerificacao}");
-
-            // Pegar o arquivo referente ao layout do e-mail de recuperação de senha;
-            string conteudoEmailHtml = string.Empty;
-            string root = Directory.GetCurrentDirectory() + "/Emails/";
-            string caminhoFinal = root + GetDescricaoEnum(EmailEnum.VerificarConta);
-            using (var reader = new StreamReader(caminhoFinal))
+            List<EmailDadosReplace> listaDadosReplace = new()
             {
-                // Ler arquivo;
-                string readFile = reader.ReadToEnd();
-                string strContent = readFile;
+                new EmailDadosReplace { Key = "Url", Value = $"{CaminhoFront()}/usuario/verificar-conta/{codigoVerificacao}"},
+                new EmailDadosReplace { Key = "NomeUsuario", Value = nomeUsuario }
+            };
 
-                // Remover tags desnecessárias;
-                strContent = strContent.Replace("\r", string.Empty);
-                strContent = strContent.Replace("\n", string.Empty);
-
-                // Replaces;
-                strContent = strContent.Replace("[Url]", urlAlterarSenha);
-                strContent = strContent.Replace("[NomeUsuario]", nomeUsuario);
-                conteudoEmailHtml = strContent.ToString();
-            }
-
-            bool resposta = await EnviarEmail(email, assunto, conteudoEmailSemHtml, conteudoEmailHtml);
+            bool resposta = await EnviarEmail(emailTo, assunto, nomeArquivo, listaDadosReplace);
             return resposta;
         }
     }
