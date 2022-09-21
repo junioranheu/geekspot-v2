@@ -29,7 +29,7 @@ namespace GeekSpot.Domain.Enums
         [Description("Esta conta está desativada")]
         ContaDesativada = 108,
 
-        [Description("Usuário não encontrado")]
+        [Description("Este usuário não foi encontrado")]
         UsuarioNaoEncontrado = 109,
 
         [Description("Não autorizado")]

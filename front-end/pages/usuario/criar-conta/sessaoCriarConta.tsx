@@ -29,6 +29,7 @@ interface iFormData {
 }
 
 export default function SessaoCriarConta() {
+    
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 

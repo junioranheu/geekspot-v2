@@ -1,6 +1,9 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { ChangeEvent, KeyboardEvent, useContext, useRef, useState } from 'react';
+import { ChangeEvent, Fragment, KeyboardEvent, useContext, useRef, useState } from 'react';
+import ModalAvisoLogin from '../../../components/modal/modal.aviso/login';
+import ModalLayout from '../../../components/modal/_modal.layout';
+import ModalWrapper from '../../../components/modal/_modal.wrapper';
 import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
@@ -20,7 +23,8 @@ interface iFormData {
 }
 
 export default function SessaoEntrar() {
-    const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
+
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
     const usuarioGenero = Auth?.get()?.genero ?? 'o';
 
@@ -41,11 +45,13 @@ export default function SessaoEntrar() {
 
     // Ao clicar no botão para entrar;
     async function handleSubmit() {
+        setModalAvisoLoginDescricao('');
+        setIsModalAvisoLoginOpen(false);
         nProgress.start();
         refBtn.current.disabled = true;
 
         if (!formData || !formData.usuario || !formData.senha) {
-            instrucaoErro('O nome de usuário e/ou e-mail estão vazios!');
+            instrucaoErro('O nome de usuário e/ou e-mail estão vazios!', true);
             return false;
         }
 
@@ -58,7 +64,9 @@ export default function SessaoEntrar() {
 
         const resposta = await Fetch.postApi(url, dto, null);
         if (!resposta || resposta?.erro) {
-            instrucaoErro((resposta?.mensagemErro ?? 'Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!'));
+            setModalAvisoLoginDescricao((resposta?.mensagemErro ? `Parece que ${resposta?.mensagemErro.toLowerCase()}. Tente novamente mais tarde` : 'Algo deu errado! Provavelmente o usuário e/ou a senha estão errados'));
+            setIsModalAvisoLoginOpen(true);
+            instrucaoErro('', false);
             return false;
         }
 
@@ -82,63 +90,87 @@ export default function SessaoEntrar() {
         }
     }
 
-    function instrucaoErro(msg: string) {
+    function instrucaoErro(msg: string, isExibirAviso: boolean) {
         nProgress.done();
         refSenha.current.value = '';
         formData.senha = '';
         refUsuario.current.select();
         refBtn.current.disabled = false;
-        Aviso.warn(msg, 5000);
+
+        if (isExibirAviso) {
+            Aviso.warn(msg, 5000);
+        }
     }
 
+    const [modalAvisoLoginDescricao, setModalAvisoLoginDescricao] = useState('');
+    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
+
     return (
-        <section className={Styles.divPrincipal}>
-            <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
+        <Fragment>
+            {/* Modal */}
+            <ModalWrapper isOpen={isModalAvisoLoginOpen} >
+                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                    <ModalAvisoLogin
+                        handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
+                        titulo={null}
+                        descricao={modalAvisoLoginDescricao}
+                        isExibirBotao={false}
+                        textoBotao={null}
+                        urlBotao={null}
+                        isNovaAba={null}
+                    />
+                </ModalLayout>
+            </ModalWrapper>
 
-            {/* Inputs */}
-            <div className={Styles.divLogin}>
-                {
-                    isExibirDivEmail ? (
-                        <div className='animate__animated animate__fadeIn'>
-                            <input className='input' type='text' placeholder='E-mail ou nome de usuário' autoComplete='off'
-                                name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
-                            />
+            {/* Conteúdo */}
+            <section className={Styles.divPrincipal}>
+                <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
-                            <input className='input margem0_5' type='password' placeholder='Senha' autoComplete='new-password'
-                                name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
-                            />
+                {/* Inputs */}
+                <div className={Styles.divLogin}>
+                    {
+                        isExibirDivEmail ? (
+                            <div className='animate__animated animate__fadeIn'>
+                                <input className='input' type='text' placeholder='E-mail ou nome de usuário' autoComplete='off'
+                                    name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
+                                />
 
-                            <div className={`${Styles.botaoCustom} margem0_5`}>
-                                <Botao texto='Entrar' url={null} isNovaAba={false} handleFuncao={handleSubmit} Svg={null} refBtn={refBtn} isEnabled={true} />
+                                <input className='input margem0_5' type='password' placeholder='Senha' autoComplete='new-password'
+                                    name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
+                                />
+
+                                <div className={`${Styles.botaoCustom} margem0_5`}>
+                                    <Botao texto='Entrar' url={null} isNovaAba={false} handleFuncao={handleSubmit} Svg={null} refBtn={refBtn} isEnabled={true} />
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                        <div className={Styles.botaoCustom}>
-                            <Botao texto='Entrar com e-mail ou usuário' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />
-                        </div>
-                    )
-                }
-            </div>
-
-            {/* Ou #1 */}
-            <div>
-                <div className={Styles.divisao}>ou</div>
-                <div className={`${Styles.botaoCustom2} margem1`}>
-                    <Botao texto='Continuar com o Facebook' url='/' isNovaAba={false} handleFuncao={null} Svg={<Facebook width='25px' />} refBtn={null} isEnabled={true} />
+                        ) : (
+                            <div className={Styles.botaoCustom}>
+                                <Botao texto='Entrar com e-mail ou usuário' url={null} isNovaAba={false} handleFuncao={() => setIsExibirDivEmail(true)} Svg={null} refBtn={null} isEnabled={true} />
+                            </div>
+                        )
+                    }
                 </div>
 
-                <div className={`${Styles.botaoCustom2} margem0_5`}>
-                    <Botao texto='Continuar com o Google' url='/' isNovaAba={false} handleFuncao={null} Svg={<Google width='18px' />} refBtn={null} isEnabled={true} />
-                </div>
-            </div>
+                {/* Ou #1 */}
+                <div>
+                    <div className={Styles.divisao}>ou</div>
+                    <div className={`${Styles.botaoCustom2} margem1`}>
+                        <Botao texto='Continuar com o Facebook' url='/' isNovaAba={false} handleFuncao={null} Svg={<Facebook width='25px' />} refBtn={null} isEnabled={true} />
+                    </div>
 
-            {/* Ou #2 */}
-            <div>
-                <div className={Styles.divisao}>ou, não tem uma conta ainda?</div>
-                <div className={`${Styles.botaoCustom2} margem1`}>
-                    <Botao texto='Criar uma conta' url='/usuario/criar-conta' isNovaAba={false} handleFuncao={null} Svg={null} refBtn={null} isEnabled={true} />
+                    <div className={`${Styles.botaoCustom2} margem0_5`}>
+                        <Botao texto='Continuar com o Google' url='/' isNovaAba={false} handleFuncao={null} Svg={<Google width='18px' />} refBtn={null} isEnabled={true} />
+                    </div>
                 </div>
-            </div>
-        </section>
+
+                {/* Ou #2 */}
+                <div>
+                    <div className={Styles.divisao}>ou, não tem uma conta ainda?</div>
+                    <div className={`${Styles.botaoCustom2} margem1`}>
+                        <Botao texto='Criar uma conta' url='/usuario/criar-conta' isNovaAba={false} handleFuncao={null} Svg={null} refBtn={null} isEnabled={true} />
+                    </div>
+                </div>
+            </section>
+        </Fragment>
     )
 }

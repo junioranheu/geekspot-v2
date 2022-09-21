@@ -8,17 +8,33 @@ interface iParametros {
     handleModal: Dispatch<boolean>;
     titulo: string | null;
     descricao: string;
+    isExibirBotao: boolean;
+    textoBotao: string | null;
+    urlBotao: string | null;
+    isNovaAba: boolean | null;
 }
 
-export default function ModalAvisoLogin({ handleModal, titulo, descricao }: iParametros) {
+export default function ModalAvisoLogin({ handleModal, titulo, descricao, isExibirBotao, textoBotao, urlBotao, isNovaAba }: iParametros) {
     return (
         <div className={Styles.main}>
             <span className={Styles.titulo}>{(titulo ?? 'Opa, pera aí...')}</span>
             <span className={`${Styles.texto} margem1`}>{descricao}</span>
 
-            <div className='margem1'>
-                <Botao texto='Entrar agora mesmo' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => handleModal(false)} Svg={null} refBtn={null} isEnabled={true} />
-            </div>
+            {
+                isExibirBotao && (
+                    <div className='margem1'>
+                        <Botao
+                            texto={(textoBotao ?? 'Entrar agora mesmo')}
+                            url={(urlBotao ?? '/usuario/entrar')}
+                            isNovaAba={(isNovaAba ?? false)}
+                            handleFuncao={() => handleModal(false)}
+                            Svg={null}
+                            refBtn={null}
+                            isEnabled={true}
+                        />
+                    </div>
+                )
+            }
 
             <span className='separadorHorizontal'></span>
             <span className={Styles.termos}>

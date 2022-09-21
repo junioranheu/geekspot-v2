@@ -97,6 +97,10 @@ export default function DivOwner({ item }: iItem) {
                         handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
                         titulo={null}
                         descricao='Para seguir este usuário é necessário entrar em sua conta antes'
+                        isExibirBotao={true}
+                        textoBotao='Entrar agora mesmo'
+                        urlBotao='/usuario/entrar'
+                        isNovaAba={false}
                     />
                 </ModalLayout>
             </ModalWrapper>

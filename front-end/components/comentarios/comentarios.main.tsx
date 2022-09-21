@@ -104,6 +104,10 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
                         handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
                         titulo={null}
                         descricao='Para enviar sua pergunta ao vendendor é necessário entrar em sua conta antes'
+                        isExibirBotao={true}
+                        textoBotao='Entrar agora mesmo'
+                        urlBotao='/usuario/entrar'
+                        isNovaAba={false}
                     />
                 </ModalLayout>
             </ModalWrapper>
