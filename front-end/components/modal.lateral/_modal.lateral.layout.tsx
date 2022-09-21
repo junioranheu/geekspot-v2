@@ -15,17 +15,17 @@ export default function ModalLateralLayout({ handleModal, isOpen, titulo, childr
     useEffect(() => {
         if (isOpen) {
             // console.log('Hamburguer aberto');
-            document.getElementsByClassName('sessaoPrincipal')[0].classList.add('backgroundBlur');
-            document.getElementsByTagName('footer')[0].classList.add('backgroundBlur');
-            document.getElementsByTagName('nav')[0].classList.add('backgroundBlur');
-            document.getElementsByTagName('nav')[1].classList.add('backgroundBlur');
+            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.add('backgroundBlur');
+            document.getElementsByTagName('footer')[0]?.classList.add('backgroundBlur');
+            document.getElementsByTagName('nav')[0]?.classList.add('backgroundBlur');
+            document.getElementsByTagName('nav')[1]?.classList.add('backgroundBlur');
             document.body.style.overflow = 'hidden';
         } else {
             // console.log('Hamburguer fechado');
-            document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('nav')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('nav')[1].classList.remove('backgroundBlur');
+            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('footer')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[1]?.classList.remove('backgroundBlur');
             document.body.style.overflow = 'auto';
         }
     }, [isOpen]);
@@ -34,10 +34,10 @@ export default function ModalLateralLayout({ handleModal, isOpen, titulo, childr
     useEffect(() => {
         return () => {
             // console.log('Componente destruído');
-            document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('nav')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('nav')[1].classList.remove('backgroundBlur');
+            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('footer')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('nav')[1]?.classList.remove('backgroundBlur');
         }
     }, []);
 

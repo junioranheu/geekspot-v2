@@ -28,13 +28,13 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
     useEffect(() => {
         if (isExibirMenuProdutos) {
             // console.log('Menu aberto');
-            document.getElementsByClassName('sessaoPrincipal')[0].classList.add('backgroundBlur');
-            document.getElementsByTagName('footer')[0].classList.add('backgroundBlur');
+            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.add('backgroundBlur');
+            document.getElementsByTagName('footer')[0]?.classList.add('backgroundBlur');
             document.body.style.overflow = 'hidden';
         } else {
             // console.log('Menu fechado');
-            document.getElementsByClassName('sessaoPrincipal')[0].classList.remove('backgroundBlur');
-            document.getElementsByTagName('footer')[0].classList.remove('backgroundBlur');
+            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.remove('backgroundBlur');
+            document.getElementsByTagName('footer')[0]?.classList.remove('backgroundBlur');
             document.body.style.overflow = 'auto';
         }
     }, [isExibirMenuProdutos])
