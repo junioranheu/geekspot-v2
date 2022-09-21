@@ -197,16 +197,20 @@ export default function SessaoCriarConta() {
             }
 
             {/* Ou #1 */}
-            <div>
-                <div className={Styles.divisao}>ou</div>
-                <div className={`${Styles.botaoCustom2} margem1`}>
-                    <Botao texto='Criar conta com o Facebook' url='/' isNovaAba={false} handleFuncao={() => null} Svg={<Facebook width={'25px'} />} refBtn={null} isEnabled={true} />
-                </div>
+            {
+                !isExibirDivEmail && (
+                    <div>
+                        <div className={Styles.divisao}>ou</div>
+                        <div className={`${Styles.botaoCustom2} margem1`}>
+                            <Botao texto='Criar conta com o Facebook' url='/' isNovaAba={false} handleFuncao={() => null} Svg={<Facebook width={'25px'} />} refBtn={null} isEnabled={true} />
+                        </div>
 
-                <div className={`${Styles.botaoCustom2} margem0_5`}>
-                    <Botao texto='Criar conta com o Google' url='/' isNovaAba={false} handleFuncao={() => null} Svg={<Google width={'18px'} />} refBtn={null} isEnabled={true} />
-                </div>
-            </div>
+                        <div className={`${Styles.botaoCustom2} margem0_5`}>
+                            <Botao texto='Criar conta com o Google' url='/' isNovaAba={false} handleFuncao={() => null} Svg={<Google width={'18px'} />} refBtn={null} isEnabled={true} />
+                        </div>
+                    </div>
+                )
+            }
 
             {/* Ou #2 */}
             <div>
@@ -215,6 +219,6 @@ export default function SessaoCriarConta() {
                     <Botao texto='Entrar agora' url='/usuario/entrar' isNovaAba={false} handleFuncao={null} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
