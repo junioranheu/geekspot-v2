@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Fetch } from '../../utils/api/fetch';
 import CONSTS_SISTEMA from '../../utils/consts/data/constSistema';
-import { Fetch } from '../../utils/outros/fetch';
 import formatarDadosParaDropDown from '../../utils/outros/formatarDadosParaDropDown';
 import iEstado from '../../utils/types/estado';
 

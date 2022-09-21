@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Fetch } from '../../utils/api/fetch';
 import CONSTS_ITENS_TIPOS from '../../utils/consts/data/constItensTipos';
-import { Fetch } from '../../utils/outros/fetch';
 import formatarDadosParaDropDown from '../../utils/outros/formatarDadosParaDropDown';
 import iItemTipo from '../../utils/types/itemTipo';
 

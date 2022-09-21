@@ -1,11 +1,11 @@
 import nProgress from 'nprogress';
 import { Dispatch, useEffect, useRef, useState } from 'react';
+import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_COMENTARIOS from '../../../../utils/consts/data/constComentarios';
 import COMENTARIOS from '../../../../utils/consts/outros/comentarios';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import { Auth } from '../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../utils/outros/aviso';
-import { Fetch } from '../../../../utils/outros/fetch';
 import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
 import Textarea from '../../../outros/textarea';
 import { FecharModal } from '../../fecharModal';

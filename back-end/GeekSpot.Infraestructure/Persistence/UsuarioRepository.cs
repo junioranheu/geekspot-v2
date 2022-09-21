@@ -105,6 +105,20 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
         }
 
+        public async Task<string>? AtualizarCodigoVerificacao(int usuarioId)
+        {
+            var usuario = await _context.Usuarios.Where(ui => ui.UsuarioId == usuarioId).FirstOrDefaultAsync();
+            string novoCodigoVerificacao = GerarStringAleatoria(6, true);
+
+            usuario.CodigoVerificacao = novoCodigoVerificacao;
+            usuario.ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24);
+
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
+
+            return novoCodigoVerificacao;
+        }
+
         public async Task<UsuarioDTO>? VerificarConta(string codigoVerificacao)
         {
             var usuario = await _context.Usuarios.Where(cv => cv.CodigoVerificacao == codigoVerificacao).AsNoTracking().FirstOrDefaultAsync();
@@ -115,7 +129,7 @@ namespace GeekSpot.Infraestructure.Persistence
                 return erro;
             }
 
-            if (usuario.ValidadeCodigoVerificacao > HorarioBrasilia())
+            if (HorarioBrasilia() > usuario.ValidadeCodigoVerificacao)
             {
                 UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.CodigoVerificacaoExpirado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.CodigoVerificacaoExpirado) };
                 return erro;
@@ -127,7 +141,7 @@ namespace GeekSpot.Infraestructure.Persistence
                 return erro;
             }
 
-            usuario.IsVerificado = false;
+            usuario.IsVerificado = true;
             _context.Update(usuario);
             await _context.SaveChangesAsync();
 

@@ -14,21 +14,14 @@ export default function Erro() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [msg, setMsg] = useState('');
     useEffect(() => {
-        function verificarMsg(msg: string) {
-            // console.log(msg);
-            let msgFinal = '';
-
-            if (msg === 'sem-acesso') {
-                msgFinal = 'Você não está autenticado ou não tem permissão para executar a ação requisitada';
-            } else if (msg === 'autenticado') {
-                msgFinal = 'Você já está autenticado, portanto não pode mais executar a ação requisitada';
-            }
-
-            setMsg(msgFinal);
+        function verificarMsg(msgErro: string) {
+            // console.log(msgErro);
+            setMsg(msgErro);
         }
 
-        if (router.query.msg) {
-            verificarMsg(router.query.msg.toString());
+        console.log(router.query.erro);
+        if (router.query.erro) {
+            verificarMsg(router.query.erro.toString());
         } else {
             setMsg('Tente novamente mais tarde');
         }
@@ -50,7 +43,7 @@ export default function Erro() {
 
             <div>
                 <span className={Styles.titulo}>Opa...</span>
-                <span className='texto margem2'>Parece que algo deu errado por aqui<br />{msg}</span>
+                <span className={`${Styles.texto} margem2`}>Parece que algo deu errado por aqui<br />{msg}</span>
 
                 <div className='margem2'>
                     <Botao texto='Voltar ao início' url='/' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />

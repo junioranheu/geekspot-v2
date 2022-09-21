@@ -28,34 +28,53 @@ namespace GeekSpot.Application.Services.Authentication
 
             if (usuario is null)
             {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioNaoEncontrado,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioNaoEncontrado)
-                };
-
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.UsuarioNaoEncontrado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioNaoEncontrado) };
                 return erro;
             }
 
             // #2 - Verificar se a senha está correta;
             if (usuario.Senha != Criptografar(dto?.Senha))
             {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioSenhaIncorretos,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos)
-                };
-
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.UsuarioSenhaIncorretos, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos) };
                 return erro;
             }
 
-            // #3 - Criar token JWT;
+            // #3.1 - Verificar se o usuário está ativo;
+            if (!usuario.IsAtivo)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaDesativada, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaDesativada) };
+                return erro;
+            }
+
+            // #3.2 - Verificar se a conta do usuário está verificada;
+            if (!usuario.IsVerificado)
+            {
+                // #3.2.1 - Gerar um novo código de verificação;
+                string codigoVerificacao = await _usuarioRepository.AtualizarCodigoVerificacao(usuario.UsuarioId);
+
+                // #3.2.2 - Reenviar e-mail de verificação;
+                try
+                {
+                    if (!String.IsNullOrEmpty(usuario?.Email) && !String.IsNullOrEmpty(usuario?.NomeCompleto) && !String.IsNullOrEmpty(codigoVerificacao))
+                    {
+                        await EnviarEmailVerificacaoConta(usuario?.Email, usuario?.NomeCompleto, codigoVerificacao);
+
+                        UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaNaoVerificadaMasNovoEmailVerificacaoEnviado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaNaoVerificadaMasNovoEmailVerificacaoEnviado) };
+                        return erro;
+                    }
+                }
+                catch (Exception)
+                {
+                    UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao) };
+                    return erro;
+                }
+            }
+
+            // #4 - Criar token JWT;
             var token = _jwtTokenGenerator.GerarToken(usuario);
             usuario.Token = token;
 
-            // #4 - Converter de UsuarioSenhaDTO para UsuarioDTO;
+            // #5 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);
 
             return usuarioDTO;
@@ -68,39 +87,21 @@ namespace GeekSpot.Application.Services.Authentication
 
             if (verificarUsuario is not null)
             {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.UsuarioExistente,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente)
-                };
-
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.UsuarioExistente, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioExistente) };
                 return erro;
             }
 
             // #2.1 - Verificar requisitos gerais;
             if (dto?.NomeCompleto?.Length < 3 || dto?.NomeUsuarioSistema?.Length < 3)
             {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.RequisitosNome,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosNome)
-                };
-
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.RequisitosNome, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosNome) };
                 return erro;
             }
 
             // #2.2 - Verificar e-mail;
             if (!ValidarEmail(dto?.Email))
             {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.EmailInvalido,
-                    MensagemErro = GetDescricaoEnum(CodigoErrosEnum.EmailInvalido)
-                };
-
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.EmailInvalido, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.EmailInvalido) };
                 return erro;
             }
 
@@ -108,14 +109,7 @@ namespace GeekSpot.Application.Services.Authentication
             var validarSenha = ValidarSenha(dto?.Senha, dto?.NomeCompleto, dto?.NomeUsuarioSistema, dto?.Email);
             if (!validarSenha.Item1)
             {
-                UsuarioDTO erro = new()
-                {
-                    Erro = true,
-                    CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido,
-                    // MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RequisitosSenhaNaoCumprido)
-                    MensagemErro = validarSenha.Item2
-                };
-
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido, MensagemErro = validarSenha.Item2 };
                 return erro;
             }
 

@@ -5,12 +5,12 @@ import Botao from '../../../components/outros/botao';
 import Facebook from '../../../components/svg/facebook';
 import Google from '../../../components/svg/google';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
+import { Fetch } from '../../../utils/api/fetch';
 import CONSTS_AUTENTICAR from '../../../utils/consts/data/constAutenticar';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
-import { Fetch } from '../../../utils/outros/fetch';
 import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRandom';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
 
@@ -58,7 +58,7 @@ export default function SessaoEntrar() {
 
         const resposta = await Fetch.postApi(url, dto, null);
         if (!resposta || resposta?.erro) {
-            instrucaoErro('Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!');
+            instrucaoErro((resposta?.mensagemErro ?? 'Algo deu errado<br/><br/>Provavelmente o usuário e/ou a senha estão errados!'));
             return false;
         }
 

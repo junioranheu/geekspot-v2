@@ -1,4 +1,4 @@
-import horarioBrasilia from './horarioBrasilia';
+import horarioBrasilia from '../outros/horarioBrasilia';
 
 export const Fetch = {
     async getApi(url: string, token: string | null) {

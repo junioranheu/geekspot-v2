@@ -26,7 +26,7 @@ namespace GeekSpot.Domain.Enums
         [Description("Usuário ou senha incorretos")]
         UsuarioSenhaIncorretos = 107,
 
-        [Description("Conta desativada")]
+        [Description("Esta conta está desativada")]
         ContaDesativada = 108,
 
         [Description("Usuário não encontrado")]
@@ -35,14 +35,20 @@ namespace GeekSpot.Domain.Enums
         [Description("Não autorizado")]
         NaoAutorizado = 110,
 
-        [Description("Código de verificação inválido")]
+        [Description("Este código de verificação é inválido")]
         CodigoVerificacaoInvalido = 111,
 
-        [Description("Código de verificação expirado")]
+        [Description("Este código de verificação está expirado")]
         CodigoVerificacaoExpirado = 112,
 
-        [Description("Conta já se encontra verificada")]
+        [Description("Esta conta já se encontra verificada portanto não é possível verificá-la novamente")]
         ContaJaVerificada = 113,
+
+        [Description("Esta conta ainda não foi verificada. Um novo e-mail foi enviado para você. Verifique-a e tente novamente mais tarde")]
+        ContaNaoVerificadaMasNovoEmailVerificacaoEnviado = 114,
+
+        [Description("Esta conta ainda não foi verificada. Além disso, houve um erro ao enviar um novo e-mail de vericação. Tente novamente mais tarde")]
+        ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao = 115,
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         [Description("Dado não encontrado")]
