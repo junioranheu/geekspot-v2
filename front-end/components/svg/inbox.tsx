@@ -1,12 +1,7 @@
 import Router from 'next/router';
+import iSvg from '../../utils/types/svg';
 
-interface iParametros {
-    width: number | null
-    url: string | null;
-    title: string | null;
-}
-
-export default function Inbox({ width, url, title }: iParametros) {
+export default function Inbox({ width, url, title }: iSvg) {
     return (
         <svg width={width ?? 24} height={width ?? 24} className='pointer' onClick={() => url && Router.push(url)}>
             <defs>
@@ -16,7 +11,7 @@ export default function Inbox({ width, url, title }: iParametros) {
             </defs>
             &gt;
             {title && <title>{title}</title>}
-            <use xlinkHref='#svg-inbox' fill='#222222'></use>
+            <use xlinkHref='#svg-inbox' fill='currentColor'></use>
         </svg>
     )
 }

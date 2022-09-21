@@ -184,7 +184,6 @@ export default function SessaoCriarConta() {
                                 />
                             </div>
 
-
                             <div className={`${Styles.botaoCustom} margem0_5`} onClick={handleSubmit} data-tip={msgTermos}>
                                 <Botao texto='Criar conta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtnCriar} isEnabled={true} />
                             </div>
