@@ -24,14 +24,14 @@ export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, titulo,
     return (
         <div className='flexRow'>
             <div className='flexColumn'>
-                <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)}>
+                <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/perfil/${usuarioId}/@${ajustarUrl(usuarioNomeSistema)}`)}>
                     {titulo ?? `Itens do usuário @${usuarioNomeSistema}`}
                 </b>
 
                 <span className='texto'>{descricao}</span>
             </div>
 
-            <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`/usuario/${usuarioId}/${ajustarUrl(usuarioNomeSistema)}`)} title={textoTagTitle}>
+            <div className={`${Styles.infoDireita} cor-principal-hover`} onClick={() => Router.push(`/usuario/perfil/${usuarioId}/@${ajustarUrl(usuarioNomeSistema)}`)} title={textoTagTitle}>
                 {fraseAleatoria}
                 <Seta width='1rem' />
             </div>

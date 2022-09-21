@@ -13,7 +13,11 @@ import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function DivDados1({ item }: iItem) {
+interface iParametros {
+    item: iItem;
+}
+
+export default function DivDados1({ item }: iParametros) {
 
     const [dataAlvo, setDataAlvo] = useState('');
     useEffect(() => {

@@ -56,7 +56,7 @@ export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOp
                         listaComentarios?.slice(0, 100).map((item, i: number) => (
                             <div className={`${Styles.perguntaDiv} margem1_5 animate__animated animate__fadeIn`} key={i}>
                                 <div className={Styles.flexRow}>
-                                    <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/${item?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema)}`)}>
+                                    <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/perfil/${item?.usuarioId}/@${ajustarUrl(item?.usuarios?.nomeUsuarioSistema)}`)}>
                                         <Image
                                             src={(item?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.usuarios?.foto}` : ImgCinza)}
                                             width={30}
@@ -92,7 +92,7 @@ export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOp
                                             <div className={Styles.conector}></div>
 
                                             <div className={`${Styles.flexRow} animate__animated animate__fadeIn`}>
-                                                <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.itens?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/${item?.itens?.usuarios?.usuarioId}/${ajustarUrl(item?.itens?.usuarios?.nomeUsuarioSistema)}`)}>
+                                                <div className={`${Styles.divImg} pointer`} title={`Ir para o perfil de @${item?.itens?.usuarios?.nomeUsuarioSistema}`} onClick={() => Router.push(`/usuario/perfil/${item?.itens?.usuarios?.usuarioId}/@${ajustarUrl(item?.itens?.usuarios?.nomeUsuarioSistema)}`)}>
                                                     <Image
                                                         src={(item?.itens?.usuarios?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${item?.itens?.usuarios?.foto }` : ImgCinza)}
                                                         width={30}

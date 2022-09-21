@@ -20,12 +20,15 @@ import letraMaiusculaPrimeiraPalavraApenas from '../../../../utils/outros/letraM
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function DivOwner({ item }: iItem) {
+interface iParametros {
+    item: iItem;
+}
+export default function DivOwner({ item }: iParametros) {
 
     const token = Auth?.get()?.token ?? '';
     const usuarioLogadoId = Auth?.get()?.usuarioId ?? 0;
 
-    const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/${item?.usuarioId}/${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
+    const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/perfil/${item?.usuarioId}/@${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
     const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
 
     const [isJaSigo, setIsJaSigo] = useState(false);

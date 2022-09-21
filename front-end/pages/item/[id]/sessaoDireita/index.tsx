@@ -9,7 +9,11 @@ import DivDados1 from './sessaoDireita.divDados1';
 import DivDados2 from './sessaoDireita.divDados2';
 import DivOwner from './sessaoDireita.divOwner';
 
-export default function SessaoDireita({ item }: iItem) {
+interface iParametros {
+    item: iItem;
+}
+
+export default function SessaoDireita({ item }: iParametros) {
 
     const tamanhoTela = useWindowSize();
 

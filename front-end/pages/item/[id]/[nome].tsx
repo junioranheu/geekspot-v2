@@ -10,7 +10,11 @@ import Styles from './index.module.scss';
 import SessaoDireita from './sessaoDireita';
 import SessaoEsquerda from './sessaoEsquerda';
 
-export default function Item({ item }: iItem) {
+interface iParametros {
+    item: iItem;
+}
+
+export default function Item({ item }: iParametros) {
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {

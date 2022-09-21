@@ -21,6 +21,7 @@ interface iParametros {
 
 export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
 
+    const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
 
     function abrirMenuUsuario() {
@@ -40,14 +41,14 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
                                 <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
 
                                 <div className={`${Styles.divItens} margem1`}>
-                                    <Botao texto='Meu perfil' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                                    <Botao texto='Meu perfil' url={`/usuario/perfil/${idUsuario}/@${nomeUsuario}`} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
 
                                     <Link href='/xxx'><a><Item width={16} url={null} title={null} />&nbsp;&nbsp;Subir novo item</a></Link>
                                     <Link href='/xxx'><a><Inbox width={16} url={null} title={null} />&nbsp;&nbsp;Inbox</a></Link>
                                     <Link href='/xxx'><a><Coracao width={16} url={null} title={null} />&nbsp;&nbsp;Favoritos</a></Link>
+                                    <Link href='/usuario/perfil/editar/'><a><Configuracao width={16} url={null} title={null} />&nbsp;&nbsp;Configurações</a></Link>
                                     <Link href='/seguranca'><a><Seguranca width={16} url={null} title={null} />&nbsp;&nbsp;Segurança</a></Link>
                                     <Link href='/ajuda'><a><Ajuda width={16} url={null} title={null} />&nbsp;&nbsp;Ajuda</a></Link>
-                                    <Link href='/xxx'><a><Configuracao width={16} url={null} title={null} />&nbsp;&nbsp;Configurações</a></Link>
                                 </div>
                             </div>
                         </div>

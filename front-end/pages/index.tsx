@@ -17,7 +17,11 @@ import randomizarArray from '../utils/outros/randomizarArray';
 import iItem from '../utils/types/item';
 import iUsuario from '../utils/types/usuario';
 
-export default function Home({ listaItens }: any) {
+interface iParametros {
+    listaItens: iItem[];
+}
+
+export default function Home({ listaItens }: iParametros) {
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
@@ -87,12 +91,12 @@ export async function getStaticProps() {
 
     // Pegar todos os usuários;
     const urlUsuarios = CONSTS_USUARIOS.API_URL_GET_TODOS;
-    const usuarios = await Fetch.getApi(urlUsuarios, null) as iUsuario[];
+    const listaUsuarios = await Fetch.getApi(urlUsuarios, null) as iUsuario[];
 
-    if (usuarios) {
-        for (const u of usuarios) {
+    if (listaUsuarios) {
+        for (const u of listaUsuarios) {
             // Encontrar os itens com base no usuário;
-            const urlItens = `${CONSTS_ITENS.API_URL_GET_BY_USUARIO_ID}/${u.usuarioId}`;
+            const urlItens = `${CONSTS_ITENS.API_URL_GET_BY_USUARIO_ID}/${u?.usuarioId}`;
             const itens = await Fetch.getApi(urlItens, null) as iItem[];
 
             if (itens?.length) {

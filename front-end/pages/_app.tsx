@@ -27,9 +27,9 @@ export default function App({ Component, pageProps }: any) {
     function verificarLayout() {
         // console.log(`Url: ${url}`);
 
-        // if (url.includes('/disciplinas') || url.includes('/usuario/meus-cursos')) {
+        // if (url.includes('/yyy') || url.includes('/usuario/xxx')) {
         //     return <LayoutDisciplinas Component={Component} pageProps={pageProps} />
-        // } if (url.includes('/posts')) {
+        // } if (url.includes('/zzz')) {
         //     return <LayoutPosts Component={Component} pageProps={pageProps} />
         // } else {
         //     return <LayoutPadrao Component={Component} pageProps={pageProps} />

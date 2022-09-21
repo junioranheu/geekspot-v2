@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react';
-import { Fetch } from '../../../utils/api/fetch';
-import CONSTS_USUARIOS from '../../../utils/consts/data/constUsuarios';
-import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
-import { Auth } from '../../../utils/context/usuarioContext';
-import ajustarUrl from '../../../utils/outros/ajustarUrl';
-import paginaCarregada from '../../../utils/outros/paginaCarregada';
-import iUsuario from '../../../utils/types/usuario';
+import { Fetch } from '../../../../utils/api/fetch';
+import CONSTS_USUARIOS from '../../../../utils/consts/data/constUsuarios';
+import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
+import { Auth } from '../../../../utils/context/usuarioContext';
+import ajustarUrl from '../../../../utils/outros/ajustarUrl';
+import paginaCarregada from '../../../../utils/outros/paginaCarregada';
+import iUsuario from '../../../../utils/types/usuario';
 
-export default function Perfil({ usuario }: any) {
+interface iParametros {
+    usuario: iUsuario
+}
+
+export default function Perfil({ usuario }: iParametros) {
+
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        document.title = usuario ? `Perfil de @${usuario?.nomeUsuarioSistema} — ${CONSTS_SISTEMA.NOME_SISTEMA}` : CONSTS_SISTEMA.NOME_SISTEMA;
+        document.title = usuario?.nomeUsuarioSistema ? `Perfil de @${usuario.nomeUsuarioSistema} — ${CONSTS_SISTEMA.NOME_SISTEMA}` : CONSTS_SISTEMA.NOME_SISTEMA;
         paginaCarregada(true, 200, 500, setIsLoaded);
-    }, [usuarioId, usuario]);
+    }, [usuarioId, usuario?.nomeUsuarioSistema]);
 
     if (!isLoaded) {
         return false;
@@ -47,7 +52,7 @@ export async function getStaticPaths() {
     const paths = usuarios?.map((u: any) => ({
         params: {
             id: u.usuarioId.toString(),
-            nomeUsuarioSistema: ajustarUrl(u.nomeUsuarioSistema)
+            nomeUsuarioSistema: `@${ajustarUrl(u.nomeUsuarioSistema)}`
         }
     }));
 
@@ -63,7 +68,6 @@ export async function getStaticProps(context: any) {
     // Usuário;
     const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${id}`;
     const usuario = await Fetch.getApi(url, null) as iUsuario;
-    // console.log(usuario);
 
     return {
         props: {

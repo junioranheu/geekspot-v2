@@ -3,7 +3,11 @@ import pad from '../../../../utils/outros/pad';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function DivDados2({ item }: iItem) {
+interface iParametros {
+    item: iItem;
+}
+
+export default function DivDados2({ item }: iParametros) {
     return (
         <div className={`${Styles.divDados2} margem1_5 flexColumn`}>
             {

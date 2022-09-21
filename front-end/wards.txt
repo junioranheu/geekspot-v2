@@ -2,6 +2,9 @@ https://www.enjoei.com.br/
 
 --
 
+criar endpoint de get para só o dono do perfil
+criar tela para editar perfil
+
 criar tela para cadastar novo item (apenas a tela mesmo para funcionar o proximo passo)
 não permitir acessar a tela de cadastro de novo item caso caso o usuario nao tenha valido perfil (email e cadastro do form)
 
@@ -10,7 +13,7 @@ continuar desenvolvimento tela de cadastro de novo item
 criar botão para recuperar senha e usar o método GerarHashUsuario() no processo
 
 
-/////////// PARA COLOCAR NO BOTAO DE REVERIFICAR CONTA:
+/////////// PARA COLOCAR NO BOTAO DE REVERIFICAR CjONTA:
 // #3.2 - Verificar se a conta do usuário está verificada;
 if (!usuario.IsVerificado)
 {

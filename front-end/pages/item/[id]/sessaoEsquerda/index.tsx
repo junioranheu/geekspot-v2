@@ -9,7 +9,11 @@ import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import iItem from '../../../../utils/types/item';
 import Styles from './index.module.scss';
 
-export default function SessaoEsquerda({ item }: iItem) {
+interface iParametros {
+    item: iItem;
+}
+
+export default function SessaoEsquerda({ item }: iParametros) {
 
     const tamanhoTela = useWindowSize();
 
