@@ -17,6 +17,8 @@ export default function Index() {
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+        document.getElementsByTagName('body')[0]?.classList.add('backgroundBege');
+        document.getElementsByClassName('sessaoPrincipal')[0]?.classList.add('backgroundBege');
 
         async function getUsuario(usuarioId: number) {
             const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${usuarioId}`;
@@ -24,9 +26,6 @@ export default function Index() {
 
             setUsuario(resposta);
             paginaCarregada(true, 200, 500, setIsLoaded);
-
-            document.getElementsByTagName('body')[0]?.classList.add('backgroundBege');
-            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.add('backgroundBege');
         }
 
         if (usuarioId) {
