@@ -19,7 +19,7 @@ namespace GeekSpot.Infraestructure.Authentication
             _jwtSettings = jwtOptions.Value;
         }
 
-        public string GerarToken(UsuarioSenhaDTO usuario)
+        public string GerarToken(UsuarioSenhaDTO usuario, IEnumerable<Claim>? listaClaims)
         {
             JwtSecurityTokenHandler tokenHandler = new();
 
@@ -28,29 +28,32 @@ namespace GeekSpot.Infraestructure.Authentication
                 algorithm: SecurityAlgorithms.HmacSha256Signature
             );
 
-            ClaimsIdentity claims = new(
-                new Claim[]
+            // Existem dois cenários possíveis para esse caso:
+            // #2 - Cenário do Refresh Token, onde o Claim deve ser criado com base na lista de claims extraídas (método RefreshToken()), parâmetro listaClaims;
+            // #1 - Cenário "normal", onde é feito o login ou cadastro e o Claim deve ser criado a partir do parâmetro UsuarioSenhaDTO;
+            ClaimsIdentity claims;
+            if (listaClaims?.Count() > 0)
+            {
+                claims = new ClaimsIdentity(listaClaims);
+            }
+            else
+            {
+                claims = new(new Claim[]
                 {
                     new Claim(type: ClaimTypes.Name, usuario.NomeCompleto ?? ""),
                     new Claim(type: ClaimTypes.Role, usuario.UsuarioTipoId.ToString()),
                     new Claim(type: ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
-                }
-            );
+                });
+            }
 
-            // Ajustar a hora. Produção: +3 horas, Dev: normal;
-            DateTime horarioBrasiliaJWT = HorarioBrasilia().AddHours(+3);
-
-#if DEBUG
-            horarioBrasiliaJWT = HorarioBrasilia();
-#endif
-
+            DateTime horarioBrasiliaAjustado = HorarioBrasiliaAjustado();
             SecurityTokenDescriptor tokenDescriptor = new()
             {
                 Issuer = _jwtSettings.Issuer, // Emissor do token;
-                IssuedAt = horarioBrasiliaJWT,
+                IssuedAt = horarioBrasiliaAjustado,
                 Audience = _jwtSettings.Audience,
-                NotBefore = horarioBrasiliaJWT,
-                Expires = horarioBrasiliaJWT.AddMinutes(_jwtSettings.TokenExpiryMinutes),
+                NotBefore = horarioBrasiliaAjustado,
+                Expires = horarioBrasiliaAjustado.AddMinutes(_jwtSettings.TokenExpiryMinutes),
                 Subject = claims,
                 SigningCredentials = signingCredentials
             };
@@ -61,38 +64,6 @@ namespace GeekSpot.Infraestructure.Authentication
         }
 
         // Como gerar um refresh token: https://www.youtube.com/watch?v=HsypCNm56zs&t=1021s&ab_channel=balta.io;
-        public string GerarToken(IEnumerable<Claim> claims)
-        {
-            JwtSecurityTokenHandler tokenHandler = new();
-
-            SigningCredentials signingCredentials = new(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret ?? "")),
-                algorithm: SecurityAlgorithms.HmacSha256Signature
-            );
-
-            // Ajustar a hora. Produção: +3 horas, Dev: normal;
-            DateTime horarioBrasiliaJWT = HorarioBrasilia().AddHours(+3);
-
-#if DEBUG
-            horarioBrasiliaJWT = HorarioBrasilia();
-#endif
-
-            SecurityTokenDescriptor tokenDescriptor = new()
-            {
-                Issuer = _jwtSettings.Issuer, // Emissor do token;
-                IssuedAt = horarioBrasiliaJWT,
-                Audience = _jwtSettings.Audience,
-                NotBefore = horarioBrasiliaJWT,
-                Expires = horarioBrasiliaJWT.AddMinutes(_jwtSettings.TokenExpiryMinutes),
-                Subject = new ClaimsIdentity(claims),
-                SigningCredentials = signingCredentials
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var jwt = tokenHandler.WriteToken(token);
-            return jwt;
-        }
-
         public string GerarRefreshToken()
         {
             var numeroAleatorio = new byte[32];
@@ -123,6 +94,20 @@ namespace GeekSpot.Infraestructure.Authentication
             }
 
             return principal;
+        }
+
+        private static DateTime HorarioBrasiliaAjustado()
+        {
+            // Por algum motivo inexplicável é necessário ajustar a hora por uma diferença apresentada quando publicado em produção no Azure;
+            // Produção: +3 horas;
+            DateTime horarioBrasiliaAjustado = HorarioBrasilia().AddHours(+3);
+
+#if DEBUG
+            // Dev: horário normal;
+            horarioBrasiliaAjustado = HorarioBrasilia();
+#endif
+
+            return horarioBrasiliaAjustado;
         }
     }
 }

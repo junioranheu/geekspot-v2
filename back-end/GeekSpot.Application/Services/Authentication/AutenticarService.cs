@@ -50,7 +50,7 @@ namespace GeekSpot.Application.Services.Authentication
             }
 
             // #4 - Criar token JWT;
-            var token = _jwtTokenGenerator.GerarToken(usuario);
+            var token = _jwtTokenGenerator.GerarToken(usuario, null);
             usuario.Token = token;
 
             // #5 - Gerar refresh token;
@@ -137,7 +137,7 @@ namespace GeekSpot.Application.Services.Authentication
             novoUsuario.UsuarioId = usuarioAdicionado.UsuarioId;
 
             // #6 - Criar token JWT;
-            var token = _jwtTokenGenerator.GerarToken(novoUsuario);
+            var token = _jwtTokenGenerator.GerarToken(novoUsuario, null);
             novoUsuario.Token = token;
 
             // #7 - Gerar refresh token;
@@ -187,7 +187,7 @@ namespace GeekSpot.Application.Services.Authentication
                 return erro;
             }
 
-            var novoToken = _jwtTokenGenerator.GerarToken(principal?.Claims);
+            var novoToken = _jwtTokenGenerator.GerarToken(null, principal?.Claims);
             var novoRefreshToken = _jwtTokenGenerator.GerarRefreshToken();
 
             // Criar novo registro com o novo refresh token gerado;
