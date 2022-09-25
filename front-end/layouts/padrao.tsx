@@ -5,8 +5,8 @@ import NavbarMobile from '../components/navbar/mobile/navbar.mobile';
 import NavbarSmall from '../components/navbar/outros/navbar.small';
 import NavbarPadrao from '../components/navbar/padrao/navbar.padrao';
 import useWindowSize from '../hooks/outros/useWindowSize';
+import verificarTokenValido from '../utils/api/verificarTokenValido';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
-import verificarTokenValido from '../utils/outros/verificarTokenValido';
 
 export default function Padrao({ Component, pageProps }: any) {
     const router = useRouter();
@@ -17,7 +17,7 @@ export default function Padrao({ Component, pageProps }: any) {
 
     // Verificar se o token ainda é válido;
     useEffect(() => {
-        verificarTokenValido(isAuth, setIsAuth);
+        verificarTokenValido(isAuth);
     }, [isAuth]);
 
     // Renovar animação a cada mudança de URL (router.asPath);

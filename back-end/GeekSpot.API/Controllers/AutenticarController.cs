@@ -45,5 +45,12 @@ namespace GeekSpot.API.Controllers
 
             return Ok(authResultado);
         }
+
+        [HttpPost("refreshToken")]
+        public async Task<ActionResult<UsuarioDTO>> RefreshToken(UsuarioSenhaDTO dto)
+        {
+            var authResultado = await _autenticarService.RefreshToken(dto.Token, dto.RefreshToken);
+            return Ok(authResultado);
+        }
     }
 }

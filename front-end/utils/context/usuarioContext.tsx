@@ -5,10 +5,11 @@ interface iContext {
     isAuthContext: [isAuth: boolean, setIsAuth: any];
 }
 
+const _item = 'auth';
 export const UsuarioContext = createContext<iContext | null>(null);
 
 export const UsuarioProvider = (props: any) => {
-    const [isAuth, setIsAuth] = useState(localStorage.getItem('auth') !== null ? true : false);
+    const [isAuth, setIsAuth] = useState(Auth.get() ? true : false);
 
     return (
         <UsuarioContext.Provider value={{
@@ -30,6 +31,7 @@ export const Auth = {
             foto: data.foto,
             isVerificado: data.isVerificado,
             token: data.token,
+            refreshToken: data.refreshToken,
             dataAutenticacao: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss'),
             genero: data.genero,
             fotoPerfilAlternativa: data.fotoPerfilAlternativa,
@@ -37,22 +39,26 @@ export const Auth = {
         };
 
         let parsedData = JSON.stringify(dadosUsuario);
-        localStorage.setItem('auth', parsedData);
+        localStorage.setItem(_item, parsedData);
     },
 
     get() {
-        let data = localStorage.getItem('auth');
+        if (typeof window !== 'undefined') {
+            let data = localStorage.getItem(_item);
 
-        if (!data) {
+            if (!data) {
+                return null;
+            }
+
+            let dataJson = JSON.parse(data);
+            return dataJson;
+        } else {
             return null;
         }
-
-        let dataJson = JSON.parse(data);
-        return dataJson;
     },
 
     delete() {
-        localStorage.removeItem('auth');
+        localStorage.removeItem(_item);
     },
 
     update(data: any) {
@@ -65,6 +71,7 @@ export const Auth = {
             foto: (data.foto ?? Auth.get().foto),
             isVerificado: (data.isVerificado ?? Auth.get().isVerificado),
             token: (data.token ?? Auth.get().token),
+            refreshToken: (data.refreshToken ?? Auth.get().refreshToken),
             dataAutenticacao: (data.dataAutenticacao ?? Auth.get().dataAutenticacao),
             genero: (data.genero ?? Auth.get().genero),
             fotoPerfilAlternativa: (data.fotoPerfilAlternativa ?? Auth.get().fotoPerfilAlternativa),
@@ -72,6 +79,6 @@ export const Auth = {
         };
 
         let parsedData = JSON.stringify(dadosUsuario);
-        localStorage.setItem('auth', parsedData);
+        localStorage.setItem(_item, parsedData);
     }
 }

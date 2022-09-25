@@ -6,5 +6,6 @@ namespace GeekSpot.Application.Common.Interfaces.Authentication
     {
         Task<UsuarioDTO>? Registrar(UsuarioSenhaDTO dto);
         Task<UsuarioDTO>? Login(UsuarioSenhaDTO dto);
+        Task<UsuarioDTO> RefreshToken(string token, string refreshToken);
     }
 }

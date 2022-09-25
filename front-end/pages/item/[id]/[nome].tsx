@@ -49,7 +49,7 @@ export async function getStaticPaths() {
 
     // Todas os itens;
     const url = CONSTS_ITENS.API_URL_GET_TODOS;
-    const itens = await Fetch.getApi(url, null);
+    const itens = await Fetch.getApi(url);
     // console.log(itens);
 
     // Gerar o "paths";
@@ -71,7 +71,7 @@ export async function getStaticProps(context: any) {
 
     // Item;
     const url = `${CONSTS_ITENS.API_URL_GET_BY_ID}/${id}`;
-    const item = await Fetch.getApi(url, null) as iItem;
+    const item = await Fetch.getApi(url) as iItem;
 
     return {
         props: {

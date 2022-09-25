@@ -18,7 +18,7 @@ export default function VerificarConta() {
     useEffect(() => {
         async function handleVerificarConta(codigoVerificacao: string) {
             const url = `${CONSTS_USUARIOS.API_URL_PUT_VERIFICAR_CONTA}/${codigoVerificacao}`;
-            const resposta = await Fetch.putApi(url, null, null);
+            const resposta = await Fetch.putApi(url, null);
 
             if (!resposta || resposta?.erro) {
                 nProgress.done();

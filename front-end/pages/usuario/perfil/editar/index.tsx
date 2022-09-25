@@ -22,7 +22,7 @@ export default function Index() {
 
         async function getUsuario(usuarioId: number) {
             const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${usuarioId}`;
-            const resposta = await Fetch.getApi(url, null) as iUsuario;
+            const resposta = await Fetch.getApi(url) as iUsuario;
 
             setUsuario(resposta);
             paginaCarregada(true, 200, 500, setIsLoaded);

@@ -10,7 +10,7 @@ export default function useEstados(isFormatarDadosParaDropdown: boolean) {
     useEffect(() => {
         async function get() {
             const url = CONSTS_SISTEMA.API_URL_GET_TODOS_ESTADOS;
-            const fetchDados = await Fetch.getApi(url, null);
+            const fetchDados = await Fetch.getApi(url);
 
             if (isFormatarDadosParaDropdown) {
                 setDados(formatarDadosParaDropDown(fetchDados, 'nome', 'estadoId'));

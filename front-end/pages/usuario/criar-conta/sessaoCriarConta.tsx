@@ -100,7 +100,7 @@ export default function SessaoCriarConta() {
             IsVerificado: false
         };
 
-        const resposta = await Fetch.postApi(url, dto, null);
+        const resposta = await Fetch.postApi(url, dto);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             refEmail.current.select();

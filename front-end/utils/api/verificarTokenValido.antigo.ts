@@ -4,10 +4,10 @@ import nProgress from 'nprogress';
 import CONSTS_SISTEMA from '../consts/outros/sistema';
 import TIPOS_DURACAO_MOMENT from '../consts/outros/tiposDuracaoMoment';
 import { Auth } from '../context/usuarioContext';
-import { Aviso } from './aviso';
-import converterTempoDecimalEmFormatoPadrao from './converterTempoDecimalEmFormatoPadrao';
-import diferencaDatasEmHoras from './diferencaDatasEmHoras';
-import horarioBrasilia from './horarioBrasilia';
+import { Aviso } from '../outros/aviso';
+import converterTempoDecimalEmFormatoPadrao from '../outros/converterTempoDecimalEmFormatoPadrao';
+import diferencaDatasEmHoras from '../outros/diferencaDatasEmHoras';
+import horarioBrasilia from '../outros/horarioBrasilia';
 
 export default function verificarTokenValido(isAuth: boolean | undefined, setIsAuth: any) {
     if (isAuth) {
@@ -62,4 +62,3 @@ function getJWTExpireDate(jwtToken: string) {
 
     return null;
 }
-

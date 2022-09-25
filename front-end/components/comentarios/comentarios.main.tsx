@@ -1,9 +1,9 @@
 import nProgress from 'nprogress';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Fetch } from '../../utils/api/fetch';
 import CONSTS_COMENTARIOS from '../../utils/consts/data/constComentarios';
 import COMENTARIOS from '../../utils/consts/outros/comentarios';
-import { Auth } from '../../utils/context/usuarioContext';
+import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import { Aviso } from '../../utils/outros/aviso';
 import horarioBrasilia from '../../utils/outros/horarioBrasilia';
 import iListaComentarios from '../../utils/types/listaComentarios';
@@ -21,7 +21,9 @@ interface iParametros {
 
 export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametros) {
 
-    const token = Auth?.get()?.token ?? '';
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
+    const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
+
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
     const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
@@ -32,7 +34,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
     async function getComentarios(itemId: number) {
         const url = `${CONSTS_COMENTARIOS.API_URL_GET_BY_ITEM_ID}/${itemId}`;
-        const comentarios = await Fetch.getApi(url, null) as iListaComentarios[];
+        const comentarios = await Fetch.getApi(url) as iListaComentarios[];
         setComentarios(comentarios);
     }
 
@@ -43,7 +45,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
     }, [itemId])
 
     async function handleEnviar() {
-        if (!token) {
+        if (!isAuth) {
             setIsModalAvisoLoginOpen(true);
             return false;
         }
@@ -78,7 +80,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
             dataResposta: null
         };
 
-        const resposta = await Fetch.postApi(url, dto, token);
+        const resposta = await Fetch.postApi(url, dto);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             setTexto('');

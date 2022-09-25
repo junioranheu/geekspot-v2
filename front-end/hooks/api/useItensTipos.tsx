@@ -10,7 +10,7 @@ export default function useItensTipos(isFormatarDadosParaDropdown: boolean) {
     useEffect(() => {
         async function get() {
             const url = CONSTS_ITENS_TIPOS.API_URL_GET_TODOS;
-            const fetchDados = await Fetch.getApi(url, null) ; 
+            const fetchDados = await Fetch.getApi(url) ; 
 
             if (isFormatarDadosParaDropdown) {
                 setDados(formatarDadosParaDropDown(fetchDados, 'tipo', 'itemTipoId'));

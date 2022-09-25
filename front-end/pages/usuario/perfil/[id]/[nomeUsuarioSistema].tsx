@@ -46,7 +46,7 @@ export async function getStaticPaths() {
 
     // Todas os usuários;
     const url = CONSTS_USUARIOS.API_URL_GET_TODOS;
-    const usuarios = await Fetch.getApi(url, null) as iUsuario[];
+    const usuarios = await Fetch.getApi(url) as iUsuario[];
 
     // Gerar o "paths";
     const paths = usuarios?.map((u: any) => ({
@@ -67,7 +67,7 @@ export async function getStaticProps(context: any) {
 
     // Usuário;
     const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${id}`;
-    const usuario = await Fetch.getApi(url, null) as iUsuario;
+    const usuario = await Fetch.getApi(url) as iUsuario;
 
     return {
         props: {

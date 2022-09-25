@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import nProgress from 'nprogress';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import ModalAvisoLogin from '../../../../components/modal/modal.aviso/login';
 import ModalLayout from '../../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../../components/modal/_modal.wrapper';
@@ -11,7 +11,7 @@ import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import CONSTS_USUARIOS_SEGUIR from '../../../../utils/consts/data/constUsuariosSeguir';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
-import { Auth } from '../../../../utils/context/usuarioContext';
+import { Auth, UsuarioContext } from '../../../../utils/context/usuarioContext';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import { Aviso } from '../../../../utils/outros/aviso';
 import formatarData from '../../../../utils/outros/formatarData';
@@ -25,27 +25,29 @@ interface iParametros {
 }
 export default function DivOwner({ item }: iParametros) {
 
-    const token = Auth?.get()?.token ?? '';
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
+    const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
+
     const usuarioLogadoId = Auth?.get()?.usuarioId ?? 0;
 
     const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/perfil/${item?.usuarioId}/@${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
     const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
 
     const [isJaSigo, setIsJaSigo] = useState(false);
-    async function getIsJaSegue(token: string, usuarioId: number) {
+    async function getIsJaSegue(usuarioId: number) {
         const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_GET_IS_JA_SIGO_ESSE_USUARIO}/${usuarioId}`;
-        const isJaSigo = await Fetch.getApi(url, token);
+        const isJaSigo = await Fetch.getApi(url);
         setIsJaSigo(isJaSigo);
     }
 
     useEffect(() => {
-        if (token && item?.usuarioId) {
-            getIsJaSegue(token, item?.usuarioId);
+        if (item?.usuarioId) {
+            getIsJaSegue(item?.usuarioId);
         }
-    }, [token, item?.usuarioId])
+    }, [item?.usuarioId])
 
     async function handleSeguir(usuarioId: number) {
-        if (!token) {
+        if (!isAuth) {
             setIsModalAvisoLoginOpen(true);
             return false;
         }
@@ -59,7 +61,7 @@ export default function DivOwner({ item }: iParametros) {
         }
 
         const url = CONSTS_USUARIOS_SEGUIR.API_URL_POST_ADICIONAR;
-        const resposta = await Fetch.postApi(url, dto, token);
+        const resposta = await Fetch.postApi(url, dto);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             Aviso.warn('Houve um problema em seguir este usuário. Tente novamente mais tarde', 5000);
@@ -68,18 +70,18 @@ export default function DivOwner({ item }: iParametros) {
 
         nProgress.done();
         // Aviso.success(`Usuário <b>@${item?.usuarios?.nomeUsuarioSistema}</b> seguido com sucesso`, 5000);
-        getIsJaSegue(token, item?.usuarioId)
+        getIsJaSegue(item?.usuarioId)
     }
 
     async function handleDeixarDeSeguir(usuarioId: number) {
-        if (!token) {
+        if (!isAuth) {
             setIsModalAvisoLoginOpen(true);
             return false;
         }
 
         nProgress.start();
         const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_POST_DELETAR}/${usuarioId}`;
-        const resposta = await Fetch.postApi(url, null, token);
+        const resposta = await Fetch.postApi(url, null);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             Aviso.warn('Houve um problema em seguir este usuário. Tente novamente mais tarde', 5000);
@@ -88,7 +90,7 @@ export default function DivOwner({ item }: iParametros) {
 
         nProgress.done();
         // Aviso.success('Você deixou de seguir este usuário. Caso mude de ideia clique para segui-lo novamente', 5000);
-        getIsJaSegue(token, item?.usuarioId)
+        getIsJaSegue(item?.usuarioId)
     }
 
     return (

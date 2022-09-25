@@ -4,6 +4,7 @@ using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
 using GeekSpot.Utils.Entities;
+using System.Security.Claims;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Application.Services.Authentication
@@ -12,12 +13,14 @@ namespace GeekSpot.Application.Services.Authentication
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IMapper _map;
 
-        public AutenticarService(IJwtTokenGenerator jwtTokenGenerator, IUsuarioRepository usuarioRepository, IMapper map)
+        public AutenticarService(IJwtTokenGenerator jwtTokenGenerator, IUsuarioRepository usuarioRepository, IRefreshTokenRepository refreshTokenRepository, IMapper map)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _usuarioRepository = usuarioRepository;
+            _refreshTokenRepository = refreshTokenRepository;
             _map = map;
         }
 
@@ -50,7 +53,20 @@ namespace GeekSpot.Application.Services.Authentication
             var token = _jwtTokenGenerator.GerarToken(usuario);
             usuario.Token = token;
 
-            // #5 - Converter de UsuarioSenhaDTO para UsuarioDTO;
+            // #5 - Gerar refresh token;
+            var refreshToken = _jwtTokenGenerator.GerarRefreshToken();
+            usuario.RefreshToken = refreshToken;
+
+            RefreshTokenDTO novoRefreshToken = new()
+            {
+                RefToken = refreshToken,
+                UsuarioId = usuario.UsuarioId,
+                DataRegistro = HorarioBrasilia()
+            };
+
+            await _refreshTokenRepository.Adicionar(novoRefreshToken);
+
+            // #6 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);
 
             return usuarioDTO;
@@ -124,10 +140,23 @@ namespace GeekSpot.Application.Services.Authentication
             var token = _jwtTokenGenerator.GerarToken(novoUsuario);
             novoUsuario.Token = token;
 
-            // #7 - Converter de UsuarioSenhaDTO para UsuarioDTO;
+            // #7 - Gerar refresh token;
+            var refreshToken = _jwtTokenGenerator.GerarRefreshToken();
+            novoUsuario.RefreshToken = refreshToken;
+
+            RefreshTokenDTO novoRefreshToken = new()
+            {
+                RefToken = refreshToken,
+                UsuarioId = usuarioAdicionado.UsuarioId,
+                DataRegistro = HorarioBrasilia()
+            };
+
+            await _refreshTokenRepository.Adicionar(novoRefreshToken);
+
+            // #8 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(novoUsuario);
 
-            // #8 - Enviar e-mail de veririficação de conta;
+            // #9 - Enviar e-mail de veririficação de conta;
             try
             {
                 if (!String.IsNullOrEmpty(usuarioDTO?.Email) && !String.IsNullOrEmpty(usuarioDTO?.NomeCompleto) && !String.IsNullOrEmpty(codigoVerificacao))
@@ -141,6 +170,44 @@ namespace GeekSpot.Application.Services.Authentication
             }
 
             return usuarioDTO;
+        }
+
+        public async Task<UsuarioDTO> RefreshToken(string token, string refreshToken)
+        {
+            var principal = _jwtTokenGenerator.GetInfoTokenExpirado(token);
+            var claims = principal?.Claims;
+            string usuarioIdString = claims.Where(x => x.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).FirstOrDefault();
+            int usuarioId = Convert.ToInt32(usuarioIdString);
+
+            var refreshTokenSalvoAnteriormente = await _refreshTokenRepository.GetRefreshTokenByUsuarioId(usuarioId);
+
+            if (refreshTokenSalvoAnteriormente != refreshToken)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.RefreshTokenInvalido, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.RefreshTokenInvalido) };
+                return erro;
+            }
+
+            var novoToken = _jwtTokenGenerator.GerarToken(principal?.Claims);
+            var novoRefreshToken = _jwtTokenGenerator.GerarRefreshToken();
+
+            // Criar novo registro com o novo refresh token gerado;
+            RefreshTokenDTO novoRefreshTokenDTO = new()
+            {
+                RefToken = novoRefreshToken,
+                UsuarioId = usuarioId,
+                DataRegistro = HorarioBrasilia()
+            };
+
+            await _refreshTokenRepository.Adicionar(novoRefreshTokenDTO);
+
+            // Retornar o novo token e o novo refresh token;
+            UsuarioDTO dto = new()
+            {
+                Token = novoToken,
+                RefreshToken = novoRefreshToken
+            };
+
+            return dto;
         }
 
         public static async Task<bool> EnviarEmailVerificacaoConta(string emailTo, string nomeUsuario, string codigoVerificacao)

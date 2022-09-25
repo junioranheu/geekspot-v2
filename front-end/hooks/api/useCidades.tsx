@@ -10,7 +10,7 @@ export default function useCidades(estadoId: number, isFormatarDadosParaDropdown
     useEffect(() => {
         async function get(estadoId: number) {
             const url = `${CONSTS_SISTEMA.API_URL_GET_TODAS_CIDADES}/${estadoId}`;
-            const fetchDados = await Fetch.getApi(url, null);
+            const fetchDados = await Fetch.getApi(url);
             // console.log(fetchDados);
 
             if (isFormatarDadosParaDropdown) {

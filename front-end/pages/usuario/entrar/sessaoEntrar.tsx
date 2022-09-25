@@ -62,7 +62,7 @@ export default function SessaoEntrar() {
             senha: formData.senha
         };
 
-        const resposta = await Fetch.postApi(url, dto, null);
+        const resposta = await Fetch.postApi(url, dto);
         if (!resposta || resposta?.erro) {
             setModalAvisoLoginDescricao((resposta?.mensagemErro ? `Parece que ${resposta?.mensagemErro.toLowerCase()}. Tente novamente mais tarde` : 'Algo deu errado! Provavelmente o usuário e/ou a senha estão errados'));
             setIsModalAvisoLoginOpen(true);

@@ -16,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddApplication();
 
     // Técnica para adicionar as classes de GeekSpot.Infraestructure em uma classe centralizada: https://youtu.be/fhM0V2N1GpY?t=2149
-    builder.Services.AddInfraestructure(builder.Configuration);
+    builder.Services.AddInfraestructure(builder);
 
     // Filtro de erros;
     builder.Services.AddControllers(o => o.Filters.Add<ErrorHandlingFilterAttribute>());
@@ -67,29 +67,6 @@ var builder = WebApplication.CreateBuilder(args);
                 .AllowCredentials();
         })
     );
-
-    // Autenticação JWT para a API: https://balta.io/artigos/aspnet-5-autenticacao-autorizacao-bearer-jwt;
-    builder.Services.AddAuthentication(x =>
-    {
-        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(x =>
-    {
-        x.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
-        x.SaveToken = true;
-        x.IncludeErrorDetails = true;
-        x.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:Secret"])),
-            ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration["JwtSettings:Audience"],
-            ValidateLifetime = true
-        };
-    });
 
     // Adicionar comando "AddNewtonsoftJson" para ignorar "erros" de object cycle - https://stackoverflow.com/questions/59199593/net-core-3-0-possible-object-cycle-was-detected-which-is-not-supported;
     // E também formatar o resultado JSON retornado pelas APIs;

@@ -1,5 +1,6 @@
 ﻿using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekSpot.API.Controllers
@@ -30,6 +31,7 @@ namespace GeekSpot.API.Controllers
         }
 
         [HttpGet("listaDataAtual")]
+        [Authorize]
         public List<DateTime> GetListaDataAtual()
         {
             var lista = _sistemaRepository.GetListaDataAtual();

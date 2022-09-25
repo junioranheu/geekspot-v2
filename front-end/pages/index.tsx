@@ -91,13 +91,13 @@ export async function getStaticProps() {
 
     // Pegar todos os usuários;
     const urlUsuarios = CONSTS_USUARIOS.API_URL_GET_TODOS;
-    const listaUsuarios = await Fetch.getApi(urlUsuarios, null) as iUsuario[];
+    const listaUsuarios = await Fetch.getApi(urlUsuarios) as iUsuario[];
 
     if (listaUsuarios) {
         for (const u of listaUsuarios) {
             // Encontrar os itens com base no usuário;
             const urlItens = `${CONSTS_ITENS.API_URL_GET_BY_USUARIO_ID}/${u?.usuarioId}`;
-            const itens = await Fetch.getApi(urlItens, null) as iItem[];
+            const itens = await Fetch.getApi(urlItens) as iItem[];
 
             if (itens?.length) {
                 listaItens.push(itens);

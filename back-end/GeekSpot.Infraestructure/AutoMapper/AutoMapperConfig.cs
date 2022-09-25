@@ -8,6 +8,9 @@ namespace GeekSpot.Infraestructure.AutoMapper
     {
         public AutoMapperConfig()
         {
+            // Outros; 
+            CreateMap<RefreshToken, RefreshTokenDTO>().ReverseMap();
+
             // Usuário e afins;
             CreateMap<UsuarioTipo, UsuarioTipoDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();

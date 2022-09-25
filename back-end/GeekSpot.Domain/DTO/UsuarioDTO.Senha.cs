@@ -13,6 +13,7 @@ namespace GeekSpot.Domain.DTO
         public string? NomeUsuarioSistema { get; set; } = null;
         public string? Senha { get; set; } = null;
         public string? Token { get; set; } = null;
+        public string? RefreshToken { get; set; } = null;
         public int UsuarioTipoId { get; set; }
         public string? Foto { get; set; } = null;
         public DateTime DataRegistro { get; set; } = HorarioBrasilia();

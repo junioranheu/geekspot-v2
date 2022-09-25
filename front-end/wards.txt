@@ -2,7 +2,16 @@ https://www.enjoei.com.br/
 
 --
 
+NO TRY CATCH DO POST E DO GET NO FRONT FAZER UMA CHAMADA PRO ENDPOINT DE REFRESH TOKEN DO BACKEND
+APAGAR AS MERDAS DE COOKIES DO BACKEND
+GG
+
+--
+
+
 refresh token
+
+usar types no login e criar conta (localstorage)
 
 criar endpoint de get para só o dono do perfil
 criar tela para editar perfil

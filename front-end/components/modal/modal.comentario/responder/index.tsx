@@ -1,10 +1,10 @@
 import nProgress from 'nprogress';
-import { Dispatch, useEffect, useRef, useState } from 'react';
+import { Dispatch, useContext, useEffect, useRef, useState } from 'react';
 import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_COMENTARIOS from '../../../../utils/consts/data/constComentarios';
 import COMENTARIOS from '../../../../utils/consts/outros/comentarios';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
-import { Auth } from '../../../../utils/context/usuarioContext';
+import { UsuarioContext } from '../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../utils/outros/aviso';
 import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
 import Textarea from '../../../outros/textarea';
@@ -20,7 +20,8 @@ interface iParametros {
 
 export default function ModalResponderComentario({ handleModal, dados, itemId, getComentarios }: iParametros) {
 
-    const token = Auth?.get()?.token ?? '';
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
+    const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
     const refTextarea = useRef<any>(null);
     const refBtn = useRef<any>(null);
@@ -44,7 +45,7 @@ export default function ModalResponderComentario({ handleModal, dados, itemId, g
     }, []);
 
     async function handleEnviar() {
-        if (!token) {
+        if (!isAuth) {
             Aviso.warn('Parece que você não está autenticado. Tente novamente mais tarde', 5000);
             return false;
         }
@@ -71,7 +72,7 @@ export default function ModalResponderComentario({ handleModal, dados, itemId, g
             dataResposta: horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
         };
 
-        const resposta = await Fetch.putApi(url, dto, token);
+        const resposta = await Fetch.putApi(url, dto);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             setTexto('');

@@ -4,7 +4,7 @@ namespace GeekSpot.Domain.Enums
 {
     public enum CodigoErrosEnum
     {
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 100 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 100 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         [Description("Já existe outro usuário cadastrado com este e-mail ou nome de usuário")]
         UsuarioExistente = 101,
 
@@ -32,33 +32,36 @@ namespace GeekSpot.Domain.Enums
         [Description("Este usuário não foi encontrado")]
         UsuarioNaoEncontrado = 109,
 
-        [Description("Não autorizado")]
-        NaoAutorizado = 110,
-
         [Description("Este código de verificação é inválido")]
-        CodigoVerificacaoInvalido = 111,
+        CodigoVerificacaoInvalido = 110,
 
         [Description("Este código de verificação está expirado")]
-        CodigoVerificacaoExpirado = 112,
+        CodigoVerificacaoExpirado = 111,
 
         [Description("Esta conta já se encontra verificada portanto não é possível verificá-la novamente")]
-        ContaJaVerificada = 113,
+        ContaJaVerificada = 112,
 
         [Description("Esta conta ainda não foi verificada. Um novo e-mail foi enviado para você. Verifique-a e tente novamente mais tarde")]
-        ContaNaoVerificadaMasNovoEmailVerificacaoEnviado = 114,
+        ContaNaoVerificadaMasNovoEmailVerificacaoEnviado = 113,
 
         [Description("Esta conta ainda não foi verificada. Além disso, houve um erro ao enviar um novo e-mail de vericação. Tente novamente mais tarde")]
-        ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao = 115,
+        ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao = 114,
 
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        [Description("Não autorizado")]
+        NaoAutorizado = 403,
+
         [Description("Dado não encontrado")]
         NaoEncontrado = 404,
 
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 500 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        [Description("Refresh token inválido")]
+        RefreshTokenInvalido = 411,
+
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 600 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         [Description("Este usuário já está sendo seguido por você")]
-        UsuarioJaSegue = 510,
+        UsuarioJaSegue = 610,
 
         [Description("Esse usuário não existe, portanto não é possível realizar essa ação")]
-        UsuarioNaoExiste = 511,
+        UsuarioNaoExiste = 611,
     }
 }
