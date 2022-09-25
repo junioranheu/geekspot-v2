@@ -37,8 +37,12 @@ namespace GeekSpot.Infraestructure.Authentication
                 }
             );
 
-            // DateTime horarioBrasiliaJWT = Debugger.IsAttached ? HorarioBrasilia().AddHours(-3) : HorarioBrasilia();
-            DateTime horarioBrasiliaJWT = HorarioBrasilia();
+            // Ajustar a hora. Produção: +3 horas, Dev: normal;
+            DateTime horarioBrasiliaJWT = HorarioBrasilia().AddHours(+3);
+
+#if DEBUG
+            horarioBrasiliaJWT = HorarioBrasilia();
+#endif
 
             SecurityTokenDescriptor tokenDescriptor = new()
             {
@@ -66,8 +70,12 @@ namespace GeekSpot.Infraestructure.Authentication
                 algorithm: SecurityAlgorithms.HmacSha256Signature
             );
 
-            // DateTime horarioBrasiliaJWT = Debugger.IsAttached ? HorarioBrasilia().AddHours(-3) : HorarioBrasilia();
-            DateTime horarioBrasiliaJWT = HorarioBrasilia();
+            // Ajustar a hora. Produção: +3 horas, Dev: normal;
+            DateTime horarioBrasiliaJWT = HorarioBrasilia().AddHours(+3);
+
+#if DEBUG
+            horarioBrasiliaJWT = HorarioBrasilia();
+#endif
 
             SecurityTokenDescriptor tokenDescriptor = new()
             {
