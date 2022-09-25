@@ -175,9 +175,7 @@ namespace GeekSpot.Application.Services.Authentication
         public async Task<UsuarioDTO> RefreshToken(string token, string refreshToken)
         {
             var principal = _jwtTokenGenerator.GetInfoTokenExpirado(token);
-            var claims = principal?.Claims;
-            string usuarioIdString = claims.Where(x => x.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).FirstOrDefault();
-            int usuarioId = Convert.ToInt32(usuarioIdString);
+            int usuarioId = Convert.ToInt32(principal?.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).FirstOrDefault());
 
             var refreshTokenSalvoAnteriormente = await _refreshTokenRepository.GetRefreshTokenByUsuarioId(usuarioId);
 

@@ -37,8 +37,13 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<string>? GetRefreshTokenByUsuarioId(int usuarioId)
         {
-            var byId = await _context.RefreshTokens.Where(u => u.UsuarioId == usuarioId).AsNoTracking().FirstOrDefaultAsync();
-            return byId.RefToken;
+            var byId = await _context.RefreshTokens.
+                       Include(u => u.Usuarios).
+                       Where(r => r.UsuarioId == usuarioId && r.Usuarios.IsAtivo == true).
+                       AsNoTracking().FirstOrDefaultAsync();
+
+            string refreshToken = byId?.RefToken ?? "";
+            return refreshToken;
         }
     }
 }
