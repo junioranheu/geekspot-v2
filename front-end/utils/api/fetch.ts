@@ -150,22 +150,27 @@ export const Fetch = {
                 refreshToken: (Auth?.get()?.refreshToken ?? '')
             };
 
+            // Fazer requisição para o end-point de refresh token
             const respostaRefreshToken = await Fetch.postApi(urlRefreshToken, dto);
             if (!respostaRefreshToken || respostaRefreshToken?.erro) {
                 console.log(respostaRefreshToken?.mensagemErro ?? 'Houve um erro ao gerar o refresh token');
                 return false;
             }
 
+            // Atualizar dados no local storage;
             const dadosUsuario = {
                 token: respostaRefreshToken.token,
                 refreshToken: respostaRefreshToken.refreshToken
             };
 
             Auth.update(dadosUsuario);
-            // console.log('Refresh token atualizado');
-            // Aviso.success('Refresh token atualizado', 5000);
 
-            // Tentar novamente a chamada com o novo token;
+            if (process.env.NODE_ENV === 'development') {
+                console.log('Refresh token atualizado');
+                Aviso.success('Refresh token atualizado', 5000);
+            }
+
+            // Tentar novamente a chamada para o end-point requisitado, mas agora com o novo token;
             let respostaJson;
 
             if (url) {
