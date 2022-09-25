@@ -13,15 +13,6 @@ export default async function verificarTokenValido(isAuth: boolean | undefined) 
         const dataExpiracaoToken = moment(getJWTExpireDate(token));
         const horaAgora = moment(horarioBrasilia());
 
-        const info = {
-            'Token': token,
-            'Data atual': horaAgora.format('YYYY-MM-DD HH:mm:ss'),
-            'Data de expiração do token': dataExpiracaoToken.format('YYYY-MM-DD HH:mm:ss'),
-            'Horas até a expiração': converterTempoDecimalEmFormatoPadrao(diferencaDatasEmHoras(dataExpiracaoToken, horaAgora), TIPOS_DURACAO_MOMENT.HORAS)
-        }
-
-        console.table(info);
-
         if (process.env.NODE_ENV === 'development') {
             try {
                 const info = {
