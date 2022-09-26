@@ -15,22 +15,27 @@
         font-size: 14px;
         font-weight: 500;
         color: #FFFFFF;
+    }
 
-        &:nth-child(2) {
-            opacity: 0.8;
-        }
+    .saibaMais {
+        margin: 0 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        &:nth-child(3) {
-            margin: 0 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            svg {
-                margin-top: 2.5px;
-            }
+        svg {
+            margin-top: 2.5px;
         }
     }
+
+    .separadorEspecial {
+        display: inline-block;
+        vertical-align: middle;
+        width: 1px;
+        height: 2rem;
+        background: var(--cor-border-hr);
+        margin: 0 5px;
+    }    
 
     .nomeSistema {
         font-size: 14px;
