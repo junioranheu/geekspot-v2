@@ -2,7 +2,6 @@ https://www.enjoei.com.br/
 
 --
 
-refresh token: criar um isAtivo pro refresh token
 verificar por que buga quando tenta no pc e celular ao msm tempo
 
 usar types no login e criar conta (localstorage)

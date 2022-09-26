@@ -154,6 +154,7 @@ export const Fetch = {
             const respostaRefreshToken = await Fetch.postApi(urlRefreshToken, dto);
             if (!respostaRefreshToken || respostaRefreshToken?.erro) {
                 console.log(respostaRefreshToken?.mensagemErro ?? 'Houve um erro ao gerar o refresh token');
+                Fetch.deslogarUsuario();
                 return false;
             }
 
@@ -183,20 +184,21 @@ export const Fetch = {
                         respostaJson = await Fetch.putApi(url, body, false);
                     }
                 } catch (error) {
-                    nProgress.start();
-                    Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
-
-                    // Deslogar;
-                    Auth.delete();
-                    Router.push('/usuario/entrar');
-                    nProgress.done();
-
-                    location.reload();
+                    Fetch.deslogarUsuario();
                     return false;
                 }
             }
 
             return respostaJson;
         }
+    },
+
+    deslogarUsuario() {
+        nProgress.start();
+        Auth.delete(); 
+        Router.push('/usuario/entrar');
+        nProgress.done();
+        location.reload();
+        Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
     }
 }

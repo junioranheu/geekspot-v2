@@ -37,6 +37,7 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<string>? GetRefreshTokenByUsuarioId(int usuarioId)
         {
+            // Verificar o refresh token com base no id do usuário e se o usuário de fato está ativo, para ajudar numa possível "black-list";
             var byId = await _context.RefreshTokens.
                        Include(u => u.Usuarios).
                        Where(r => r.UsuarioId == usuarioId && r.Usuarios.IsAtivo == true).
