@@ -6,11 +6,11 @@ import Styles from './navbar.small.module.scss';
 export default function NavbarSmall() {
     return (
         <nav className={Styles.navbar}>
-            <span>{CONSTS_SISTEMA.NOME_SISTEMA} — {CONSTS_SISTEMA.SLOGAN}</span>
+            <span><span className={`${Styles.nomeSistema} cor-verde-hover`}>{CONSTS_SISTEMA.NOME_SISTEMA}</span> — {CONSTS_SISTEMA.SLOGAN}</span>
 
             <span>{EmojiAleatorio()}</span>
 
-            <span className={`${Styles.inverterCorHover} pointer`} onClick={() => { window.open('https://github.com/junioranheu', '_blank'); }}>
+            <span className='cor-verde-hover pointer' onClick={() => { window.open('https://github.com/junioranheu', '_blank'); }}>
                 Saiba mais <Seta width='1rem' />
             </span>
         </nav>

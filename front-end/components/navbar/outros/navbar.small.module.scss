@@ -10,16 +10,6 @@
     justify-content: center;
     align-items: center;
 
-    .inverterCorHover {
-        transition: .2s ease-in-out;
-
-        &:hover {
-            color: var(--preto) !important;
-            opacity: 1 !important;
-            transition: .2s ease-in-out;
-        }
-    }
-
     span {
         margin: 0 2px;
         font-size: 14px;
@@ -40,6 +30,11 @@
                 margin-top: 2.5px;
             }
         }
+    }
+
+    .nomeSistema {
+        font-size: 14px;
+        font-weight: 600;
     }
 }
 
