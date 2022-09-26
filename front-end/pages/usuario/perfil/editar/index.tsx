@@ -12,7 +12,7 @@ import iUsuario from '../../../../utils/types/usuario';
 export default function Index() {
 
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
-
+ 
     const [usuario, setUsuario] = useState<iUsuario>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function Index() {
             <div className='centralizarTexto'>
                 <span className='titulo'>Configurações {usuario?.nomeCompleto}</span>
             </div>
-
+ 
             <div className='margem2'>
                 Teste
             </div>

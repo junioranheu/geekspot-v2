@@ -10,7 +10,7 @@ export default function NavbarSmall() {
 
             <span>{EmojiAleatorio()}</span>
 
-            <span className='pointer cor-principal-hover' onClick={() => { window.open('https://github.com/junioranheu', '_blank'); }}>
+            <span className={`${Styles.inverterCorHover} pointer`} onClick={() => { window.open('https://github.com/junioranheu', '_blank'); }}>
                 Saiba mais <Seta width='1rem' />
             </span>
         </nav>
