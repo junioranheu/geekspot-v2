@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import CONSTS_AUTENTICAR from '../../utils/consts/data/constAutenticar';
+import CONSTS_SISTEMA from '../consts/outros/sistema';
 import { Auth } from '../context/usuarioContext';
 import { Aviso } from '../outros/aviso';
 import numeroAleatorio from '../outros/gerarNumeroAleatorio';
@@ -195,13 +196,26 @@ export const Fetch = {
 
     deslogarUsuario() {
         nProgress.start();
-        Auth.delete();
-        Router.push('/usuario/entrar');
-        nProgress.done();
-        // Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
-        
+
         setTimeout(function () {
-            location.reload();
+            const segundosParaEncerrarSessao = numeroAleatorio(3000, 5000);
+
+            const botoes = document.querySelectorAll('button');
+            botoes.forEach((botao) => {
+                botao.setAttribute('disabled', 'true');
+            });
+
+            Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, segundosParaEncerrarSessao);
+
+            setTimeout(function () {
+                Auth.delete();
+                Router.push('/usuario/entrar');
+                nProgress.done();
+
+                setTimeout(function () {   
+                    location.reload();
+                }, numeroAleatorio(500, 1000));
+            }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
         }, numeroAleatorio(500, 1000));
     }
 }
