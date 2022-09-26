@@ -1,9 +1,9 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import CONSTS_AUTENTICAR from '../../utils/consts/data/constAutenticar';
-import CONSTS_SISTEMA from '../consts/outros/sistema';
 import { Auth } from '../context/usuarioContext';
 import { Aviso } from '../outros/aviso';
+import numeroAleatorio from '../outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../outros/horarioBrasilia';
 
 export const Fetch = {
@@ -195,10 +195,13 @@ export const Fetch = {
 
     deslogarUsuario() {
         nProgress.start();
-        Auth.delete(); 
+        Auth.delete();
         Router.push('/usuario/entrar');
         nProgress.done();
-        location.reload();
-        Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
+        // Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, 15000);
+        
+        setTimeout(function () {
+            location.reload();
+        }, numeroAleatorio(500, 1000));
     }
 }
