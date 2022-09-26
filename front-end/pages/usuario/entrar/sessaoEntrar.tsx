@@ -16,6 +16,7 @@ import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
 import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRandom';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
+import iUsuario from '../../../utils/types/usuario';
 
 interface iFormData {
     usuario: string;
@@ -62,7 +63,7 @@ export default function SessaoEntrar() {
             senha: formData.senha
         };
 
-        const resposta = await Fetch.postApi(url, dto);
+        const resposta = await Fetch.postApi(url, dto) as iUsuario;
         if (!resposta || resposta?.erro) {
             setModalAvisoLoginDescricao((resposta?.mensagemErro ? `Parece que ${resposta?.mensagemErro.toLowerCase()}. Tente novamente mais tarde` : 'Algo deu errado! Provavelmente o usuário e/ou a senha estão errados'));
             setIsModalAvisoLoginOpen(true);

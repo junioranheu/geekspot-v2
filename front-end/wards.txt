@@ -2,8 +2,6 @@ https://www.enjoei.com.br/
 
 --
 
-usar types no login e criar conta (localstorage)
-
 criar endpoint de get para só o dono do perfil
 criar tela para editar perfil
 

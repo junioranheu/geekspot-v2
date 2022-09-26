@@ -19,6 +19,7 @@ import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
 import padronizarNomeCompletoUsuario from '../../../utils/outros/padronizarNomeCompletoUsuario';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
 import verificarDadosCriarConta from '../../../utils/outros/verificarDadosCriarConta';
+import iUsuario from '../../../utils/types/usuario';
 
 interface iFormData {
     nomeCompleto: string,
@@ -100,7 +101,7 @@ export default function SessaoCriarConta() {
             IsVerificado: false
         };
 
-        const resposta = await Fetch.postApi(url, dto);
+        const resposta = await Fetch.postApi(url, dto) as iUsuario;
         if (!resposta || resposta?.erro) {
             nProgress.done();
             refEmail.current.select();
