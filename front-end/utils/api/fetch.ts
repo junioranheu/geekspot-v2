@@ -209,11 +209,11 @@ export const Fetch = {
             Auth.delete();
 
             setTimeout(function () {
-                Router.push('/usuario/entrar');
                 nProgress.done();
+                location.reload();
 
-                setTimeout(function () {   
-                    location.reload();
+                setTimeout(function () {
+                    Router.push('/usuario/entrar');
                 }, numeroAleatorio(500, 1000));
             }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
         }, numeroAleatorio(500, 1000));
