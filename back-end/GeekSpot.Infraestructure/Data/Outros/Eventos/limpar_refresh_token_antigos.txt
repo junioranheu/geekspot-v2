@@ -1,0 +1,1 @@
+DROP EVENT IF EXISTS `limpar_refresh_token_antigos`; CREATE DEFINER=`geekspot`@`%` EVENT `limpar_refresh_token_antigos` ON SCHEDULE EVERY 1 DAY STARTS '2022-09-26 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Limpar reg. da tbl. RefreshTokens > 744 horas (31 dias)' DO DELETE FROM RefreshTokens WHERE (TIME_TO_SEC(TIMEDIFF(NOW(), DataRegistro )) / 3600) >= 744;

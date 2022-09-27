@@ -206,9 +206,9 @@ export const Fetch = {
             });
 
             Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, segundosParaEncerrarSessao);
+            Auth.delete();
 
             setTimeout(function () {
-                Auth.delete();
                 Router.push('/usuario/entrar');
                 nProgress.done();
 
