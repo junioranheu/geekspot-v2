@@ -12,7 +12,7 @@ export default function NavbarSmall() {
 
             <span>{EmojiAleatorio()}</span>
 
-            {/* <span className={Styles.separadorEspecial}></span> */}
+            <span className={Styles.separadorEspecial}></span>
 
             <span className={`${Styles.saibaMais} cor-verde-hover pointer`} onClick={() => { window.open('https://github.com/junioranheu', '_blank'); }}>
                 Saiba mais <Seta width='1rem' />
