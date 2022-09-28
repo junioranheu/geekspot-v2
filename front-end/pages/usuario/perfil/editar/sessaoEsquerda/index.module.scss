@@ -11,29 +11,33 @@
         background-repeat: no-repeat;
         background-position: center top;
         background-size: 100% 50%;
-     
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
         .fotoPerfil {
             // background-color: red;
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            margin: 1.5rem 0rem;  
 
+            margin: 1.5rem 0rem;
+     
             img {
                 border-radius: 50%;
+                border: 2px solid var(--bege) !important;
             }
         }
     }
 
-    .conteudo{
-        background-color: coral;
+    .infosImportantes {
+        // background-color: coral;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
 
-        padding: 1rem;
+        padding: 0rem 1rem 1rem 1rem;
+        margin-top: -0.5rem;
     }
 }
 

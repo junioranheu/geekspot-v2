@@ -2,6 +2,20 @@
     // background-color: pink;
     display: flex;
     gap: 1rem;
+
+    .titulo {
+        color: var(--preto);
+        font-weight: 600;
+        font-size: 1.25rem;
+        line-height: 2rem;
+    }
+
+    .texto {
+        color: var(--preto);
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1rem;
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */

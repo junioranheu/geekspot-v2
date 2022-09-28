@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import Botao from '../../../../../components/outros/botao';
 import ImgCinza from '../../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Auth } from '../../../../../utils/context/usuarioContext';
 import formatarData from '../../../../../utils/outros/formatarData';
 import iUsuario from '../../../../../utils/types/usuario';
+import StylesTexto from '../index.module.scss';
 import Styles from './index.module.scss';
 
 interface iParametros {
@@ -13,6 +15,8 @@ interface iParametros {
 
 export default function SessaoEsquerda({ usuario }: iParametros) {
 
+    const idUsuario = Auth?.get()?.usuarioId ?? 0;
+    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     console.log(usuario);
 
     return (
@@ -26,10 +30,15 @@ export default function SessaoEsquerda({ usuario }: iParametros) {
                 </div>
             </div>
 
-            <div className={Styles.conteudo}>
-                <span>@{usuario?.nomeUsuarioSistema}</span>
-                <span>{usuario?.nomeCompleto}</span>
-                <span>{usuario?.dataRegistro && `No ${CONSTS_SISTEMA.NOME_SISTEMA} desde ${formatarData(usuario?.dataRegistro, 3)}`}</span>
+            <div className={Styles.infosImportantes}>
+                <span className={StylesTexto.titulo}>@{usuario?.nomeUsuarioSistema}</span>
+                <span className={StylesTexto.texto}>{usuario?.dataRegistro && `No ${CONSTS_SISTEMA.NOME_SISTEMA} desde ${formatarData(usuario?.dataRegistro, 3)}`}</span>
+
+                <div className='margem1'>
+                    <Botao texto='Meu perfil' url={`/usuario/perfil/${idUsuario}/@${nomeUsuario}`} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                </div>
+
+                <span className='separadorHorizontal'></span>
             </div>
         </div>
     )

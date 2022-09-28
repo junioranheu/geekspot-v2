@@ -22,7 +22,7 @@ interface iParametros {
 export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
 
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
-    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
+    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     const emoji = useEmoji();
 
     function abrirMenuUsuario() {
