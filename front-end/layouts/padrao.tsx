@@ -23,13 +23,13 @@ export default function Padrao({ Component, pageProps }: any) {
     // Renovar animação a cada mudança de URL (router.asPath);
     const [efeitoAnimar, setEfeitoAnimar] = useState('');
     useEffect(() => {
-        setEfeitoAnimar('animate__animated animate__fadeIn delay03');
+        setEfeitoAnimar('animate__animated animate__fadeIn animate__delay03');
 
         setTimeout(function () {
             setEfeitoAnimar('');
         }, 1000);
     }, [router.asPath]);
-
+ 
     return (
         <section className='main semHighlight'>
             <NavbarSmall />
