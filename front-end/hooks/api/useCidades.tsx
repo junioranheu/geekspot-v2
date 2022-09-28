@@ -23,7 +23,7 @@ export default function useCidades(estadoId: number, isFormatarDadosParaDropdown
         if (estadoId) {
             get(estadoId);
         }
-    }, [])
+    }, []);
 
     return dados;
 }

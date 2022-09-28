@@ -20,7 +20,7 @@ export default function useItensTipos(isFormatarDadosParaDropdown: boolean) {
         }
 
         get();
-    }, [])
+    }, []);
 
     return dados;
 }

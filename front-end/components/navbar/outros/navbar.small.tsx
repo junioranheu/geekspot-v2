@@ -1,16 +1,12 @@
-import { useEffect, useState } from 'react';
+import useEmoji from '../../../hooks/outros/useEmoji';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
-import EmojiAleatorio from '../../../utils/outros/emojiAleatorio';
 import Seta from '../../svg/seta';
 import Styles from './navbar.small.module.scss';
 
 export default function NavbarSmall() {
 
-    const [emoji, setEmoji] = useState('');
-    useEffect(() => {
-        setEmoji(EmojiAleatorio());
-    }, []);
-
+    const emoji = useEmoji();
+    
     return (
         <nav className={Styles.navbar}>
             <span>

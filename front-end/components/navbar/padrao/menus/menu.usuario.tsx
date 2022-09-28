@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Dispatch, Fragment } from 'react';
+import useEmoji from '../../../../hooks/outros/useEmoji';
 import { Auth } from '../../../../utils/context/usuarioContext';
-import emojiAleatorio from '../../../../utils/outros/emojiAleatorio';
 import fotoPerfil from '../../../../utils/outros/fotoPerfil';
 import Botao from '../../../outros/botao';
 import Ajuda from '../../../svg/ajuda';
@@ -23,6 +23,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
 
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? 'usuário';
+    const emoji = useEmoji();
 
     function abrirMenuUsuario() {
         setIsExibirMenuUsuario(true);
@@ -38,7 +39,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
                     isExibirMenuUsuario && (
                         <div className={Styles.divPainel}>
                             <div className={`${Styles.wrapperDivPainel} animate__animated animate__fadeInUp animate__faster`}>
-                                <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emojiAleatorio()}</b>
+                                <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emoji}</b>
 
                                 <div className={`${Styles.divItens} margem1`}>
                                     <Botao texto='Meu perfil' url={`/usuario/perfil/${idUsuario}/@${nomeUsuario}`} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />

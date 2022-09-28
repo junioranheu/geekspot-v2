@@ -20,7 +20,7 @@ export default function useEstados(isFormatarDadosParaDropdown: boolean) {
         }
 
         get();
-    }, [])
+    }, []);
 
     return dados;
 }
