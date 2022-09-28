@@ -76,7 +76,7 @@ $altura-navbar: 70px;
 }
 
 .sessaoBotoes {
-    /* background-color: red; */
+    //  background-color: red; 
     display: flex;
     flex-direction: column;
     row-gap: 0.8rem;
@@ -87,6 +87,7 @@ $altura-navbar: 70px;
             width: 100%;
             background: var(--branco);
             color: var(--preto);
+            border: 1px solid #c5b1f1;
         }
     }
 

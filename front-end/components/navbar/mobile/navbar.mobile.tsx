@@ -88,7 +88,7 @@ export default function NavbarMobile({ auth, isAuth, setIsAuth }: iParametros) {
                                 <div className={Styles.botaoCriarConta}>
                                     <Botao texto='Crie sua conta' url='/usuario/criar-conta' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                 </div>
-
+ 
                                 <div className={Styles.botaoPadrao}>
                                     <Botao texto='Entrar agora' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                 </div>
