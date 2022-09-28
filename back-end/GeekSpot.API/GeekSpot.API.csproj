@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 		<Folder Include="Upload\itens\imagem\" />
+		<Folder Include="Upload\usuarios\lojinha\imagem\" />
 	</ItemGroup>
 
 	<!-- https://stackoverflow.com/questions/32754616/how-to-change-the-properties-of-all-the-files-of-a-folder-to-copy-always-autom -->

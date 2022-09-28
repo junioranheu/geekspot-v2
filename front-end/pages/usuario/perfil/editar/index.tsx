@@ -8,11 +8,12 @@ import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import { Auth } from '../../../../utils/context/usuarioContext';
 import paginaCarregada from '../../../../utils/outros/paginaCarregada';
 import iUsuario from '../../../../utils/types/usuario';
+import Styles from './index.module.scss';
 
 export default function Index() {
 
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
- 
+
     const [usuario, setUsuario] = useState<iUsuario>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -49,12 +50,14 @@ export default function Index() {
 
     return (
         <section className='flexColumn paddingPadrao margem3'>
-            <div className='centralizarTexto'>
-                <span className='titulo'>Configurações {usuario?.nomeCompleto}</span>
-            </div>
- 
-            <div className='margem2'>
-                Teste
+            <div className={Styles.main}>
+                <div className={Styles.sessaoEsquerda}>
+                    <h1>1</h1>
+                </div>
+
+                <div className={Styles.sessaoDireita}>
+                    <h1>2</h1>
+                </div>
             </div>
 
             {/* Espaço a mais */}

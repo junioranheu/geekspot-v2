@@ -1,5 +1,6 @@
 ﻿using GeekSpot.Application.Common.Interfaces.Authentication;
 using GeekSpot.Domain.DTO;
+using GeekSpot.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using static GeekSpot.Utils.Biblioteca;
 
@@ -35,7 +36,7 @@ namespace GeekSpot.API.Controllers
                 if (!String.IsNullOrEmpty(dto.Foto))
                 {
                     var file = Base64ToImage(dto.Foto);
-                    UparImagem(file, authResultado.UsuarioId.ToString(), "usuarios/imagem", dto.Foto, _webHostEnvironment);
+                    UparImagem(file, authResultado.UsuarioId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.FotoPerfilUsuario), dto.Foto, _webHostEnvironment);
                 }
             }
             catch (Exception)

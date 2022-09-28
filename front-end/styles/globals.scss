@@ -335,20 +335,20 @@ select {
 /* =-=-=-=-=-=-=-=-=-=-= nProgress =-=-=-=-=-=-=-=-=-=-= */
 #nprogress {
     .bar {
-        background: var(--cor-principal) !important;
+        background: var(--cor-principal-escura) !important;
         height: 3px !important;
         box-shadow: none !important;
     }
 
     .peg {
-        box-shadow: 0 0 10px var(--cor-principal), 0 0 5px var(--cor-principal) !important;
+        box-shadow: 0 0 10px var(--cor-principal-escura), 0 0 5px var(--cor-principal-escura) !important;
         box-shadow: none !important;
         height: 3px !important;
     }
 
     .spinner-icon {
-        border-top-color: var(--cor-principal) !important;
-        border-left-color: var(--cor-principal) !important
+        border-top-color: var(--cor-principal-escura) !important;
+        border-left-color: var(--cor-principal-escura) !important;
     }
 }
 
