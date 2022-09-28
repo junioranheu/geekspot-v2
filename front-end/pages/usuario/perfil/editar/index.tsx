@@ -9,6 +9,8 @@ import { Auth } from '../../../../utils/context/usuarioContext';
 import paginaCarregada from '../../../../utils/outros/paginaCarregada';
 import iUsuario from '../../../../utils/types/usuario';
 import Styles from './index.module.scss';
+import SessaoDireita from './sessaoDireita';
+import SessaoEsquerda from './sessaoEsquerda';
 
 export default function Index() {
 
@@ -51,13 +53,8 @@ export default function Index() {
     return (
         <section className='flexColumn paddingPadrao margem3'>
             <div className={Styles.main}>
-                <div className={Styles.sessaoEsquerda}>
-                    <h1>1</h1>
-                </div>
-
-                <div className={Styles.sessaoDireita}>
-                    <h1>2</h1>
-                </div>
+                <SessaoEsquerda usuario={usuario} />
+                <SessaoDireita />
             </div>
 
             {/* Espaço a mais */}

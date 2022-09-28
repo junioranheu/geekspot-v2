@@ -28,7 +28,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
         setIsExibirMenuUsuario(true);
         debounceFecharMenuUsuario.cancel();
     }
-
+ 
     return (
         <Fragment>
             <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
