@@ -34,7 +34,7 @@ export default function Cep({ precoProduto }: iParametros) {
             setData(cepAuth?.toString());
             setIsCepOk(true);
         }
-    }, [cepAuth])
+    }, [cepAuth]);
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const re = /^[0-9\b]+$/;

@@ -42,7 +42,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
         if (itemId) {
             getComentarios(itemId);
         }
-    }, [itemId])
+    }, [itemId]);
 
     async function handleEnviar() {
         if (!isAuth) {

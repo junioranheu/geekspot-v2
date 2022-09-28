@@ -37,7 +37,7 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
             document.getElementsByTagName('footer')[0]?.classList.remove('backgroundBlur');
             document.body.style.overflow = 'auto';
         }
-    }, [isExibirMenuProdutos])
+    }, [isExibirMenuProdutos]);
 
     return (
         <Fragment>

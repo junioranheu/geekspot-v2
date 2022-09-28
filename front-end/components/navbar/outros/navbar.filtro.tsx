@@ -17,7 +17,7 @@ export default function NavbarFiltro() {
         }, 100);
 
         return () => clearInterval(interval);
-    }, [tw])
+    }, [tw]);
 
     const [isDivPesquisaFullWidth, setIsDivPesquisaFullWidth] = useState('');
     function handleEnter() {
@@ -41,7 +41,7 @@ export default function NavbarFiltro() {
 
         const listaRandom = randomizarArray(lista);
         setListaOpcoes(listaRandom);
-    }, [])
+    }, []);
 
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {

@@ -38,7 +38,7 @@ export default function Textarea({
         if (texto === '') {
             setQtdCaracteresRestantes(max);
         }
-    }, [texto, max])
+    }, [texto, max]);
 
     return (
         <div className={Styles.textarea}>
