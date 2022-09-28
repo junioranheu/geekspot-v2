@@ -7,10 +7,12 @@ export default interface iUsuarioInformacoes {
     cep: string | null;
     numeroResidencia: string | null;
     referenciaLocal: string | null;
-    tituloLojinha: string | null;
-    descricaoLojinha: string | null;
-    qtdEstrelas: number | null;
+    lojinhaTitulo: string | null;
+    lojinhaDescricao: string | null;
+    lojinhaImagemCapa: string | null;
+    lojinhaQtdEstrelas: number | null;
     dataUltimaAlteracao: Date | null;
+
     erro: boolean;
     codigoErro: number | null;
     mensagemErro: string | null;

@@ -1,6 +1,40 @@
 .sessaoEsquerda {
-    background-color: coral;
+    background-color: var(--branco);
+    display: flex;
+    flex-direction: column;
+
     width: 25%;
+    border-radius: 5px;
+
+    .divCapaLojinha {
+        // background-color: blue;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 100% 50%;
+     
+        .fotoPerfil {
+            // background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            margin: 1.5rem 0rem;  
+
+            img {
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .conteudo{
+        background-color: coral;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 1rem;
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */

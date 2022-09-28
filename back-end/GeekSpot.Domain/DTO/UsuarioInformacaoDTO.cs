@@ -22,7 +22,7 @@ namespace GeekSpot.Domain.DTO
         public string? LojinhaTitulo { get; set; } = null;
         public string? LojinhaDescricao { get; set; } = null;
         public string? LojinhaImagemCapa { get; set; } = null;
-        public double? QtdEstrelas { get; set; } = 0;
+        public double? LojinhaQtdEstrelas { get; set; } = 0;
 
         public DateTime? DataUltimaAlteracao { get; set; } = HorarioBrasilia();
     }
