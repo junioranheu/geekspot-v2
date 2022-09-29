@@ -67,7 +67,7 @@ export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }:
                             // console.log(arquivoCropFile, base64);
                             // const arquivoBlobPreview = URL.createObjectURL(arquivoUpload);
 
-                            Aviso.success('Imagem enviada com sucesso', 5000);
+                            // Aviso.success('Imagem enviada com sucesso', 5000);
                             NProgress.done();
                             FecharModal.fecharModalClicandoNoBotao(handleModal);
                         };
@@ -80,7 +80,7 @@ export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }:
                         };
                     } else {
                         setArquivoUpload(file);
-                        Aviso.success('Imagem enviada com sucesso', 5000);
+                        // Aviso.success('Imagem enviada com sucesso', 5000);
                         NProgress.done();
                         FecharModal.fecharModalClicandoNoBotao(handleModal);
                     }
@@ -93,7 +93,7 @@ export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }:
             <div className={StylesUpload.divUpload}>
                 <DragDropFile
                     nomeElemento={nomeElementoInput}
-                    tipoArquivos={['JPG', 'PNG', 'WEBP']}
+                    tipoArquivos={['JPG', 'JPEG', 'PNG', 'WEBP']}
                     isMultiple={false}
                     setArquivo={setArquivo}
                     texto='Clique aqui ou arraste uma imagem: '

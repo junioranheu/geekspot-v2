@@ -7,9 +7,8 @@ import numeroAleatorio from './gerarNumeroAleatorio';
 export default function deslogar(setIsAuth: Dispatch<boolean>) {
     nProgress.start();
     Router.push('/').then(() => {
-        Auth.delete();
-
         setTimeout(function () {
+            Auth.delete();
             setIsAuth(false);
             nProgress.done();
             // Aviso.custom('Até a proxima! Tchau 🖖', 5000);
