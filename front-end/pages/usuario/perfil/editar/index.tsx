@@ -54,7 +54,7 @@ export default function Index() {
         <section className='flexColumn paddingPadrao margem3'>
             <div className={Styles.main}>
                 <SessaoEsquerda usuario={usuario} />
-                <SessaoDireita />
+                <SessaoDireita usuario={usuario}/>
             </div>
 
             {/* Espaço a mais */}

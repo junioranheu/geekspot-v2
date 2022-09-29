@@ -2,14 +2,14 @@ import { Dispatch, ReactNode, useEffect } from 'react';
 import Xis from '../svg/xis';
 import Styles from './_modal.lateral.module.scss';
 
-interface parametros {
+interface iParametros {
     handleModal: Dispatch<boolean>;
     isOpen: boolean;
     titulo: string | null;
     children: ReactNode;
 }
 
-export default function ModalLateralLayout({ handleModal, isOpen, titulo, children }: parametros) {
+export default function ModalLateralLayout({ handleModal, isOpen, titulo, children }: iParametros) {
 
     // Efeito de blur no fundo;
     useEffect(() => {

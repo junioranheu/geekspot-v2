@@ -1,0 +1,44 @@
+.main {
+    // background-color: coral;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+        border-radius: 5px;
+    }
+
+    .infos {
+        // background-color: pink;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .titulo {
+            color: var(--preto);
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.2rem;
+        }
+
+        .texto {
+            color: var(--preto);
+            font-weight: 400;
+            font-size: 0.9rem;
+            line-height: 1.2rem;
+        }
+
+        .vermelho {
+            color: red;
+        }
+    }
+
+    .divBotao {
+        // background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-left: 1rem;
+    }
+}

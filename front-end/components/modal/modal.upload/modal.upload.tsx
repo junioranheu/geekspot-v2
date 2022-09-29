@@ -5,7 +5,7 @@ import { Aviso } from '../../../utils/outros/aviso';
 import dataUrltoFile from '../../../utils/outros/dataURLToFile';
 import UUID from '../../../utils/outros/UUID';
 import Botao from '../../outros/botao';
-import DragDropFile from '../../outros/dragDropFile';
+import DragDropFile from '../../upload/dragDropFile';
 import { FecharModal } from '../fecharModal';
 import ModalUploadConteudo from './modal.upload.conteudo';
 import StylesUpload from './modal.upload.module.scss';

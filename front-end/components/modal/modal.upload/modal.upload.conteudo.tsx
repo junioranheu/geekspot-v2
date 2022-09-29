@@ -3,12 +3,12 @@ import { Dispatch, Fragment, useRef } from 'react';
 import Cropper from 'react-cropper'; // https://www.npmjs.com/package/react-cropper
 import StylesUpload from './modal.upload.module.scss';
 
-interface parametros {
+interface iParametros {
     arquivoBlob: string;
     setArquivoCrop: Dispatch<string> | any;
 }
 
-export default function ModalUploadConteudo({ arquivoBlob, setArquivoCrop }: parametros) {
+export default function ModalUploadConteudo({ arquivoBlob, setArquivoCrop }: iParametros) {
 
     const cropperRef = useRef<HTMLImageElement>(null);
     function handleCrop() {

@@ -4,7 +4,7 @@ import { FecharModal } from './fecharModal';
 import BotaoFecharModal from './_botaoFecharModal';
 import Styles from './_modal.module.scss';
 
-interface parametros {
+interface iParametros {
     handleModal: Dispatch<boolean>;
     isExibirApenasLogo: boolean;
     titulo: string | null;
@@ -14,7 +14,7 @@ interface parametros {
     isFecharModalClicandoNoFundo: boolean;
 }
 
-export default function ModalLayout({ handleModal, isExibirApenasLogo, titulo, children, tamanho, isCentralizado, isFecharModalClicandoNoFundo }: parametros) {
+export default function ModalLayout({ handleModal, isExibirApenasLogo, titulo, children, tamanho, isCentralizado, isFecharModalClicandoNoFundo }: iParametros) {
     const [animarDiv, setAnimarDiv] = useState('');
 
     return (

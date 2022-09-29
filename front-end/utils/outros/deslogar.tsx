@@ -13,6 +13,6 @@ export default function deslogar(setIsAuth: Dispatch<boolean>) {
             setIsAuth(false);
             nProgress.done();
             // Aviso.custom('Até a proxima! Tchau 🖖', 5000);
-        }, numeroAleatorio(100, 300));
+        }, numeroAleatorio(1000, 2000));
     });
 }

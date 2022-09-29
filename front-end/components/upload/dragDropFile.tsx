@@ -1,7 +1,7 @@
 import { Dispatch, Fragment, ReactNode } from 'react';
 import { FileUploader } from 'react-drag-drop-files'; // https://www.npmjs.com/package/react-drag-drop-files
 
-interface parametros {
+interface iParametros {
     nomeElemento: string;
     tipoArquivos: string[];
     isMultiple: boolean;
@@ -12,7 +12,8 @@ interface parametros {
     conteudo: ReactNode;
 }
 
-export default function DragDropFile({ nomeElemento, tipoArquivos, isMultiple, setArquivo, texto, maxSizeMBs, isDisabled, conteudo }: parametros) {
+export default function DragDropFile({ nomeElemento, tipoArquivos, isMultiple, setArquivo, texto, maxSizeMBs, isDisabled, conteudo }: iParametros) {
+    
     function handleChange(arquivo: any) {
         setArquivo(arquivo);
     }

@@ -1,10 +1,10 @@
 import Styles from './_modal.module.scss';
 
-interface parametros {
+interface iParametros {
     fecharModal: () => void;
 }
 
-export default function BotaoFecharModal({ fecharModal }: parametros) {
+export default function BotaoFecharModal({ fecharModal }: iParametros) {
     return (
         <button aria-label='Fechar' title='Fechar' type='button' className={Styles.botaoFechar} onClick={() => fecharModal()}>
             <span>
