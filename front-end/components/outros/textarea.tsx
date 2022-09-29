@@ -17,7 +17,7 @@ interface iParametros {
     isEnabledBotao: boolean | null;
 }
 
-export default function Textarea({
+export default function TextArea({
     placeholder, height, max, texto, setTexto, referenciaTextarea,
     isMostrarBotao, textoBotao, handleFuncaoBotao, referenciaBotao, isEnabledBotao
 }: iParametros) {
