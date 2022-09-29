@@ -33,7 +33,7 @@ export default function NavbarFiltro() {
     const [listaOpcoes, setListaOpcoes] = useState<string[]>([]);
     useEffect(() => {
         const lista = [
-            '"PS4"', '"Xbox"', '"Naruto"', '"iPhone"', '"Breaking bad"',
+            '"PS5"', '"Xbox"', '"Naruto"', '"iPhone"', '"Breaking bad"',
             '"Headset"', '"Guitarra"', '"Nintendo"', '"Pink Floyd"', '"Oasis"',
             '"Violão"', '"Walter White"', '"Harry Potter"', '"GTA SA"', '"PS5"',
             '"LOL"', '"Dota 2"', '"GTA 5"', '"Celulares"'

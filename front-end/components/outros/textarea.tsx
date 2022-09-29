@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, MutableRefObject, useEffect, useState } from 'react';
 import Botao from './botao';
-import Styles from './styles/textarea.module.scss';
+import Styles from './styles/textArea.module.scss';
 
 interface iParametros {
     placeholder: string;

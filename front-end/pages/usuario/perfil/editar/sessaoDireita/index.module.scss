@@ -1,8 +1,11 @@
 .sessaoDireita {
-    background-color: var(--branco);
     width: 75%;
-    padding: 1.25rem;
-    border-radius: 5px;
+    
+    .main {
+        background-color: var(--branco);
+        padding: 1.25rem;
+        border-radius: 5px;
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */

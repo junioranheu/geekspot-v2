@@ -1,0 +1,17 @@
+.topHat{
+    background-color: var(--branco);
+    width: 100%;
+    padding: 1.25rem;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    span{
+        color: var(--preto);
+        font-weight: 600;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+}

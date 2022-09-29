@@ -7,7 +7,7 @@ import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import { UsuarioContext } from '../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../utils/outros/aviso';
 import horarioBrasilia from '../../../../utils/outros/horarioBrasilia';
-import Textarea from '../../../outros/textarea';
+import TextArea from '../../../outros/textArea';
 import { FecharModal } from '../../fecharModal';
 import Styles from './index.module.scss';
 
@@ -96,7 +96,7 @@ export default function ModalResponderComentario({ handleModal, dados, itemId, g
             <span className={`${Styles.texto} margem1`}>&#8220;{dados?.mensagem}&#8221;</span>
 
             <div className={`${Styles.div100} margem1`}>
-                <Textarea
+                <TextArea
                     placeholder='Responda à pergunta'
                     height={null}
                     max={COMENTARIOS.MAX_CARACTERES}
