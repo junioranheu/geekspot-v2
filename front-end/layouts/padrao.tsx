@@ -6,7 +6,7 @@ import NavbarSmall from '../components/navbar/outros/navbar.small';
 import NavbarPadrao from '../components/navbar/padrao/navbar.padrao';
 import useWindowSize from '../hooks/outros/useWindowSize';
 import verificarTokenValido from '../utils/api/verificarTokenValido';
-import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
+import { UsuarioContext } from '../utils/context/usuarioContext';
 
 export default function Padrao({ Component, pageProps }: any) {
     const router = useRouter();
@@ -29,16 +29,16 @@ export default function Padrao({ Component, pageProps }: any) {
             setEfeitoAnimar('');
         }, 1000);
     }, [router.asPath]);
- 
+
     return (
         <section className='main semHighlight'>
             <NavbarSmall />
 
             {
                 tamanhoTela.width && tamanhoTela?.width >= 1025 ? (
-                    <NavbarPadrao auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
+                    <NavbarPadrao />
                 ) : (
-                    <NavbarMobile auth={Auth} isAuth={isAuth} setIsAuth={setIsAuth} />
+                    <NavbarMobile />
                 )
             }
 

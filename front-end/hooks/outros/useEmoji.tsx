@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import emojiAleatorio from '../../utils/outros/emojiAleatorio';
+import emojiAleatorio from '../../utils/outros/gerarEmojiAleatorio';
 
 export default function useEmoji() {
 

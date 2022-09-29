@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import nProgress from 'nprogress';
-import { Dispatch, Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
+import { UsuarioContext } from '../../../utils/context/usuarioContext';
+import deslogar from '../../../utils/outros/deslogar';
 import Botao from '../../outros/botao';
 import Ajuda from '../../svg/ajuda';
 import Inbox from '../../svg/inbox';
@@ -13,34 +15,15 @@ import MenuProdutos from './menus/menu.produtos';
 import NavbarPadraoMenuUsuario from './menus/menu.usuario';
 import Styles from './navbar.padrao.module.scss';
 
-interface iParametros {
-    auth: any;
-    isAuth: boolean | undefined;
-    setIsAuth: Dispatch<boolean>;
-}
+export default function NavbarPadrao() {
 
-export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
+    const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
     const router = useRouter();
 
     const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
     const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
-
-    function deslogar() {
-        nProgress.start();
-
-        // Deslogar;
-        auth.delete();
-        nProgress.done();
-
-        // Voltar à tela principal;
-        Router.push('/');
-
-        // Desatribuir autenticação ao contexto de usuário;
-        setTimeout(function () {
-            setIsAuth(false);
-        }, 100);
-    }
 
     function simularLoading() {
         if (router.asPath !== '/') {
@@ -90,7 +73,10 @@ export default function NavbarPadrao({ auth, isAuth, setIsAuth }: iParametros) {
                         isAuth ? (
                             <Fragment>
                                 <span className='separador'></span>
-                                <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar()} Svg={null} refBtn={null} isEnabled={true} />
+
+                                <div onClick={() => deslogar(setIsAuth)}>
+                                    <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                                </div>
                             </Fragment>
                         ) : (
                             <Fragment>
