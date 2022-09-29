@@ -35,7 +35,7 @@ export default function SessaoEsquerda({ usuario }: iParametros) {
                 </div>
             </div>
 
-            <div className={Styles.infosImportantes}>
+            <div className={`${Styles.infosImportantes} ${StylesTexto.centralizarTexto}`}>
                 <span className={StylesTexto.titulo}>@{usuario?.nomeUsuarioSistema}</span>
                 <span className={StylesTexto.textoPequeno}>{usuario?.dataRegistro && `No ${CONSTS_SISTEMA.NOME_SISTEMA} desde ${formatarData(usuario?.dataRegistro, 3)}`}</span>
 
