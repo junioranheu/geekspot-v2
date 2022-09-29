@@ -1,6 +1,8 @@
 .sessaoDireita {
-    background-color: purple;
+    background-color: var(--branco);
     width: 75%;
+    padding: 1.25rem;
+    border-radius: 5px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
@@ -8,7 +10,12 @@
 @media (max-width:1281px) {}
 
 /* big landscape tablets, laptops, and desktops */
-@media (max-width:1025px) {}
+@media (max-width:1025px) {
+    .sessaoDireita {
+        // background-color: purple;
+        width: 100%;
+    }
+}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {}

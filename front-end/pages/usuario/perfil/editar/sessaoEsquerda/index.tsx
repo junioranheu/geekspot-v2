@@ -22,7 +22,6 @@ export default function SessaoEsquerda({ usuario }: iParametros) {
 
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
-    console.log(usuario);
 
     return (
         <div className={Styles.sessaoEsquerda}>
