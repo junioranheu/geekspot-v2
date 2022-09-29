@@ -10,7 +10,7 @@ import iListaComentarios from '../../utils/types/listaComentarios';
 import ModalAvisoLogin from '../modal/modal.aviso/login';
 import ModalLayout from '../modal/_modal.layout';
 import ModalWrapper from '../modal/_modal.wrapper';
-import Textarea from '../outros/textArea';
+import TextArea from '../outros/textArea';
 import ComentariosLista from './comentarios.lista';
 import Styles from './comentarios.module.scss';
 
@@ -116,7 +116,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
 
             {/* Conteúdo */}
             <div className={Styles.main}>
-                <Textarea
+                <TextArea
                     placeholder='Pergunte ao vendedor'
                     height={null}
                     max={COMENTARIOS.MAX_CARACTERES}
