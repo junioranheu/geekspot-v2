@@ -78,7 +78,7 @@ export default function NavbarFiltro() {
                 />
 
                 <div className={Styles.lupa} title='Buscar' onClick={() => handleBuscar()}>
-                    <Lupa width={20} url={null} title={null} />
+                    <Lupa width={20} url={null} title={null} isCorPrincipal={false} />
                 </div>
             </div>
         </Fragment>

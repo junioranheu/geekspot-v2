@@ -102,7 +102,7 @@ img {
 }
 
 .cor-principal {
-    /* color: var(--cor-principal) !important; */
+    color: var(--cor-principal) !important;
     background: -webkit-linear-gradient(var(--cor-principal), var(--cor-principal-escura)) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -114,6 +114,7 @@ img {
 
     &:hover {
         color: var(--cor-principal) !important;
+        fill: var(--cor-principal) !important;
         opacity: 1 !important;
         transition: .2s ease-in-out;
     }

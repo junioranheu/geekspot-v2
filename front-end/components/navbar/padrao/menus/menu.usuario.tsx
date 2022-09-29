@@ -29,7 +29,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
         setIsExibirMenuUsuario(true);
         debounceFecharMenuUsuario.cancel();
     }
- 
+
     return (
         <Fragment>
             <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
@@ -44,12 +44,12 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
                                 <div className={`${Styles.divItens} margem1`}>
                                     <Botao texto='Meu perfil' url={`/usuario/perfil/${idUsuario}/@${nomeUsuario}`} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
 
-                                    <Link href='/xxx'><a><Item width={16} url={null} title={null} />&nbsp;&nbsp;Subir novo item</a></Link>
-                                    <Link href='/xxx'><a><Inbox width={16} url={null} title={null} />&nbsp;&nbsp;Inbox</a></Link>
-                                    <Link href='/xxx'><a><Coracao width={16} url={null} title={null} />&nbsp;&nbsp;Favoritos</a></Link>
-                                    <Link href='/usuario/perfil/editar/'><a><Configuracao width={16} url={null} title={null} />&nbsp;&nbsp;Configurações</a></Link>
-                                    <Link href='/seguranca'><a><Seguranca width={16} url={null} title={null} />&nbsp;&nbsp;Segurança</a></Link>
-                                    <Link href='/ajuda'><a><Ajuda width={16} url={null} title={null} />&nbsp;&nbsp;Ajuda</a></Link>
+                                    <Link href='/xxx'><a><Item width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Subir novo item</a></Link>
+                                    <Link href='/xxx'><a><Inbox width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Inbox</a></Link>
+                                    <Link href='/xxx'><a><Coracao width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Favoritos</a></Link>
+                                    <Link href='/usuario/perfil/editar/'><a><Configuracao width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Configurações</a></Link>
+                                    <Link href='/seguranca'><a><Seguranca width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Segurança</a></Link>
+                                    <Link href='/ajuda'><a><Ajuda width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Ajuda</a></Link>
                                 </div>
                             </div>
                         </div>

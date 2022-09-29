@@ -36,7 +36,7 @@ export default function DivAvisoProtecao() {
 
             <div className={Styles.divInnerAvisoProtecao}>
                 <div className={Styles.divSvgSeguranca}>
-                    <Seguranca width={24} url={null} title={null} />
+                    <Seguranca width={24} url={null} title={null} isCorPrincipal={false} />
                 </div>
 
                 <span className={Styles.textoAviso}>{aviso} Veja mais <Link href='/seguranca'><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>

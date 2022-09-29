@@ -1,5 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import Router from 'next/router';
 import Botao from '../../../../../components/outros/botao';
+import Configuracao from '../../../../../components/svg/configuracao';
+import Coracao from '../../../../../components/svg/coracao';
+import Loja from '../../../../../components/svg/loja';
 import ImgCinza from '../../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
@@ -32,13 +37,43 @@ export default function SessaoEsquerda({ usuario }: iParametros) {
 
             <div className={Styles.infosImportantes}>
                 <span className={StylesTexto.titulo}>@{usuario?.nomeUsuarioSistema}</span>
-                <span className={StylesTexto.texto}>{usuario?.dataRegistro && `No ${CONSTS_SISTEMA.NOME_SISTEMA} desde ${formatarData(usuario?.dataRegistro, 3)}`}</span>
+                <span className={StylesTexto.textoPequeno}>{usuario?.dataRegistro && `No ${CONSTS_SISTEMA.NOME_SISTEMA} desde ${formatarData(usuario?.dataRegistro, 3)}`}</span>
 
                 <div className='margem1'>
                     <Botao texto='Meu perfil' url={`/usuario/perfil/${idUsuario}/@${nomeUsuario}`} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
 
                 <span className='separadorHorizontal'></span>
+            </div>
+
+            <div className={Styles.outrasOpcoes}>
+                <div className={Styles.opcao}>
+                    <div className={Styles.flexOpcao}>
+                        <Loja width={18} url={null} title={null} isCorPrincipal={false} />
+                        <span>Meus negócios</span>
+                    </div>
+
+                    <div className={Styles.subOpcoes}>
+                        <Link href='/'><a className='cor-principal-hover'>Inbox</a></Link>
+                        <Link href='/'><a className='cor-principal-hover'>Trocas</a></Link>
+                        <Link href='/'><a className='cor-principal-hover'>Vendas</a></Link>
+                        <Link href='/'><a className='cor-principal-hover'>Compras</a></Link>
+                    </div>
+                </div>
+
+                <div className={`${Styles.opcao} pointer cor-principal-hover`} title='Visualizar itens favoritados'>
+                    <div className={Styles.flexOpcao} onClick={() => Router.push('/')}>
+                        <Coracao width={18} url={null} title={null} isCorPrincipal={false} />
+                        <span className='cor-principal-hover'>Favoritos</span>
+                    </div>
+                </div>
+
+                <div className={`${Styles.opcao} pointer cor-principal cor-principal-hover`} title='Você está aqui nas configurações 👽'>
+                    <div className={Styles.flexOpcao}>
+                        <Configuracao width={18} url={null} title={null} isCorPrincipal={true} />
+                        <span>Configurações</span>
+                    </div>
+                </div>
             </div>
         </div>
     )

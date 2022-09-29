@@ -19,7 +19,7 @@ export default function Index() {
     return (
         <Fragment>
             {/* Modal */}
-            <ModalWrapper isOpen={isModalUploadOpen} >
+            <ModalWrapper isOpen={isModalUploadOpen}>
                 <ModalLayout handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalUpload isBase64={false} handleModal={() => setIsModalUploadOpen(!isModalUploadOpen)} setArquivoUpload={setArquivoUpload} />
                 </ModalLayout>

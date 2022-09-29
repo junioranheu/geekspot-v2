@@ -96,7 +96,7 @@ export default function DivOwner({ item }: iParametros) {
     return (
         <Fragment>
             {/* Modal */}
-            <ModalWrapper isOpen={isModalAvisoLoginOpen} >
+            <ModalWrapper isOpen={isModalAvisoLoginOpen}>
                 <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAvisoLogin
                         handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}

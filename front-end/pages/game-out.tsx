@@ -14,7 +14,7 @@ export default function GameOut() {
         <Fragment>
             {
                 !isMostrarPrint ? (
-                    <main className={`${Styles.wrapper} paddingPadrao`} >
+                    <main className={`${Styles.wrapper} paddingPadrao`}>
                         <div className={Styles.divType}>
                             <Typewriter
                                 onInit={(typewriter) => {

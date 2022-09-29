@@ -58,12 +58,12 @@
                     display: flex;
                     justify-content: left;
                     align-items: center;
-                    transition: .2s;
+                    transition: .2s ease-in-out;
                     text-decoration: none;
-
+ 
                     &:hover {
                         color: var(--cor-principal);
-                        transition: .2s;
+                        transition: .2s ease-in-out;
                         border-bottom: 0px;
                         margin-top: 0px;
                     }

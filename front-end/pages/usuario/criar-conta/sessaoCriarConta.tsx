@@ -175,7 +175,7 @@ export default function SessaoCriarConta() {
                                 />
 
                                 <div data-tip={msgRequisitosSenha}>
-                                    <Ajuda width={24} url={null} title={null} />
+                                    <Ajuda width={24} url={null} title={null} isCorPrincipal={false} />
                                 </div>
                             </div>
 

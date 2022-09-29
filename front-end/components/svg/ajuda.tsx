@@ -1,9 +1,9 @@
 import Router from 'next/router';
 import iSvg from '../../utils/types/svg';
 
-export default function Ajuda({ width, url, title }: iSvg) {
+export default function Ajuda({ width, url, title, isCorPrincipal }: iSvg) {
     return (
-        <svg width={width ?? 24} height={width ?? 24} className='pointer' onClick={() => url && Router.push(url)}>
+        <svg width={width ?? 24} height={width ?? 24} className={`pointer cor-principal-hover ${(isCorPrincipal && 'cor-principal')}`} onClick={() => url && Router.push(url)}>
             <defs>
                 <symbol id='svg-ajuda' viewBox='0 0 24 24'>
                     <path d='M11.5,1A11.5,11.5,0,0,0,1.56,18.29L0,23.35A.5.5,0,0,0,.67,24L5.4,22.24A11.5,11.5,0,1,0,11.5,1Zm0,22a10.43,10.43,0,0,1-5.76-1.73.5.5,0,0,0-.45-.05l-4,1.47,1.32-4.32A.5.5,0,0,0,2.53,18a10.5,10.5,0,1,1,9,5Z' fill='currentColor'></path>

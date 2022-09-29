@@ -13,8 +13,15 @@
     .texto {
         color: var(--preto);
         font-weight: 400;
-        font-size: 1rem;
-        line-height: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+    }
+
+    .textoPequeno {
+        color: var(--preto);
+        font-weight: 400;
+        font-size: 0.7rem;
+        line-height: 1.2rem;
     }
 }
 

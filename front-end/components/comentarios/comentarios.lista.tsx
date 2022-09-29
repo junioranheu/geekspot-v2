@@ -36,7 +36,7 @@ export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOp
     return (
         <Fragment>
             {/* Modal */}
-            <ModalWrapper isOpen={isModalResponderComentarioOpen} >
+            <ModalWrapper isOpen={isModalResponderComentarioOpen}>
                 <ModalLayout handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalResponderComentario
                         handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)}
