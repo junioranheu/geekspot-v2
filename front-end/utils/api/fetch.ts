@@ -127,7 +127,7 @@ export const Fetch = {
             const respostaRefreshToken = await Fetch.postApi(urlRefreshToken, dto);
             if (!respostaRefreshToken || respostaRefreshToken?.erro) {
                 console.log(respostaRefreshToken?.mensagemErro ?? 'Houve um erro ao gerar o refresh token');
-                Fetch.deslogarUsuario();
+                Fetch.deslogarUsuarioRefreshTokenInvalido();
                 return false;
             }
 
@@ -159,7 +159,7 @@ export const Fetch = {
                         respostaJson = await Fetch.deleteApi(url, body, false);
                     }
                 } catch (error) {
-                    Fetch.deslogarUsuario();
+                    Fetch.deslogarUsuarioRefreshTokenInvalido();
                     return false;
                 }
             }
@@ -168,7 +168,7 @@ export const Fetch = {
         }
     },
 
-    deslogarUsuario() {
+    deslogarUsuarioRefreshTokenInvalido() {
         const segundosParaEncerrarSessao = numeroAleatorio(1000, 2000);
 
         nProgress.start();
@@ -183,10 +183,6 @@ export const Fetch = {
             Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
                 Auth.delete();
                 nProgress.done();
-                
-                setTimeout(function () {
-                    location.reload(); // É necessário F5 na página para limpar o Context atual;
-                }, numeroAleatorio(1000, 2000));
             });
         }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
     }
