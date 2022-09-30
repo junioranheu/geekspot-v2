@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import CONSTS_AUTENTICAR from '../../utils/consts/data/constAutenticar';
+import CONSTS_ERROS from '../consts/outros/erros';
 import CONSTS_SISTEMA from '../consts/outros/sistema';
 import VERBOS_HTTP from '../consts/outros/verbosHTTP';
 import { Auth } from '../context/usuarioContext';
@@ -168,36 +169,25 @@ export const Fetch = {
     },
 
     deslogarUsuario() {
+        const segundosParaEncerrarSessao = numeroAleatorio(1000, 2000);
+
         nProgress.start();
+        const botoes = document.querySelectorAll('button');
+        botoes.forEach((botao) => {
+            botao.setAttribute('disabled', 'true');
+        });
+
+        Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, segundosParaEncerrarSessao);
 
         setTimeout(function () {
-            const segundosParaEncerrarSessao = numeroAleatorio(3000, 5000);
-
-            const botoes = document.querySelectorAll('button');
-            botoes.forEach((botao) => {
-                botao.setAttribute('disabled', 'true');
-            });
-
-            Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, segundosParaEncerrarSessao);
-            Auth.delete();
-
-            setTimeout(function () {
+            Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
+                Auth.delete();
                 nProgress.done();
-                location.reload();
-
+                
                 setTimeout(function () {
-                    Router.push('/usuario/entrar');
-                }, numeroAleatorio(500, 1000));
-            }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
-        }, numeroAleatorio(500, 1000));
-
-        // Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
-        //     setTimeout(function () {
-        //         Auth.delete();
-        //         setIsAuth(false);
-        //         nProgress.done();
-        //         // Aviso.custom('Até a proxima! Tchau 🖖', 5000);
-        //     }, numeroAleatorio(1000, 2000));
-        // });
+                    location.reload(); // É necessário F5 na página para limpar o Context atual;
+                }, numeroAleatorio(1000, 2000));
+            });
+        }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
     }
 }
