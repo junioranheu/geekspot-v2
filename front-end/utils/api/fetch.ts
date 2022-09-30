@@ -2,6 +2,7 @@ import Router from 'next/router';
 import nProgress from 'nprogress';
 import CONSTS_AUTENTICAR from '../../utils/consts/data/constAutenticar';
 import CONSTS_SISTEMA from '../consts/outros/sistema';
+import VERBOS_HTTP from '../consts/outros/verbosHTTP';
 import { Auth } from '../context/usuarioContext';
 import { Aviso } from '../outros/aviso';
 import numeroAleatorio from '../outros/gerarNumeroAleatorio';
@@ -19,7 +20,7 @@ export const Fetch = {
 
         try {
             let resposta = await fetch(url, {
-                method: 'GET',
+                method: VERBOS_HTTP.GET,
                 headers: headers
             });
 
@@ -54,51 +55,21 @@ export const Fetch = {
     },
 
     async postApi(url: string, body: string | any | null, isTentarRefreshToken: boolean = true) {
-        const token = Auth?.get()?.token ?? '';
-        let respostaJson;
-        let headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-
-        try {
-            let resposta = await fetch(url, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(body)
-            });
-
-            respostaJson = await resposta.json();
-            // console.log(respostaJson);
-            // console.log(respostaJson.status);
-
-            // Caso o respostaJson.status seja diferente de nulo, é porque algo deu erro...
-            // Exemplo: erros 404, 400 ou 401, quando um usuário escreve na barra e procura por um ID que não existe;
-            if (respostaJson.status) {
-                console.log(`Erro ${respostaJson.status} em ${url}. Tipo de erro: ${respostaJson.title}`);
-                respostaJson = null;
-            }
-        } catch (erro: any) {
-            const e = {
-                'url': url,
-                'body': body,
-                'token': token,
-                'erro': erro.message,
-                'data': horarioBrasilia().format('YYYY-MM-DD HH:mm:ss')
-            }
-
-            console.table(e);
-            // Aviso.error('Houve uma falha na requisição POST ao servidor!', 5000);
-
-            // Se o usuário tem um token e foi erro 401, chame o end-point de refresh token;
-            respostaJson = await Fetch.refreshToken(token, erro.message, 'POST', url, body, isTentarRefreshToken);
-        }
-
+        let respostaJson = await Fetch.conteudoPostPutDelete(VERBOS_HTTP.POST, url, body, isTentarRefreshToken);
         return respostaJson;
     },
 
     async putApi(url: string, body: string | any | null, isTentarRefreshToken: boolean = true) {
+        let respostaJson = await Fetch.conteudoPostPutDelete(VERBOS_HTTP.PUT, url, body, isTentarRefreshToken);
+        return respostaJson;
+    },
+
+    async deleteApi(url: string, body: string | any | null, isTentarRefreshToken: boolean = true) {
+        let respostaJson = await Fetch.conteudoPostPutDelete(VERBOS_HTTP.DELETE, url, body, isTentarRefreshToken);
+        return respostaJson;
+    },
+
+    async conteudoPostPutDelete(verboHTTP: string, url: string, body: string | any | null, isTentarRefreshToken: boolean = true) {
         const token = Auth?.get()?.token ?? '';
         let respostaJson;
         let headers = {
@@ -109,7 +80,7 @@ export const Fetch = {
 
         try {
             let resposta = await fetch(url, {
-                method: 'PUT',
+                method: verboHTTP,
                 headers: headers,
                 body: JSON.stringify(body)
             });
@@ -137,13 +108,13 @@ export const Fetch = {
             // Aviso.error('Houve uma falha na requisição POST ao servidor!', 5000);
 
             // Se o usuário tem um token e foi erro 401, chame o end-point de refresh token;
-            respostaJson = await Fetch.refreshToken(token, erro.message, 'PUT', url, body, isTentarRefreshToken);
+            respostaJson = await Fetch.refreshToken(token, erro.message, verboHTTP, url, body, isTentarRefreshToken);
         }
 
         return respostaJson;
     },
 
-    async refreshToken(token: string, erro: any, tipo: string, url: string | null, body: string | null, isTentarRefreshToken: boolean): Promise<any> {
+    async refreshToken(token: string, erro: any, verboHTTP: string, url: string | null, body: string | null, isTentarRefreshToken: boolean): Promise<any> {
         if (token && erro === 'Unexpected end of JSON input' && isTentarRefreshToken) {
             const urlRefreshToken = CONSTS_AUTENTICAR.API_URL_POST_REFRESH_TOKEN;
             const dto = {
@@ -177,12 +148,14 @@ export const Fetch = {
 
             if (url) {
                 try {
-                    if (tipo === 'GET') {
+                    if (verboHTTP === VERBOS_HTTP.GET) {
                         respostaJson = await Fetch.getApi(url, false);
-                    } else if (tipo === 'POST') {
+                    } else if (verboHTTP === VERBOS_HTTP.POST) {
                         respostaJson = await Fetch.postApi(url, body, false);
-                    } else if (tipo === 'PUT') {
+                    } else if (verboHTTP === VERBOS_HTTP.PUT) {
                         respostaJson = await Fetch.putApi(url, body, false);
+                    } else if (verboHTTP === VERBOS_HTTP.DELETE) {
+                        respostaJson = await Fetch.deleteApi(url, body, false);
                     }
                 } catch (error) {
                     Fetch.deslogarUsuario();
@@ -217,5 +190,14 @@ export const Fetch = {
                 }, numeroAleatorio(500, 1000));
             }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
         }, numeroAleatorio(500, 1000));
+
+        // Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
+        //     setTimeout(function () {
+        //         Auth.delete();
+        //         setIsAuth(false);
+        //         nProgress.done();
+        //         // Aviso.custom('Até a proxima! Tchau 🖖', 5000);
+        //     }, numeroAleatorio(1000, 2000));
+        // });
     }
 }

@@ -80,8 +80,8 @@ export default function DivOwner({ item }: iParametros) {
         }
 
         nProgress.start();
-        const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_POST_DELETAR}/${usuarioId}`;
-        const resposta = await Fetch.postApi(url, null);
+        const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_DELETE_DELETAR}/${usuarioId}`;
+        const resposta = await Fetch.deleteApi(url, null);
         if (!resposta || resposta?.erro) {
             nProgress.done();
             Aviso.warn('Houve um problema em seguir este usuário. Tente novamente mais tarde', 5000);

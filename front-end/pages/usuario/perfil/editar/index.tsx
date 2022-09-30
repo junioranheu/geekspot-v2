@@ -14,12 +14,12 @@ import SessaoEsquerda from './sessaoEsquerda';
 
 export default function Index() {
 
+    document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
     const [usuario, setUsuario] = useState<iUsuario>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
         document.getElementsByTagName('body')[0]?.classList.add('backgroundBege');
         document.getElementsByClassName('sessaoPrincipal')[0]?.classList.add('backgroundBege');
 

@@ -33,7 +33,7 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpPost("deletar/{id}")]
+        [HttpDelete("deletar/{id}")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Deletar(int id)
         {

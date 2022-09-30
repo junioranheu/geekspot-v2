@@ -20,7 +20,7 @@ export default function DivUpload({ imagem, titulo, infoAleatoriaUm, infoAleator
 
     const [isModalUploadFotoPerfilOpen, setIsModalUploadFotoPerfilOpen] = useState(false);
     const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState(null);
-
+    
     return (
         <Fragment>
             {/* Modal */}

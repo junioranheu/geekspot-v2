@@ -43,7 +43,7 @@ namespace GeekSpot.API.Controllers
             return Ok(true);
         }
 
-        [HttpPost("deletar/{usuarioSeguidoId}")]
+        [HttpDelete("deletar/{usuarioSeguidoId}")]
         [Authorize]
         public async Task<ActionResult<UsuarioSeguirDTO>> Deletar(int usuarioSeguidoId)
         {
