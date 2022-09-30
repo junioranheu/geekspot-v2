@@ -6,6 +6,7 @@ import CONSTS_SISTEMA from '../consts/outros/sistema';
 import VERBOS_HTTP from '../consts/outros/verbosHTTP';
 import { Auth } from '../context/usuarioContext';
 import { Aviso } from '../outros/aviso';
+import desabilitarTodosBotoes from '../outros/desabilitarTodosBotoes';
 import numeroAleatorio from '../outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../outros/horarioBrasilia';
 
@@ -169,21 +170,13 @@ export const Fetch = {
     },
 
     deslogarUsuarioRefreshTokenInvalido() {
-        const segundosParaEncerrarSessao = numeroAleatorio(1000, 2000);
-
         nProgress.start();
-        const botoes = document.querySelectorAll('button');
-        botoes.forEach((botao) => {
-            botao.setAttribute('disabled', 'true');
+        desabilitarTodosBotoes();
+        Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, numeroAleatorio(1000, 2000));
+
+        Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
+            Auth.delete();
+            nProgress.done();
         });
-
-        Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, segundosParaEncerrarSessao);
-
-        setTimeout(function () {
-            Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
-                Auth.delete();
-                nProgress.done();
-            });
-        }, (segundosParaEncerrarSessao + numeroAleatorio(1000, 2000)));
     }
 }
