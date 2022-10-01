@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import TopHat from '../../../../../components/outros/topHat';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import Configuracao from '../../../../../components/svg/configuracao';
@@ -11,6 +12,13 @@ interface iParametros {
 }
 
 export default function SessaoDireita({ usuario }: iParametros) {
+
+    const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
+
+    useEffect(() => {
+        console.log(arquivoUploadFotoPerfil);
+    }, [arquivoUploadFotoPerfil]);
+
     return (
         <div className={Styles.sessaoDireita}>
             <TopHat Svg={<Configuracao width={22} url={null} title={null} isCorPrincipal={false} />} titulo='Configurações' />
@@ -35,6 +43,8 @@ export default function SessaoDireita({ usuario }: iParametros) {
                                 infoAleatoriaUm='Escolhe uma foto da hora aí'
                                 infoAleatoriaDois={`Peso máximo: ${UPLOAD_IMAGEM.LIMITE_MB} MB`}
                                 textoBotaoDireita='Alterar foto de perfil'
+                                arquivoUpload={arquivoUploadFotoPerfil}
+                                setArquivoUpload={setArquivoUploadFotoPerfil}
                             />
                         </div>
                     </div>

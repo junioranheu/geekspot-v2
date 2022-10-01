@@ -6,7 +6,7 @@ import CONSTS_SISTEMA from '../consts/outros/sistema';
 import VERBOS_HTTP from '../consts/outros/verbosHTTP';
 import { Auth } from '../context/usuarioContext';
 import { Aviso } from '../outros/aviso';
-import desabilitarTodosBotoes from '../outros/desabilitarTodosBotoes';
+import desabilitarTodosElementos from '../outros/desabilitarTodosElementos';
 import numeroAleatorio from '../outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../outros/horarioBrasilia';
 
@@ -171,7 +171,7 @@ export const Fetch = {
 
     deslogarUsuarioRefreshTokenInvalido() {
         nProgress.start();
-        desabilitarTodosBotoes();
+        desabilitarTodosElementos();
         Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, numeroAleatorio(1000, 2000));
 
         Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Fragment, useState } from 'react';
+import { Dispatch, Fragment, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ModalUpload from '../modal/modal.upload/modal.upload';
@@ -14,24 +14,26 @@ interface iParametros {
     infoAleatoriaUm: string;
     infoAleatoriaDois: string | null;
     textoBotaoDireita: string | null;
+
+    arquivoUpload: string | null;
+    setArquivoUpload: Dispatch<string>;
 }
 
-export default function DivUpload({ imagem, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita }: iParametros) {
+export default function DivUpload({ imagem, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita, arquivoUpload, setArquivoUpload }: iParametros) {
 
     const [isModalUploadFotoPerfilOpen, setIsModalUploadFotoPerfilOpen] = useState(false);
-    const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState(null);
-    
+
     return (
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalUploadFotoPerfilOpen}>
                 <ModalLayout handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalUpload isBase64={true} handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} setArquivoUpload={setArquivoUploadFotoPerfil} />
+                    <ModalUpload isBase64={true} handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} setArquivoUpload={setArquivoUpload} />
                 </ModalLayout>
             </ModalWrapper>
 
             <div className={Styles.main}>
-                <Image src={(arquivoUploadFotoPerfil ? arquivoUploadFotoPerfil : imagem ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${imagem}` : ImgCinza)} width={100} height={100} alt='' />
+                <Image src={(arquivoUpload ? arquivoUpload : imagem ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${imagem}` : ImgCinza)} width={100} height={100} alt='' />
 
                 <div className={Styles.infos}>
                     <span className={Styles.titulo}>{titulo}</span>
