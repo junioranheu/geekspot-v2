@@ -26,7 +26,7 @@ export default function Perfil({ usuario }: iParametros) {
     }
 
     return (
-        <section className='flexColumn paddingPadrao margem3'>
+        <section className='flexColumn paddingPadrao'>
             <div className='centralizarTexto'>
                 <span className='titulo'>Perfil de <span className='grifar'>@{usuario?.nomeUsuarioSistema}</span></span>
             </div>

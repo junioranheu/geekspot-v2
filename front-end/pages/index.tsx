@@ -39,7 +39,7 @@ export default function Home({ listaItens }: iParametros) {
     }
 
     return (
-        <main className='paddingPadrao margem3_5'>
+        <main className='paddingPadrao'>
             <Carousel
                 isLoop={true}
                 isShowPagination={true}

@@ -46,7 +46,7 @@ export default function VerificarConta() {
     }
 
     return (
-        <section className='flexColumn paddingPadrao margem3 animate__animated animate__fadeIn animate__slow'>
+        <section className='flexColumn paddingPadrao animate__animated animate__fadeIn animate__slow'>
             <div className='centralizarTexto'>
                 <span className='cor-preto'>Aguarde um momento, estamos verificando sua conta... 👽</span>
             </div>

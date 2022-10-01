@@ -344,7 +344,7 @@ select {
         box-shadow: none !important;
         height: 3px !important;
     }
- 
+
     .spinner-icon {
         border-top-color: var(--verde) !important;
         border-left-color: var(--verde) !important;
@@ -563,7 +563,7 @@ body::-webkit-scrollbar {
 }
 
 .margem3_5 {
-    margin-top: 3rem;
+    margin-top: 3.5rem;
 }
 
 .margem4 {
@@ -578,10 +578,11 @@ body::-webkit-scrollbar {
     margin-top: 6rem;
 }
 
-/* =-=-=-=-=-=-=-=-=-=-= Padding =-=-=-=-=-=-=-=-=-=-= */
+/* =-=-=-=-=-=-=-=-=-=-= Padding padrão =-=-=-=-=-=-=-=-=-=-= */
 .paddingPadrao {
     padding-left: 3rem;
     padding-right: 3rem;
+    margin-top: 3rem;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Outros =-=-=-=-=-=-=-=-=-=-= */
@@ -682,9 +683,10 @@ body::-webkit-scrollbar {
     }
 
     .paddingPadrao {
-        /* background-color: pink; */
+        // background-color: pink;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+        margin-top: 1.5rem;
     }
 }
 
