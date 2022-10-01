@@ -35,6 +35,12 @@ export default function SessaoDireita({ usuario }: iParametros) {
 
                         <span className='separadorHorizontal'></span>
                         <div className={Styles.divInput}>
+                            <span className={Styles.item}>Descrição ou bio da lojinha</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
                             <DivUpload
                                 imagem={usuario?.foto ?? ''}
                                 apiPasta={CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}
@@ -46,7 +52,7 @@ export default function SessaoDireita({ usuario }: iParametros) {
                                 setArquivoUpload={setArquivoUploadFotoPerfil}
                             />
                         </div>
- 
+
                         <span className='separadorHorizontal'></span>
                         <div className={Styles.divInput}>
                             <DivUpload
@@ -63,7 +69,127 @@ export default function SessaoDireita({ usuario }: iParametros) {
 
                         <span className='separadorHorizontal'></span>
                         <div className='divBotaoInvertido'>
-                            <Botao texto='Salvar alterações' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                            <Botao texto='Salvar alterações dos dados da sua lojinha' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                        </div>
+                    </div>
+                </div>
+
+                {/* =-=-=-=-=-=-=-=-=-=-=-= #2 - Dados pessoais =-=-=-=-=-=-=-=-=-=-=-= */}
+                <span className='separadorHorizontal'></span>
+                <div className='margem0_5'>
+                    <TopHatSecundario titulo='Dados pessoais' />
+
+                    <div className={`${Styles.sessao} margem0_5`}>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Nome completo</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Nome da lojinha</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>E-mail</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Senha</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Aniversário</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>CPF</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Telefone</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className='divBotaoInvertido'>
+                            <Botao texto='Salvar alterações dos seus dados pessoais' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                        </div>
+                    </div>
+                </div>
+
+                {/* =-=-=-=-=-=-=-=-=-=-=-= #3 - Endereço =-=-=-=-=-=-=-=-=-=-=-= */}
+                <span className='separadorHorizontal'></span>
+                <div className='margem0_5'>
+                    <TopHatSecundario titulo='Endereço' />
+
+                    <div className={`${Styles.sessao} margem0_5`}>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>CEP</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Estado</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Cidade</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Bairro</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Rua</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Número da residência</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className={Styles.divInput}>
+                            <span className={Styles.item}>Referência</span>
+                            <input className='input' type='text' />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className='divBotaoInvertido'>
+                            <Botao texto='Salvar alterações do seu endereço' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                        </div>
+                    </div>
+                </div>
+
+                {/* =-=-=-=-=-=-=-=-=-=-=-= #3 - Minha conta =-=-=-=-=-=-=-=-=-=-=-= */}
+                <span className='separadorHorizontal'></span>
+                <div className='margem0_5'>
+                    <TopHatSecundario titulo='Minha conta' />
+
+                    <div className={`${Styles.sessao} margem0_5`}>
+                        <div className={`${Styles.botaoFonteVermelha} divBotaoInvertido`}>
+                            <Botao texto='Quero excluir minha conta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                         </div>
                     </div>
                 </div>

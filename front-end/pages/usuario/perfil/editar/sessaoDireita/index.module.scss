@@ -1,6 +1,10 @@
 .sessaoDireita {
     width: 75%;
 
+    input {
+        background-color: var(--bege);
+    }
+
     .main {
         background-color: var(--branco);
         padding: 0.75rem;
@@ -21,8 +25,14 @@
                     // background-color: red;
                     display: flex;
                     align-items: center;
-                    min-width: 10rem;
-                    max-width: 10rem;
+                    min-width: 8rem;
+                    max-width: 8rem;
+                }
+            }
+
+            .botaoFonteVermelha {
+                button {
+                    color: red !important;
                 }
             }
         }
