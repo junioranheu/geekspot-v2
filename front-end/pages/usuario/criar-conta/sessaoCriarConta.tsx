@@ -30,7 +30,7 @@ interface iFormData {
 }
 
 export default function SessaoCriarConta() {
-    
+
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
@@ -113,21 +113,21 @@ export default function SessaoCriarConta() {
             return false;
         }
 
-        resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
-        resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
-        resposta.cep = '';
-        Auth.set(resposta);
-
-        if (resposta.isEmailVerificacaoContaEnviado) {
-            Aviso.success('Um e-mail de verificação de conta foi enviado para você 👽', 7000);
-        }
-
         // Voltar à tela principal;
-        Router.push('/');
+        Router.push('/').then(() => {
+            resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
+            resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
+            resposta.cep = '';
+            Auth.set(resposta);
 
-        // Atribuir autenticação ao contexto de usuário;
-        setIsAuth(true);
-        nProgress.done();
+            if (resposta.isEmailVerificacaoContaEnviado) {
+                Aviso.success('Um e-mail de verificação de conta foi enviado para você 👽', 7000);
+            }
+
+            // Atribuir autenticação ao contexto de usuário;
+            setIsAuth(true);
+            nProgress.done();
+        });
     }
 
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {

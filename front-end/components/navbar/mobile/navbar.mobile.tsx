@@ -66,7 +66,7 @@ export default function NavbarMobile() {
                             </div>
                         ) : (
                             <div className={Styles.sessaoBotoes}>
-                                <div className={Styles.botaoCriarConta}>
+                                <div className='divBotaoInvertido'>
                                     <Botao texto='Crie sua conta' url='/usuario/criar-conta' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                                 </div>
 

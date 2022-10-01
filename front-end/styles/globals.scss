@@ -334,20 +334,20 @@ select {
 /* =-=-=-=-=-=-=-=-=-=-= nProgress =-=-=-=-=-=-=-=-=-=-= */
 #nprogress {
     .bar {
-        background: var(--cor-principal-escura) !important;
+        background: hsl(257, 74%, 39%) !important;
         height: 3px !important;
         box-shadow: none !important;
     }
 
     .peg {
-        box-shadow: 0 0 10px var(--cor-principal-escura), 0 0 5px var(--cor-principal-escura) !important;
+        box-shadow: 0 0 10px hsl(257, 74%, 39%), 0 0 5px hsl(257, 74%, 39%) !important;
         box-shadow: none !important;
         height: 3px !important;
     }
-
+ 
     .spinner-icon {
-        border-top-color: var(--cor-principal-escura) !important;
-        border-left-color: var(--cor-principal-escura) !important;
+        border-top-color: var(--verde) !important;
+        border-left-color: var(--verde) !important;
     }
 }
 
@@ -491,6 +491,15 @@ dialog[aria-labelledby*=rmiz-modal-img] {
         color: var(--preto);
         opacity: 0.5;
         cursor: not-allowed;
+    }
+}
+
+.divBotaoInvertido {
+    button {
+        width: 100%;
+        background: var(--branco);
+        color: var(--preto);
+        border: 1px solid #c5b1f1;
     }
 }
 

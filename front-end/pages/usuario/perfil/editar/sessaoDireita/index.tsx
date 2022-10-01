@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Botao from '../../../../../components/outros/botao';
 import TopHat from '../../../../../components/outros/topHat';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import Configuracao from '../../../../../components/svg/configuracao';
@@ -45,7 +46,7 @@ export default function SessaoDireita({ usuario }: iParametros) {
                                 setArquivoUpload={setArquivoUploadFotoPerfil}
                             />
                         </div>
-
+ 
                         <span className='separadorHorizontal'></span>
                         <div className={Styles.divInput}>
                             <DivUpload
@@ -58,6 +59,11 @@ export default function SessaoDireita({ usuario }: iParametros) {
                                 arquivoUpload={arquivoUploadCapaLojinha}
                                 setArquivoUpload={setArquivoUploadCapaLojinha}
                             />
+                        </div>
+
+                        <span className='separadorHorizontal'></span>
+                        <div className='divBotaoInvertido'>
+                            <Botao texto='Salvar alterações' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                         </div>
                     </div>
                 </div>

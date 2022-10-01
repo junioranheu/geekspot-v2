@@ -71,18 +71,17 @@ export default function SessaoEntrar() {
             return false;
         }
 
-        // Inserir o token no json final para gravar localmente a sessão do login;
-        resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
-        resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
-        resposta.cep = resposta?.usuariosInformacoes?.cep ?? '';
-        Auth.set(resposta);
-
-        // Atribuir autenticação ao contexto de usuário;
-        setIsAuth(true);
-
         // Voltar à tela principal;
-        Router.push('/');
-        nProgress.done();
+        Router.push('/').then(() => {
+            // Inserir o token no json final para gravar localmente a sessão do login;
+            resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
+            resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
+            resposta.cep = resposta?.usuariosInformacoes?.cep ?? '';
+            Auth.set(resposta);
+
+            // Atribuir autenticação ao contexto de usuário;
+            setIsAuth(true);
+        });
     }
 
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
