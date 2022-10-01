@@ -4,6 +4,7 @@ import TopHat from '../../../../../components/outros/topHat';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import Configuracao from '../../../../../components/svg/configuracao';
 import DivUpload from '../../../../../components/upload/divUpload';
+import useAvisoAlteracoesNaoSalvas from '../../../../../hooks/outros/useAvisoAlteracoesNaoSalvas';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import UPLOAD_IMAGEM from '../../../../../utils/consts/outros/uploadImagem';
 import iUsuario from '../../../../../utils/types/usuario';
@@ -15,6 +16,7 @@ interface iParametros {
 
 export default function SessaoDireita({ usuario }: iParametros) {
 
+    useAvisoAlteracoesNaoSalvas(true, '');
     const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
     const [arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha] = useState('');
 
