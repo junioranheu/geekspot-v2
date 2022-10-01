@@ -1,7 +1,7 @@
-export default function desabilitarTodosElementos() {
+export default function desabilitarTodosElementos(isDesabilitar: boolean) {
     const botoes = document.querySelectorAll('button');
     botoes.forEach((botao) => {
-        botao.disabled = true;
+        botao.disabled = isDesabilitar;
 
         if (botao.textContent === 'Sair') {
             botao.disabled = false;
@@ -10,6 +10,6 @@ export default function desabilitarTodosElementos() {
 
     const inputs = document.querySelectorAll('input');
     inputs.forEach((input) => {
-        input.disabled = true;
+        input.disabled = isDesabilitar;
     });
 }

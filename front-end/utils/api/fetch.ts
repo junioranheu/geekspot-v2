@@ -171,7 +171,7 @@ export const Fetch = {
 
     deslogarUsuarioRefreshTokenInvalido() {
         nProgress.start();
-        desabilitarTodosElementos();
+        desabilitarTodosElementos(true);
         Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, numeroAleatorio(1000, 2000));
 
         Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
