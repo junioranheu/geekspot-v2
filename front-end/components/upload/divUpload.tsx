@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Dispatch, Fragment, useState } from 'react';
+import { Dispatch, Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
+import converterSrcImagemParaBase64 from '../../utils/outros/converterSrcImagemParaBase64';
 import ModalUpload from '../modal/modal.upload/modal.upload';
 import ModalLayout from '../modal/_modal.layout';
 import ModalWrapper from '../modal/_modal.wrapper';
@@ -10,6 +10,7 @@ import Styles from './divUpload.module.scss';
 
 interface iParametros {
     imagem: string | null;
+    apiPasta: string | null;
     titulo: string;
     infoAleatoriaUm: string;
     infoAleatoriaDois: string | null;
@@ -19,9 +20,25 @@ interface iParametros {
     setArquivoUpload: Dispatch<string>;
 }
 
-export default function DivUpload({ imagem, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita, arquivoUpload, setArquivoUpload }: iParametros) {
+export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita, arquivoUpload, setArquivoUpload }: iParametros) {
 
     const [isModalUploadFotoPerfilOpen, setIsModalUploadFotoPerfilOpen] = useState(false);
+
+    useEffect(() => {
+        if (imagem) {
+            const img = `${apiPasta}/${imagem}`;
+
+            converterSrcImagemParaBase64(img)
+                .then((base64: any) => {
+                    // console.log(base64);
+                    setArquivoUpload(base64);
+                });
+        }
+    }, [imagem]);
+
+    function handleRemoverFoto() {
+        setArquivoUpload('');
+    }
 
     return (
         <Fragment>
@@ -33,13 +50,17 @@ export default function DivUpload({ imagem, titulo, infoAleatoriaUm, infoAleator
             </ModalWrapper>
 
             <div className={Styles.main}>
-                <Image src={(arquivoUpload ? arquivoUpload : imagem ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${imagem}` : ImgCinza)} width={100} height={100} alt='' />
+                <Image src={(arquivoUpload ? arquivoUpload : ImgCinza)} width={100} height={100} alt='' />
 
                 <div className={Styles.infos}>
                     <span className={Styles.titulo}>{titulo}</span>
                     <span className={Styles.texto}>{infoAleatoriaUm}</span>
                     <span className={Styles.texto}>{infoAleatoriaDois && infoAleatoriaDois}</span>
-                    {imagem && <span className={`${Styles.texto} ${Styles.vermelho} pointer`}>Remover</span>}
+                    {
+                        (imagem || arquivoUpload) && (
+                            <span className={`${Styles.texto} ${Styles.vermelho} pointer`} onClick={() => handleRemoverFoto()}>Remover</span>
+                        )
+                    }
                 </div>
 
                 {

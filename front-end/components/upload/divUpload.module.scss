@@ -11,8 +11,11 @@
     .infos {
         // background-color: pink;
         display: flex;
+        justify-content: center;
         flex-direction: column;
         gap: 0.25rem;
+        min-width: 12rem;
+        max-width: 12rem;
 
         .titulo {
             color: var(--preto);
