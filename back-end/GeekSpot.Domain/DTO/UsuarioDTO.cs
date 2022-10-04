@@ -27,7 +27,7 @@ namespace GeekSpot.Domain.DTO
         public bool IsEmailVerificacaoContaEnviado { get; set; } = false;
 
         // Fk (De cá pra lá);
-        [JsonIgnore]
+        // [JsonIgnore]
         public UsuarioInformacaoDTO? UsuariosInformacoes { get; set; }
     }
 }

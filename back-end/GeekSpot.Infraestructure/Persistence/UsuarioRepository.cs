@@ -148,5 +148,37 @@ namespace GeekSpot.Infraestructure.Persistence
             UsuarioDTO dto = _map.Map<UsuarioDTO>(usuario);
             return dto;
         }
+
+        public async Task<UsuarioDTO>? AtualizarDadosLojinha(int usuarioId, UsuarioDTO dto)
+        {
+            var byId = await _context.Usuarios.
+                       Include(ut => ut.UsuariosTipos).
+                       Include(ui => ui.UsuariosInformacoes).
+                       Where(ui => ui.UsuarioId == usuarioId).AsNoTracking().FirstOrDefaultAsync();
+
+            if (byId is null)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.FalhaAoAtualizarDados, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.FalhaAoAtualizarDados) };
+                return erro;
+            }
+
+            // Se o usuário não tiver dados na tabela UsuariosInformacoes, a classe deve ser instanciada;
+            if (byId.UsuariosInformacoes is null)
+            {
+                byId.UsuariosInformacoes = new();
+            }
+            
+            // Atualizar dados;
+            byId.Foto = dto.Foto;
+            byId.UsuariosInformacoes.LojinhaImagemCapa = dto.UsuariosInformacoes?.LojinhaImagemCapa;
+            byId.UsuariosInformacoes.LojinhaTitulo = dto.UsuariosInformacoes?.LojinhaTitulo;
+            byId.UsuariosInformacoes.LojinhaDescricao = dto.UsuariosInformacoes?.LojinhaDescricao;
+
+            _context.Update(byId);
+            await _context.SaveChangesAsync();
+
+            UsuarioDTO dtoRetorno = _map.Map<UsuarioDTO>(byId);
+            return dtoRetorno;
+        }
     }
 }

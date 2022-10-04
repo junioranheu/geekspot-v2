@@ -3,6 +3,7 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.API.Controllers
@@ -12,7 +13,7 @@ namespace GeekSpot.API.Controllers
     public class UsuariosController : BaseController<UsuariosController>
     {
         private readonly IUsuarioRepository _usuarios;
-          
+
         public UsuariosController(IUsuarioRepository usuarioRepository)
         {
             _usuarios = usuarioRepository;
@@ -71,6 +72,16 @@ namespace GeekSpot.API.Controllers
         {
             var usuario = await _usuarios.VerificarConta(codigoVerificacao);
             return usuario;
+        }
+
+        [HttpPut("atualizarDadosLojinha")]
+        [Authorize]
+        public async Task<ActionResult<UsuarioDTO>> AtualizarDadosLojinha(UsuarioDTO dto)
+        {
+            int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = await _usuarios.AtualizarDadosLojinha(usuarioLogadoId, dto);
+
+            return Ok(usuario);
         }
     }
 }

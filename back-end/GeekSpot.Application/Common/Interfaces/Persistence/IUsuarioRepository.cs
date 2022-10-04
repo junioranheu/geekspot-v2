@@ -12,5 +12,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task? AtualizarFoto(int usuarioId, string foto);
         Task<string>? AtualizarCodigoVerificacao(int usuarioId);
         Task<UsuarioDTO>? VerificarConta(string codigoVerificacao);
+        Task<UsuarioDTO>? AtualizarDadosLojinha(int usuarioId, UsuarioDTO dto);
     }
 }

@@ -19,7 +19,7 @@ interface iFormLojinha {
     nomeLojinha: string,
     descricaoLojinha: string;
 }
-
+ 
 export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha }: iParametros) {
 
     const [formDataLojinha, setFormDataLojinha] = useState<iFormLojinha>({ nomeLojinha: '', descricaoLojinha: '' });

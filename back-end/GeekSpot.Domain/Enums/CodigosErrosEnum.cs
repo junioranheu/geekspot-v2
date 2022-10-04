@@ -58,6 +58,9 @@ namespace GeekSpot.Domain.Enums
         RefreshTokenInvalido = 411,
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 600 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        [Description("Houve um problema ao atualizar seus dados. Tente novamente mais tarde")]
+        FalhaAoAtualizarDados = 601,
+
         [Description("Este usuário já está sendo seguido por você")]
         UsuarioJaSegue = 610,
 
