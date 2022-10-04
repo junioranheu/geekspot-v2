@@ -54,10 +54,7 @@ export default function SessaoCriarConta() {
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ nomeCompleto: '', email: '', nomeUsuarioSistema: '', senha: '', confirmarSenha: '' });
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
     // Gerar uma foto de perfil aleatória em Base64;

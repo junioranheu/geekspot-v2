@@ -38,10 +38,7 @@ export default function SessaoEntrar() {
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ usuario: '', senha: '' });
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
     // Ao clicar no botão para entrar;
