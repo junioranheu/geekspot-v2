@@ -10,7 +10,6 @@ interface iParametros {
 
 export default function SessaoMinhaConta({ usuario }: iParametros) {
     return (
-        // =-=-=-=-=-=-=-=-=-=-=-= #4 - Minha conta =-=-=-=-=-=-=-=-=-=-=-= 
         <Fragment>
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>

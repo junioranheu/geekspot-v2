@@ -10,7 +10,6 @@ interface iParametros {
 
 export default function SessaoDadosPessoais({ usuario }: iParametros) {
     return (
-        // =-=-=-=-=-=-=-=-=-=-=-= #2 - Dados pessoais =-=-=-=-=-=-=-=-=-=-=-=  
         <Fragment>
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>

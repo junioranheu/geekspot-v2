@@ -10,7 +10,6 @@ interface iParametros {
 
 export default function SessaoEndereco({ usuario }: iParametros) {
     return (
-        // =-=-=-=-=-=-=-=-=-=-=-= #3 - Endereço =-=-=-=-=-=-=-=-=-=-=-= 
         <Fragment>
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>

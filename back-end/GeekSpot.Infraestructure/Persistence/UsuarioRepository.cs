@@ -4,7 +4,6 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Domain.Enums;
 using GeekSpot.Infraestructure.Data;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using static GeekSpot.Utils.Biblioteca;
 
@@ -168,10 +167,10 @@ namespace GeekSpot.Infraestructure.Persistence
             {
                 byId.UsuariosInformacoes = new();
             }
-            
+
             // Atualizar dados;
-            byId.Foto = dto.Foto;
-            byId.UsuariosInformacoes.LojinhaImagemCapa = dto.UsuariosInformacoes?.LojinhaImagemCapa;
+            byId.Foto = !String.IsNullOrEmpty(dto.Foto) ? $"{usuarioId}.webp" : "";
+            byId.UsuariosInformacoes.LojinhaImagemCapa = !String.IsNullOrEmpty(dto.UsuariosInformacoes?.LojinhaImagemCapa) ? $"{usuarioId}.webp" : "";
             byId.UsuariosInformacoes.LojinhaTitulo = dto.UsuariosInformacoes?.LojinhaTitulo;
             byId.UsuariosInformacoes.LojinhaDescricao = dto.UsuariosInformacoes?.LojinhaDescricao;
 
