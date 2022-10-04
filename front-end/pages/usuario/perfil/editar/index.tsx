@@ -17,6 +17,9 @@ export default function Index() {
     document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
+    const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
+    const [arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha] = useState('');
+
     const [usuario, setUsuario] = useState<iUsuario>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -53,8 +56,19 @@ export default function Index() {
     return (
         <section className='flexColumn paddingPadrao'>
             <div className={Styles.main}>
-                <SessaoEsquerda usuario={usuario} />
-                <SessaoDireita usuario={usuario}/>
+                <SessaoEsquerda
+                    usuario={usuario}
+                    arquivoUploadFotoPerfil={arquivoUploadFotoPerfil}
+                    arquivoUploadCapaLojinha={arquivoUploadCapaLojinha}
+                />
+
+                <SessaoDireita
+                    usuario={usuario}
+                    arquivoUploadFotoPerfil={arquivoUploadFotoPerfil}
+                    setArquivoUploadFotoPerfil={setArquivoUploadFotoPerfil}
+                    arquivoUploadCapaLojinha={arquivoUploadCapaLojinha}
+                    setArquivoUploadCapaLojinha={setArquivoUploadCapaLojinha}
+                />
             </div>
 
             {/* Espaço a mais */}

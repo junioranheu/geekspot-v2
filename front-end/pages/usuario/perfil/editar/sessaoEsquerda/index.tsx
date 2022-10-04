@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
+import { useEffect, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import Configuracao from '../../../../../components/svg/configuracao';
 import Coracao from '../../../../../components/svg/coracao';
@@ -16,21 +17,42 @@ import Styles from './index.module.scss';
 
 interface iParametros {
     usuario: iUsuario | undefined;
+    arquivoUploadFotoPerfil: string | null;
+    arquivoUploadCapaLojinha: string | null;
 }
 
-export default function SessaoEsquerda({ usuario }: iParametros) {
+export default function SessaoEsquerda({ usuario, arquivoUploadFotoPerfil, arquivoUploadCapaLojinha }: iParametros) {
 
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
 
+    const [fotoPerfil, setFotoPerfil] = useState(ImgCinza.src);
+    const [capaLojinha, setCapaLojinha] = useState(ImgCinza.src);
+    useEffect(() => {
+        // #1 - Verificar se a foto de perfil vem do upload, do banco ou de nenhuma das opções;
+        if (arquivoUploadFotoPerfil) {
+            setFotoPerfil(arquivoUploadFotoPerfil);
+        } else if (Auth?.get()?.foto) {
+            setFotoPerfil(`${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${usuario?.usuariosInformacoes?.lojinhaImagemCapa}`);
+        } else {
+            setFotoPerfil(ImgCinza.src);
+        }
+
+        // #2 - Verificar se a capa da lojinha vem do upload, do banco ou de nenhuma das opções;
+        if (arquivoUploadCapaLojinha) {
+            setCapaLojinha(arquivoUploadCapaLojinha);
+        } else if (usuario?.usuariosInformacoes?.lojinhaImagemCapa) {
+            setCapaLojinha(`${CONSTS_UPLOAD.API_URL_GET_USUARIOS_LOJINHAS_CAPAS}/${usuario?.usuariosInformacoes?.lojinhaImagemCapa}`);
+        } else {
+            setCapaLojinha(ImgCinza.src);
+        }
+    }, [arquivoUploadFotoPerfil, arquivoUploadCapaLojinha]);
+
     return (
         <div className={Styles.sessaoEsquerda}>
-            <div
-                className={Styles.divCapaLojinha}
-                style={{ backgroundImage: `url(${(usuario?.usuariosInformacoes?.lojinhaImagemCapa ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_LOJINHAS_CAPAS}/${usuario?.usuariosInformacoes?.lojinhaImagemCapa}` : ImgCinza.src)})` }}
-            >
+            <div className={Styles.divCapaLojinha} style={{ backgroundImage: `url(${capaLojinha})` }}>
                 <div className={Styles.fotoPerfil}>
-                    <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={100} height={100} alt='' />
+                    <Image src={fotoPerfil} width={100} height={100} alt='' />
                 </div>
             </div>
 

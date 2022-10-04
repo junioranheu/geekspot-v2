@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, Dispatch, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import DivUpload from '../../../../../components/upload/divUpload';
@@ -9,6 +9,10 @@ import Styles from './index.module.scss';
 
 interface iParametros {
     usuario: iUsuario | undefined;
+    arquivoUploadFotoPerfil: string | null;
+    setArquivoUploadFotoPerfil: Dispatch<string>;
+    arquivoUploadCapaLojinha: string | null;
+    setArquivoUploadCapaLojinha: Dispatch<string>;
 }
 
 interface iFormLojinha {
@@ -16,10 +20,7 @@ interface iFormLojinha {
     descricaoLojinha: string;
 }
 
-export default function SessaoLojinha({ usuario }: iParametros) {
-
-    const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
-    const [arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha] = useState('');
+export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha }: iParametros) {
 
     const [formDataLojinha, setFormDataLojinha] = useState<iFormLojinha>({ nomeLojinha: '', descricaoLojinha: '' });
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
