@@ -2,6 +2,7 @@
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using static GeekSpot.Utils.Biblioteca;
@@ -12,10 +13,12 @@ namespace GeekSpot.API.Controllers
     [Route("api/[controller]")]
     public class UsuariosController : BaseController<UsuariosController>
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IUsuarioRepository _usuarios;
 
-        public UsuariosController(IUsuarioRepository usuarioRepository)
+        public UsuariosController(IWebHostEnvironment webHostEnvironment, IUsuarioRepository usuarioRepository)
         {
+            _webHostEnvironment = webHostEnvironment;
             _usuarios = usuarioRepository;
         }
 
@@ -80,6 +83,34 @@ namespace GeekSpot.API.Controllers
         {
             int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
             var usuario = await _usuarios.AtualizarDadosLojinha(usuarioLogadoId, dto);
+
+            // Atualizar físicamente a foto de perfil do usuário;
+            try
+            {
+                if (!String.IsNullOrEmpty(dto.Foto))
+                {
+                    var file = Base64ToImage(dto.Foto);
+                    UparImagem(file, usuarioLogadoId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.FotoPerfilUsuario), dto.Foto, _webHostEnvironment);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            // Atualizar físicamente a capa da lojinha;
+            try
+            {
+                if (!String.IsNullOrEmpty(dto.UsuariosInformacoes?.LojinhaImagemCapa))
+                {
+                    var file = Base64ToImage(dto.UsuariosInformacoes.LojinhaImagemCapa);
+                    UparImagem(file, usuarioLogadoId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.CapaLojinha), dto.UsuariosInformacoes.LojinhaImagemCapa, _webHostEnvironment);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
 
             return Ok(usuario);
         }

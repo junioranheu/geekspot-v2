@@ -4,6 +4,7 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Domain.Enums;
 using GeekSpot.Infraestructure.Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using static GeekSpot.Utils.Biblioteca;
 
