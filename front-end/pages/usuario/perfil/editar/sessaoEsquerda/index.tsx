@@ -33,7 +33,7 @@ export default function SessaoEsquerda({ usuario, arquivoUploadFotoPerfil, arqui
         if (arquivoUploadFotoPerfil) {
             setFotoPerfil(arquivoUploadFotoPerfil);
         } else if (Auth?.get()?.foto) {
-            setFotoPerfil(`${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${usuario?.usuariosInformacoes?.lojinhaImagemCapa}`);
+            setFotoPerfil(`${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}`);
         } else {
             setFotoPerfil(ImgCinza.src);
         }
