@@ -1,5 +1,6 @@
 import NProgress from 'nprogress';
 import { Dispatch, Fragment, useEffect, useState } from 'react';
+import TIPOS_ARQUIVOS_UPLOAD_IMAGEM from '../../../utils/consts/outros/tiposArquivosUpload.imagem';
 import UPLOAD_IMAGEM from '../../../utils/consts/outros/uploadImagem';
 import { Aviso } from '../../../utils/outros/aviso';
 import dataUrltoFile from '../../../utils/outros/dataURLToFile';
@@ -14,9 +15,10 @@ interface iParametros {
     isBase64: boolean; // true = base64, false = file;
     handleModal: Dispatch<boolean>;
     setArquivoUpload: Dispatch<File> | any;
+    limitarAspectRatio: number | null;
 }
 
-export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }: iParametros) {
+export default function ModalUpload({ isBase64, handleModal, setArquivoUpload, limitarAspectRatio }: iParametros) {
 
     const [nomeElementoInput] = useState('inputUpload_modalUpload');
     const [arquivo, setArquivo] = useState(null);
@@ -93,13 +95,13 @@ export default function ModalUpload({ isBase64, handleModal, setArquivoUpload }:
             <div className={StylesUpload.divUpload}>
                 <DragDropFile
                     nomeElemento={nomeElementoInput}
-                    tipoArquivos={['JPG', 'JPEG', 'PNG', 'WEBP']}
+                    tipoArquivos={TIPOS_ARQUIVOS_UPLOAD_IMAGEM.TIPOS}
                     isMultiple={false}
                     setArquivo={setArquivo}
                     texto='Clique aqui ou arraste uma imagem: '
                     maxSizeMBs={UPLOAD_IMAGEM.LIMITE_MB}
                     isDisabled={isDisabled}
-                    conteudo={<ModalUploadConteudo arquivoBlob={arquivoBlob} setArquivoCrop={setArquivoCrop} />}
+                    conteudo={<ModalUploadConteudo arquivoBlob={arquivoBlob} setArquivoCrop={setArquivoCrop} limitarAspectRatio={limitarAspectRatio} />}
                 />
             </div>
 

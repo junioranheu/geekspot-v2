@@ -15,12 +15,13 @@ interface iParametros {
     infoAleatoriaUm: string;
     infoAleatoriaDois: string | null;
     textoBotaoDireita: string | null;
+    limitarAspectRatio: number | null;
 
     arquivoUpload: string | null;
     setArquivoUpload: Dispatch<string>;
 }
 
-export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita, arquivoUpload, setArquivoUpload }: iParametros) {
+export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita, limitarAspectRatio, arquivoUpload, setArquivoUpload }: iParametros) {
 
     const [isModalUploadFotoPerfilOpen, setIsModalUploadFotoPerfilOpen] = useState(false);
 
@@ -45,7 +46,12 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
             {/* Modal */}
             <ModalWrapper isOpen={isModalUploadFotoPerfilOpen}>
                 <ModalLayout handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalUpload isBase64={true} handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} setArquivoUpload={setArquivoUpload} />
+                    <ModalUpload
+                        isBase64={true}
+                        handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)}
+                        setArquivoUpload={setArquivoUpload}
+                        limitarAspectRatio={limitarAspectRatio}
+                    />
                 </ModalLayout>
             </ModalWrapper>
 

@@ -94,6 +94,7 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                         infoAleatoriaUm='Escolhe uma foto da hora aí'
                         infoAleatoriaDois={`Peso máximo: ${UPLOAD_IMAGEM.LIMITE_MB} MB`}
                         textoBotaoDireita='Alterar foto de perfil'
+                        limitarAspectRatio={null}
                         arquivoUpload={arquivoUploadFotoPerfil}
                         setArquivoUpload={setArquivoUploadFotoPerfil}
                     />
@@ -108,6 +109,7 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                         infoAleatoriaUm='Selecione uma capa pra sua lojinha também'
                         infoAleatoriaDois={`Peso máximo: ${UPLOAD_IMAGEM.LIMITE_MB} MB`}
                         textoBotaoDireita='Alterar capa da lojinha'
+                        limitarAspectRatio={16 / 2}
                         arquivoUpload={arquivoUploadCapaLojinha}
                         setArquivoUpload={setArquivoUploadCapaLojinha}
                     />
