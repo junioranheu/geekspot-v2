@@ -7,7 +7,6 @@ import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import UPLOAD_IMAGEM from '../../../../../utils/consts/outros/uploadImagem';
-import { Auth } from '../../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../../utils/outros/aviso';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -65,13 +64,9 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
             return false;
         }
 
-        // Atualizar no local storage;
-        const dadosUsuario = { foto: resposta.foto }
-        Auth.update(dadosUsuario);
-
         nProgress.done();
         refBtn.current.disabled = false;
-        Aviso.success('Os dados da sua lojinha foram atualizados com sucesso', 5000);
+        Aviso.success('Os <b>dados da sua lojinha</b> foram atualizados com sucesso', 5000);
     }
 
     return (

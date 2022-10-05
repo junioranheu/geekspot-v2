@@ -36,7 +36,7 @@ namespace GeekSpot.API.Controllers
                 if (!String.IsNullOrEmpty(dto.Foto))
                 {
                     var file = Base64ToImage(dto.Foto);
-                    string caminhoNovaImagem = UparImagem(file, authResultado.UsuarioId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.FotoPerfilUsuario), dto.Foto, _webHostEnvironment);
+                    string caminhoNovaImagem = await UparImagem(file, authResultado.UsuarioId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.FotoPerfilUsuario), dto.Foto, _webHostEnvironment);
                     authResultado.Foto = caminhoNovaImagem ?? "";
                 }
             }

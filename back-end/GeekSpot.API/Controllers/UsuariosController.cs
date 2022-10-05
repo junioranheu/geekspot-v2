@@ -90,7 +90,7 @@ namespace GeekSpot.API.Controllers
                 if (!String.IsNullOrEmpty(dto.Foto))
                 {
                     var file = Base64ToImage(dto.Foto);
-                    UparImagem(file, usuarioLogadoId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.FotoPerfilUsuario), dto.Foto, _webHostEnvironment);
+                    await UparImagem(file, usuarioLogadoId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.FotoPerfilUsuario), dto.Foto, _webHostEnvironment);
                 }
             }
             catch (Exception)
@@ -104,7 +104,7 @@ namespace GeekSpot.API.Controllers
                 if (!String.IsNullOrEmpty(dto.UsuariosInformacoes?.LojinhaImagemCapa))
                 {
                     var file = Base64ToImage(dto.UsuariosInformacoes.LojinhaImagemCapa);
-                    UparImagem(file, usuarioLogadoId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.CapaLojinha), dto.UsuariosInformacoes.LojinhaImagemCapa, _webHostEnvironment);
+                    await UparImagem(file, usuarioLogadoId.ToString(), GetDescricaoEnum(CaminhoUploadEnum.CapaLojinha), dto.UsuariosInformacoes.LojinhaImagemCapa, _webHostEnvironment);
                 }
             }
             catch (Exception)

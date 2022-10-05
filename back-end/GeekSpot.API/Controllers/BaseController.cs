@@ -2,6 +2,7 @@
 using ImageProcessor.Plugins.WebP.Imaging.Formats;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Security.Claims;
 
 // Como criar um BaseController: https://stackoverflow.com/questions/58735503/creating-base-controller-for-asp-net-core-to-do-logging-but-something-is-wrong-w;
@@ -10,7 +11,7 @@ using System.Security.Claims;
 namespace GeekSpot.API.Controllers
 {
     public abstract class BaseController<T> : Controller
-    {        
+    {
         protected async Task<bool> IsUsuarioSolicitadoMesmoDoToken(int id)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
@@ -39,46 +40,49 @@ namespace GeekSpot.API.Controllers
         // nomePasta = nome do caminho do arquivo, da pasta. Por exemplo: /upload/usuario/. "usuario" é o caminho;
         // arquivoAtual = o nome do arquivo atual, caso exista;
         // hostingEnvironment = o caminho até o wwwroot. Ele deve ser passado por parâmetro, já que não funcionaria aqui diretamente no BaseController;
-        protected string UparImagem(IFormFile arquivo, string id, string nomePasta, string? arquivoAtual, IWebHostEnvironment hostingEnvironment)
+        protected async Task<string> UparImagem(IFormFile arquivo, string id, string nomePasta, string? arquivoAtual, IWebHostEnvironment hostingEnvironment)
         {
-            // Procedimento de inicialização para salvar nova imagem;
-            string webRootPath = hostingEnvironment.ContentRootPath; // Vai até o wwwwroot;
-            string restoCaminho = "/upload/" + nomePasta + "/"; // Acesso à pasta referente; 
-            string nomeNovo = id + ".webp"; // Nome novo do arquivo;
-            string caminhoDestino = webRootPath + restoCaminho + nomeNovo; // Caminho de destino para upar;
-
-            // Copiar o novo arquivo para o local de destino;
-            if (arquivo.Length > 0)
+            return await Task.Run(() =>
             {
-                // Verificar se já existe uma foto caso exista, delete-a;
-                if (!String.IsNullOrEmpty(arquivoAtual))
-                {
-                    string caminhoArquivoAtual = webRootPath + restoCaminho + arquivoAtual;
+                // Procedimento de inicialização para salvar nova imagem;
+                string webRootPath = hostingEnvironment.ContentRootPath; // Vai até o wwwwroot;
+                string restoCaminho = "/upload/" + nomePasta + "/"; // Acesso à pasta referente; 
+                string nomeNovo = id + ".webp"; // Nome novo do arquivo;
+                string caminhoDestino = webRootPath + restoCaminho + nomeNovo; // Caminho de destino para upar;
 
-                    // Verificar se o arquivo existe;
-                    if (System.IO.File.Exists(caminhoArquivoAtual))
+                // Copiar o novo arquivo para o local de destino;
+                if (arquivo.Length > 0)
+                {
+                    // Verificar se já existe uma foto caso exista, delete-a;
+                    if (!String.IsNullOrEmpty(arquivoAtual))
                     {
-                        // Se existe, apague-o; 
-                        System.IO.File.Delete(caminhoArquivoAtual);
+                        string caminhoArquivoAtual = webRootPath + restoCaminho + arquivoAtual;
+
+                        // Verificar se o arquivo existe;
+                        if (System.IO.File.Exists(caminhoArquivoAtual))
+                        {
+                            // Se existe, apague-o; 
+                            System.IO.File.Delete(caminhoArquivoAtual);
+                        }
                     }
-                }
 
-                // Então salve a imagem no servidor no formato WebP - https://blog.elmah.io/convert-images-to-webp-with-asp-net-core-better-than-png-jpg-files/;
-                using (var webPFileStream = new FileStream(caminhoDestino, FileMode.Create))
+                    // Então salve a imagem no servidor no formato WebP - https://blog.elmah.io/convert-images-to-webp-with-asp-net-core-better-than-png-jpg-files/;
+                    using (var webPFileStream = new FileStream(caminhoDestino, FileMode.Create))
+                    {
+                        ImageFactory imageFactory = new(preserveExifData: false);
+                        imageFactory.Load(arquivo.OpenReadStream())
+                                    .Format(new WebPFormat())
+                                    .Quality(10)
+                                    .Save(webPFileStream);
+                    }
+
+                    return nomeNovo;
+                }
+                else
                 {
-                    ImageFactory imageFactory = new(preserveExifData: false);
-                    imageFactory.Load(arquivo.OpenReadStream())
-                                .Format(new WebPFormat())
-                                .Quality(10)
-                                .Save(webPFileStream);
+                    return "";
                 }
-
-                return nomeNovo;
-            }
-            else
-            {
-                return "";
-            }
+            });
         }
     }
 }

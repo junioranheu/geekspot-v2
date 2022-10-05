@@ -7,7 +7,6 @@ import Configuracao from '../../../../../components/svg/configuracao';
 import Coracao from '../../../../../components/svg/coracao';
 import Loja from '../../../../../components/svg/loja';
 import ImgCinza from '../../../../../static/image/outros/cinza.webp';
-import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Auth } from '../../../../../utils/context/usuarioContext';
 import formatarData from '../../../../../utils/outros/formatarData';
@@ -32,8 +31,6 @@ export default function SessaoEsquerda({ usuario, arquivoUploadFotoPerfil, arqui
         // #1 - Verificar se a foto de perfil vem do upload, do banco ou de nenhuma das opções;
         if (arquivoUploadFotoPerfil) {
             setFotoPerfil(arquivoUploadFotoPerfil);
-        } else if (Auth?.get()?.foto) {
-            setFotoPerfil(`${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}`);
         } else {
             setFotoPerfil(ImgCinza.src);
         }
@@ -41,8 +38,6 @@ export default function SessaoEsquerda({ usuario, arquivoUploadFotoPerfil, arqui
         // #2 - Verificar se a capa da lojinha vem do upload, do banco ou de nenhuma das opções;
         if (arquivoUploadCapaLojinha) {
             setCapaLojinha(arquivoUploadCapaLojinha);
-        } else if (usuario?.usuariosInformacoes?.lojinhaImagemCapa) {
-            setCapaLojinha(`${CONSTS_UPLOAD.API_URL_GET_USUARIOS_LOJINHAS_CAPAS}/${usuario?.usuariosInformacoes?.lojinhaImagemCapa}`);
         } else {
             setCapaLojinha(ImgCinza.src);
         }
