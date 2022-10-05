@@ -31,7 +31,7 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
 
             converterSrcImagemParaBase64(img)
                 .then((base64: any) => {
-                    // console.log(base64);
+                    // console.log(apiPasta, '-', imagem, '-', base64);
                     setArquivoUpload(base64);
                 });
         }

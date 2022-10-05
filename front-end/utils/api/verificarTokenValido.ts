@@ -1,6 +1,7 @@
 import moment from 'moment';
 import nProgress from 'nprogress';
 import TIPOS_DURACAO_MOMENT from '../consts/outros/tiposDuracaoMoment';
+import VERBOS_HTTP from '../consts/outros/verbosHTTP';
 import { Auth } from '../context/usuarioContext';
 import converterTempoDecimalEmFormatoPadrao from '../outros/converterTempoDecimalEmFormatoPadrao';
 import diferencaDatasEmHoras from '../outros/diferencaDatasEmHoras';
@@ -30,7 +31,7 @@ export default async function verificarTokenValido(isAuth: boolean | undefined) 
 
         if (horaAgora > dataExpiracaoToken) {
             nProgress.start();
-            await Fetch.refreshToken(token, 'Unexpected end of JSON input', 'POST', null, null, true);
+            await Fetch.refreshToken(token, 'Unexpected end of JSON input', VERBOS_HTTP.POST, null, null, true);
             nProgress.done();
         }
     }

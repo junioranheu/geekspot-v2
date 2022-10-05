@@ -177,6 +177,10 @@ export const Fetch = {
         Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
             Auth.delete();
             nProgress.done();
+
+            setTimeout(function () {
+                location.reload();
+            }, numeroAleatorio(3000, 5000));
         });
     }
 }
