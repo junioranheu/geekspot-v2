@@ -7,6 +7,7 @@ import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import UPLOAD_IMAGEM from '../../../../../utils/consts/outros/uploadImagem';
+import { Auth } from '../../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../../utils/outros/aviso';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -56,13 +57,17 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
             }
         };
 
-        const resposta = await Fetch.putApi(url, dto);
+        const resposta = await Fetch.putApi(url, dto) as iUsuario;
         if (!resposta || resposta?.erro) {
             nProgress.done();
             refBtn.current.disabled = false;
-            Aviso.warn(resposta?.mensagemErro, 5000);
+            Aviso.warn(resposta?.mensagemErro ?? 'Houve um erro ao atualizar os dados', 5000);
             return false;
         }
+
+        // Atualizar no local storage;
+        const dadosUsuario = { foto: resposta.foto }
+        Auth.update(dadosUsuario);
 
         nProgress.done();
         refBtn.current.disabled = false;
@@ -82,7 +87,7 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                 <span className='separadorHorizontal'></span>
                 <div className={Styles.divInput}>
                     <span className={Styles.item}>Descrição ou bio da lojinha</span>
-                    <input className='input' type='text' name='lojinhaDescricao' onChange={handleChange} value={formDataLojinha.lojinhaDescricao}/>
+                    <input className='input' type='text' name='lojinhaDescricao' onChange={handleChange} value={formDataLojinha.lojinhaDescricao} />
                 </div>
 
                 <span className='separadorHorizontal'></span>

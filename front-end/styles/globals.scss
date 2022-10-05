@@ -500,6 +500,13 @@ dialog[aria-labelledby*=rmiz-modal-img] {
         background: var(--branco);
         color: var(--preto);
         border: 1px solid #c5b1f1;
+
+        &:disabled {
+            background-color: inherit;
+            color: var(--preto);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     }
 }
 

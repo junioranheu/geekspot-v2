@@ -46,7 +46,7 @@ export default function SessaoEsquerda({ usuario, arquivoUploadFotoPerfil, arqui
         } else {
             setCapaLojinha(ImgCinza.src);
         }
-    }, [arquivoUploadFotoPerfil, arquivoUploadCapaLojinha]);
+    }, [arquivoUploadFotoPerfil, arquivoUploadCapaLojinha, usuario?.usuariosInformacoes?.lojinhaImagemCapa]);
 
     return (
         <div className={Styles.sessaoEsquerda}>

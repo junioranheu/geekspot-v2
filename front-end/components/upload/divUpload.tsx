@@ -34,7 +34,7 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
                     setArquivoUpload(base64);
                 });
         }
-    }, [imagem]);
+    }, [imagem, apiPasta, setArquivoUpload]);
 
     function handleRemoverFoto() {
         setArquivoUpload('');
@@ -57,7 +57,7 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
                     <span className={Styles.texto}>{infoAleatoriaUm}</span>
                     <span className={Styles.texto}>{infoAleatoriaDois && infoAleatoriaDois}</span>
                     {
-                        (imagem || arquivoUpload) && (
+                        (arquivoUpload) && (
                             <span className={`${Styles.texto} ${Styles.vermelho} pointer`} onClick={() => handleRemoverFoto()}>Remover</span>
                         )
                     }

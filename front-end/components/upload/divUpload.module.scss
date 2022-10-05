@@ -26,10 +26,12 @@
         }
 
         .texto {
+            // background-color: blue;
             color: var(--preto);
             font-weight: 400;
             font-size: 0.9rem;
             line-height: 1.2rem;
+            width: fit-content;
         }
 
         .vermelho {
