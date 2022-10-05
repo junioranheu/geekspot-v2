@@ -55,7 +55,7 @@ export default function NavbarMobile() {
                         isAuth ? (
                             <div className={Styles.sessaoBotoes}>
                                 <div className={Styles.botaoPadrao}>
-                                    <Botao texto='Sair' url={null} isNovaAba={false} handleFuncao={() => deslogar(setIsAuth)} Svg={null} refBtn={null} isEnabled={true} />
+                                    <Botao texto={`Sair do ${CONSTS_SISTEMA.NOME_SISTEMA}`} url={null} isNovaAba={false} handleFuncao={() => deslogar(setIsAuth)} Svg={null} refBtn={null} isEnabled={true} />
                                 </div>
                             </div>
                         ) : (
