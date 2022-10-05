@@ -108,7 +108,7 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                         titulo='Capa da lojinha'
                         infoAleatoriaUm='Selecione uma capa pra sua lojinha também'
                         infoAleatoriaDois={`Peso máximo: ${UPLOAD_IMAGEM.LIMITE_MB} MB`}
-                        textoBotaoDireita='Alterar capa da lojinha'
+                        textoBotaoDireita='Alterar capa'
                         limitarAspectRatio={16 / 2}
                         arquivoUpload={arquivoUploadCapaLojinha}
                         setArquivoUpload={setArquivoUploadCapaLojinha}

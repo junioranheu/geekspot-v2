@@ -3,10 +3,27 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100%;
 
-    img {
-        border-radius: 5px;
-        min-width: 100px;
+    .imgFotoPerfil {
+        // background-color: red;
+        margin-right: 0.25rem;
+
+        img {
+            border-radius: 5px;
+            min-width: 175px;
+        }
+    }
+
+    .imgCapaLojinha {
+        // background-color: red;
+        margin-right: 0.25rem;
+
+        img {
+            border-radius: 5px;
+            height: 125px !important;
+            min-width: 350px !important;
+        }
     }
 
     .infos {
@@ -50,6 +67,18 @@
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+@media (max-width:1628px) {
+    .main {
+        // background-color: coral;
+
+        .imgCapaLojinha {
+            img {
+                min-width: 250px !important;
+            }
+        }
+    }
+}
+
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {}
 
@@ -59,25 +88,31 @@
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
     .main {
-        .divBotao {
-            button {
-                font-size: 0.75rem !important;
-            }
-        }
-    }
-}
-
-/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {
-    .main {
         // background-color: coral;
         display: flex;
         align-items: center;
         flex-direction: column;
         margin: auto;
 
+        .imgFotoPerfil {
+            img {
+                min-width: 125px;
+            }
+        }
+
+        .imgCapaLojinha {
+            img {
+                min-width: 70vw !important;
+                height: 100px !important;
+            }
+        }
+
         .divBotao {
             margin: auto;
+
+            button {
+                font-size: 0.75rem !important;
+            }
 
             span {
                 display: none;
@@ -89,6 +124,9 @@
         }
     }
 }
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}

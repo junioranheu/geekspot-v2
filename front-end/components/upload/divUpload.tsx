@@ -56,7 +56,9 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
             </ModalWrapper>
 
             <div className={Styles.main}>
-                <Image src={(arquivoUpload ? arquivoUpload : ImgCinza)} width={100} height={100} alt='' />
+                <div className={(limitarAspectRatio ? Styles.imgCapaLojinha : Styles.imgFotoPerfil)}>
+                    <Image src={(arquivoUpload ? arquivoUpload : ImgCinza)} width={100} height={100} alt='' />
+                </div>
 
                 <div className={Styles.infos}>
                     <span className={Styles.titulo}>{titulo}</span>
