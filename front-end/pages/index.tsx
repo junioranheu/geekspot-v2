@@ -1,3 +1,4 @@
+import nProgress from 'nprogress';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import Carousel from '../components/carousel/carousel';
 import ModuloAlternativo from '../components/modulo/modulo.alternativo';
@@ -32,6 +33,7 @@ export default function Home({ listaItens }: iParametros) {
     useEffect(() => {
         setListaItensRandom(randomizarArray(listaItens))
         paginaCarregada(false, 100, 300, setIsLoaded);
+        nProgress.done();
     }, [listaItens]);
 
     if (!isLoaded) {

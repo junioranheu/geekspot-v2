@@ -20,7 +20,7 @@ interface iParametros {
 }
 
 interface iFormLojinha {
-    lojinhaTitulo: string,
+    lojinhaTitulo: string;
     lojinhaDescricao: string;
 }
 

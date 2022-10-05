@@ -9,6 +9,7 @@ import Botao from '../../outros/botao';
 import Hamburguer from '../../svg/hamburguer';
 import Logo from '../../svg/logo';
 import NavbarFiltro from '../outros/navbar.filtro';
+import MenuUsuarioOpcoes from '../padrao/menus/menu.usuario.opcoes';
 import Styles from './navbar.mobile.module.scss';
 
 export default function NavbarMobile() {
@@ -43,17 +44,10 @@ export default function NavbarMobile() {
                 titulo={`Olá${(nomeUsuario && `, <b>@${nomeUsuario}</b>`)} ${emoji}`}
             >
                 <div className={Styles.divAtalhos} onClick={() => setIsModalLateralOpen(false)}>
-                    <Link href='/xxx'><a>Produtos</a></Link>
-                    <Link href='/xxx'><a>Promoções</a></Link>
-
-                    {
-                        isAuth && (
-                            <Fragment>
-                                <Link href='/xxx'><a>xxx</a></Link>
-                                <Link href='/xxx'><a>xxx</a></Link>
-                            </Fragment>
-                        )
-                    }
+                    {/* Mesmas opções usadas no menu de usuário */}
+                    <div className={Styles.divOpcoes}>
+                        <MenuUsuarioOpcoes isMeuPerfilBotao={false} />
+                    </div>
 
                     <div className='divisao margem1'>ou</div>
 
