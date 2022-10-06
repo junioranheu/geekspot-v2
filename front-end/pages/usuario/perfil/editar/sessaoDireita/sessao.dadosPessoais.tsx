@@ -1,7 +1,12 @@
+import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
+import { Fetch } from '../../../../../utils/api/fetch';
+import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
+import { Aviso } from '../../../../../utils/outros/aviso';
 import formatarData from '../../../../../utils/outros/formatarData';
+import verificarDadosCriarConta from '../../../../../utils/outros/verificarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -11,6 +16,7 @@ interface iParametros {
 
 interface iFormDadosPessoais {
     nomeCompleto: string;
+    nomeUsuarioSistema: string;
     email: string;
     senha: string;
     dataAniversario: string | Date | null;
@@ -25,6 +31,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
     const [formDataDadosPessoais, setFormDataDadosPessoais] = useState<iFormDadosPessoais>({
         nomeCompleto: usuario?.nomeCompleto ?? '',
         email: usuario?.email ?? '',
+        nomeUsuarioSistema: usuario?.nomeUsuarioSistema ?? '',
         senha: '',
         dataAniversario: usuario?.usuariosInformacoes?.dataAniversario ?? '',
         cpf: usuario?.usuariosInformacoes?.cpf ?? '',
@@ -33,6 +40,50 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormDataDadosPessoais({ ...formDataDadosPessoais, [e.target.name]: e.target.value });
+    }
+
+    async function handleSubmit() {
+        // if (!formDataDadosPessoais.lojinhaTitulo || formDataDadosPessoais.lojinhaTitulo.length < 3) {
+        //     Aviso.warn('O <b>nome da sua lojinha</b> não pode conter menos que 3 caracteres', 5000);
+        //     return false;
+        // }
+
+        let isContinuarUm = verificarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, true);
+        if (!isContinuarUm) {
+            refBtn.current.disabled = false;
+            return false;
+        }
+
+        alert('a');
+        return false;
+
+        nProgress.start();
+        refBtn.current.disabled = true;
+
+        const url = CONSTS_USUARIOS.API_URL_PUT_ATUALIZAR_DADOS_PESSOAIS;
+        const dto = {
+            nomeCompleto: formDataDadosPessoais.nomeCompleto,
+            email: formDataDadosPessoais.email,
+            nomeUsuarioSistema: formDataDadosPessoais.nomeUsuarioSistema,
+            senha: formDataDadosPessoais.senha,
+            usuariosInformacoes: {
+                dataAniversario: formDataDadosPessoais.dataAniversario,
+                cpf: formDataDadosPessoais.cpf,
+                telefone: formDataDadosPessoais.telefone,
+            }
+        };
+
+        const resposta = await Fetch.putApi(url, dto) as iUsuario;
+        if (!resposta || resposta?.erro) {
+            nProgress.done();
+            refBtn.current.disabled = false;
+            Aviso.warn(resposta?.mensagemErro ?? 'Houve um erro ao atualizar os dados', 5000);
+            return false;
+        }
+
+        nProgress.done();
+        refBtn.current.disabled = false;
+        Aviso.success('Os seus <b>dados pessoais</b> foram atualizados com sucesso', 5000);
     }
 
     return (
@@ -53,6 +104,11 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                         <input className='input' type='text' name='email' onChange={handleChange} value={formDataDadosPessoais.email} />
                     </div>
 
+                    <div className={Styles.divInput}>
+                        <span className={Styles.item}>Nome de usuário</span>
+                        <input className='input' type='text' name='nomeUsuarioSistema' onChange={handleChange} value={formDataDadosPessoais.nomeUsuarioSistema} />
+                    </div>
+
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Senha</span>
@@ -62,7 +118,13 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Aniversário</span>
-                        <input className='input' type='text' name='dataAniversario' onChange={handleChange} value={formatarData((formDataDadosPessoais?.dataAniversario?.toString() ?? ''), 1)} />
+                        <input
+                            className='input'
+                            type='text'
+                            name='dataAniversario'
+                            onChange={handleChange}
+                            value={(!formDataDadosPessoais?.dataAniversario || formDataDadosPessoais?.dataAniversario?.toString() === '0001-01-01T00:00:00' ? '' : formatarData(formDataDadosPessoais?.dataAniversario?.toString(), 1))}
+                        />
                     </div>
 
                     <span className='separadorHorizontal'></span>
@@ -79,7 +141,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
 
                     <span className='separadorHorizontal'></span>
                     <div className='divBotaoInvertido'>
-                        <Botao texto='Salvar alterações dos seus dados pessoais' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtn} isEnabled={true} />
+                        <Botao texto='Salvar alterações dos seus dados pessoais' url={null} isNovaAba={false} handleFuncao={() => handleSubmit()} Svg={null} refBtn={refBtn} isEnabled={true} />
                     </div>
                 </div>
             </div>

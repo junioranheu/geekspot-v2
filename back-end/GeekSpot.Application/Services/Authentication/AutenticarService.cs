@@ -74,7 +74,7 @@ namespace GeekSpot.Application.Services.Authentication
 
         public async Task<UsuarioDTO> Registrar(UsuarioSenhaDTO dto)
         {
-            // #1 - Verificar se o usuário já existe com o e-mail informado. Se existir, aborte;
+            // #1 - Verificar se o usuário já existe com o e-mail ou nome de usuário do sistema informados. Se existir, aborte;
             var verificarUsuario = await _usuarioRepository.GetByEmailOuUsuarioSistema(dto?.Email, dto?.NomeUsuarioSistema);
 
             if (verificarUsuario is not null)
