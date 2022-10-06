@@ -28,10 +28,10 @@ export default function Home({ listaItens }: iParametros) {
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
     const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 
-    const [listaItensRandom, setListaItensRandom] = useState<any>();
+    const [listaItensRandom, setListaItensRandom] = useState<iItem[]>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        setListaItensRandom(randomizarArray(listaItens))
+        setListaItensRandom(randomizarArray(listaItens) as iItem[])
         paginaCarregada(false, 100, 300, setIsLoaded);
         nProgress.done();
     }, [listaItens]);
@@ -61,8 +61,8 @@ export default function Home({ listaItens }: iParametros) {
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}
                                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                                        titulo={item[0]?.usuarios?.usuariosInformacoes?.tituloLojinha}
-                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.descricaoLojinha}
+                                        titulo={item[0]?.usuarios?.usuariosInformacoes?.lojinhaTitulo}
+                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.lojinhaDescricao}
                                         listaItens={item}
                                     />
                                 ) : (
@@ -70,8 +70,8 @@ export default function Home({ listaItens }: iParametros) {
                                         i={i}
                                         usuarioId={item[0]?.usuarios?.usuarioId}
                                         usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                                        titulo={item[0]?.usuarios?.usuariosInformacoes?.tituloLojinha}
-                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.descricaoLojinha}
+                                        titulo={item[0]?.usuarios?.usuariosInformacoes?.lojinhaTitulo}
+                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.lojinhaDescricao}
                                         listaItens={item}
                                     />
                                 )

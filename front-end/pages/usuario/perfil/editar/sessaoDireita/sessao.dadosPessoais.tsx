@@ -110,10 +110,10 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Senha</span>
-                        <input className='input' type='password' name='senha' onChange={handleChange} value={formDataDadosPessoais.senha} />
+                        <input readOnly={true} disabled={true} className='input' type='password' name='senha' onChange={handleChange} value={formDataDadosPessoais.senha} />
 
                         <div>
-                            <Botao texto='Alterar senha' url={null} isNovaAba={false} handleFuncao={() => handleSubmit()} Svg={null} refBtn={refBtn} isEnabled={true} />
+                            <Botao texto='Alterar senha' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtn} isEnabled={true} />
                         </div>
                     </div>
 
@@ -125,7 +125,6 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                             type='date'
                             name='dataAniversario'
                             onChange={handleChange}
-                            // value={(!formDataDadosPessoais?.dataAniversario || formDataDadosPessoais?.dataAniversario?.toString() === '0001-01-01T00:00:00' ? '' : formatarData(formDataDadosPessoais?.dataAniversario?.toString(), 1))}
                             value={moment(formDataDadosPessoais?.dataAniversario).format('yyyy-MM-DD')}
                         />
                     </div>

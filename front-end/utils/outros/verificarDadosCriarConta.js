@@ -60,7 +60,7 @@ export default function verificarDadosCriarConta(form, refNomeCompleto, refEmail
     if (!form.email) {
         nProgress.done();
         Aviso.warn('Parece que você esqueceu de colocar o seu <b>e-mail</b>', 5000);
-        refEmail.current.select();
+        refEmail && refEmail.current.select();
 
         if (refSenha) {
             refSenha.current.value = '';
