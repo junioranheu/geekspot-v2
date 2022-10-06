@@ -2,7 +2,7 @@ import moment from 'moment';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
-import MascaraInput from '../../../../../components/outros/inputMascara';
+import InputMascara from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
@@ -45,9 +45,6 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
     }
 
     async function handleSubmit() {
-        console.log(formDataDadosPessoais.telefone);
-        return false;
-
         let isContinuarUm = verificarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, false);
         if (!isContinuarUm) {
             refBtn.current.disabled = false;
@@ -138,11 +135,10 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Telefone</span>
 
-                        <MascaraInput
+                        <InputMascara
                             className='input'
                             name='telefone'
-                            useState={formDataDadosPessoais}
-                            setUseState={setFormDataDadosPessoais}                 
+                            onChange={handleChange}
                             value={formDataDadosPessoais.telefone?.toString()}
                             mascara='(99) 99999-9999'
                             onBlur={() => null}
