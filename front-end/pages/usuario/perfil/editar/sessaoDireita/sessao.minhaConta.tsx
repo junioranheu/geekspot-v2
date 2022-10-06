@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
+import AvisoSvg from '../../../../../components/svg/aviso';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -17,7 +18,15 @@ export default function SessaoMinhaConta({ usuario }: iParametros) {
 
                 <div className={`${Styles.sessao} margem0_5`}>
                     <div className={`${Styles.botaoFonteVermelha} divBotaoInvertido`}>
-                        <Botao texto='Quero excluir minha conta' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                        <Botao
+                            texto='&nbsp;&nbsp;Quero excluir minha conta'
+                            url={null}
+                            isNovaAba={false}
+                            handleFuncao={() => null}
+                            Svg={<AvisoSvg width={16} url={null} title={null} isCorPrincipal={false} />}
+                            refBtn={null}
+                            isEnabled={true}
+                        />
                     </div>
                 </div>
             </div>
