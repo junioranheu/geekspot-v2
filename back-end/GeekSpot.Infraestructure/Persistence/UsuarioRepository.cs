@@ -238,14 +238,6 @@ namespace GeekSpot.Infraestructure.Persistence
                 return erro;
             }
 
-            // #2.3 - Verificar requisitos de senha;
-            var validarSenha = ValidarSenha(dto?.Senha, dto?.NomeCompleto, byId?.NomeUsuarioSistema, dto?.Email);
-            if (!validarSenha.Item1)
-            {
-                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido, MensagemErro = validarSenha.Item2 };
-                return erro;
-            }
-
             // #3.1 - Se o usuário não tiver dados na tabela UsuariosInformacoes, a classe deve ser instanciada;
             if (byId.UsuariosInformacoes is null)
             {
@@ -256,7 +248,6 @@ namespace GeekSpot.Infraestructure.Persistence
             byId.NomeCompleto = dto.NomeCompleto;
             byId.NomeUsuarioSistema = dto.NomeUsuarioSistema;
             byId.Email = dto.Email;
-            byId.Senha = dto.Senha;
             byId.UsuariosInformacoes.DataAniversario = dto.UsuariosInformacoes?.DataAniversario > DateTime.MinValue ? dto.UsuariosInformacoes.DataAniversario : DateTime.MinValue;
             byId.UsuariosInformacoes.CPF = dto.UsuariosInformacoes?.CPF ?? "";
             byId.UsuariosInformacoes.Telefone = dto.UsuariosInformacoes?.Telefone ?? "";

@@ -1,11 +1,12 @@
+import moment from 'moment';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
+import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Aviso } from '../../../../../utils/outros/aviso';
-import formatarData from '../../../../../utils/outros/formatarData';
 import verificarDadosCriarConta from '../../../../../utils/outros/verificarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -32,7 +33,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
         nomeCompleto: usuario?.nomeCompleto ?? '',
         email: usuario?.email ?? '',
         nomeUsuarioSistema: usuario?.nomeUsuarioSistema ?? '',
-        senha: '',
+        senha: `AEA_${CONSTS_SISTEMA.NOME_SISTEMA}`,
         dataAniversario: usuario?.usuariosInformacoes?.dataAniversario ?? '',
         cpf: usuario?.usuariosInformacoes?.cpf ?? '',
         telefone: usuario?.usuariosInformacoes?.telefone ?? '',
@@ -48,14 +49,11 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
         //     return false;
         // }
 
-        let isContinuarUm = verificarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, true);
+        let isContinuarUm = verificarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, false);
         if (!isContinuarUm) {
             refBtn.current.disabled = false;
             return false;
         }
-
-        alert('a');
-        return false;
 
         nProgress.start();
         refBtn.current.disabled = true;
@@ -65,14 +63,13 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
             nomeCompleto: formDataDadosPessoais.nomeCompleto,
             email: formDataDadosPessoais.email,
             nomeUsuarioSistema: formDataDadosPessoais.nomeUsuarioSistema,
-            senha: formDataDadosPessoais.senha,
             usuariosInformacoes: {
-                dataAniversario: formDataDadosPessoais.dataAniversario,
+                dataAniversario: formDataDadosPessoais.dataAniversario ? formDataDadosPessoais.dataAniversario : '0001-01-01',
                 cpf: formDataDadosPessoais.cpf,
                 telefone: formDataDadosPessoais.telefone,
             }
         };
-
+        
         const resposta = await Fetch.putApi(url, dto) as iUsuario;
         if (!resposta || resposta?.erro) {
             nProgress.done();
@@ -104,6 +101,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                         <input className='input' type='text' name='email' onChange={handleChange} value={formDataDadosPessoais.email} />
                     </div>
 
+                    <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Nome de usuário</span>
                         <input className='input' type='text' name='nomeUsuarioSistema' onChange={handleChange} value={formDataDadosPessoais.nomeUsuarioSistema} />
@@ -112,7 +110,11 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Senha</span>
-                        <input className='input' type='text' name='senha' onChange={handleChange} value={formDataDadosPessoais.senha} />
+                        <input className='input' type='password' name='senha' onChange={handleChange} value={formDataDadosPessoais.senha} />
+
+                        <div>
+                            <Botao texto='Alterar senha' url={null} isNovaAba={false} handleFuncao={() => handleSubmit()} Svg={null} refBtn={refBtn} isEnabled={true} />
+                        </div>
                     </div>
 
                     <span className='separadorHorizontal'></span>
@@ -120,10 +122,11 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                         <span className={Styles.item}>Aniversário</span>
                         <input
                             className='input'
-                            type='text'
+                            type='date'
                             name='dataAniversario'
                             onChange={handleChange}
-                            value={(!formDataDadosPessoais?.dataAniversario || formDataDadosPessoais?.dataAniversario?.toString() === '0001-01-01T00:00:00' ? '' : formatarData(formDataDadosPessoais?.dataAniversario?.toString(), 1))}
+                            // value={(!formDataDadosPessoais?.dataAniversario || formDataDadosPessoais?.dataAniversario?.toString() === '0001-01-01T00:00:00' ? '' : formatarData(formDataDadosPessoais?.dataAniversario?.toString(), 1))}
+                            value={moment(formDataDadosPessoais?.dataAniversario).format('yyyy-MM-DD')}
                         />
                     </div>
 
