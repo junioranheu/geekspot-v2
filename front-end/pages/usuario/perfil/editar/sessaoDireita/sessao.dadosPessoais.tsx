@@ -2,6 +2,7 @@ import moment from 'moment';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
+import MascaraInput from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
@@ -40,14 +41,12 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
-        setFormDataDadosPessoais({ ...formDataDadosPessoais, [e.target.name]: e.target.value });
+        setFormDataDadosPessoais({ ...formDataDadosPessoais, [e?.target?.name]: e?.target?.value });
     }
 
     async function handleSubmit() {
-        // if (!formDataDadosPessoais.lojinhaTitulo || formDataDadosPessoais.lojinhaTitulo.length < 3) {
-        //     Aviso.warn('O <b>nome da sua lojinha</b> não pode conter menos que 3 caracteres', 5000);
-        //     return false;
-        // }
+        console.log(formDataDadosPessoais.telefone);
+        return false;
 
         let isContinuarUm = verificarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, false);
         if (!isContinuarUm) {
@@ -69,7 +68,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                 telefone: formDataDadosPessoais.telefone,
             }
         };
-        
+
         const resposta = await Fetch.putApi(url, dto) as iUsuario;
         if (!resposta || resposta?.erro) {
             nProgress.done();
@@ -138,7 +137,18 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>Telefone</span>
-                        <input className='input' type='text' name='telefone' onChange={handleChange} value={formDataDadosPessoais.telefone?.toString()} />
+
+                        <MascaraInput
+                            className='input'
+                            name='telefone'
+                            useState={formDataDadosPessoais}
+                            setUseState={setFormDataDadosPessoais}                 
+                            value={formDataDadosPessoais.telefone?.toString()}
+                            mascara='(99) 99999-9999'
+                            onBlur={() => null}
+                            placeholder='(__) _____-____'
+                            isDisabled={false}
+                        />
                     </div>
 
                     <span className='separadorHorizontal'></span>
