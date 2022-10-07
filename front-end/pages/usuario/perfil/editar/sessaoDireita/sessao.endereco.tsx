@@ -47,12 +47,16 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
 
     // Buscar CEP usando o ViaCEP;
     useEffect(() => {
+        function limparFormDataDadosEndereco() {
+            setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+        }
+
         function handleViaCep(cepTratado: string) {
             fetch(`http://viacep.com.br/ws/${cepTratado}/json/`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.erro) {
-                        setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+                        limparFormDataDadosEndereco();
                         return false;
                     }
 
@@ -65,7 +69,7 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
                     });
                 }).catch(erro => {
                     // console.log(erro);
-                    setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+                    limparFormDataDadosEndereco();
                     return false;
                 });
         }
@@ -74,12 +78,12 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
             const cepTratado = formDataDadosEndereco.cep.replace('-', '').replaceAll('_', '');
 
             if (cepTratado.length < 8) {
-                setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+                limparFormDataDadosEndereco();
             } else {
                 handleViaCep(cepTratado);
             }
         }
-    }, [formDataDadosEndereco, formDataDadosEndereco?.cep]);
+    }, [formDataDadosEndereco?.cep]);
 
     async function handleSubmit() {
         if (!formDataDadosEndereco?.cep || formDataDadosEndereco?.cep?.replace('-', '').replaceAll('_', '').length < 8) {
