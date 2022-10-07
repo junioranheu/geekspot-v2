@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, KeyboardEvent, useContext, useRef, useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 import ModalAvisoLogin from '../../../components/modal/modal.aviso/login';
 import ModalLayout from '../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../components/modal/_modal.wrapper';
@@ -27,7 +28,6 @@ export default function SessaoEntrar() {
 
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
-    const usuarioGenero = Auth?.get()?.genero ?? 'o';
 
     const refUsuario = useRef<any>(null);
     const refSenha = useRef<any>(null);
@@ -101,9 +101,12 @@ export default function SessaoEntrar() {
 
     const [modalAvisoLoginDescricao, setModalAvisoLoginDescricao] = useState('');
     const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
+    const [isModalEsqueciSenhaOpen, setIsModalEsqueciSenhaOpen] = useState(false);
 
     return (
         <Fragment>
+            <ReactTooltip multiline={true} />
+
             {/* Modal */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen}>
                 <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
@@ -121,7 +124,7 @@ export default function SessaoEntrar() {
 
             {/* Conteúdo */}
             <section className={Styles.divPrincipal}>
-                <span className={Styles.titulo}>Bem-vind{usuarioGenero} ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
+                <span className={Styles.titulo}>Bem-vindo ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
                 {/* Inputs */}
                 <div className={Styles.divLogin}>
@@ -138,6 +141,18 @@ export default function SessaoEntrar() {
 
                                 <div className={`${Styles.botaoCustom} margem0_5`}>
                                     <Botao texto='Entrar' url={null} isNovaAba={false} handleFuncao={handleSubmit} Svg={null} refBtn={refBtn} isEnabled={true} />
+                                </div>
+
+                                <div className={`${Styles.divOpcoesFlex} margem0_5`}>
+                                    <span>x</span>
+                                    
+                                    <span
+                                        className='cor-principal pointer'
+                                        data-tip='Caso tenha se esquecido da sua senha, clica aqui! 🖖'
+                                        onClick={() => setIsModalEsqueciSenhaOpen(true)}
+                                    >
+                                        Esqueci minha senha
+                                    </span>
                                 </div>
                             </div>
                         ) : (

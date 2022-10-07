@@ -80,6 +80,13 @@
         gap: 1rem;
     }
 
+    .divOpcoesFlex {
+        // background-color: coral;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+    }
+
     /* =-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-= */
     .botaoCustom {
         button {

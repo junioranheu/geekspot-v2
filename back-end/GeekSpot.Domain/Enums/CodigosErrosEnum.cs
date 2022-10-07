@@ -23,7 +23,7 @@ namespace GeekSpot.Domain.Enums
         [Description("E-mail inválido")]
         EmailInvalido = 106,
 
-        [Description("Usuário ou senha incorretos")]
+        [Description("O usuário ou senha estão incorretos")]
         UsuarioSenhaIncorretos = 107,
 
         [Description("Esta conta está desativada")]
