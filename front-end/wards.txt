@@ -3,6 +3,9 @@ https://www.enjoei.com.br/
 --
 
 criar tela para editar perfil
+finalizar logica no botao de deletar conta (modal)
+finalizar logica no botao de alterar senha (modal)
+
 criar botão para recuperar senha e usar o método GerarHashUsuario() no processo (verificar codigão abaixo)
 
 criar tela de ajuda

@@ -66,7 +66,7 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
                     <span className={Styles.texto}>{infoAleatoriaDois && infoAleatoriaDois}</span>
                     {
                         (arquivoUpload) && (
-                            <span className={`${Styles.texto} ${Styles.vermelho} pointer`} onClick={() => handleRemoverFoto()}>Remover</span>
+                            <span className={`${Styles.texto} cor-principal pointer`} onClick={() => handleRemoverFoto()}>Remover</span>
                         )
                     }
                 </div>

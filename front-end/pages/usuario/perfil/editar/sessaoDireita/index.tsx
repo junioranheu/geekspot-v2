@@ -42,7 +42,7 @@ export default function SessaoDireita({ usuario, arquivoUploadFotoPerfil, setArq
                 <SessaoEndereco usuario={usuario} />
 
                 {/* =-=-=-=-=-=-=-=-=-=-=-= #4 - Minha conta =-=-=-=-=-=-=-=-=-=- */}
-                <SessaoMinhaConta usuario={usuario} />
+                <SessaoMinhaConta />
             </div>
         </div>
     )

@@ -1,17 +1,26 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+import ModalExcluirConta from '../../../../../components/modal/modal.excluirConta';
+import ModalLayout from '../../../../../components/modal/_modal.layout';
+import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
 import Botao from '../../../../../components/outros/botao';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import AvisoSvg from '../../../../../components/svg/aviso';
-import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
-interface iParametros {
-    usuario: iUsuario | undefined;
-}
+export default function SessaoMinhaConta() {
 
-export default function SessaoMinhaConta({ usuario }: iParametros) {
+    const [isModalExcluirConta, setIsModalExcluirConta] = useState(false);
+
     return (
         <Fragment>
+            {/* Modal */}
+            <ModalWrapper isOpen={isModalExcluirConta}>
+                <ModalLayout handleModal={() => setIsModalExcluirConta(!isModalExcluirConta)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                    <ModalExcluirConta handleModal={() => setIsModalExcluirConta(!isModalExcluirConta)} />
+                </ModalLayout>
+            </ModalWrapper>
+
+            {/* Conteúdo */}
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>
                 <TopHatSecundario titulo='Minha conta' />
@@ -22,7 +31,7 @@ export default function SessaoMinhaConta({ usuario }: iParametros) {
                             texto='&nbsp;&nbsp;Quero excluir minha conta'
                             url={null}
                             isNovaAba={false}
-                            handleFuncao={() => null}
+                            handleFuncao={() => setIsModalExcluirConta(true)}
                             Svg={<AvisoSvg width={16} url={null} title={null} isCorPrincipal={false} />}
                             refBtn={null}
                             isEnabled={true}
