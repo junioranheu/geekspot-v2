@@ -33,7 +33,7 @@ export default function ErroSessaoExpirada() {
                 <span className={`${Styles.texto} margem2`}>Entre novamente clicando no botão abaixo 🖖</span>
 
                 <div className='margem2'>
-                    <Botao texto='Entrar novamente' url='/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
+                    <Botao texto='Entrar novamente' url='/usuario/entrar' isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={null} isEnabled={true} />
                 </div>
             </div>
         </section>
