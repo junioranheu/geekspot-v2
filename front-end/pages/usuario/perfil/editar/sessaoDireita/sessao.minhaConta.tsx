@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Dispatch, Fragment, useState } from 'react';
 import ModalDesativarConta from '../../../../../components/modal/modal.desativarConta';
 import ModalLayout from '../../../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
@@ -7,7 +7,11 @@ import TopHatSecundario from '../../../../../components/outros/topHat.secundario
 import AvisoSvg from '../../../../../components/svg/aviso';
 import Styles from './index.module.scss';
 
-export default function SessaoMinhaConta() {
+interface iParametros {
+    setIsHouveAlteracao: Dispatch<boolean>;
+}
+
+export default function SessaoMinhaConta({ setIsHouveAlteracao }: iParametros) {
 
     const [isModalDesativarConta, setIsModalDesativarConta] = useState(false);
 
@@ -16,7 +20,10 @@ export default function SessaoMinhaConta() {
             {/* Modal desativar conta */}
             <ModalWrapper isOpen={isModalDesativarConta}>
                 <ModalLayout handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} isExibirApenasLogo={true} titulo='Desativar conta' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalDesativarConta handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} />
+                    <ModalDesativarConta
+                        handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)}
+                        setIsHouveAlteracao={setIsHouveAlteracao}
+                    />
                 </ModalLayout>
             </ModalWrapper>
 

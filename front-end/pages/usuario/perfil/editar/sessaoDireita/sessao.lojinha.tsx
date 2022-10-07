@@ -17,6 +17,9 @@ interface iParametros {
     setArquivoUploadFotoPerfil: Dispatch<string>;
     arquivoUploadCapaLojinha: string | null;
     setArquivoUploadCapaLojinha: Dispatch<string>;
+
+    isHouveAlteracao: boolean;
+    setIsHouveAlteracao: Dispatch<boolean>;
 }
 
 interface iFormLojinha {
@@ -24,7 +27,7 @@ interface iFormLojinha {
     lojinhaDescricao: string;
 }
 
-export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha }: iParametros) {
+export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha, isHouveAlteracao, setIsHouveAlteracao }: iParametros) {
 
     const refBtn = useRef<any>(null);
 
@@ -35,6 +38,7 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormDataLojinha({ ...formDataLojinha, [e.target.name]: e.target.value });
+        !isHouveAlteracao && setIsHouveAlteracao(true);
     }
 
     async function handleSubmit() {

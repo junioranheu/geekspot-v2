@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, useState } from 'react';
 import TopHat from '../../../../../components/outros/topHat';
 import Configuracao from '../../../../../components/svg/configuracao';
 import useAvisoAlteracoesNaoSalvas from '../../../../../hooks/outros/useAvisoAlteracoesNaoSalvas';
@@ -19,7 +19,8 @@ interface iParametros {
 
 export default function SessaoDireita({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha }: iParametros) {
 
-    useAvisoAlteracoesNaoSalvas(true, '');
+    const [isHouveAlteracao, setIsHouveAlteracao] = useState(false);
+    useAvisoAlteracoesNaoSalvas(isHouveAlteracao, '');
 
     return (
         <div className={Styles.sessaoDireita}>
@@ -33,16 +34,28 @@ export default function SessaoDireita({ usuario, arquivoUploadFotoPerfil, setArq
                     setArquivoUploadFotoPerfil={setArquivoUploadFotoPerfil}
                     arquivoUploadCapaLojinha={arquivoUploadCapaLojinha}
                     setArquivoUploadCapaLojinha={setArquivoUploadCapaLojinha}
+                    isHouveAlteracao={isHouveAlteracao}
+                    setIsHouveAlteracao={setIsHouveAlteracao}
                 />
 
                 {/* =-=-=-=-=-=-=-=-=-=-=-= #2 - Dados pessoais =-=-=-=-=-=-=-=-= */}
-                <SessaoDadosPessoais usuario={usuario} />
+                <SessaoDadosPessoais
+                    usuario={usuario}
+                    isHouveAlteracao={isHouveAlteracao}
+                    setIsHouveAlteracao={setIsHouveAlteracao}
+                />
 
                 {/* =-=-=-=-=-=-=-=-=-=-=-= #3 - Endereço =-=-=-=-=-=-=-=-=-=-=-= */}
-                <SessaoEndereco usuario={usuario} />
+                <SessaoEndereco
+                    usuario={usuario}
+                    isHouveAlteracao={isHouveAlteracao}
+                    setIsHouveAlteracao={setIsHouveAlteracao}
+                />
 
                 {/* =-=-=-=-=-=-=-=-=-=-=-= #4 - Minha conta =-=-=-=-=-=-=-=-=-=- */}
-                <SessaoMinhaConta />
+                <SessaoMinhaConta
+                    setIsHouveAlteracao={setIsHouveAlteracao}
+                />
             </div>
         </div>
     )

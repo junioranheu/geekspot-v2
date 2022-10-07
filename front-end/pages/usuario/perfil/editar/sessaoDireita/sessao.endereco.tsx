@@ -1,5 +1,5 @@
 import nProgress from 'nprogress';
-import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, Dispatch, Fragment, useEffect, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import InputMascara from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
@@ -11,6 +11,9 @@ import Styles from './index.module.scss';
 
 interface iParametros {
     usuario: iUsuario | undefined;
+
+    isHouveAlteracao: boolean;
+    setIsHouveAlteracao: Dispatch<boolean>;
 }
 
 interface iFormDadosEndereco {
@@ -23,7 +26,7 @@ interface iFormDadosEndereco {
     referenciaLocal: string | null;
 }
 
-export default function SessaoEndereco({ usuario }: iParametros) {
+export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAlteracao }: iParametros) {
 
     const refBtn = useRef<any>(null);
 
@@ -39,7 +42,9 @@ export default function SessaoEndereco({ usuario }: iParametros) {
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormDataDadosEndereco({ ...formDataDadosEndereco, [e.target.name]: e.target.value });
+        !isHouveAlteracao && setIsHouveAlteracao(true);
     }
+
     // Buscar CEP usando o ViaCEP;
     useEffect(() => {
         function handleViaCep(cepTratado: string) {
@@ -112,7 +117,7 @@ export default function SessaoEndereco({ usuario }: iParametros) {
     }
 
     return (
-        <Fragment>    
+        <Fragment>
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>
                 <TopHatSecundario titulo='Endereço' />

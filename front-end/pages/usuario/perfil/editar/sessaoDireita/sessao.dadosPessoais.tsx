@@ -1,6 +1,6 @@
 import moment from 'moment';
 import nProgress from 'nprogress';
-import { ChangeEvent, Fragment, useRef, useState } from 'react';
+import { ChangeEvent, Dispatch, Fragment, useRef, useState } from 'react';
 import ModalAlterarSenha from '../../../../../components/modal/modal.alterarSenha';
 import ModalLayout from '../../../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
@@ -17,6 +17,9 @@ import Styles from './index.module.scss';
 
 interface iParametros {
     usuario: iUsuario | undefined;
+
+    isHouveAlteracao: boolean;
+    setIsHouveAlteracao: Dispatch<boolean>;
 }
 
 interface iFormDadosPessoais {
@@ -29,7 +32,7 @@ interface iFormDadosPessoais {
     telefone: string | null;
 }
 
-export default function SessaoDadosPessoais({ usuario }: iParametros) {
+export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHouveAlteracao }: iParametros) {
 
     const refBtn = useRef<any>(null);
     const [isModalAlterarSenha, setIsModalAlterarSenha] = useState(false);
@@ -46,6 +49,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormDataDadosPessoais({ ...formDataDadosPessoais, [e?.target?.name]: e?.target?.value });
+        !isHouveAlteracao && setIsHouveAlteracao(true);
     }
 
     async function handleSubmit() {

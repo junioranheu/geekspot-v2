@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Fragment, useContext, useState } from 'react';
+import { useRouter } from 'next/router';
+import nProgress from 'nprogress';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import useEmoji from '../../../hooks/outros/useEmoji';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
@@ -17,9 +19,21 @@ export default function NavbarMobile() {
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
+    const router = useRouter();
+    
     const [isModalLateralOpen, setIsModalLateralOpen] = useState(false);
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     const emoji = useEmoji();
+
+    function simularLoading() {
+        if (router.asPath !== '/') {
+            nProgress.start();
+        }
+    }
+
+    useEffect(() => {
+        nProgress.done();
+    }, [router.asPath]);
 
     return (
         <Fragment>
@@ -27,7 +41,7 @@ export default function NavbarMobile() {
             <nav className={Styles.navbar}>
                 <div className={Styles.wrapper}>
                     <div className={Styles.divEsquerda}>
-                        <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`}><Logo width='2rem' /></a></Link>
+                        <Link href='/'><a title={`Voltar ao início do ${CONSTS_SISTEMA.NOME_SISTEMA}`} onClick={() => simularLoading()}><Logo width='2rem' /></a></Link>
                         <NavbarFiltro />
                     </div>
 

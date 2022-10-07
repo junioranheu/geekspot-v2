@@ -12,9 +12,10 @@ import Styles from './index.module.scss';
 
 interface iParametros {
     handleModal: Dispatch<boolean>;
+    setIsHouveAlteracao: Dispatch<boolean>;
 }
 
-export default function ModalDesativarConta({ handleModal }: iParametros) {
+export default function ModalDesativarConta({ handleModal, setIsHouveAlteracao }: iParametros) {
 
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
@@ -30,6 +31,8 @@ export default function ModalDesativarConta({ handleModal }: iParametros) {
     }
 
     async function handleDesativarConta() {
+        setIsHouveAlteracao(false); // Para não bugar a saída da tela;
+
         if (!isAuth) {
             Aviso.error('Parece que você não está autenticado. Como chegou até aqui?', 5000);
             return false;
