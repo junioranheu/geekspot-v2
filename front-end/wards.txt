@@ -2,8 +2,7 @@ https://www.enjoei.com.br/
 
 --
 
-criar botão para recuperar senha e usar o método GerarHashUsuario()
-
+criar tela pra recuperar senha
 
 /////////// PARA COLOCAR NO BOTAO DE REVERIFICAR CONTA:
 // #3.2 - Verificar se a conta do usuário está verificada;

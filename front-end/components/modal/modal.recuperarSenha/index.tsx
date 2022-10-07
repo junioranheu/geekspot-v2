@@ -51,12 +51,11 @@ export default function ModalRecuperarSenha({ handleModal }: iParametros) {
         if (!resposta || resposta?.erro) {
             nProgress.done();
             Aviso.error((resposta?.mensagemErro ?? 'Houve um problema ao tentar recuperar sua senha. Tente novamente mais tarde'), 10000);
-            FecharModal.fecharModalClicandoNoBotao(handleModal);
             return false;
         }
 
         nProgress.done();
-        Aviso.success('Um <b>e-mail de recuperação de senha</b> foi enviado para você! Chegue sua caixa de e-mail agora mesmo', 5000);
+        Aviso.success('Um <b>e-mail de recuperação de senha</b> foi enviado para você!<br/>Verifique sua caixa de e-mail agora mesmo', 10000);
         FecharModal.fecharModalClicandoNoBotao(handleModal);
     }
 
