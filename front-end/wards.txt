@@ -2,9 +2,6 @@ https://www.enjoei.com.br/
 
 --
 
-criar tela para editar perfil
-arrumar o negócio de "tem certeza que quer sair?"
-
 criar botão para recuperar senha e usar o método GerarHashUsuario() no processo (verificar codigão abaixo)
 
 criar tela de ajuda
@@ -37,5 +34,3 @@ if (!usuario.IsVerificado)
         return erro;
     }
 }
-
-- quando deslogar o cara por token invalido, abrir um modal com aviso e ao sair do modal da um reload na tela!

@@ -49,6 +49,8 @@
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {
     .wrapper {
+        // background-color: coral;
+
         div {
             &:nth-child(1) {
                 display: none;
@@ -59,7 +61,23 @@
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
+    .wrapper {
+        // background-color: coral;
+        height: fit-content;
+        margin-top: 5rem;
+        
+        div {
+            &:nth-child(1) {
+                display: none;
+            }
 
+            &:nth-child(2) {
+                .titulo {
+                    line-height: 3.5rem;
+                }
+            }
+        }
+    }
 }
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */

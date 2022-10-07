@@ -174,13 +174,13 @@ export const Fetch = {
         desabilitarTodosElementos(true);
         Aviso.custom(`A sua sessão expirou!<br/><br/>Renove sua sessão fazendo login novamente no ${CONSTS_SISTEMA.NOME_SISTEMA} 😎`, numeroAleatorio(1000, 2000));
 
-        Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
+        Router.push({ pathname: '/erro/sessao-expirada', query: { erro: CONSTS_ERROS.REFRESH_TOKEN_INVALIDO } }).then(() => {
             Auth.delete();
             nProgress.done();
 
             setTimeout(function () {
                 location.reload();
-            }, numeroAleatorio(3000, 5000));
+            }, numeroAleatorio(1000, 1500));
         });
     }
 }
