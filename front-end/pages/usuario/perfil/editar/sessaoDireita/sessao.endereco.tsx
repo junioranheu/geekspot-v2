@@ -74,7 +74,7 @@ export default function SessaoEndereco({ usuario }: iParametros) {
                 handleViaCep(cepTratado);
             }
         }
-    }, [formDataDadosEndereco?.cep]);
+    }, [formDataDadosEndereco, formDataDadosEndereco?.cep]);
 
     async function handleSubmit() {
         if (!formDataDadosEndereco?.cep || formDataDadosEndereco?.cep?.replace('-', '').replaceAll('_', '').length < 8) {

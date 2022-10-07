@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import ModalExcluirConta from '../../../../../components/modal/modal.excluirConta';
+import ModalDesativarConta from '../../../../../components/modal/modal.desativarConta';
 import ModalLayout from '../../../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
 import Botao from '../../../../../components/outros/botao';
@@ -9,14 +9,14 @@ import Styles from './index.module.scss';
 
 export default function SessaoMinhaConta() {
 
-    const [isModalExcluirConta, setIsModalExcluirConta] = useState(false);
+    const [isModalDesativarConta, setIsModalDesativarConta] = useState(false);
 
     return (
         <Fragment>
             {/* Modal */}
-            <ModalWrapper isOpen={isModalExcluirConta}>
-                <ModalLayout handleModal={() => setIsModalExcluirConta(!isModalExcluirConta)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
-                    <ModalExcluirConta handleModal={() => setIsModalExcluirConta(!isModalExcluirConta)} />
+            <ModalWrapper isOpen={isModalDesativarConta}>
+                <ModalLayout handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} isExibirApenasLogo={true} titulo='Desativar conta' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                    <ModalDesativarConta handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} />
                 </ModalLayout>
             </ModalWrapper>
 
@@ -28,10 +28,10 @@ export default function SessaoMinhaConta() {
                 <div className={`${Styles.sessao} margem0_5`}>
                     <div className={`${Styles.botaoFonteVermelha} divBotaoInvertido`}>
                         <Botao
-                            texto='&nbsp;&nbsp;Quero excluir minha conta'
+                            texto='&nbsp;&nbsp;Quero desativar minha conta'
                             url={null}
                             isNovaAba={false}
-                            handleFuncao={() => setIsModalExcluirConta(true)}
+                            handleFuncao={() => setIsModalDesativarConta(true)}
                             Svg={<AvisoSvg width={16} url={null} title={null} isCorPrincipal={false} />}
                             refBtn={null}
                             isEnabled={true}

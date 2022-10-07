@@ -16,6 +16,7 @@ export default interface iUsuario {
     isAtivo: boolean;
     isPremium: boolean | null;
     isVerificado: boolean | null;
+    isDesativado: boolean | null;
     usuariosInformacoes: iUsuarioInformacoes;
     erro: boolean;
     codigoErro: number | null;

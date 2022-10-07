@@ -133,5 +133,15 @@ namespace GeekSpot.API.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPut("desativarConta")]
+        [Authorize]
+        public async Task<ActionResult<UsuarioDTO>> DesativarConta(UsuarioSenhaDTO dto)
+        {
+            int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = await _usuarios.DesativarConta(usuarioLogadoId, dto);
+
+            return Ok(usuario);
+        }
     }
 }

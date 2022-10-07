@@ -16,6 +16,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task<UsuarioDTO>? AtualizarDadosLojinha(int usuarioId, UsuarioDTO dto);
         Task<UsuarioDTO>? AtualizarDadosPessoais(int usuarioId, UsuarioSenhaDTO dto);
         Task<UsuarioDTO>? AtualizarDadosEndereco(int usuarioId, UsuarioDTO dto);
-        //Task<UsuarioDTO>? DeletarConta();
+        Task<UsuarioDTO>? DesativarConta(int usuarioId, UsuarioSenhaDTO dto);
     }
 }

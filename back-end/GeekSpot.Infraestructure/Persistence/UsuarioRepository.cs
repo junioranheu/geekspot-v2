@@ -295,5 +295,30 @@ namespace GeekSpot.Infraestructure.Persistence
             UsuarioDTO dtoRetorno = _map.Map<UsuarioDTO>(byId);
             return dtoRetorno;
         }
+
+        public async Task<UsuarioDTO>? DesativarConta(int usuarioId, UsuarioSenhaDTO dto)
+        {
+            var usuarioBd = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuarioBd is null)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.NaoEncontrado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoEncontrado) };
+                return erro;
+            }
+
+            if (dto.Senha != Descriptografar(usuarioBd.Senha))
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.UsuarioSenhaIncorretos, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.UsuarioSenhaIncorretos) };
+                return erro;
+            }
+
+            usuarioBd.IsDesativado = true;
+
+            _context.Update(usuarioBd);
+            await _context.SaveChangesAsync();
+
+            UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuarioBd);
+            return usuarioDTO;
+        }
     }
 }

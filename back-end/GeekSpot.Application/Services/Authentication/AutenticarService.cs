@@ -122,6 +122,7 @@ namespace GeekSpot.Application.Services.Authentication
                 IsAtivo = true,
                 IsPremium = false,
                 IsVerificado = false,
+                IsDesativado = false,
                 CodigoVerificacao = codigoVerificacao,
                 ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24),
                 HashUrlTrocarSenha = "",

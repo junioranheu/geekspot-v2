@@ -23,6 +23,7 @@ namespace GeekSpot.Domain.Entities
         public bool IsAtivo { get; set; } = true;
         public bool IsPremium { get; set; } = false;
         public bool IsVerificado { get; set; } = false;
+        public bool IsDesativado { get; set; } = false;
 
         public string? CodigoVerificacao { get; set; } = null;
         public DateTime ValidadeCodigoVerificacao { get; set; }
