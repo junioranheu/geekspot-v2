@@ -259,5 +259,41 @@ namespace GeekSpot.Infraestructure.Persistence
             UsuarioDTO dtoRetorno = _map.Map<UsuarioDTO>(byId);
             return dtoRetorno;
         }
+
+        public async Task<UsuarioDTO>? AtualizarDadosEndereco(int usuarioId, UsuarioDTO dto)
+        {
+            var byId = await _context.Usuarios.
+                       Include(ut => ut.UsuariosTipos).
+                       Include(ui => ui.UsuariosInformacoes).
+                       Where(ui => ui.UsuarioId == usuarioId).AsNoTracking().FirstOrDefaultAsync();
+
+            if (byId is null)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.FalhaAoAtualizarDados, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.FalhaAoAtualizarDados) };
+                return erro;
+            }
+
+            // Se o usuário não tiver dados na tabela UsuariosInformacoes, a classe deve ser instanciada;
+            if (byId.UsuariosInformacoes is null)
+            {
+                byId.UsuariosInformacoes = new();
+            }
+
+            // Atualizar dados;
+            byId.UsuariosInformacoes.CEP = dto.UsuariosInformacoes?.CEP ?? "";
+            byId.UsuariosInformacoes.Estado = dto.UsuariosInformacoes?.Estado ?? "";
+            byId.UsuariosInformacoes.Cidade = dto.UsuariosInformacoes?.Cidade ?? "";
+            byId.UsuariosInformacoes.Bairro = dto.UsuariosInformacoes?.Bairro ?? "";
+            byId.UsuariosInformacoes.Rua = dto.UsuariosInformacoes?.Rua ?? "";
+            byId.UsuariosInformacoes.NumeroResidencia = dto.UsuariosInformacoes?.NumeroResidencia ?? "";
+            byId.UsuariosInformacoes.ReferenciaLocal = dto.UsuariosInformacoes?.ReferenciaLocal ?? "";
+            byId.UsuariosInformacoes.DataUltimaAlteracao = HorarioBrasilia();
+
+            _context.Update(byId);
+            await _context.SaveChangesAsync();
+
+            UsuarioDTO dtoRetorno = _map.Map<UsuarioDTO>(byId);
+            return dtoRetorno;
+        }
     }
 }

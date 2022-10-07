@@ -1,8 +1,11 @@
-import useViaCep from '@rsiqueira/use-viacep';
+import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import InputMascara from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
+import { Fetch } from '../../../../../utils/api/fetch';
+import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
+import { Aviso } from '../../../../../utils/outros/aviso';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -37,45 +40,76 @@ export default function SessaoEndereco({ usuario }: iParametros) {
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormDataDadosEndereco({ ...formDataDadosEndereco, [e.target.name]: e.target.value });
     }
-
-    // CEP usando o hook do Via Cep;
-    const { cep, loading, error } = useViaCep(formDataDadosEndereco.cep?.toString());
+    // Buscar CEP usando o ViaCEP;
     useEffect(() => {
-        function handleViaCep(formDataDadosEnderecoCep: string) {
-            // console.log(formDataDadosEnderecoCep, formDataDadosEnderecoCep?.length, error);
+        function handleViaCep(cepTratado: string) {
+            fetch(`http://viacep.com.br/ws/${cepTratado}/json/`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.erro) {
+                        setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+                        return false;
+                    }
 
-            // Se o CEP tiver tracinho e ter menos que 9 caracteres limpe os valores (12605-110);
-            if (error || (formDataDadosEnderecoCep?.includes('-') && formDataDadosEnderecoCep?.length !== 9)) {
-                setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
-                return false;
-            }
-
-            // Se o CEP não tiver tracinho e ter menos que 8 caracteres limpe os valores (12605110);
-            if (!formDataDadosEnderecoCep?.includes('-') && formDataDadosEnderecoCep?.length !== 8) {
-                setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
-                return false;
-            }
-
-            // Se o resultado do hook useViaCep tiver vazio, pare o processo (isso serve para os casos iniciais);
-            if (!cep?.uf) {
-                return false;
-            }
-
-            // Se tiver tudo ok, busque o CEP;
-            // console.log(cep);
-            setFormDataDadosEndereco({
-                ...formDataDadosEndereco,
-                estado: cep?.uf ?? '',
-                cidade: cep?.localidade ?? '',
-                bairro: cep?.bairro ?? '',
-                rua: cep?.logradouro ?? ''
-            });
+                    setFormDataDadosEndereco({
+                        ...formDataDadosEndereco,
+                        estado: data?.uf ?? '',
+                        cidade: data?.localidade ?? '',
+                        bairro: data?.bairro ?? '',
+                        rua: data?.logradouro ?? ''
+                    });
+                }).catch(erro => {
+                    // console.log(erro);
+                    setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+                    return false;
+                });
         }
 
         if (formDataDadosEndereco?.cep) {
-            handleViaCep(formDataDadosEndereco.cep);
+            const cepTratado = formDataDadosEndereco.cep.replace('-', '').replaceAll('_', '');
+
+            if (cepTratado.length < 8) {
+                setFormDataDadosEndereco({ ...formDataDadosEndereco, estado: '', cidade: '', bairro: '', rua: '' });
+            } else {
+                handleViaCep(cepTratado);
+            }
         }
-    }, [formDataDadosEndereco?.cep, error]);
+    }, [formDataDadosEndereco?.cep]);
+
+    async function handleSubmit() {
+        if (!formDataDadosEndereco?.cep || formDataDadosEndereco?.cep?.replace('-', '').replaceAll('_', '').length < 8) {
+            Aviso.warn('O <b>CEP</b> está vazio ou inválido', 5000);
+            return false;
+        }
+
+        nProgress.start();
+        refBtn.current.disabled = true;
+
+        const url = CONSTS_USUARIOS.API_URL_PUT_ATUALIZAR_DADOS_ENDERECO;
+        const dto = {
+            usuariosInformacoes: {
+                cep: formDataDadosEndereco.cep,
+                estado: formDataDadosEndereco.estado,
+                cidade: formDataDadosEndereco.cidade,
+                bairro: formDataDadosEndereco.bairro,
+                rua: formDataDadosEndereco.rua,
+                numeroResidencia: formDataDadosEndereco.numeroResidencia,
+                referenciaLocal: formDataDadosEndereco.referenciaLocal
+            }
+        };
+
+        const resposta = await Fetch.putApi(url, dto) as iUsuario;
+        if (!resposta || resposta?.erro) {
+            nProgress.done();
+            refBtn.current.disabled = false;
+            Aviso.warn(resposta?.mensagemErro ?? 'Houve um erro ao atualizar os dados', 5000);
+            return false;
+        }
+
+        nProgress.done();
+        refBtn.current.disabled = false;
+        Aviso.success('Os <b>dados do seu endereço</b> foram atualizados com sucesso', 5000);
+    }
 
     return (
         <Fragment>
@@ -137,7 +171,7 @@ export default function SessaoEndereco({ usuario }: iParametros) {
 
                     <span className='separadorHorizontal'></span>
                     <div className='divBotaoInvertido'>
-                        <Botao texto='Salvar alterações do seu endereço' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtn} isEnabled={true} />
+                        <Botao texto='Salvar alterações do seu endereço' url={null} isNovaAba={false} handleFuncao={() => handleSubmit()} Svg={null} refBtn={refBtn} isEnabled={true} />
                     </div>
                 </div>
             </div>

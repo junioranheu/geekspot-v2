@@ -2,7 +2,6 @@
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using static GeekSpot.Utils.Biblioteca;
@@ -121,6 +120,16 @@ namespace GeekSpot.API.Controllers
         {
             int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
             var usuario = await _usuarios.AtualizarDadosPessoais(usuarioLogadoId, dto);
+
+            return Ok(usuario);
+        }
+
+        [HttpPut("atualizarDadosEndereco")]
+        [Authorize]
+        public async Task<ActionResult<UsuarioDTO>> AtualizarDadosEndereco(UsuarioDTO dto)
+        {
+            int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = await _usuarios.AtualizarDadosEndereco(usuarioLogadoId, dto);
 
             return Ok(usuario);
         }
