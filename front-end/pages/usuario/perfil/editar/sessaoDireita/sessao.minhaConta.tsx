@@ -13,7 +13,7 @@ export default function SessaoMinhaConta() {
 
     return (
         <Fragment>
-            {/* Modal */}
+            {/* Modal desativar conta */}
             <ModalWrapper isOpen={isModalDesativarConta}>
                 <ModalLayout handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} isExibirApenasLogo={true} titulo='Desativar conta' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalDesativarConta handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} />

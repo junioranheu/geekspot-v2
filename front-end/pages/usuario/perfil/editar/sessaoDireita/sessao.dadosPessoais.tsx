@@ -1,6 +1,9 @@
 import moment from 'moment';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, useRef, useState } from 'react';
+import ModalAlterarSenha from '../../../../../components/modal/modal.alterarSenha';
+import ModalLayout from '../../../../../components/modal/_modal.layout';
+import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
 import Botao from '../../../../../components/outros/botao';
 import InputMascara from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
@@ -29,6 +32,7 @@ interface iFormDadosPessoais {
 export default function SessaoDadosPessoais({ usuario }: iParametros) {
 
     const refBtn = useRef<any>(null);
+    const [isModalAlterarSenha, setIsModalAlterarSenha] = useState(false);
 
     const [formDataDadosPessoais, setFormDataDadosPessoais] = useState<iFormDadosPessoais>({
         nomeCompleto: usuario?.nomeCompleto ?? '',
@@ -81,6 +85,14 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
 
     return (
         <Fragment>
+            {/* Modal alterar senha */}
+            <ModalWrapper isOpen={isModalAlterarSenha}>
+                <ModalLayout handleModal={() => setIsModalAlterarSenha(!isModalAlterarSenha)} isExibirApenasLogo={true} titulo='Alterar senha' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                    <ModalAlterarSenha handleModal={() => setIsModalAlterarSenha(!isModalAlterarSenha)} />
+                </ModalLayout>
+            </ModalWrapper>
+
+            {/* Conteúdo */}
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>
                 <TopHatSecundario titulo='Dados pessoais' />
@@ -109,7 +121,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                         <input readOnly={true} disabled={true} className='input' type='password' name='senha' onChange={handleChange} value={formDataDadosPessoais.senha} />
 
                         <div>
-                            <Botao texto='Alterar senha' url={null} isNovaAba={false} handleFuncao={() => null} Svg={null} refBtn={refBtn} isEnabled={true} />
+                            <Botao texto='Alterar senha' url={null} isNovaAba={false} handleFuncao={() => setIsModalAlterarSenha(true)} Svg={null} refBtn={refBtn} isEnabled={true} />
                         </div>
                     </div>
 
@@ -128,7 +140,7 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>CPF</span>
-    
+
                         <InputMascara
                             className='input'
                             name='cpf'

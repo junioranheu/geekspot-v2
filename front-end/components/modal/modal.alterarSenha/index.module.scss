@@ -1,0 +1,60 @@
+.main {
+    // background-color: red;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .div100{
+        // background-color: red;
+        width: 100%;
+    }
+ 
+.botaoCustom{
+    // background-color: red;
+    width: 100%;
+
+    button{
+        width: 100%;
+    }
+}
+
+    .titulo {
+        // background-color: red;
+        color: var(--preto);
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .texto {
+        // background-color: red;
+        width: 80%;
+        color: var(--preto);
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .textoPequeno {
+        // background-color: red;
+        width: 70%;
+        color: var(--preto);
+        font-size: 0.7rem;
+        font-weight: 400;
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

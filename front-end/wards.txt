@@ -3,10 +3,7 @@ https://www.enjoei.com.br/
 --
 
 criar tela para editar perfil
-finalizar logica no botao de alterar senha (modal)
 arrumar o negócio de "tem certeza que quer sair?"
-
-SE A CONTA ESTIVER DESATIVADA, NAO PODE FAZER LOGIN!!!!!!!!!!!!!!!!!!!!
 
 criar botão para recuperar senha e usar o método GerarHashUsuario() no processo (verificar codigão abaixo)
 
@@ -40,3 +37,5 @@ if (!usuario.IsVerificado)
         return erro;
     }
 }
+
+- quando deslogar o cara por token invalido, abrir um modal com aviso e ao sair do modal da um reload na tela!

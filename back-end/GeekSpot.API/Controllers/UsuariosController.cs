@@ -143,5 +143,15 @@ namespace GeekSpot.API.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPut("atualizarSenha")]
+        [Authorize]
+        public async Task<ActionResult<AtualizarSenhaDTO>> AtualizarSenha(AtualizarSenhaDTO dto)
+        {
+            int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = await _usuarios.AtualizarSenha(usuarioLogadoId, dto);
+
+            return Ok(usuario);
+        }
     }
 }

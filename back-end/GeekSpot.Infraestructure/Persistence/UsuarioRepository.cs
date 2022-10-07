@@ -312,13 +312,55 @@ namespace GeekSpot.Infraestructure.Persistence
                 return erro;
             }
 
-            usuarioBd.IsDesativado = true;
+            usuarioBd.IsAtivo = false;
 
             _context.Update(usuarioBd);
             await _context.SaveChangesAsync();
 
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuarioBd);
             return usuarioDTO;
+        }
+
+        public async Task<AtualizarSenhaDTO>? AtualizarSenha(int usuarioId, AtualizarSenhaDTO dto)
+        {
+            var usuarioBd = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuarioBd is null)
+            {
+                AtualizarSenhaDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.NaoEncontrado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoEncontrado) };
+                return erro;
+            }
+
+            // #1 - Verificar se a senha atual está correta;
+            if (dto.SenhaAtual != Descriptografar(usuarioBd.Senha))
+            {
+                AtualizarSenhaDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.SenhaIncorretaAoAtualizar, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.SenhaIncorretaAoAtualizar) };
+                return erro;
+            }
+
+            // #2 - Verificar se a nova senha coincide com a confirmação;
+            if (dto.SenhaNova != dto.SenhaNovaConfirmacao)
+            {
+                AtualizarSenhaDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.SenhasNaoCoincidem, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.SenhasNaoCoincidem) };
+                return erro;
+            }
+
+            // #3 - Verificar se a nova senha atende os requisitos mínimos;
+            var validarSenha = ValidarSenha(dto?.SenhaNova, usuarioBd?.NomeCompleto, usuarioBd?.NomeUsuarioSistema, usuarioBd?.Email);
+            if (!validarSenha.Item1)
+            {
+                AtualizarSenhaDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.RequisitosSenhaNaoCumprido, MensagemErro = validarSenha.Item2 };
+                return erro;
+            }
+
+            // #4 - Atualizar senha;
+            usuarioBd.Senha = Criptografar(dto.SenhaNova);
+
+            _context.Update(usuarioBd);
+            await _context.SaveChangesAsync();
+
+            AtualizarSenhaDTO semErro = new() { Erro = false, CodigoErro = (int)CodigoErrosEnum.OK, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.OK) };
+            return semErro;
         }
     }
 }

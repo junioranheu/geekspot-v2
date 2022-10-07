@@ -47,6 +47,16 @@ namespace GeekSpot.Domain.Enums
         [Description("Esta conta ainda não foi verificada. Além disso, houve um erro ao enviar um novo e-mail de vericação. Tente novamente mais tarde")]
         ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao = 114,
 
+        [Description("As senhas não se coincidem")]
+        SenhasNaoCoincidem = 115,
+
+        [Description("A senha atual não está correta, portanto o processo foi abortado")]
+        SenhaIncorretaAoAtualizar = 116,
+
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 200 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        [Description("Processo concluído com sucesso")]
+        OK = 200,
+
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 400 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         [Description("Não autorizado")]
         NaoAutorizado = 403,
