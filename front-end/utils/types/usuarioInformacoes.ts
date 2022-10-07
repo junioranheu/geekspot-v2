@@ -5,6 +5,10 @@ export default interface iUsuarioInformacoes {
     cpf: string | null;
     telefone: string | null;
     cep: string | null;
+    estado: string | null;
+    cidade: string | null;
+    bairro: string | null;
+    rua: string | null;
     numeroResidencia: string | null;
     referenciaLocal: string | null;
     lojinhaTitulo: string | null;

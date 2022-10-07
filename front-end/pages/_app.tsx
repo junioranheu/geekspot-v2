@@ -42,6 +42,7 @@ export default function App({ Component, pageProps }: any) {
     useEffect(() => {
         // console.log('useEffect fired!', {asPath: router.asPath});
         document.body.scrollTop = document.documentElement.scrollTop = 0;
+        console.clear();
     }, [router.asPath]);
 
     return url ?

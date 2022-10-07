@@ -128,7 +128,17 @@ export default function SessaoDadosPessoais({ usuario }: iParametros) {
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
                         <span className={Styles.item}>CPF</span>
-                        <input className='input' type='text' name='cpf' onChange={handleChange} value={formDataDadosPessoais.cpf?.toString()} />
+    
+                        <InputMascara
+                            className='input'
+                            name='cpf'
+                            onChange={handleChange}
+                            value={formDataDadosPessoais.cpf?.toString()}
+                            mascara='999.999.999-99'
+                            onBlur={() => null}
+                            placeholder='___.___.___-__'
+                            isDisabled={false}
+                        />
                     </div>
 
                     <span className='separadorHorizontal'></span>
