@@ -5,6 +5,9 @@ namespace GeekSpot.Domain.Enums
     public enum EmailEnum
     {
         [Description("VerificarConta.html")]
-        VerificarConta = 1
+        VerificarConta = 1,
+
+        [Description("RecuperarSenha.html")]
+        RecuperarSenha = 2
     }
 }

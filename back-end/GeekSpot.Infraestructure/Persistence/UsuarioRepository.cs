@@ -4,6 +4,7 @@ using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Domain.Enums;
 using GeekSpot.Infraestructure.Data;
+using GeekSpot.Utils.Entities;
 using Microsoft.EntityFrameworkCore;
 using static GeekSpot.Utils.Biblioteca;
 
@@ -360,6 +361,54 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
 
             AtualizarSenhaDTO semErro = new() { Erro = false, CodigoErro = (int)CodigoErrosEnum.OK, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.OK) };
+            return semErro;
+        }
+
+        public async Task<UsuarioDTO>? EmailRecuperarSenha(UsuarioDTO dto)
+        {
+            var usuarioBd = await _context.Usuarios.Where(e => e.Email == dto.Email).AsNoTracking().FirstOrDefaultAsync();
+
+            if (usuarioBd is null)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.NaoEncontrado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoEncontrado) };
+                return erro;
+            }
+
+            // #1 - Verificar se conta está desativada;
+            if (!usuarioBd.IsAtivo)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaDesativada, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaDesativada) };
+                return erro;
+            }
+
+            // #2 - Se a hash estiver válida, não envie outro e-mail;
+            if (usuarioBd?.ValidadeHashUrlTrocarSenha >= HorarioBrasilia())
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.EmailRecuperacaoJaEnviado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.EmailRecuperacaoJaEnviado) };
+                return erro;
+            }
+
+            // #3 - Gerar hash de troca de senha;
+            string hash = GerarHashUsuario(usuarioBd.UsuarioId);
+            usuarioBd.HashUrlTrocarSenha = hash;
+            usuarioBd.ValidadeHashUrlTrocarSenha = HorarioBrasilia().AddHours(1);
+
+            _context.Update(usuarioBd);
+            await _context.SaveChangesAsync();
+
+            // #4 - Enviar e-mail;
+            string assunto = "Recupere a senha da sua conta do GeekSpot";
+            string nomeArquivo = GetDescricaoEnum(EmailEnum.RecuperarSenha);
+
+            List<EmailDadosReplace> listaDadosReplace = new()
+            {
+                new EmailDadosReplace { Key = "Url", Value = $"{CaminhoFront()}/usuario/recuperar-senha/{hash}"},
+                new EmailDadosReplace { Key = "NomeUsuario", Value = usuarioBd.NomeCompleto ?? "geek" }
+            };
+
+            bool resposta = await EnviarEmail(dto.Email, assunto, nomeArquivo, listaDadosReplace);
+
+            UsuarioDTO semErro = new() { Erro = false, CodigoErro = (int)CodigoErrosEnum.OK, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.OK) };
             return semErro;
         }
     }

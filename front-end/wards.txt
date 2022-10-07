@@ -2,13 +2,8 @@ https://www.enjoei.com.br/
 
 --
 
-criar botão para recuperar senha e usar o método GerarHashUsuario() no processo (verificar codigão abaixo)
+criar botão para recuperar senha e usar o método GerarHashUsuario()
 
-criar tela de ajuda
-
-criar tela para cadastar novo item (apenas a tela mesmo para funcionar o proximo passo)
-não permitir acessar a tela de cadastro de novo item caso caso o usuario nao tenha valido perfil (email e cadastro do form)
-continuar desenvolvimento tela de cadastro de novo item
 
 /////////// PARA COLOCAR NO BOTAO DE REVERIFICAR CONTA:
 // #3.2 - Verificar se a conta do usuário está verificada;
@@ -34,3 +29,18 @@ if (!usuario.IsVerificado)
         return erro;
     }
 }
+
+
+
+
+
+
+
+
+
+criar tela de ajuda
+
+criar tela para cadastar novo item (apenas a tela mesmo para funcionar o proximo passo)
+não permitir acessar a tela de cadastro de novo item caso caso o usuario nao tenha valido perfil (email e cadastro do form)
+continuar desenvolvimento tela de cadastro de novo item
+

@@ -153,5 +153,13 @@ namespace GeekSpot.API.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPost("emailRecuperarSenha")]
+        public async Task<ActionResult<UsuarioDTO>> EmailRecuperarSenha(UsuarioDTO dto)
+        {
+            var usuario = await _usuarios.EmailRecuperarSenha(dto);
+
+            return Ok(usuario);
+        }
     }
 }

@@ -1,8 +1,9 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { ChangeEvent, Fragment, KeyboardEvent, useContext, useRef, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip'; // https://www.npmjs.com/package/react-tooltip
 import ModalAvisoLogin from '../../../components/modal/modal.aviso/login';
+import ModalRecuperarSenha from '../../../components/modal/modal.recuperarSenha';
 import ModalLayout from '../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../components/modal/_modal.wrapper';
 import Botao from '../../../components/outros/botao';
@@ -105,9 +106,7 @@ export default function SessaoEntrar() {
 
     return (
         <Fragment>
-            <ReactTooltip multiline={true} />
-
-            {/* Modal */}
+            {/* Modal de aviso de login */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen}>
                 <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAvisoLogin
@@ -122,8 +121,16 @@ export default function SessaoEntrar() {
                 </ModalLayout>
             </ModalWrapper>
 
+            {/* Modal de recuperação de senha */}
+            <ModalWrapper isOpen={isModalEsqueciSenhaOpen}>
+                <ModalLayout handleModal={() => setIsModalEsqueciSenhaOpen(!isModalEsqueciSenhaOpen)} isExibirApenasLogo={true} titulo='Recuperar senha' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                    <ModalRecuperarSenha handleModal={() => setIsModalEsqueciSenhaOpen(!isModalEsqueciSenhaOpen)} />
+                </ModalLayout>
+            </ModalWrapper>
+
             {/* Conteúdo */}
             <section className={Styles.divPrincipal}>
+                <ReactTooltip multiline={true} />
                 <span className={Styles.titulo}>Bem-vindo ao {CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
                 {/* Inputs */}
@@ -144,11 +151,11 @@ export default function SessaoEntrar() {
                                 </div>
 
                                 <div className={`${Styles.divOpcoesFlex} margem0_5`}>
-                                    <span>x</span>
-                                    
+                                    <span></span>
+
                                     <span
                                         className='cor-principal pointer'
-                                        data-tip='Caso tenha se esquecido da sua senha, clica aqui! 🖖'
+                                        data-tip='Caso tenha se esquecido da sua senha, clica aqui que a gente dá um help! 🖖'
                                         onClick={() => setIsModalEsqueciSenhaOpen(true)}
                                     >
                                         Esqueci minha senha

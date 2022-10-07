@@ -53,6 +53,9 @@ namespace GeekSpot.Domain.Enums
         [Description("A senha atual não está correta, portanto o processo foi abortado")]
         SenhaIncorretaAoAtualizar = 116,
 
+        [Description("Um e-mail de recuperação de senha já foi enviado para você há pouco tempo. Tente novamente mais tarde")]
+        EmailRecuperacaoJaEnviado = 117,
+
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 200 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         [Description("Processo concluído com sucesso")]
         OK = 200,

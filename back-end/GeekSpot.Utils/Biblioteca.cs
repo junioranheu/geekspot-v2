@@ -239,7 +239,7 @@ namespace GeekSpot.Utils
         public static string GerarHashUsuario(int usuarioId)
         {
             string palavraAleatoria = $"{usuarioId}_{GerarStringAleatoria(GerarNumeroAleatorio(10, 15), false)}";
-            string hash = Criptografar(palavraAleatoria);
+            string hash = Criptografar(palavraAleatoria).Replace("/", "");
 
             return hash;
         }
