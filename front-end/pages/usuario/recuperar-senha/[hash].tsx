@@ -1,20 +1,21 @@
 import Router, { useRouter } from 'next/router';
 import nProgress from 'nprogress';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import Botao from '../../../components/outros/botao';
+import TopHat from '../../../components/outros/topHat';
 import TopHatSecundario from '../../../components/outros/topHat.secundario';
+import Configuracao from '../../../components/svg/configuracao';
 import useBackgroundBege from '../../../hooks/outros/useBackgroundBege';
 import { Fetch } from '../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../utils/consts/data/constUsuarios';
-import CONSTS_ERROS from '../../../utils/consts/outros/erros';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Aviso } from '../../../utils/outros/aviso';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import Styles from './index.module.scss';
 
 interface iFormRecuperarSenha {
-    senha: string | null;
-    senhaConfirmacacao: string | null;
+    senhaNova: string | null;
+    senhaNovaConfirmacao: string | null;
 }
 
 export default function RecuperarSenha() {
@@ -24,6 +25,8 @@ export default function RecuperarSenha() {
     const { hash } = router.query;
     useBackgroundBege();
 
+    const refSenhaNova = useRef<any>(null);
+    const refSenhaConfirmacao = useRef<any>(null);
     const refBtn = useRef<any>(null);
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -32,34 +35,51 @@ export default function RecuperarSenha() {
     }, []);
 
     const [formDataRecuperarSenha, setFormDataRecuperarSenha] = useState<iFormRecuperarSenha>({
-        senha: '',
-        senhaConfirmacacao: ''
+        senhaNova: '',
+        senhaNovaConfirmacao: ''
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setFormDataRecuperarSenha({ ...formDataRecuperarSenha, [e.target.name]: e.target.value });
     }
 
-    // http://localhost:3000/usuario/recuperar-senha/PaXHA2zjU2DRjwnSM6Z0XxfeoIAQgMB60gCuf+GtpQw=
-    // É necessário verificar se o codigo ainda é valido no back-end
-
     async function handleAlterarSenha() {
-        nProgress.start();
-        const url = `${CONSTS_USUARIOS.API_URL_PUT_VERIFICAR_CONTA}/${hash}`;
-        const resposta = await Fetch.putApi(url, null);
+        if (!formDataRecuperarSenha.senhaNova) {
+            Aviso.warn('O campo de <b>nova senha</b> está vazio', 5000);
+            refSenhaNova && refSenhaNova.current?.select();
+            return false;
+        }
 
+        if (!formDataRecuperarSenha.senhaNovaConfirmacao) {
+            Aviso.warn('O campo de <b>confirmação de senha</b> está vazio', 5000);
+            refSenhaConfirmacao && refSenhaConfirmacao.current?.select();
+            return false;
+        }
+
+        nProgress.start();
+        const url = CONSTS_USUARIOS.API_URL_PUT_ATUALIZAR_SENHA_RECUPERAR;
+        const dto = {
+            hash: hash,
+            senhaNova: formDataRecuperarSenha.senhaNova,
+            senhaNovaConfirmacao: formDataRecuperarSenha.senhaNovaConfirmacao
+        };
+
+        const resposta = await Fetch.putApi(url, dto);
         if (!resposta || resposta?.erro) {
             nProgress.done();
-
             Aviso.error((resposta?.mensagemErro ?? 'Parece que ocorreu um erro interno. Tente novamente mais tarde'), 10000);
-            Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.HASH_INVALIDA } });
             return false;
         }
 
         nProgress.done();
-        paginaCarregada(true, 200, 500, setIsLoaded);
-        Router.push('/');
-        Aviso.error('Senha alterada com sucesso 👽', 7000);
+        Router.push('/usuario/entrar');
+        Aviso.success('Senha alterada com sucesso 👽', 7000);
+    }
+
+    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter') {
+            refBtn.current.click();
+        }
     }
 
     if (!isLoaded) {
@@ -68,19 +88,27 @@ export default function RecuperarSenha() {
 
     return (
         <section className='flexColumn paddingPadrao'>
-            <div className={Styles.main}>
-                <TopHatSecundario titulo='Recuperar senha' />
+            <TopHat Svg={<Configuracao width={22} url={null} title={null} isCorPrincipal={false} />} titulo='Recuperação de senha' />
+
+            <div className={`${Styles.main} margem1`}>
+                <TopHatSecundario titulo='Preencha os campos abaixo com sua nova senha e, então, confirme-a 🖖' />
+
+                {/* <span className='separadorHorizontal'></span>
+                <div className={Styles.divInput}>
+                    <span className={Styles.item}>Hash</span>
+                    <input disabled={true} readOnly={true} className='input' type='text' value={hash} />
+                </div> */}
 
                 <span className='separadorHorizontal'></span>
                 <div className={Styles.divInput}>
                     <span className={Styles.item}>Nova senha</span>
-                    <input className='input' type='text' name='senha' onChange={handleChange} value={formDataRecuperarSenha.senha?.toString()} />
+                    <input className='input' type='password' autoComplete='new-password' name='senhaNova' onChange={handleChange} value={formDataRecuperarSenha.senhaNova?.toString()} ref={refSenhaNova} onKeyPress={handleKeyPress} />
                 </div>
 
                 <span className='separadorHorizontal'></span>
                 <div className={Styles.divInput}>
                     <span className={Styles.item}>Confirmar senha</span>
-                    <input className='input' type='text' name='senhaConfirmacacao' onChange={handleChange} value={formDataRecuperarSenha.senhaConfirmacacao?.toString()} />
+                    <input className='input' type='password' autoComplete='new-password' name='senhaNovaConfirmacao' onChange={handleChange} value={formDataRecuperarSenha.senhaNovaConfirmacao?.toString()} ref={refSenhaConfirmacao} onKeyPress={handleKeyPress} />
                 </div>
 
                 <span className='separadorHorizontal'></span>

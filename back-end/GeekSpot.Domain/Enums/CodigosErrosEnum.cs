@@ -35,8 +35,8 @@ namespace GeekSpot.Domain.Enums
         [Description("Este código de verificação é inválido")]
         CodigoVerificacaoInvalido = 110,
 
-        [Description("Este código de verificação está expirado")]
-        CodigoVerificacaoExpirado = 111,
+        [Description("Este código está expirado")]
+        CodigoExpirado = 111,
 
         [Description("Esta conta já se encontra verificada portanto não é possível verificá-la novamente")]
         ContaJaVerificada = 112,
@@ -55,6 +55,9 @@ namespace GeekSpot.Domain.Enums
 
         [Description("Um e-mail de recuperação de senha já foi enviado para você há pouco tempo. Tente novamente mais tarde")]
         EmailRecuperacaoJaEnviado = 117,
+
+        [Description("Esse código de recuperação não está vinculado a nenhum usuário")]
+        HashRecuperacaoNaoExiste = 118,
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 200 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         [Description("Processo concluído com sucesso")]

@@ -55,7 +55,7 @@ export default function ModalRecuperarSenha({ handleModal }: iParametros) {
         }
 
         nProgress.done();
-        Aviso.success('Um <b>e-mail de recuperação de senha</b> foi enviado para você!<br/>Verifique sua caixa de e-mail agora mesmo', 10000);
+        Aviso.success('Um <b>e-mail de recuperação de senha</b> foi enviado para você!<br/><br/>Verifique sua caixa de e-mail agora mesmo', 10000);
         FecharModal.fecharModalClicandoNoBotao(handleModal);
     }
 

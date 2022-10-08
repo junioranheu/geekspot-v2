@@ -161,5 +161,13 @@ namespace GeekSpot.API.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPut("atualizarSenhaRecuperar")]
+        public async Task<ActionResult<AtualizarSenhaDTO>> AtualizarSenhaRecuperar(AtualizarSenhaDTO dto)
+        {
+            var usuario = await _usuarios.AtualizarSenhaRecuperar(dto);
+
+            return Ok(usuario);
+        }
     }
 }
