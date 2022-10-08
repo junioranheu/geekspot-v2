@@ -169,5 +169,15 @@ namespace GeekSpot.API.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPost("emailVerificarConta")]
+        [Authorize]
+        public async Task<ActionResult<UsuarioDTO>> EmailVerificarConta()
+        {
+            int usuarioLogadoId = Convert.ToInt32(User?.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = await _usuarios.EmailVerificarConta(usuarioLogadoId);
+
+            return Ok(usuario);
+        }
     }
 }

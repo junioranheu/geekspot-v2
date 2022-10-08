@@ -156,7 +156,7 @@ namespace GeekSpot.Application.Services.Authentication
             // #8 - Converter de UsuarioSenhaDTO para UsuarioDTO;
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(novoUsuario);
 
-            // #9 - Enviar e-mail de veririficação de conta;
+            // #9 - Enviar e-mail de verificação de conta;
             try
             {
                 if (!String.IsNullOrEmpty(usuarioDTO?.Email) && !String.IsNullOrEmpty(usuarioDTO?.NomeCompleto) && !String.IsNullOrEmpty(codigoVerificacao))

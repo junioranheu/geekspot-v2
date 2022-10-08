@@ -20,5 +20,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task<AtualizarSenhaDTO>? AtualizarSenha(int usuarioId, AtualizarSenhaDTO dto);
         Task<UsuarioDTO>? EmailRecuperarSenha(UsuarioDTO dto);
         Task<AtualizarSenhaDTO>? AtualizarSenhaRecuperar(AtualizarSenhaDTO dto);
+        Task<UsuarioDTO>? EmailVerificarConta(int usuarioId);
     }
 }

@@ -55,7 +55,7 @@ export default function ModalRecuperarSenha({ handleModal }: iParametros) {
         }
 
         nProgress.done();
-        Aviso.success('Um <b>e-mail de recuperação de senha</b> foi enviado para você!<br/><br/>Verifique sua caixa de e-mail agora mesmo', 10000);
+        Aviso.success('Um <b>e-mail de recuperação de senha</b> foi enviado para você! Verifique seu correio eletrônico agora mesmo', 10000);
         FecharModal.fecharModalClicandoNoBotao(handleModal);
     }
 
@@ -83,7 +83,7 @@ export default function ModalRecuperarSenha({ handleModal }: iParametros) {
             <span className='separadorHorizontal'></span>
 
             <div className={Styles.div100}>
-                <span className={Styles.textoPequeno}>Não se esqueça de conferir a lixeira do seu correio eletrônico também, belê? 🫶</span>
+                <span className={Styles.textoPequeno}>Não se esqueça de conferir a lixeira ou spam do seu correio eletrônico também, belê? 🫶</span>
             </div>
         </div>
     )

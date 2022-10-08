@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeekSpot.Application.Common.Interfaces.Persistence;
+using GeekSpot.Application.Services.Authentication;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Domain.Enums;
@@ -454,6 +455,44 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
 
             AtualizarSenhaDTO semErro = new() { Erro = false, CodigoErro = (int)CodigoErrosEnum.OK, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.OK) };
+            return semErro;
+        }
+
+        public async Task<UsuarioDTO>? EmailVerificarConta(int usuarioId)
+        {
+            var usuarioBd = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuarioBd is null)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.NaoEncontrado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.NaoEncontrado) };
+                return erro;
+            }
+
+            // #1 - Verificar se conta já estava ativa;
+            if (usuarioBd.IsVerificado)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaJaVerificada, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaJaVerificada) };
+                return erro;
+            }
+
+            // #2 - Gerar código de verificação e atualizar;
+            string codigoVerificacao = GerarStringAleatoria(6, true);
+
+            // #3 - Enviar e-mail de verificação de conta;
+            try
+            {
+                if (!String.IsNullOrEmpty(usuarioBd?.Email) && !String.IsNullOrEmpty(usuarioBd?.NomeCompleto) && !String.IsNullOrEmpty(codigoVerificacao))
+                {
+                    await AutenticarService.EnviarEmailVerificacaoConta(usuarioBd?.Email, usuarioBd?.NomeCompleto, codigoVerificacao);
+                }
+            }
+            catch (Exception)
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.ContaNaoVerificadaComFalhaNoEnvioNovoEmailVerificacao) };
+                return erro;
+            }
+
+            UsuarioDTO semErro = new() { Erro = false, CodigoErro = (int)CodigoErrosEnum.OK, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.OK) };
             return semErro;
         }
     }

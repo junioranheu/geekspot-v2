@@ -54,6 +54,7 @@ export default function SessaoDireita({ usuario, arquivoUploadFotoPerfil, setArq
 
                 {/* =-=-=-=-=-=-=-=-=-=-=-= #4 - Minha conta =-=-=-=-=-=-=-=-=-=- */}
                 <SessaoMinhaConta
+                    usuario={usuario}
                     setIsHouveAlteracao={setIsHouveAlteracao}
                 />
             </div>
