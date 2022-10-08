@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { useEffect, useState } from 'react';
+import useBackgroundBege from '../../../../hooks/outros/useBackgroundBege';
 import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../utils/consts/data/constUsuarios';
 import CONSTS_ERROS from '../../../../utils/consts/outros/erros';
@@ -16,6 +17,7 @@ export default function Index() {
 
     document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
+    useBackgroundBege();
 
     const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
     const [arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha] = useState('');
@@ -23,9 +25,6 @@ export default function Index() {
     const [usuario, setUsuario] = useState<iUsuario>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        document.getElementsByTagName('body')[0]?.classList.add('backgroundBege');
-        document.getElementsByClassName('sessaoPrincipal')[0]?.classList.add('backgroundBege');
-
         async function getUsuario(usuarioId: number) {
             const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${usuarioId}`;
             const resposta = await Fetch.getApi(url) as iUsuario;
@@ -41,12 +40,6 @@ export default function Index() {
         } else {
             Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.SEM_ACESSO } });
         }
-
-        // Detectar saída da tela;
-        return () => {
-            document.getElementsByTagName('body')[0]?.classList.remove('backgroundBege');
-            document.getElementsByClassName('sessaoPrincipal')[0]?.classList.remove('backgroundBege');
-        };
     }, [usuarioId]);
 
     if (!isLoaded) {

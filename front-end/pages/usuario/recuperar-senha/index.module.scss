@@ -1,0 +1,52 @@
+.main {
+    background-color: var(--branco);
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+    input {
+        background-color: var(--bege);
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .divInput {
+        // background-color: blue;
+        display: flex;
+        gap: 1rem;
+
+        .item {
+            // background-color: red;
+            display: flex;
+            align-items: center;
+            min-width: 8rem;
+            max-width: 8rem;
+        }
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {
+    .main {
+        .divInput {
+            // background-color: blue;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}
