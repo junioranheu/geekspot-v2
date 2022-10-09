@@ -180,7 +180,7 @@ export const Fetch = {
 
             setTimeout(function () {
                 location.reload();
-            }, numeroAleatorio(1000, 1500));
+            }, numeroAleatorio(100, 150));
         });
     }
 }

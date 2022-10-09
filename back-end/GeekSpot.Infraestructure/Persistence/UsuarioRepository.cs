@@ -475,7 +475,14 @@ namespace GeekSpot.Infraestructure.Persistence
                 return erro;
             }
 
-            // #2 - Gerar código de verificação e atualizar;
+            // #2 - Se o código estiver válido, não envie outro e-mail;
+            if (usuarioBd?.ValidadeCodigoVerificacao >= HorarioBrasilia())
+            {
+                UsuarioDTO erro = new() { Erro = true, CodigoErro = (int)CodigoErrosEnum.EmailValidacaoJaEnviado, MensagemErro = GetDescricaoEnum(CodigoErrosEnum.EmailValidacaoJaEnviado) };
+                return erro;
+            }
+
+            // #3 - Gerar código de verificação e atualizar;
             string codigoVerificacao = GerarStringAleatoria(6, true);
             usuarioBd.CodigoVerificacao = codigoVerificacao;
             usuarioBd.ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24);
@@ -483,7 +490,7 @@ namespace GeekSpot.Infraestructure.Persistence
             _context.Update(usuarioBd);
             await _context.SaveChangesAsync();
 
-            // #3 - Enviar e-mail de verificação de conta;
+            // #4 - Enviar e-mail de verificação de conta;
             try
             {
                 if (!String.IsNullOrEmpty(usuarioBd?.Email) && !String.IsNullOrEmpty(usuarioBd?.NomeCompleto) && !String.IsNullOrEmpty(codigoVerificacao))

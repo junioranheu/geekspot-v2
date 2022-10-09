@@ -58,26 +58,19 @@ export default function SessaoMinhaConta({ usuario, setIsHouveAlteracao }: iPara
                 <TopHatSecundario titulo='Minha conta' />
 
                 <div className={`${Styles.sessao} margem0_5`}>
-                    {
-                        !usuario?.isVerificado && (
-                            <Fragment>
-                                <div className='divBotaoInvertido'>
-                                    <Botao
-                                        texto='&nbsp;&nbsp;Reenviar e-mail de verificação de conta'
-                                        url={null}
-                                        isNovaAba={false}
-                                        handleFuncao={() => handleVerificarConta()}
-                                        Svg={<Seguranca width={16} url={null} title={null} isCorPrincipal={false} />}
-                                        refBtn={refBtnVerificarConta}
-                                        isEnabled={true}
-                                    />
-                                </div>
+                    <div className='divBotaoInvertido'>
+                        <Botao
+                            texto={`‏‏‎ ‎‏‏‎ ‎${(usuario?.isVerificado ? 'Sua conta já está verificada ✅' : '‏‏‎ ‎‏‏‎ ‎Reenviar e-mail de verificação de conta')}`}
+                            url={null}
+                            isNovaAba={false}
+                            handleFuncao={() => (usuario?.isVerificado ? null : handleVerificarConta())}
+                            Svg={<Seguranca width={16} url={null} title={null} isCorPrincipal={false} />}
+                            refBtn={refBtnVerificarConta}
+                            isEnabled={(!usuario?.isVerificado)}
+                        />
+                    </div>
 
-                                <span className='separadorHorizontal'></span>
-                            </Fragment>
-                        )
-                    }
-
+                    <span className='separadorHorizontal'></span>
                     <div className={`${Styles.botaoFonteVermelha} divBotaoInvertido`}>
                         <Botao
                             texto='&nbsp;&nbsp;Quero desativar minha conta'
