@@ -16,7 +16,6 @@ import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
-import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRandom';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
 import iUsuario from '../../../utils/types/usuario';
 
@@ -73,7 +72,6 @@ export default function SessaoEntrar() {
         Router.push('/').then(() => {
             // Inserir o token no json final para gravar localmente a sessão do login;
             resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
-            resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
             resposta.cep = resposta?.usuariosInformacoes?.cep ?? '';
             Auth.set(resposta);
 

@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { Dispatch, Fragment } from 'react';
 import useEmoji from '../../../../hooks/outros/useEmoji';
+import ImgCinza from '../../../../static/image/outros/cinza.webp';
+import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import { Auth } from '../../../../utils/context/usuarioContext';
-import fotoPerfil from '../../../../utils/outros/fotoPerfil';
 import Styles from './menu.usuario.module.scss';
 import MenuUsuarioOpcoes from './menu.usuario.opcoes';
 
@@ -14,7 +15,6 @@ interface iParametros {
 
 export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
 
-    const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     const emoji = useEmoji();
 
@@ -26,7 +26,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
     return (
         <Fragment>
             <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
-                <Image src={fotoPerfil()} width={30} height={30} alt='' />
+                <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={30} height={30} alt='' />
 
                 {
                     isExibirMenuUsuario && (

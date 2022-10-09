@@ -1,4 +1,3 @@
-import { StaticImageData } from 'next/image';
 import iUsuarioInformacoes from './usuarioInformacoes';
 import iUsuarioTipo from './usuarioTipo';
 
@@ -23,7 +22,6 @@ export default interface iUsuario {
 
     // Propriedades extra que não estão na entidade Usuario que são usadas no front-end apenas;
     genero: string | null;
-    fotoPerfilAlternativa: StaticImageData | null;
     cep: string | null;
     isEmailVerificacaoContaEnviado: boolean | null;
 }

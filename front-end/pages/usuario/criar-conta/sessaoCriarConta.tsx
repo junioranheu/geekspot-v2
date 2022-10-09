@@ -113,7 +113,6 @@ export default function SessaoCriarConta() {
         // Voltar à tela principal;
         Router.push('/').then(() => {
             resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
-            resposta.fotoPerfilAlternativa = gerarImagemPerfilRandom();
             resposta.cep = '';
             Auth.set(resposta);
 
