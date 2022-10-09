@@ -1,10 +1,16 @@
 .sessaoDireita {
     width: 75%;
 
+    svg {
+        fill: var(--preto);
+        color: var(--preto);
+    }
+
     input {
         background-color: var(--bege);
         font-weight: 500;
         font-size: 0.9rem;
+        color: var(--preto) !important;
     }
 
     .main {
@@ -22,6 +28,7 @@
                 // background-color: blue;
                 display: flex;
                 gap: 1rem;
+                color: var(--preto);
 
                 .item {
                     // background-color: red;

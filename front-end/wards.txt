@@ -2,8 +2,6 @@ https://www.enjoei.com.br/
 
 --
 
-melhorar o modo dark da tela de editar perfil
-
 criar tela de ajuda
 
 criar tela para cadastar novo item (apenas a tela mesmo para funcionar o proximo passo)

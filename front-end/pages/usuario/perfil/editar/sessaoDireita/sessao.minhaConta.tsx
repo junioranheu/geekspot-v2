@@ -60,7 +60,7 @@ export default function SessaoMinhaConta({ usuario, setIsHouveAlteracao }: iPara
                 <div className={`${Styles.sessao} margem0_5`}>
                     <div className='divBotaoInvertido'>
                         <Botao
-                            texto={`‏‏‎ ‎‏‏‎ ‎${(usuario?.isVerificado ? 'Sua conta já está verificada ✅' : '‏‏‎ ‎‏‏‎ ‎Reenviar e-mail de verificação de conta')}`}
+                            texto={`‏‏‎ ‎‏‏‎ ‎${(usuario?.isVerificado ? 'Sua conta já está verificada ✅' : 'Reenviar e-mail de verificação de conta')}`}
                             url={null}
                             isNovaAba={false}
                             handleFuncao={() => (usuario?.isVerificado ? null : handleVerificarConta())}
