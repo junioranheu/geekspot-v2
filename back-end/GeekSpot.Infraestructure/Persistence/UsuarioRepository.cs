@@ -477,6 +477,11 @@ namespace GeekSpot.Infraestructure.Persistence
 
             // #2 - Gerar código de verificação e atualizar;
             string codigoVerificacao = GerarStringAleatoria(6, true);
+            usuarioBd.CodigoVerificacao = codigoVerificacao;
+            usuarioBd.ValidadeCodigoVerificacao = HorarioBrasilia().AddHours(24);
+
+            _context.Update(usuarioBd);
+            await _context.SaveChangesAsync();
 
             // #3 - Enviar e-mail de verificação de conta;
             try
