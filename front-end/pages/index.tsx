@@ -41,7 +41,7 @@ export default function Home({ listaItens }: iParametros) {
     }
 
     return (
-        <main className='paddingPadrao'>
+        <section className='paddingPadrao'>
             <Carousel
                 isLoop={true}
                 isShowPagination={true}
@@ -83,7 +83,7 @@ export default function Home({ listaItens }: iParametros) {
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>
-        </main>
+        </section>
     )
 }
 

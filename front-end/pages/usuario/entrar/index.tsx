@@ -35,12 +35,12 @@ export default function Entrar() {
     }
 
     return (
-        <div className={Styles.flexEntrar}>
+        <section className={Styles.flexEntrar}>
             <SessaoEntrar />
 
             <div className={Styles.divLottie}>
                 <Lottie animationData={LottieAnimacao} loop={true} />
             </div>
-        </div>
+        </section>
     )
 }

@@ -14,7 +14,7 @@ export default function GameOut() {
         <Fragment>
             {
                 !isMostrarPrint ? (
-                    <main className={`${Styles.wrapper} paddingPadrao`}>
+                    <section className={`${Styles.wrapper} paddingPadrao`}>
                         <div className={Styles.divType}>
                             <Typewriter
                                 onInit={(typewriter) => {
@@ -45,7 +45,7 @@ export default function GameOut() {
                                 </div>
                             )
                         }
-                    </main >
+                    </section>
                 ) : (
                     <div className={`${Styles.backgroundFull} animate__animated animate__fadeIn`}></div>
                 )

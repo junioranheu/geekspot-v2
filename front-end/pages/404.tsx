@@ -19,7 +19,6 @@ export default function Erro() {
             setMsg(msgErro);
         }
 
-        console.log(router.query.erro);
         if (router.query.erro) {
             verificarMsg(router.query.erro.toString());
         } else {

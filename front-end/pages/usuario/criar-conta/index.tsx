@@ -35,12 +35,12 @@ export default function CriarConta() {
     }
 
     return (
-        <div className={Styles.flexEntrar}>
+        <section className={Styles.flexEntrar}>
             <div className={Styles.divLottie}>
                 <Lottie animationData={LottieAnimacao} loop={true} />
             </div>
 
             <SessaoCriarConta />
-        </div>
+        </section>
     )
 }
