@@ -42,8 +42,6 @@ export default function Perfil({ usuario }: iParametros) {
 }
 
 export async function getStaticPaths() {
-    // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
-
     // Todas os usuários;
     const url = CONSTS_USUARIOS.API_URL_GET_TODOS;
     const usuarios = await Fetch.getApi(url) as iUsuario[];

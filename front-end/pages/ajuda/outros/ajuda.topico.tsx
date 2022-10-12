@@ -1,3 +1,6 @@
+import Router from 'next/router';
+import ajustarUrl from '../../../utils/outros/ajustarUrl';
+import removerHTML from '../../../utils/outros/removerHTML';
 import iAjudaTopico from '../../../utils/types/ajuda.topico';
 import Styles from './ajuda.topico.module.scss';
 
@@ -11,10 +14,14 @@ export default function AjudaTopico({ listaTopicos }: iParametros) {
             {
                 listaTopicos && listaTopicos?.length > 0 ? (
                     listaTopicos?.map((item: iAjudaTopico, i: number) => (
-                        <div className={Styles.topico} key={item?.ajudaTopicoId}>
-                            <div className={Styles.titulo} dangerouslySetInnerHTML={{ __html: item?.titulo }} />
+                        <div
+                            key={item?.ajudaTopicoId}
+                            className={Styles.topico}
+                            onClick={() => Router.push(`/ajuda/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.topico))}`)}
+                        >
+                            <div className={Styles.titulo} title={removerHTML(item?.topico)} dangerouslySetInnerHTML={{ __html: item?.topico }} />
                             <span className={Styles.subtitulo}>{item?.descricao}</span>
-                            <span className={Styles.saibaMais}>Saiba mais</span>
+                            <span className={Styles.saibaMais} title='Saiba mais sobre o assunto em questão'>Saiba mais</span>
                         </div>
                     ))
                 ) : (

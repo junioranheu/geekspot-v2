@@ -1,6 +1,6 @@
 export default interface iAjudaTopico {
     ajudaTopicoId: number;
-    titulo: string;
+    topico: string;
     descricao:string;
     isAtivo: boolean;
     dataRegistro: Date;

@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import EmojiMedicacao from '../../static/image/outros/emoji-meditacao.webp';
 import { Fetch } from '../../utils/api/fetch';
 import CONSTS_AJUDAS_TOPICOS from '../../utils/consts/data/constAjudasTopicos';
 import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
+import paginaCarregada from '../../utils/outros/paginaCarregada';
 import iAjudaTopico from '../../utils/types/ajuda.topico';
 import Styles from './index.module.scss';
 import AjudaInputPesquisaTopico from './outros/ajuda.inputPesquisaTopico';
@@ -14,6 +16,15 @@ interface iParametros {
 
 export default function Index({ listaTopicos }: iParametros) {
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+
+    const [isLoaded, setIsLoaded] = useState(false);
+    useEffect(() => {
+        paginaCarregada(true, 300, 600, setIsLoaded);
+    }, []);
+
+    if (!isLoaded) {
+        return false;
+    }
 
     return (
         <section className={`${Styles.main} paddingPadrao paddingPadraoMargemGrande`}>
@@ -31,6 +42,9 @@ export default function Index({ listaTopicos }: iParametros) {
 
             {/* #3 - Tópicos */}
             <AjudaTopico listaTopicos={listaTopicos} />
+
+            {/* Espaço a mais */}
+            <div className='espacoBottom'></div>
         </section>
     )
 }

@@ -15,7 +15,7 @@ interface iParametros {
 }
 
 export default function Item({ item }: iParametros) {
-
+    
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         paginaCarregada(true, 300, 600, setIsLoaded);
@@ -24,7 +24,7 @@ export default function Item({ item }: iParametros) {
     if (!isLoaded) {
         return false;
     }
-
+ 
     return (
         <Fragment>
             <Head>
@@ -45,9 +45,7 @@ export default function Item({ item }: iParametros) {
 }
 
 export async function getStaticPaths() {
-    // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
-
-    // Todas os itens;
+    // Todos os itens;
     const url = CONSTS_ITENS.API_URL_GET_TODOS;
     const itens = await Fetch.getApi(url);
     // console.log(itens);
