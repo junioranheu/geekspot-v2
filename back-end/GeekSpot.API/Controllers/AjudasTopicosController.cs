@@ -8,28 +8,28 @@ namespace GeekSpot.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItensTiposController : BaseController<ItensTiposController>
+    public class AjudasTopicosController : BaseController<AjudasTopicosController>
     {
-        private readonly IItemTipoRepository _itemTipoRepository;
+        private readonly IAjudaTopicoRepository _ajudaTopicoRepository;
 
-        public ItensTiposController(IItemTipoRepository itemTipoRepository)
+        public AjudasTopicosController(IAjudaTopicoRepository ajudaTopicoRepository)
         {
-            _itemTipoRepository = itemTipoRepository;
+            _ajudaTopicoRepository = ajudaTopicoRepository;
         }
 
         [HttpPost("adicionar")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
-        public async Task<ActionResult<bool>> Adicionar(ItemTipoDTO dto)
+        public async Task<ActionResult<bool>> Adicionar(AjudaTopicoDTO dto)
         {
-            await _itemTipoRepository.Adicionar(dto);
+            await _ajudaTopicoRepository.Adicionar(dto);
             return Ok(true);
         }
 
         [HttpPut("atualizar")]
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
-        public async Task<ActionResult<bool>> Atualizar(ItemTipoDTO dto)
+        public async Task<ActionResult<bool>> Atualizar(AjudaTopicoDTO dto)
         {
-            await _itemTipoRepository.Atualizar(dto);
+            await _ajudaTopicoRepository.Atualizar(dto);
             return Ok(true);
         }
 
@@ -37,21 +37,21 @@ namespace GeekSpot.API.Controllers
         [CustomAuthorize(UsuarioTipoEnum.Administrador)]
         public async Task<ActionResult<bool>> Deletar(int id)
         {
-            await _itemTipoRepository.Deletar(id);
+            await _ajudaTopicoRepository.Deletar(id);
             return Ok(true);
         }
 
         [HttpGet("todos")]
-        public async Task<ActionResult<List<ItemTipoDTO>>> GetTodos()
+        public async Task<ActionResult<List<AjudaTopicoDTO>>> GetTodos()
         {
-            var todos = await _itemTipoRepository.GetTodos();
+            var todos = await _ajudaTopicoRepository.GetTodos();
             return Ok(todos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemTipoDTO>> GetById(int id)
+        public async Task<ActionResult<AjudaTopicoDTO>> GetById(int id)
         {
-            var byId = await _itemTipoRepository.GetById(id);
+            var byId = await _ajudaTopicoRepository.GetById(id);
 
             if (byId == null)
             {

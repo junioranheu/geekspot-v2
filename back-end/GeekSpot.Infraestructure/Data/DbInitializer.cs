@@ -11,12 +11,10 @@ namespace GeekSpot.Infraestructure.Data
         public static async Task Initialize(Context context)
         {
             // Exclui o esquema, copia as queries, cria esquema/tabelas, popula o BD;
-            bool resetarBd = false;
-
-            if (resetarBd)
+            if (false)
             {
-                await context.Database.EnsureDeletedAsync(); // Excluir o esquema e as tabelas;
-                await context.Database.EnsureCreatedAsync(); // Recriar o esquema e as tabelas;
+                await context.Database.EnsureDeletedAsync();
+                await context.Database.EnsureCreatedAsync();
 
                 await Seed(context, HorarioBrasilia());
             }
@@ -142,6 +140,19 @@ namespace GeekSpot.Infraestructure.Data
             {
                 await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 1, ItemId = 12, UsuarioId = 6, Mensagem = "Olá, quero comprar a guatona", DataMensagem = dataAgora, Resposta = null, DataResposta = null, IsAtivo = true });
                 await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 2, ItemId = 12, UsuarioId = 2, Mensagem = "Te dou 1 real por ela", DataMensagem = dataAgora, Resposta = "Não obrigado", DataResposta = null, IsAtivo = true });
+            }
+            #endregion
+
+            #region ajudas
+            if (!await context.AjudasTopicos.AnyAsync())
+            {
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 1, Titulo = "Sobre o GeekSpot", Descricao = "Você é novo por aqui? Seja bem-vindo! Aprenda sobre nós, nossa política de privacidade, termos de uso e mais", DataRegistro = dataAgora, IsAtivo = true });
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 2, Titulo = "Sobre o GeekSpot Pro", Descricao = "Saiba mais sobre o que é o GeekSpot Pro e suas vantagens", DataRegistro = dataAgora, IsAtivo = true });
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 3, Titulo = "Trocas", Descricao = "Trocar é um processo simples aqui no GeekSpot. Descubra como é feito!", DataRegistro = dataAgora, IsAtivo = true });
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 4, Titulo = "Compras", Descricao = "Comprar é fácil! Veja como", DataRegistro = dataAgora, IsAtivo = true });
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 5, Titulo = "Vendas", Descricao = "Tire todas as suas dúvidas sobre como as compras são feitas no GeekSpot", DataRegistro = dataAgora, IsAtivo = true });
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 6, Titulo = "Configuração de conta", Descricao = "Deseja alterar os dados do seu cadastro? Sua conta foi bloqueada? Veja aqui!", DataRegistro = dataAgora, IsAtivo = true });
+                await context.AjudasTopicos.AddAsync(new AjudaTopico() { AjudaTopicoId = 7, Titulo = "Segurança da informação", Descricao = "Quer saber mais sobre dicas de segurança e como fazemos para proteger seus dados?", DataRegistro = dataAgora, IsAtivo = true });
             }
             #endregion
 

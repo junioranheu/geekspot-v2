@@ -2,7 +2,7 @@ import { KeyboardEvent, useState } from 'react';
 import Lupa from '../../../components/svg/lupa';
 import Styles from '../index.module.scss';
 
-export default function InputPesquisaTopicoAjuda() {
+export default function AjudaInputPesquisaTopico() {
 
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {

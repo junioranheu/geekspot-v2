@@ -8,7 +8,6 @@ namespace GeekSpot.Domain.Entities
     {
         [Key]
         public int ItemId { get; set; }
-
         public string? Nome { get; set; } = null;
         public string? Descricao { get; set; } = null;
         public string? Tamanho { get; set; } = null;

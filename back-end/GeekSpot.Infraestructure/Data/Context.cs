@@ -12,6 +12,7 @@ namespace GeekSpot.Infraestructure.Data
 
         // Outros;
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<AjudaTopico> AjudasTopicos { get; set; }
 
         // Cidades e estados;
         public DbSet<Estado> Estados { get; set; }

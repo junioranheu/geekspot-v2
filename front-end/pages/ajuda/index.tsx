@@ -2,7 +2,7 @@ import Image from 'next/image';
 import EmojiMedicacao from '../../static/image/outros/emoji-meditacao.webp';
 import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
 import Styles from './index.module.scss';
-import InputPesquisaTopicoAjuda from './outros/inputPesquisaTopicoAjuda';
+import AjudaInputPesquisaTopico from './outros/ajuda.inputPesquisaTopico';
 
 export default function Index() {
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
@@ -19,7 +19,7 @@ export default function Index() {
             </div>
 
             {/* #2 - Input para filtragem dos tópicos */}
-            <InputPesquisaTopicoAjuda />
+            <AjudaInputPesquisaTopico />
 
             {/* #3 - Tópicos */}
         </section>
