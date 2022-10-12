@@ -362,7 +362,7 @@ select {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Toast =-=-=-=-=-=-=-=-=-=-= */
-.Toastify__toast-container{
+.Toastify__toast-container {
     // background-color: red;
     z-index: 99999999999;
 
@@ -602,9 +602,15 @@ body::-webkit-scrollbar {
 
 /* =-=-=-=-=-=-=-=-=-=-= Padding padrão =-=-=-=-=-=-=-=-=-=-= */
 .paddingPadrao {
+    // background-color: red;
     padding-left: 3rem;
     padding-right: 3rem;
     margin-top: 3rem;
+
+    &.paddingPadraoMargemGrande {
+        // background-color: blue;
+        margin-top: 4rem;
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Outros =-=-=-=-=-=-=-=-=-=-= */
@@ -708,7 +714,7 @@ body::-webkit-scrollbar {
         // background-color: pink;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
-        margin-top: 1.5rem;
+        margin-top: 2.5rem;
     }
 }
 
@@ -722,8 +728,15 @@ body::-webkit-scrollbar {
     }
 
     .paddingPadrao {
+        // background-color: blue;
         padding-left: 1rem;
         padding-right: 1rem;
+        margin-top: 2.5rem;
+
+        &.paddingPadraoMargemGrande {
+            // background-color: coral;
+            margin-top: 3rem;
+        }
     }
 
     .inputFiltro {
@@ -753,6 +766,18 @@ body::-webkit-scrollbar {
     .espacoBottom {
         /* background-color: pink; */
         height: 50px;
+    }
+
+    .paddingPadrao {
+        // background-color: coral;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-top: 2rem;
+
+        &.paddingPadraoMargemGrande {
+            // background-color: coral;
+            margin-top: 2.5rem;
+        }
     }
 }
 
