@@ -4,6 +4,7 @@ export default interface iUsuarioTipo {
     descricao: string | null;
     isAtivo: boolean;
     dataRegistro: Date;
+    
     erro: boolean;
     codigoErro: number | null;
     mensagemErro: string | null;

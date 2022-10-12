@@ -5,6 +5,7 @@ export default interface iCidade {
     nome: string;
     estadoId: number;
     estados: iEstado;
+    
     erro: boolean;
     codigoErro: number;
     mensagemErro: string | null;

@@ -1,10 +1,18 @@
 import Image from 'next/image';
 import EmojiMedicacao from '../../static/image/outros/emoji-meditacao.webp';
+import { Fetch } from '../../utils/api/fetch';
+import CONSTS_AJUDAS_TOPICOS from '../../utils/consts/data/constAjudasTopicos';
 import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
+import iAjudaTopico from '../../utils/types/ajuda.topico';
 import Styles from './index.module.scss';
 import AjudaInputPesquisaTopico from './outros/ajuda.inputPesquisaTopico';
+import AjudaTopico from './outros/ajuda.topico';
 
-export default function Index() {
+interface iParametros {
+    listaTopicos: iAjudaTopico[];
+}
+
+export default function Index({ listaTopicos }: iParametros) {
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     return (
@@ -22,7 +30,20 @@ export default function Index() {
             <AjudaInputPesquisaTopico />
 
             {/* #3 - Tópicos */}
+            <AjudaTopico listaTopicos={listaTopicos} />
         </section>
     )
+}
+
+export async function getStaticProps() {
+    const url = CONSTS_AJUDAS_TOPICOS.API_URL_GET_TODOS;
+    const listaTopicos = await Fetch.getApi(url) as iAjudaTopico[];
+
+    return {
+        props: {
+            listaTopicos
+        },
+        // revalidate: 60 // segundos
+    }
 }
 

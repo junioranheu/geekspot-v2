@@ -3,6 +3,7 @@ export default interface iEstado {
     nome: string;
     sigla: string;
     isAtivo: boolean;
+    
     erro: boolean;
     codigoErro: number;
     mensagemErro: string | null;

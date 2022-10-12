@@ -5,6 +5,7 @@ export default interface iItemTipo {
     isNovoTipo: number;
     isAtivo: boolean;
     dataRegistro: Date;
+    
     erro: boolean;
     codigoErro: number | null;
     mensagemErro: string | null;
