@@ -49,7 +49,7 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<List<AjudaTopicoDTO>>? GetTodos()
         {
-            var todos = await _context.AjudasTopicos.Where(i => i.IsAtivo == true).OrderBy(t => t.AjudaTopicoId).AsNoTracking().ToListAsync();
+            var todos = await _context.AjudasTopicos.Where(i => i.IsAtivo == true).OrderBy(at => at.AjudaTopicoId).AsNoTracking().ToListAsync();
 
             List<AjudaTopicoDTO> dto = _map.Map<List<AjudaTopicoDTO>>(todos);
             return dto;

@@ -11,6 +11,7 @@ namespace GeekSpot.Infraestructure.AutoMapper
             // Outros; 
             CreateMap<RefreshToken, RefreshTokenDTO>().ReverseMap();
             CreateMap<AjudaTopico, AjudaTopicoDTO>().ReverseMap();
+            CreateMap<AjudaItem, AjudaItemDTO>().ReverseMap();
 
             // Usuário e afins;
             CreateMap<UsuarioTipo, UsuarioTipoDTO>().ReverseMap();

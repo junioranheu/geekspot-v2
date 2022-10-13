@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Fetch } from '../../../utils/api/fetch';
+import CONSTS_AJUDAS_ITENS from '../../../utils/consts/data/constAjudasItens';
 import CONSTS_AJUDAS_TOPICOS from '../../../utils/consts/data/constAjudasTopicos';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import ajustarUrl from '../../../utils/outros/ajustarUrl';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import removerHTML from '../../../utils/outros/removerHTML';
+import iAjudaItem from '../../../utils/types/ajuda.item';
 import iAjudaTopico from '../../../utils/types/ajuda.topico';
 import Styles from './topico.module.scss';
 
 interface iParametros {
-    topico: iAjudaTopico;
+    listaAjudasItens: iAjudaItem[];
 }
 
-export default function Topico({ topico }: iParametros) {
+export default function Topico({ listaAjudasItens }: iParametros) {
     document.title = `AAAAAAAAAA — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+
+    console.log(listaAjudasItens);
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -46,7 +50,7 @@ export async function getStaticPaths() {
     const paths = topicos?.map((i: iAjudaTopico) => ({
         params: {
             id: i.ajudaTopicoId.toString(),
-            nome: ajustarUrl(removerHTML(i.topico))
+            topico: ajustarUrl(removerHTML(i.topico))
         }
     }));
 
@@ -60,12 +64,13 @@ export async function getStaticProps(context: any) {
     const id = context.params.id;
 
     // Itens do tópico;
-    const url = `${XXX.API_URL_GET_BY_ID}/${id}`;
-    const item = await Fetch.getApi(url) as xxx;
+    const url = `${CONSTS_AJUDAS_ITENS.API_URL_GET_BY_AJUDA_TOPICO_ID}/${id}`;
+    const listaAjudasItens = await Fetch.getApi(url) as iAjudaItem[];
+    // console.log(listaAjudasItens);
 
     return {
         props: {
-            item
+            listaAjudasItens
         },
         // revalidate: 10 // segundos
     }

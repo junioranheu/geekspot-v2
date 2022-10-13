@@ -1,0 +1,79 @@
+﻿using AutoMapper;
+using GeekSpot.Application.Common.Interfaces.Persistence;
+using GeekSpot.Domain.DTO;
+using GeekSpot.Domain.Entities;
+using GeekSpot.Infraestructure.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace GeekSpot.Infraestructure.Persistence
+{
+    public class AjudaItemRepository : IAjudaItemRepository
+    {
+        public readonly Context _context;
+        private readonly IMapper _map;
+
+        public AjudaItemRepository(Context context, IMapper map)
+        {
+            _context = context;
+            _map = map;
+        }
+
+        public async Task? Adicionar(AjudaItemDTO dto)
+        {
+            AjudaItem ajudaItem = _map.Map<AjudaItem>(dto);
+
+            _context.Add(ajudaItem);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task? Atualizar(AjudaItemDTO dto)
+        {
+            AjudaItem ajudaItem = _map.Map<AjudaItem>(dto);
+
+            _context.Update(ajudaItem);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task? Deletar(int id)
+        {
+            var dados = await _context.AjudasItens.FindAsync(id);
+
+            if (dados == null)
+            {
+                throw new Exception("Registro com o id " + id + " não foi encontrado");
+            }
+
+            _context.AjudasItens.Remove(dados);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<AjudaItemDTO>>? GetTodos()
+        {
+            var todos = await _context.AjudasItens.
+                        Include(at => at.AjudasTopicos).
+                        Where(i => i.IsAtivo == true).
+                        OrderBy(t => t.Titulo).AsNoTracking().ToListAsync();
+
+            List<AjudaItemDTO> dto = _map.Map<List<AjudaItemDTO>>(todos);
+            return dto;
+        }
+
+        public async Task<AjudaItemDTO>? GetById(int id)
+        {
+            var itens = await _context.AjudasItens.AsNoTracking().FirstOrDefaultAsync();
+
+            AjudaItemDTO dto = _map.Map<AjudaItemDTO>(itens);
+            return dto;
+        }
+
+        public async Task<List<AjudaItemDTO>>? GetByAjudaTopicoId(int ajudaTopicoId)
+        {
+            var itens = await _context.AjudasItens.
+                        Include(u => u.AjudasTopicos).
+                        Where(at => at.AjudaTopicoId == ajudaTopicoId && at.IsAtivo == true).AsNoTracking().ToListAsync();
+
+            List<AjudaItemDTO> dto = _map.Map<List<AjudaItemDTO>>(itens);
+            return dto;
+        }     
+    }
+}
