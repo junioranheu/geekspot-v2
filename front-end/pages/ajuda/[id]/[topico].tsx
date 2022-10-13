@@ -1,6 +1,6 @@
+import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import SetaDois from '../../../components/svg/seta.dois';
-import SetaTres from '../../../components/svg/seta.tres';
 import { Fetch } from '../../../utils/api/fetch';
 import CONSTS_AJUDAS_ITENS from '../../../utils/consts/data/constAjudasItens';
 import CONSTS_AJUDAS_TOPICOS from '../../../utils/consts/data/constAjudasTopicos';
@@ -30,11 +30,14 @@ export default function Topico({ listaAjudasItens }: iParametros) {
     }
 
     return (
-        <section className={`${Styles.wrapper} margem3`}>
-            <div className={Styles.sessaoPrincipal}>
-                <span>aaaa</span>
-                <SetaDois width={18} url={null} title='Voltar' isCorPrincipal={false} />
-                <SetaTres width={18} url={null} title='Voltar' isCorPrincipal={false} />
+        <section className={`${Styles.main} paddingPadrao`}>
+            <div className={Styles.divVoltar} onClick={() => Router.push('/ajuda/')}>
+                <SetaDois width={16} url={null} title='Voltar' isCorPrincipal={true} />
+                <span className='texto pointer cor-principal-hover'>Voltar à central de ajuda</span>
+            </div>
+
+            <div className='margem3'>
+                <div className={Styles.titulo} dangerouslySetInnerHTML={{ __html: (listaAjudasItens[0]?.ajudasTopicos?.topico ?? '') }} />
             </div>
 
             {/* Espaço a mais */}
