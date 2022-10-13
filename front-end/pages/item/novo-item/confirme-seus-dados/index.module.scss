@@ -8,6 +8,9 @@
     .divEsquerda {
         // background-color: red;
         width: 45%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
     .divDireita {
@@ -21,7 +24,7 @@
         .item {
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.5rem;
 
             .titulo {
                 color: var(--preto);

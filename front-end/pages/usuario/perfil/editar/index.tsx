@@ -7,6 +7,7 @@ import CONSTS_USUARIOS from '../../../../utils/consts/data/constUsuarios';
 import CONSTS_ERROS from '../../../../utils/consts/outros/erros';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import { Auth } from '../../../../utils/context/usuarioContext';
+import { Aviso } from '../../../../utils/outros/aviso';
 import paginaCarregada from '../../../../utils/outros/paginaCarregada';
 import iUsuario from '../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -17,6 +18,7 @@ export default function Index() {
 
     document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
+    const isVerificado = Auth?.get()?.isVerificado ?? false;
     useBackgroundBege();
 
     const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
@@ -41,6 +43,12 @@ export default function Index() {
             Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.SEM_ACESSO } });
         }
     }, [usuarioId]);
+
+    useEffect(() => {
+        if (!isVerificado) {
+            Aviso.warn('A sua <b>conta</b> não foi verificada ainda. Use o botão <b>reenviar e-mail de verificação de conta</b> no final da página para verificá-la 🖖', 10000);
+        }
+    }, [isVerificado]);
 
     if (!isLoaded) {
         return false;
