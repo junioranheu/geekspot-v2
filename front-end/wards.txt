@@ -2,5 +2,7 @@ https://www.enjoei.com.br/
 
 --
 
+verificar bug do update context
+
 iniciar desenvolvimento tela de cadastro de novo item
 

@@ -62,6 +62,8 @@ export const Auth = {
     },
 
     update(data: iContextDadosUsuario) {
+        console.log(data);
+
         const dadosUsuario = {
             usuarioId: (data.usuarioId ?? Auth.get().usuarioId),
             nomeCompleto: (data.nomeCompleto ?? Auth.get().nomeCompleto),
@@ -78,6 +80,7 @@ export const Auth = {
         };
 
         let parsedData = JSON.stringify(dadosUsuario);
+        console.log(parsedData);
         localStorage.setItem(_item, parsedData);
     }
 }

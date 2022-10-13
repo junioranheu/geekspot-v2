@@ -46,7 +46,7 @@ export default function Index() {
 
     useEffect(() => {
         if (!isVerificado) {
-            Aviso.warn('A sua <b>conta</b> não foi verificada ainda. Use o botão <b>reenviar e-mail de verificação de conta</b> no final da página para verificá-la 🖖', 10000);
+            Aviso.warn('A sua <b>conta</b> ainda não foi verificada. Use o botão <b>reenviar e-mail de verificação de conta</b> no final da página para verificá-la 🖖', 10000);
         }
     }, [isVerificado]);
 
