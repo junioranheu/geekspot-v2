@@ -7,11 +7,12 @@ import Styles from './ajuda.listaItens.module.scss';
 interface iParametros {
     listaAjudasItens: iAjudaItem[] | null | undefined;
     queryBuscada: string;
+    isMargemTop: boolean;
 }
 
-export default function AjudaListaItens({ listaAjudasItens, queryBuscada }: iParametros) {
+export default function AjudaListaItens({ listaAjudasItens, queryBuscada, isMargemTop }: iParametros) {
     return (
-        <div className={`${Styles.divItens} margem3`}>
+        <div className={`${Styles.divItens} ${(isMargemTop && 'margem3')}`}>
             {
                 listaAjudasItens && listaAjudasItens?.length > 0 ? (
                     listaAjudasItens?.map((item: iAjudaItem, i: number) => (

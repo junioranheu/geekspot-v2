@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-
+ 
     .divTitulo {
         // background-color: red;
         display: flex;
@@ -53,7 +53,7 @@
                 color: #dad7d5;
             }
 
-            &:focus{
+            &:focus {
                 border: 1px solid var(--cor-principal);
                 transition: all 0.2s ease-in;
             }
@@ -66,6 +66,13 @@
             align-items: center;
             cursor: pointer;
         }
+    }
+
+    .textoPequeno {
+        // background-color: red;
+        color: var(--cinza);
+        font-size: 0.7rem;
+        font-weight: 400;
     }
 }
 

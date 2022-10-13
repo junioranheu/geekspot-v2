@@ -42,7 +42,11 @@ export default function Topico({ listaAjudasItens }: iParametros) {
             </div>
 
             {/* Lista de itens de ajuda do tópico em questão */}
-            <AjudaListaItens listaAjudasItens={listaAjudasItens} queryBuscada='' />
+            <AjudaListaItens
+                listaAjudasItens={listaAjudasItens}
+                queryBuscada=''
+                isMargemTop={true}
+            />
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>

@@ -60,8 +60,20 @@ export default function BuscaAjuda() {
             {/* #2 - Input para filtragem dos tópicos */}
             <AjudaInputPesquisaTopico topicoBuscado={queryBuscada} />
 
-            {/* #3 - Resultados da busca */}
-            <AjudaListaItens listaAjudasItens={listaAjudasItens} queryBuscada={queryBuscada} />
+            {/* #3 - "Header" do restauldo da busca */}
+            <div className='margem3 centralizarTexto'>
+                <span className='titulo'>Resultado da busca</span>
+                <br />
+                <span className={Styles.textoPequeno}> {listaAjudasItens?.length ?? 0} {listaAjudasItens?.length === 1 ? 'resultado' : 'resultados'}</span>
+            </div>
+            <span className='margem2'></span>
+
+            {/* #4 - Resultados da busca */}
+            <AjudaListaItens
+                listaAjudasItens={listaAjudasItens}
+                queryBuscada={queryBuscada}
+                isMargemTop={false}
+            />
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>
