@@ -47,9 +47,15 @@
             font-weight: 500;
             line-height: 1;
             outline: none;
+            transition: all 0.2s ease-in;
 
             &::-webkit-input-placeholder {
                 color: #dad7d5;
+            }
+
+            &:focus{
+                border: 1px solid var(--cor-principal);
+                transition: all 0.2s ease-in;
             }
         }
 

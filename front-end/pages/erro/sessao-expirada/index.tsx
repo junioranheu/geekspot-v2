@@ -29,7 +29,7 @@ export default function ErroSessaoExpirada() {
             </div>
 
             <div>
-                <span className={Styles.titulo}>Sua essão expirou</span>
+                <span className={Styles.titulo}>Sua sessão expirou</span>
                 <span className={`${Styles.texto} margem2`}>Entre novamente clicando no botão abaixo 🖖</span>
 
                 <div className='margem2'>

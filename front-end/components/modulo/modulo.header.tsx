@@ -2,7 +2,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import gerarFraseAleatoria from '../../utils/outros/gerarFraseAleatoria';
-import Seta from '../svg/seta';
+import Seta from '../svg/seta.um';
 import Styles from './modulo.principal.module.scss';
 
 interface iParametros {

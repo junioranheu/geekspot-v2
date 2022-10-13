@@ -1,8 +1,12 @@
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useContext, useState } from 'react';
 import Lupa from '../../../components/svg/lupa';
+import { ModoDarkContext } from '../../../utils/context/modoDarkContext';
 import Styles from '../index.module.scss';
 
 export default function AjudaInputPesquisaTopico() {
+
+    const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;
+    const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
@@ -26,7 +30,7 @@ export default function AjudaInputPesquisaTopico() {
             />
 
             <div className={Styles.lupa} title='Buscar tópico' onClick={() => handleBuscar()}>
-                <Lupa width={20} url={null} title={null} isCorPrincipal={false} />
+                <Lupa width={20} url={null} title={null} isCorPrincipal={(isModoDark ?? false)} />
             </div>
         </div>
     )

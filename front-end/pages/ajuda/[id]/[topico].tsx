@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import SetaDois from '../../../components/svg/seta.dois';
+import SetaTres from '../../../components/svg/seta.tres';
 import { Fetch } from '../../../utils/api/fetch';
 import CONSTS_AJUDAS_ITENS from '../../../utils/consts/data/constAjudasItens';
 import CONSTS_AJUDAS_TOPICOS from '../../../utils/consts/data/constAjudasTopicos';
@@ -15,12 +17,11 @@ interface iParametros {
 }
 
 export default function Topico({ listaAjudasItens }: iParametros) {
-    document.title = `AAAAAAAAAA — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
-
-    console.log(listaAjudasItens);
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
+        document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, []);
 
@@ -32,6 +33,8 @@ export default function Topico({ listaAjudasItens }: iParametros) {
         <section className={`${Styles.wrapper} margem3`}>
             <div className={Styles.sessaoPrincipal}>
                 <span>aaaa</span>
+                <SetaDois width={18} url={null} title='Voltar' isCorPrincipal={false} />
+                <SetaTres width={18} url={null} title='Voltar' isCorPrincipal={false} />
             </div>
 
             {/* Espaço a mais */}

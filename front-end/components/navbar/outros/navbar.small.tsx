@@ -1,6 +1,6 @@
 import useEmoji from '../../../hooks/outros/useEmoji';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
-import Seta from '../../svg/seta';
+import Seta from '../../svg/seta.um';
 import Styles from './navbar.small.module.scss';
 
 export default function NavbarSmall() {
