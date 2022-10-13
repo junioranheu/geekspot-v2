@@ -29,7 +29,7 @@ export default function BuscaAjuda() {
             nProgress.start();
             const url = `${CONSTS_AJUDAS_ITENS.API_URL_GET_BY_QUERY}/${query}`;
             const resposta = await Fetch.getApi(url) as iAjudaItem[];
-            // console.log(resposta);
+            console.log(resposta);
             setListaAjudasItens(resposta);
 
             nProgress.done();
@@ -73,6 +73,7 @@ export default function BuscaAjuda() {
                 listaAjudasItens={listaAjudasItens}
                 queryBuscada={queryBuscada}
                 isMargemTop={false}
+                isExibirTopico={true}
             />
 
             {/* Espaço a mais */}

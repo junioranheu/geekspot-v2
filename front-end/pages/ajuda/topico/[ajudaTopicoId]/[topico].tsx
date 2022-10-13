@@ -46,6 +46,7 @@ export default function Topico({ listaAjudasItens }: iParametros) {
                 listaAjudasItens={listaAjudasItens}
                 queryBuscada=''
                 isMargemTop={true}
+                isExibirTopico={false}
             />
 
             {/* Espaço a mais */}

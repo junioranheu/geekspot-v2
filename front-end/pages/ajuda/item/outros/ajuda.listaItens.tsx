@@ -8,9 +8,10 @@ interface iParametros {
     listaAjudasItens: iAjudaItem[] | null | undefined;
     queryBuscada: string;
     isMargemTop: boolean;
+    isExibirTopico: boolean;
 }
 
-export default function AjudaListaItens({ listaAjudasItens, queryBuscada, isMargemTop }: iParametros) {
+export default function AjudaListaItens({ listaAjudasItens, queryBuscada, isMargemTop, isExibirTopico }: iParametros) {
     return (
         <div className={`${Styles.divItens} ${(isMargemTop && 'margem3')}`}>
             {
@@ -22,7 +23,15 @@ export default function AjudaListaItens({ listaAjudasItens, queryBuscada, isMarg
                             onClick={() => Router.push(`/ajuda/item/${item?.ajudaItemId}/${ajustarUrl(item?.titulo)}`)}
                         >
                             <div className={Styles.itemInner}>
-                                <span className='cor-principal-hover pointer' title={item?.titulo}>{item?.titulo}</span>
+                                <span className='cor-principal-hover pointer' title={item?.titulo}>
+                                    {item?.titulo}
+
+                                    {
+                                        isExibirTopico && (
+                                            <span> / <span dangerouslySetInnerHTML={{ __html: item?.ajudasTopicos?.topico }} /></span>
+                                        )
+                                    }
+                                </span>
                                 <SetaTres width={16} url={null} title={item?.titulo} isCorPrincipal={true} />
                             </div>
                         </div>
