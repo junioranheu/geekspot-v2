@@ -2,13 +2,13 @@ import Router from 'next/router';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import removerHTML from '../../../../utils/outros/removerHTML';
 import iAjudaTopico from '../../../../utils/types/ajuda.topico';
-import Styles from './ajuda.topico.module.scss';
+import Styles from './ajuda.listaTopicos.module.scss';
 
 interface iParametros {
     listaTopicos: iAjudaTopico[];
 }
 
-export default function AjudaTopico({ listaTopicos }: iParametros) {
+export default function AjudaListaTopicos({ listaTopicos }: iParametros) {
     return (
         <div className={`${Styles.main} margem3`}>
             {

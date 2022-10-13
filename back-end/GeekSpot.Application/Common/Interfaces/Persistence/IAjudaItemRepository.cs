@@ -10,5 +10,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task<List<AjudaItemDTO>>? GetTodos();
         Task<AjudaItemDTO>? GetById(int id);
         Task<List<AjudaItemDTO>>? GetByAjudaTopicoId(int ajudaTopicoId);
+        Task<List<AjudaItemDTO>>? GetByQuery(string query);
     }
 }

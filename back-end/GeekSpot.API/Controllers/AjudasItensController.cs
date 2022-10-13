@@ -73,5 +73,18 @@ namespace GeekSpot.API.Controllers
 
             return Ok(byAjudaTopicoId);
         }
+
+        [HttpGet("byQuery/{query}")]
+        public async Task<ActionResult<List<AjudaItemDTO>>> GetByQuery(string query)
+        {
+            var byQuery = await _ajudaItemRepository.GetByQuery(query);
+
+            if (byQuery == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(byQuery);
+        }
     }
 }

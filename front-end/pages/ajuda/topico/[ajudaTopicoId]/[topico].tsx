@@ -1,7 +1,6 @@
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import SetaDois from '../../../../components/svg/seta.dois';
-import SetaTres from '../../../../components/svg/seta.tres';
 import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_AJUDAS_ITENS from '../../../../utils/consts/data/constAjudasItens';
 import CONSTS_AJUDAS_TOPICOS from '../../../../utils/consts/data/constAjudasTopicos';
@@ -11,6 +10,7 @@ import paginaCarregada from '../../../../utils/outros/paginaCarregada';
 import removerHTML from '../../../../utils/outros/removerHTML';
 import iAjudaItem from '../../../../utils/types/ajuda.item';
 import iAjudaTopico from '../../../../utils/types/ajuda.topico';
+import AjudaListaItens from '../../item/outros/ajuda.listaItens';
 import Styles from './topico.module.scss';
 
 interface iParametros {
@@ -41,28 +41,8 @@ export default function Topico({ listaAjudasItens }: iParametros) {
                 <div className={Styles.titulo} dangerouslySetInnerHTML={{ __html: (listaAjudasItens[0]?.ajudasTopicos?.topico ?? '') }} />
             </div>
 
-            <div className={`${Styles.divItens} margem3`}>
-                {
-                    listaAjudasItens && listaAjudasItens?.length > 0 ? (
-                        listaAjudasItens?.map((item: iAjudaItem, i: number) => (
-                            <div
-                                key={item?.ajudaItemId}
-                                className={Styles.item}
-                                onClick={() => Router.push(`/ajuda/item/${item?.ajudaItemId}/${ajustarUrl(item?.titulo)}`)}
-                            >
-                                <div className={Styles.itemInner}>
-                                    <span className='cor-principal-hover pointer' title={item?.titulo}>{item?.titulo}</span>
-                                    <SetaTres width={16} url={null} title={item?.titulo} isCorPrincipal={true} />
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <div>
-                            <span className='texto'>Eita... pra onde foram os itens de ajuda?</span>
-                        </div>
-                    )
-                }
-            </div>
+            {/* Lista de itens de ajuda do tópico em questão */}
+            <AjudaListaItens listaAjudasItens={listaAjudasItens} queryBuscada='' />
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>

@@ -8,7 +8,7 @@ import paginaCarregada from '../../utils/outros/paginaCarregada';
 import iAjudaTopico from '../../utils/types/ajuda.topico';
 import Styles from './index.module.scss';
 import AjudaInputPesquisaTopico from './outros/ajuda.inputPesquisaTopico';
-import AjudaTopico from './topico/outros/ajuda.topico';
+import AjudaListaTopicos from './topico/outros/ajuda.listaTopicos';
 
 interface iParametros {
     listaTopicos: iAjudaTopico[];
@@ -41,8 +41,8 @@ export default function Index({ listaTopicos }: iParametros) {
             {/* #2 - Input para filtragem dos tópicos */}
             <AjudaInputPesquisaTopico topicoBuscado='' />
 
-            {/* #3 - Tópicos */}
-            <AjudaTopico listaTopicos={listaTopicos} />
+            {/* #3 - Lista de tópicos */}
+            <AjudaListaTopicos listaTopicos={listaTopicos} />
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>

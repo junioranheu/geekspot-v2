@@ -1,10 +1,15 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import nProgress from 'nprogress';
 import { useEffect, useState } from 'react';
 import EmojiMedicacao from '../../../static/image/outros/emoji-meditacao.webp';
+import { Fetch } from '../../../utils/api/fetch';
+import CONSTS_AJUDAS_ITENS from '../../../utils/consts/data/constAjudasItens';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
+import iAjudaItem from '../../../utils/types/ajuda.item';
 import Styles from '../index.module.scss';
+import AjudaListaItens from '../item/outros/ajuda.listaItens';
 import AjudaInputPesquisaTopico from '../outros/ajuda.inputPesquisaTopico';
 
 export default function BuscaAjuda() {
@@ -13,11 +18,27 @@ export default function BuscaAjuda() {
     const router = useRouter();
 
     const [queryBuscada, setQueryBuscada] = useState('');
+    const [listaAjudasItens, setListaAjudasItens] = useState<iAjudaItem[]>();
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
+        async function handleBuscar(query: string) {
+            if (!query) {
+                return false;
+            }
+
+            nProgress.start();
+            const url = `${CONSTS_AJUDAS_ITENS.API_URL_GET_BY_QUERY}/${query}`;
+            const resposta = await Fetch.getApi(url) as iAjudaItem[];
+            // console.log(resposta);
+            setListaAjudasItens(resposta);
+
+            nProgress.done();
+        }
+
         const query = router?.query?.query ?? '';
         setQueryBuscada(query.toString());
-        
+        handleBuscar(query.toString());
+
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, [router.query]);
 
@@ -40,9 +61,7 @@ export default function BuscaAjuda() {
             <AjudaInputPesquisaTopico topicoBuscado={queryBuscada} />
 
             {/* #3 - Resultados da busca */}
-            <div className='margem3'>
-                {queryBuscada}
-            </div>
+            <AjudaListaItens listaAjudasItens={listaAjudasItens} queryBuscada={queryBuscada} />
 
             {/* Espaço a mais */}
             <div className='espacoBottom'></div>

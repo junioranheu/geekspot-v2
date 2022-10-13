@@ -2,6 +2,7 @@
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
+using GeekSpot.Domain.Enums;
 using GeekSpot.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -76,6 +77,22 @@ namespace GeekSpot.Infraestructure.Persistence
 
             List<AjudaItemDTO> dto = _map.Map<List<AjudaItemDTO>>(itens);
             return dto;
-        }     
+        }
+
+        public async Task<List<AjudaItemDTO>>? GetByQuery(string query)
+        {
+            if (String.IsNullOrEmpty(query))
+            {
+                return null;
+            }
+
+            var itens = await _context.AjudasItens.
+                        Include(u => u.AjudasTopicos).
+                        Where(i => i.IsAtivo == true && (i.Titulo.Contains(query) || i.ConteudoHtml.Contains(query))).
+                        AsNoTracking().ToListAsync();
+
+            List<AjudaItemDTO> dto = _map.Map<List<AjudaItemDTO>>(itens);
+            return dto;
+        }
     }
 }
