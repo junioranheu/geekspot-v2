@@ -15,7 +15,7 @@ interface iParametros {
 }
 
 export default function Index({ listaTopicos }: iParametros) {
-    
+
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -39,7 +39,7 @@ export default function Index({ listaTopicos }: iParametros) {
             </div>
 
             {/* #2 - Input para filtragem dos tópicos */}
-            <AjudaInputPesquisaTopico />
+            <AjudaInputPesquisaTopico topicoBuscado='' />
 
             {/* #3 - Tópicos */}
             <AjudaTopico listaTopicos={listaTopicos} />
