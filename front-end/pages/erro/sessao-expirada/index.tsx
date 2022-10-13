@@ -8,6 +8,7 @@ import Lottie404 from '../../../utils/lotties/404.json';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 
 export default function ErroSessaoExpirada() {
+    
     document.title = `404 — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const router = useRouter();
 

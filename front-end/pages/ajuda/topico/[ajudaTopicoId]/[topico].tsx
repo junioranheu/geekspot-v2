@@ -1,16 +1,16 @@
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
-import SetaDois from '../../../components/svg/seta.dois';
-import SetaTres from '../../../components/svg/seta.tres';
-import { Fetch } from '../../../utils/api/fetch';
-import CONSTS_AJUDAS_ITENS from '../../../utils/consts/data/constAjudasItens';
-import CONSTS_AJUDAS_TOPICOS from '../../../utils/consts/data/constAjudasTopicos';
-import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
-import ajustarUrl from '../../../utils/outros/ajustarUrl';
-import paginaCarregada from '../../../utils/outros/paginaCarregada';
-import removerHTML from '../../../utils/outros/removerHTML';
-import iAjudaItem from '../../../utils/types/ajuda.item';
-import iAjudaTopico from '../../../utils/types/ajuda.topico';
+import SetaDois from '../../../../components/svg/seta.dois';
+import SetaTres from '../../../../components/svg/seta.tres';
+import { Fetch } from '../../../../utils/api/fetch';
+import CONSTS_AJUDAS_ITENS from '../../../../utils/consts/data/constAjudasItens';
+import CONSTS_AJUDAS_TOPICOS from '../../../../utils/consts/data/constAjudasTopicos';
+import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
+import ajustarUrl from '../../../../utils/outros/ajustarUrl';
+import paginaCarregada from '../../../../utils/outros/paginaCarregada';
+import removerHTML from '../../../../utils/outros/removerHTML';
+import iAjudaItem from '../../../../utils/types/ajuda.item';
+import iAjudaTopico from '../../../../utils/types/ajuda.topico';
 import Styles from './topico.module.scss';
 
 interface iParametros {
@@ -19,7 +19,7 @@ interface iParametros {
 
 export default function Topico({ listaAjudasItens }: iParametros) {
 
-    document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+        document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
@@ -47,8 +47,8 @@ export default function Topico({ listaAjudasItens }: iParametros) {
                         listaAjudasItens?.map((item: iAjudaItem, i: number) => (
                             <div
                                 key={item?.ajudaItemId}
-                                className={Styles.item}   
-                                onClick={() => Router.push(`/ajuda/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.titulo))}`)}
+                                className={Styles.item}
+                                onClick={() => Router.push(`/ajuda/item/${item?.ajudaItemId}/${ajustarUrl(item?.titulo)}`)}
                             >
                                 <div className={Styles.itemInner}>
                                     <span className='cor-principal-hover pointer' title={item?.titulo}>{item?.titulo}</span>
@@ -79,7 +79,7 @@ export async function getStaticPaths() {
     // Gerar o "paths";
     const paths = topicos?.map((i: iAjudaTopico) => ({
         params: {
-            id: i.ajudaTopicoId.toString(),
+            ajudaTopicoId: i.ajudaTopicoId.toString(),
             topico: ajustarUrl(removerHTML(i.topico))
         }
     }));
@@ -91,7 +91,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-    const id = context.params.id;
+    const id = context.params.ajudaTopicoId;
 
     // Itens do tópico;
     const url = `${CONSTS_AJUDAS_ITENS.API_URL_GET_BY_AJUDA_TOPICO_ID}/${id}`;

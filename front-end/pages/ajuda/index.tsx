@@ -8,13 +8,14 @@ import paginaCarregada from '../../utils/outros/paginaCarregada';
 import iAjudaTopico from '../../utils/types/ajuda.topico';
 import Styles from './index.module.scss';
 import AjudaInputPesquisaTopico from './outros/ajuda.inputPesquisaTopico';
-import AjudaTopico from './outros/ajuda.topico';
+import AjudaTopico from './topico/outros/ajuda.topico';
 
 interface iParametros {
     listaTopicos: iAjudaTopico[];
 }
 
 export default function Index({ listaTopicos }: iParametros) {
+    
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const [isLoaded, setIsLoaded] = useState(false);

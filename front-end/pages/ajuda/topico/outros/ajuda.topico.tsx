@@ -1,7 +1,7 @@
 import Router from 'next/router';
-import ajustarUrl from '../../../utils/outros/ajustarUrl';
-import removerHTML from '../../../utils/outros/removerHTML';
-import iAjudaTopico from '../../../utils/types/ajuda.topico';
+import ajustarUrl from '../../../../utils/outros/ajustarUrl';
+import removerHTML from '../../../../utils/outros/removerHTML';
+import iAjudaTopico from '../../../../utils/types/ajuda.topico';
 import Styles from './ajuda.topico.module.scss';
 
 interface iParametros {
@@ -18,7 +18,7 @@ export default function AjudaTopico({ listaTopicos }: iParametros) {
                             key={item?.ajudaTopicoId}
                             className={Styles.topico}
                             title={removerHTML(item?.topico)}
-                            onClick={() => Router.push(`/ajuda/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.topico))}`)}
+                            onClick={() => Router.push(`/ajuda/topico/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.topico))}`)}
                         >
                             <div className={Styles.titulo} title={removerHTML(item?.topico)} dangerouslySetInnerHTML={{ __html: item?.topico }} />
                             <span className={Styles.subtitulo}>{item?.descricao}</span>

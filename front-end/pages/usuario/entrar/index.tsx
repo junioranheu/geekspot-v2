@@ -10,6 +10,7 @@ import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import SessaoEntrar from './sessaoEntrar';
 
 export default function Entrar() {
+    
     document.title = `Entrar — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;

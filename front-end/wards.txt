@@ -4,7 +4,7 @@ https://www.enjoei.com.br/
 
 criar tela de ajuda
 
-transformar telas de ajuda em componentes
+verificar se é possível transformar telas de ajuda em componentes
 
 criar tela para cadastar novo item (apenas a tela mesmo para funcionar o proximo passo)
 não permitir acessar a tela de cadastro de novo item caso caso o usuario nao tenha valido perfil (email e cadastro do form)

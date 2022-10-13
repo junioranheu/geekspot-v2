@@ -23,6 +23,7 @@ interface iParametros {
 }
 
 export default function Home({ listaItens }: iParametros) {
+    
     document.title = `Início — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const modoDarkContext = useContext(ModoDarkContext); // Contexto do modo dark;

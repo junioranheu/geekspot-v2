@@ -9,6 +9,7 @@ import { Aviso } from '../../../utils/outros/aviso';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 
 export default function VerificarConta() {
+    
     document.title = `Verificar conta — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const router = useRouter();

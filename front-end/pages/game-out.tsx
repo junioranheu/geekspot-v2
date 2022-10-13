@@ -4,6 +4,7 @@ import Botao from '../components/outros/botao';
 import Styles from '../styles/gameout.module.scss';
 
 export default function GameOut() {
+    
     document.title = 'GameOut, o GeekSpot em 2017';
 
     const [isMostrarBotao, setIsMostrarBotao] = useState(false);

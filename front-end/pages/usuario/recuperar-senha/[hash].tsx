@@ -19,6 +19,7 @@ interface iFormRecuperarSenha {
 }
 
 export default function RecuperarSenha() {
+    
     document.title = `Recuperar senha — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const router = useRouter();
