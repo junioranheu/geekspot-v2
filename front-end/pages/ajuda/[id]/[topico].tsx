@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import SetaDois from '../../../components/svg/seta.dois';
+import SetaTres from '../../../components/svg/seta.tres';
 import { Fetch } from '../../../utils/api/fetch';
 import CONSTS_AJUDAS_ITENS from '../../../utils/consts/data/constAjudasItens';
 import CONSTS_AJUDAS_TOPICOS from '../../../utils/consts/data/constAjudasTopicos';
@@ -18,10 +19,10 @@ interface iParametros {
 
 export default function Topico({ listaAjudasItens }: iParametros) {
 
+    document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
-
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, [listaAjudasItens]);
 
@@ -38,6 +39,29 @@ export default function Topico({ listaAjudasItens }: iParametros) {
 
             <div className='margem3'>
                 <div className={Styles.titulo} dangerouslySetInnerHTML={{ __html: (listaAjudasItens[0]?.ajudasTopicos?.topico ?? '') }} />
+            </div>
+
+            <div className={`${Styles.divItens} margem3`}>
+                {
+                    listaAjudasItens && listaAjudasItens?.length > 0 ? (
+                        listaAjudasItens?.map((item: iAjudaItem, i: number) => (
+                            <div
+                                key={item?.ajudaItemId}
+                                className={Styles.item}   
+                                onClick={() => Router.push(`/ajuda/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.titulo))}`)}
+                            >
+                                <div className={Styles.itemInner}>
+                                    <span className='cor-principal-hover pointer' title={item?.titulo}>{item?.titulo}</span>
+                                    <SetaTres width={16} url={null} title={item?.titulo} isCorPrincipal={true} />
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div>
+                            <span className='texto'>Eita... pra onde foram os itens de ajuda?</span>
+                        </div>
+                    )
+                }
             </div>
 
             {/* Espaço a mais */}

@@ -17,11 +17,12 @@ export default function AjudaTopico({ listaTopicos }: iParametros) {
                         <div
                             key={item?.ajudaTopicoId}
                             className={Styles.topico}
+                            title={removerHTML(item?.topico)}
                             onClick={() => Router.push(`/ajuda/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.topico))}`)}
                         >
                             <div className={Styles.titulo} title={removerHTML(item?.topico)} dangerouslySetInnerHTML={{ __html: item?.topico }} />
                             <span className={Styles.subtitulo}>{item?.descricao}</span>
-                            <span className={Styles.saibaMais} title='Saiba mais sobre o assunto em questão'>Saiba mais</span>
+                            <span className={Styles.saibaMais} title={`Saiba mais: ${removerHTML(item?.topico?.toLowerCase())}`}>Saiba mais</span>
                         </div>
                     ))
                 ) : (
