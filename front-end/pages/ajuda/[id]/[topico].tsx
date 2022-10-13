@@ -23,7 +23,7 @@ export default function Topico({ listaAjudasItens }: iParametros) {
         document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
         paginaCarregada(true, 300, 600, setIsLoaded);
-    }, []);
+    }, [listaAjudasItens]);
 
     if (!isLoaded) {
         return false;
