@@ -9,6 +9,7 @@ import { Aviso } from '../outros/aviso';
 import desabilitarTodosElementos from '../outros/desabilitarTodosElementos';
 import numeroAleatorio from '../outros/gerarNumeroAleatorio';
 import horarioBrasilia from '../outros/horarioBrasilia';
+import iContextDadosUsuario from '../types/context.dadosUsuario';
 
 export const Fetch = {
     async getApi(url: string, isTentarRefreshToken: boolean = true) {
@@ -136,7 +137,7 @@ export const Fetch = {
             const dadosUsuario = {
                 token: respostaRefreshToken.token,
                 refreshToken: respostaRefreshToken.refreshToken
-            };
+            } as iContextDadosUsuario;
 
             Auth.update(dadosUsuario);
 

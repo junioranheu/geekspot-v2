@@ -19,6 +19,7 @@ import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
 import padronizarNomeCompletoUsuario from '../../../utils/outros/padronizarNomeCompletoUsuario';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
 import verificarDadosCriarConta from '../../../utils/outros/verificarDadosCriarConta';
+import iContextDadosUsuario from '../../../utils/types/context.dadosUsuario';
 import iUsuario from '../../../utils/types/usuario';
 
 interface iFormData {
@@ -114,7 +115,7 @@ export default function SessaoCriarConta() {
         Router.push('/').then(() => {
             resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
             resposta.cep = '';
-            Auth.set(resposta);
+            Auth.set(resposta as unknown as iContextDadosUsuario);
 
             if (resposta.isEmailVerificacaoContaEnviado) {
                 Aviso.success('Um e-mail de verificação de conta foi enviado para você 👽', 7000);

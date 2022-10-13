@@ -5,6 +5,7 @@ import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import arredondarNumero from '../../utils/outros/arredondarNumero';
 import { Aviso } from '../../utils/outros/aviso';
 import removerCaracter from '../../utils/outros/removerCaracter';
+import iContextDadosUsuario from '../../utils/types/context.dadosUsuario';
 import Styles from './styles/cep.module.scss';
 
 interface iParametros {
@@ -43,7 +44,7 @@ export default function Cep({ precoProduto }: iParametros) {
             setData(e.target.value);
         }
     }
- 
+
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
             refSalvar.current.click();
@@ -78,7 +79,7 @@ export default function Cep({ precoProduto }: iParametros) {
 
         // Atribuir CEP ao Local Storage se o usuário estiver logado;
         if (isAuth) {
-            const dadosUsuario = { cep: removerCaracter(cep?.cep, '-') }
+            const dadosUsuario = { cep: removerCaracter(cep?.cep, '-') } as iContextDadosUsuario;
             Auth.update(dadosUsuario);
         }
     }

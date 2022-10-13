@@ -17,6 +17,7 @@ import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import { Aviso } from '../../../utils/outros/aviso';
 import consultarGeneroPorNomePessoa from '../../../utils/outros/consultarGeneroPorNomePessoa';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
+import iContextDadosUsuario from '../../../utils/types/context.dadosUsuario';
 import iUsuario from '../../../utils/types/usuario';
 
 interface iFormData {
@@ -73,7 +74,7 @@ export default function SessaoEntrar() {
             // Inserir o token no json final para gravar localmente a sessão do login;
             resposta.genero = consultarGeneroPorNomePessoa(pegarPrimeiraPalavraDaFrase(resposta?.nomeCompleto));
             resposta.cep = resposta?.usuariosInformacoes?.cep ?? '';
-            Auth.set(resposta);
+            Auth.set(resposta as unknown as iContextDadosUsuario);
 
             // Atribuir autenticação ao contexto de usuário;
             setIsAuth(true);

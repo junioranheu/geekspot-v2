@@ -1,23 +1,9 @@
 import { createContext, useState } from 'react';
 import horarioBrasilia from '../outros/horarioBrasilia';
+import iContextDadosUsuario from '../types/context.dadosUsuario';
 
 interface iContext {
     isAuthContext: [isAuth: boolean, setIsAuth: any];
-}
-
-interface iDadosUsuario {
-    usuarioId: number | null;
-    nomeCompleto: string | null;
-    nomeUsuarioSistema: string | null;
-    email: string | null;
-    usuarioTipoId: number | null;
-    foto: string | null;
-    isVerificado: boolean | null;
-    token: string | null;
-    refreshToken: string | null;
-    dataAutenticacao: Date | null;
-    genero: string | null;
-    cep: string | null;
 }
 
 const _item = 'auth';
@@ -36,7 +22,7 @@ export const UsuarioProvider = (props: any) => {
 }
 
 export const Auth = {
-    set(data: iDadosUsuario) {
+    set(data: iContextDadosUsuario) {
         const dadosUsuario = {
             usuarioId: data.usuarioId,
             nomeCompleto: data.nomeCompleto,
@@ -75,7 +61,7 @@ export const Auth = {
         localStorage.removeItem(_item);
     },
 
-    update(data: iDadosUsuario) {
+    update(data: iContextDadosUsuario) {
         const dadosUsuario = {
             usuarioId: (data.usuarioId ?? Auth.get().usuarioId),
             nomeCompleto: (data.nomeCompleto ?? Auth.get().nomeCompleto),
