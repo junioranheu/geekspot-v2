@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Seguranca from '../../../../components/svg/seguranca';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
+import CONSTS_TELAS from '../../../../utils/consts/outros/telas';
 import Styles from './index.module.scss';
 
 export default function DivAvisoProtecao() {
@@ -39,7 +40,7 @@ export default function DivAvisoProtecao() {
                     <Seguranca width={24} url={null} title={null} isCorPrincipal={false} />
                 </div>
 
-                <span className={Styles.textoAviso}>{aviso} Veja mais <Link href='/seguranca'><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>
+                <span className={Styles.textoAviso}>{aviso} Veja mais <Link href={CONSTS_TELAS.SEGURANCA}><a className='cor-principal' target='_blank'>dicas de segurança</a></Link></span>
             </div>
         </div>
     )

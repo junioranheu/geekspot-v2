@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 import CONSTS_SISTEMA from '../../utils/consts/outros/sistema';
+import CONSTS_TELAS from '../../utils/consts/outros/telas';
 import { ModoDarkContext } from '../../utils/context/modoDarkContext';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
 import alterarModo from './alterarModo';
@@ -28,10 +29,11 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>{CONSTS_SISTEMA.NOME_SISTEMA}</span>
 
-                    <Link href='/'><a>Sobre</a></Link>
-                    <Link href='/'><a>Blog<span className='efeito-new'>novo</span></a></Link>
+                    <Link href={CONSTS_TELAS.SOBRE}><a>Sobre</a></Link>
+                    <Link href='/'><a>Blog</a></Link>
                     <Link href='/'><a>Facebook</a></Link>
                     <Link href='/'><a>Instagram</a></Link>
+                    <Link href={CONSTS_TELAS.PRO}><a>{CONSTS_SISTEMA.NOME_SISTEMA} Pro<span className='efeito-new'>Novo</span></a></Link>
 
                     {
                         isAuth && (
@@ -61,7 +63,7 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>Sobre</span>
 
-                    <Link href='/'><a>Termos de uso</a></Link>
+                    <Link href={CONSTS_TELAS.TERMOS_USO}><a>Termos de uso</a></Link>
                     <Link href='/'><a>Comunidade</a></Link>
                     <Link href='/'><a>Carreiras</a></Link>
                 </div>
@@ -69,10 +71,10 @@ export default function Footer() {
                 <div className={Styles.sessao}>
                     <span className={Styles.tituloSessao}>Suporte</span>
 
-                    <Link href='/'><a>Ajuda</a></Link>
-                    <Link href='/'><a>Como trocar</a></Link>
-                    <Link href='/'><a>Como comprar</a></Link>
-                    <Link href='/'><a>Como vender</a></Link>
+                    <Link href={CONSTS_TELAS.AJUDA}><a>Ajuda</a></Link>
+                    <Link href={CONSTS_TELAS.TROCAS}><a>Trocas</a></Link>
+                    <Link href={CONSTS_TELAS.COMPRAS}><a>Compras</a></Link>
+                    <Link href={CONSTS_TELAS.VENDAS}><a>Vendas</a></Link>
                     <Link href='/'><a>Contato</a></Link>
                 </div>
             </div>

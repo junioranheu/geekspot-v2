@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Fragment, useContext } from 'react';
+import CONSTS_TELAS from '../../../../utils/consts/outros/telas';
 import { Auth, UsuarioContext } from '../../../../utils/context/usuarioContext';
 import Botao from '../../../outros/botao';
 import Ajuda from '../../../svg/ajuda';
@@ -44,8 +45,8 @@ export default function MenuUsuarioOpcoes({ isMeuPerfilBotao }: iParametros) {
                 )
             }
 
-            <Link href='/seguranca'><a><Seguranca width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Segurança</a></Link>
-            <Link href='/ajuda'><a><Ajuda width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Ajuda</a></Link>
+            <Link href={CONSTS_TELAS.SEGURANCA}><a><Seguranca width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Segurança</a></Link>
+            <Link href={CONSTS_TELAS.AJUDA}><a><Ajuda width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Ajuda</a></Link>
         </Fragment>
     )
 }

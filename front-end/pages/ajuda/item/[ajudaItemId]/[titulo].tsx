@@ -29,7 +29,7 @@ export default function ItemAjuda({ ajudaItem }: iParametros) {
 
     return (
         <section className={`${Styles.main} paddingPadrao`}>
-            <div className={Styles.divVoltar} onClick={() => Router.back()}>
+            <div className={Styles.divVoltar} onClick={() => Router.push(`/ajuda/topico/${ajudaItem?.ajudaTopicoId}/${ajustarUrl(removerHTML(ajudaItem?.ajudasTopicos?.topico))}`)}>
                 <SetaDois width={16} url={null} title='Voltar' isCorPrincipal={true} />
                 <span className='texto pointer cor-principal-hover' title={removerHTML(ajudaItem?.ajudasTopicos?.topico)}>Voltar ao tópico original</span>
             </div>
