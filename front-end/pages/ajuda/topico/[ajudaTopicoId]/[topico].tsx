@@ -5,6 +5,7 @@ import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_AJUDAS_ITENS from '../../../../utils/consts/data/constAjudasItens';
 import CONSTS_AJUDAS_TOPICOS from '../../../../utils/consts/data/constAjudasTopicos';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
+import CONSTS_TELAS from '../../../../utils/consts/outros/telas';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import paginaCarregada from '../../../../utils/outros/paginaCarregada';
 import removerHTML from '../../../../utils/outros/removerHTML';
@@ -32,7 +33,7 @@ export default function Topico({ listaAjudasItens }: iParametros) {
 
     return (
         <section className={`${Styles.main} paddingPadrao`}>
-            <div className={Styles.divVoltar} onClick={() => Router.push('/ajuda/')}>
+            <div className={Styles.divVoltar} onClick={() => Router.push(CONSTS_TELAS.AJUDA)}>
                 <SetaDois width={16} url={null} title='Voltar' isCorPrincipal={true} />
                 <span className='texto pointer cor-principal-hover'>Voltar à central de ajuda</span>
             </div>

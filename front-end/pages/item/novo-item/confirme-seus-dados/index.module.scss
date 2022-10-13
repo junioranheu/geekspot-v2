@@ -1,0 +1,73 @@
+.main {
+    // background-color: coral;
+    display: flex;
+    width: 80%;
+    margin: auto;
+    gap: 5rem;
+
+    .divEsquerda {
+        // background-color: red;
+        width: 45%;
+    }
+
+    .divDireita {
+        // background-color: blue;
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3rem;
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+
+            .titulo {
+                color: var(--preto);
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+
+            .texto {
+                color: var(--preto);
+                font-size: 1rem;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .main {
+        // background-color: coral;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 2rem;
+
+        .divEsquerda {
+            // background-color: red;
+            width: 100%;
+        }
+
+        .divDireita {
+            // background-color: blue;
+            width: 100%;
+        }
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

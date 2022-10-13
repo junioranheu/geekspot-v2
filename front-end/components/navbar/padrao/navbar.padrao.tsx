@@ -4,6 +4,7 @@ import nProgress from 'nprogress';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { debounce } from 'ts-debounce'; // debounce: https://www.npmjs.com/package/ts-debounce | Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
+import CONSTS_TELAS from '../../../utils/consts/outros/telas';
 import { UsuarioContext } from '../../../utils/context/usuarioContext';
 import deslogar from '../../../utils/outros/deslogar';
 import Botao from '../../outros/botao';
@@ -49,7 +50,7 @@ export default function NavbarPadrao() {
                     <Link href='/xxx'><a className={Styles.efeitoBottom}>Promoções</a></Link>
                     <span className='separador'></span>
 
-                    <Ajuda width={24} url='/ajuda/' title='Acessar página de ajuda' isCorPrincipal={false} />
+                    <Ajuda width={24} url={CONSTS_TELAS.AJUDA} title='Acessar página de ajuda' isCorPrincipal={false} />
 
                     {
                         isAuth && (

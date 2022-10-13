@@ -37,10 +37,10 @@ export default function MenuUsuarioOpcoes({ isMeuPerfilBotao }: iParametros) {
                             )
                         }
 
-                        <Link href='/xxx'><a><Item width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Subir novo item</a></Link>
+                        <Link href={CONSTS_TELAS.NOVO_ITEM}><a><Item width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Subir novo item</a></Link>
                         <Link href='/xxx'><a><Inbox width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Inbox</a></Link>
                         <Link href='/xxx'><a><Coracao width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Favoritos</a></Link>
-                        <Link href='/usuario/perfil/editar/'><a><Configuracao width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Configurações</a></Link>
+                        <Link href={CONSTS_TELAS.PERFIL_EDITAR}><a><Configuracao width={16} url={null} title={null} isCorPrincipal={false} />&nbsp;&nbsp;Configurações</a></Link>
                     </Fragment>
                 )
             }

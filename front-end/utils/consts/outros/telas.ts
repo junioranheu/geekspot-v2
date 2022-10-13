@@ -6,7 +6,10 @@ const CONSTS_TELAS = {
     TROCAS: '/ajuda/topico/3/trocas',
     COMPRAS: '/ajuda/topico/4/compras',
     VENDAS: '/ajuda/topico/5/vendas',
-    SEGURANCA: '/ajuda/topico/7/seguranca-da-informacao'
+    SEGURANCA: '/ajuda/topico/7/seguranca-da-informacao',
+    PERFIL_EDITAR: '/usuario/perfil/editar/',
+    NOVO_ITEM: 'item/novo-item',
+    NOVO_ITEM_AVISO_NECESSARIO_PERFIL_EDITAR: '/item/novo-item/confirme-seus-dados'
 };
-
+ 
 export default CONSTS_TELAS;

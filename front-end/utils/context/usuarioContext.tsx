@@ -5,6 +5,21 @@ interface iContext {
     isAuthContext: [isAuth: boolean, setIsAuth: any];
 }
 
+interface iDadosUsuario {
+    usuarioId: number | null;
+    nomeCompleto: string | null;
+    nomeUsuarioSistema: string | null;
+    email: string | null;
+    usuarioTipoId: number | null;
+    foto: string | null;
+    isVerificado: boolean | null;
+    token: string | null;
+    refreshToken: string | null;
+    dataAutenticacao: Date | null;
+    genero: string | null;
+    cep: string | null;
+}
+
 const _item = 'auth';
 export const UsuarioContext = createContext<iContext | null>(null);
 
@@ -21,10 +36,10 @@ export const UsuarioProvider = (props: any) => {
 }
 
 export const Auth = {
-    set(data: any) {
+    set(data: iDadosUsuario) {
         const dadosUsuario = {
             usuarioId: data.usuarioId,
-            nome: data.nomeCompleto,
+            nomeCompleto: data.nomeCompleto,
             nomeUsuarioSistema: data.nomeUsuarioSistema,
             email: data.email,
             usuarioTipoId: data.usuarioTipoId,
@@ -60,10 +75,10 @@ export const Auth = {
         localStorage.removeItem(_item);
     },
 
-    update(data: any) {
+    update(data: iDadosUsuario) {
         const dadosUsuario = {
             usuarioId: (data.usuarioId ?? Auth.get().usuarioId),
-            nome: (data.nome ?? Auth.get().nome),
+            nomeCompleto: (data.nomeCompleto ?? Auth.get().nomeCompleto),
             nomeUsuarioSistema: (data.nomeUsuarioSistema ?? Auth.get().nomeUsuarioSistema),
             email: (data.email ?? Auth.get().email),
             usuarioTipoId: (data.usuarioTipoId ?? Auth.get().usuarioTipoId),
