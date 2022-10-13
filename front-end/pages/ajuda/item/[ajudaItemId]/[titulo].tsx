@@ -6,6 +6,7 @@ import CONSTS_AJUDAS_ITENS from '../../../../utils/consts/data/constAjudasItens'
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
 import paginaCarregada from '../../../../utils/outros/paginaCarregada';
+import removerHTML from '../../../../utils/outros/removerHTML';
 import iAjudaItem from '../../../../utils/types/ajuda.item';
 import Styles from './item.module.scss';
 
@@ -28,13 +29,18 @@ export default function ItemAjuda({ ajudaItem }: iParametros) {
 
     return (
         <section className={`${Styles.main} paddingPadrao`}>
-            <div className={Styles.divVoltar} onClick={() => Router.push('/ajuda/')}>
+            <div className={Styles.divVoltar} onClick={() => Router.back()}>
                 <SetaDois width={16} url={null} title='Voltar' isCorPrincipal={true} />
-                <span className='texto pointer cor-principal-hover'>Voltar à central de ajuda</span>
+                <span className='texto pointer cor-principal-hover' title={removerHTML(ajudaItem?.ajudasTopicos?.topico)}>Voltar ao tópico original</span>
+            </div>
+
+            <div className={`${Styles.divTitulo} margem3`}>
+                <span className={Styles.textoPequeno}>Central de ajuda / {removerHTML(ajudaItem?.ajudasTopicos?.topico)}</span>
+                <span className={Styles.titulo}>{ajudaItem?.titulo}</span>
             </div>
 
             <div className='margem3'>
-                <div className={Styles.titulo} dangerouslySetInnerHTML={{ __html: ('aea' ?? '') }} />
+                <div className={Styles.conteudoHTML} dangerouslySetInnerHTML={{ __html: (ajudaItem?.conteudoHtml ?? '') }} />
             </div>
 
             {/* Espaço a mais */}

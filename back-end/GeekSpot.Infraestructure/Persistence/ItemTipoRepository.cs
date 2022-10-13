@@ -57,7 +57,7 @@ namespace GeekSpot.Infraestructure.Persistence
 
         public async Task<ItemTipoDTO>? GetById(int id)
         {
-            var itens = await _context.ItensTipos.AsNoTracking().FirstOrDefaultAsync();
+            var itens = await _context.ItensTipos.Where(it => it.ItemTipoId == id && it.IsAtivo == true).AsNoTracking().FirstOrDefaultAsync();
 
             ItemTipoDTO dto = _map.Map<ItemTipoDTO>(itens);
             return dto;

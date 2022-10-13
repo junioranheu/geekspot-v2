@@ -19,7 +19,7 @@ interface iParametros {
 
 export default function Topico({ listaAjudasItens }: iParametros) {
 
-        document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
+    document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
