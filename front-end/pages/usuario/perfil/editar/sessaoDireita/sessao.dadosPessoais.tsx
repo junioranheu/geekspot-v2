@@ -12,6 +12,8 @@ import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Aviso } from '../../../../../utils/outros/aviso';
+import validarCompletoEmail from '../../../../../utils/outros/validacoes/validar.completo.email';
+import validarCompletoNomeCompleto from '../../../../../utils/outros/validacoes/validar.completo.nomeCompleto';
 import validarDadosCriarConta from '../../../../../utils/outros/validarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -111,18 +113,33 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
                         tipo='text'
                         isDisabled={false}
                         minCaracteres={minCaracteresNomeCompleto}
-                        dataTip={`O seu nome completo deve ter pelo menos ${minCaracteresNomeCompleto} caracteres`}
+                        dataTip={`O seu nome completo deve ter pelo menos ${minCaracteresNomeCompleto} caracteres. E não se esqueça do seu sobrenome!`}
                         value={formDataDadosPessoais.nomeCompleto}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarCompletoNomeCompleto(false, formDataDadosPessoais.nomeCompleto, null, null, null)}
                         handleChange={handleChange}
                         handleKeyPress={() => null}
                         referencia={null}
                     />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>E-mail</span>
-                        <input className='input' type='text' name='email' onChange={handleChange} value={formDataDadosPessoais.email} />
-                    </div>
+                    <Input
+                        titulo='E-mail'
+                        placeholder=''
+                        name='email'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip='Coloque seu melhor e-mail aqui 🖖'
+                        value={formDataDadosPessoais.email}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarCompletoEmail(false, formDataDadosPessoais.email, null, null, null)}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        referencia={null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>

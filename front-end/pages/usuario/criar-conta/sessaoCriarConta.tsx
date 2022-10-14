@@ -155,7 +155,7 @@ export default function SessaoCriarConta() {
                             </div>
 
                             <div className='margem0_5'>
-                                <input className='input' type='email' placeholder='E-mail' name='email' autoComplete='nope2'
+                                <input className='input' type='email' placeholder='Seu melhor e-mail' name='email' autoComplete='nope2'
                                     onChange={handleChange} onKeyPress={handleKeyPress} ref={refEmail}
                                 />
                             </div>

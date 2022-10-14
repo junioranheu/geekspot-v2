@@ -13,12 +13,16 @@ interface iParametros {
     dataTip: string | null;
     value: string | null;
 
+    isExibirIconeDireita: boolean;
+    isExisteValidacaoExtra: boolean;
+    handleValidacaoExtra: boolean | null;
+
     handleChange: Dispatch<any> | undefined;
     handleKeyPress: KeyboardEventHandler<HTMLInputElement> | undefined;
     referencia: MutableRefObject<any> | null;
 }
 
-export default function Input({ titulo, placeholder, name, tipo, isDisabled, minCaracteres, dataTip, value, handleChange, handleKeyPress, referencia }: iParametros) {
+export default function Input({ titulo, placeholder, name, tipo, isDisabled, minCaracteres, dataTip, value, isExibirIconeDireita, isExisteValidacaoExtra, handleValidacaoExtra, handleChange, handleKeyPress, referencia }: iParametros) {
 
     const [isExibirIconeErro, setIsExibirIconeErro] = useState(true);
     const [controleInterno, setControleInterno] = useState(value);
@@ -28,7 +32,7 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
                 setIsExibirIconeErro(true);
                 return false;
             }
-    
+
             if (controleInterno?.length >= minCaracteres) {
                 setIsExibirIconeErro(false);
             } else {
@@ -36,12 +40,22 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
             }
         }
 
-        verificarExibirIconeErro();
+        // Caso existe uma validação extra a ser feita, essa é a hora;
+        if (isExisteValidacaoExtra) {
+            const isValidacaoExtraOk = handleValidacaoExtra;
+
+            // Exibir o ícone de sucesso ou não, com base, também, na verificação extra;
+            setIsExibirIconeErro(!isValidacaoExtraOk ?? true);
+        } else {
+            // Exibir o ícone de sucesso sem tomar como base a verificação extra;
+            verificarExibirIconeErro();
+        }
     }, [controleInterno, minCaracteres]);
 
     // Controle interno;
     function handleControleInterno(e: any) {
-        setControleInterno(e.target.value)
+        // Setar valor atual do input para realizar o controle interno para exibir o ícone de sucesso ou não;
+        setControleInterno(e.target.value);
     }
 
     return (
@@ -53,7 +67,7 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
                     <span className={Styles.titulo}>{titulo}</span>
 
                     {
-                        minCaracteres > 0 && (
+                        isExibirIconeDireita && (
                             isExibirIconeErro ? (
                                 <span className={Styles.iconeErro} title='Parece que tem algo errado aqui 👎'>✕</span>
                             ) : (
@@ -68,7 +82,7 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
                     type={(tipo ?? 'text')}
                     placeholder={(placeholder ?? '')}
                     name={(name ?? UUID())}
-                    readOnly={isDisabled} 
+                    readOnly={isDisabled}
                     disabled={isDisabled}
                     autoComplete='new-password'
                     ref={referencia}
