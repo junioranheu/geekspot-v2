@@ -35,6 +35,7 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
                 return false;
             }
 
+            // console.log(controleInterno, controleInterno?.length, minCaracteres);
             if (controleInterno?.length >= minCaracteres) {
                 setIsExibirIconeErro(false);
             } else {

@@ -1,11 +1,12 @@
 import nProgress from 'nprogress';
 import { ChangeEvent, Dispatch, Fragment, useEffect, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
-import InputMascara from '../../../../../components/outros/inputMascara';
+import Input from '../../../../../components/outros/input';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import { Aviso } from '../../../../../utils/outros/aviso';
+import validarCEP from '../../../../../utils/outros/validacoes/validar.cep';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -127,23 +128,24 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
                 <TopHatSecundario titulo='Endereço' />
 
                 <div className={`${Styles.sessao} margem0_5`}>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>CEP</span>
-
-                        <InputMascara
-                            placeholder='_____-___'
-                            name='cep'
-                            tipo='text'
-                            isDisabled={false}
-                            value={formDataDadosEndereco?.cep?.toString()}
-                            mascara='99999-999'
-                            referencia={null}
-                            handleChange={handleChange}
-                            handleKeyPress={() => null}
-                            handleControleInterno={() => null}
-                            handleBlur={() => null}
-                        />
-                    </div>
+                    <Input
+                        titulo='CEP'
+                        placeholder='_____-___'
+                        name='cep'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip='Onde você mora? 👀'
+                        value={formDataDadosEndereco?.cep}
+                        mascara='99999-999'
+                        referencia={null}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarCEP(formDataDadosEndereco?.cep)}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>

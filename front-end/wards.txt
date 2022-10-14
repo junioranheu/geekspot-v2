@@ -2,5 +2,7 @@ https://www.enjoei.com.br/
 
 --
 
+validar se o editar ainda funciona bem depois das alterações
+
 iniciar desenvolvimento tela de cadastro de novo item
 

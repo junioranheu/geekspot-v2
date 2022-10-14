@@ -3,6 +3,7 @@ export default function validarCPF(cpf: string | undefined | null) {
         return false;
     }
 
+    // Apenas números;
     cpf = cpf.replace(/\D/g, '');
 
     if (cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) return false;
