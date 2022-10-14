@@ -33,10 +33,10 @@ export default function Home() {
         async function getItens() {
             nProgress.start();
             const url = CONSTS_ITENS.API_URL_LISTA_ITENS_GROUP_BY_USUARIO;
-            const resposta = await Fetch.getApi(url);
+            const resposta = await Fetch.getApi(url) as iItem[];
             // console.log(resposta);
 
-            if (!resposta || resposta?.erro) {
+            if (!resposta) {
                 nProgress.done();
                 Aviso.error('Houve um problema ao buscar os itens dos usuários', 10000);
                 Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.ERRO_INTERNO } });
