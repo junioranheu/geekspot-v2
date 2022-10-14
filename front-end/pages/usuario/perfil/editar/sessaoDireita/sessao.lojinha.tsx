@@ -1,6 +1,7 @@
 import nProgress from 'nprogress';
 import { ChangeEvent, Dispatch, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
+import Input from '../../../../../components/outros/input';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import DivUpload from '../../../../../components/upload/divUpload';
 import { Fetch } from '../../../../../utils/api/fetch';
@@ -30,6 +31,7 @@ interface iFormLojinha {
 export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha, isHouveAlteracao, setIsHouveAlteracao }: iParametros) {
 
     const refBtn = useRef<any>(null);
+    const minCaracteresNomeLojinha = 5;
 
     const [formDataLojinha, setFormDataLojinha] = useState<iFormLojinha>({
         lojinhaTitulo: usuario?.usuariosInformacoes?.lojinhaTitulo ?? '',
@@ -42,8 +44,8 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
     }
 
     async function handleSubmit() {
-        if (!formDataLojinha.lojinhaTitulo || formDataLojinha.lojinhaTitulo.length < 3) {
-            Aviso.warn('O <b>nome da sua lojinha</b> não pode conter menos que 3 caracteres', 5000);
+        if (!formDataLojinha.lojinhaTitulo || formDataLojinha.lojinhaTitulo.length < minCaracteresNomeLojinha) {
+            Aviso.warn(`O <b>nome da sua lojinha</b> não pode conter menos que ${minCaracteresNomeLojinha} caracteres`, 5000);
             return false;
         }
 
@@ -78,16 +80,30 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
             <TopHatSecundario titulo='Lojinha' />
 
             <div className={`${Styles.sessao} margem0_5`}>
-                <div className={Styles.divInput}>
-                    <span className={Styles.item}>Nome da lojinha</span>
-                    <input className='input' type='text' name='lojinhaTitulo' onChange={handleChange} value={formDataLojinha.lojinhaTitulo} />
-                </div>
+                <Input
+                    titulo='Nome da lojinha'
+                    placeholder=''
+                    name='lojinhaTitulo'
+                    minCaracteres={minCaracteresNomeLojinha}
+                    tip={`O nome da sua lojinha deve ter pelo menos ${minCaracteresNomeLojinha} caracteres`}
+                    value={formDataLojinha.lojinhaTitulo}
+                    handleChange={handleChange}
+                    handleKeyPress={() => null}
+                    referencia={null}
+                />
 
                 <span className='separadorHorizontal'></span>
-                <div className={Styles.divInput}>
-                    <span className={Styles.item}>Descrição ou bio da lojinha</span>
-                    <input className='input' type='text' name='lojinhaDescricao' onChange={handleChange} value={formDataLojinha.lojinhaDescricao} />
-                </div>
+                <Input
+                    titulo='Descrição ou bio da lojinha'
+                    placeholder=''
+                    name='lojinhaDescricao'
+                    minCaracteres={0}
+                    tip=''
+                    value={formDataLojinha.lojinhaDescricao}
+                    handleChange={handleChange}
+                    handleKeyPress={() => null}
+                    referencia={null}
+                />
 
                 <span className='separadorHorizontal'></span>
                 <div className={Styles.divInput}>

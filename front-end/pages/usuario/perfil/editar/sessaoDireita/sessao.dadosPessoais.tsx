@@ -5,6 +5,7 @@ import ModalAlterarSenha from '../../../../../components/modal/modal.alterarSenh
 import ModalLayout from '../../../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
 import Botao from '../../../../../components/outros/botao';
+import Input from '../../../../../components/outros/input';
 import InputMascara from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
@@ -36,6 +37,7 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
 
     const refBtn = useRef<any>(null);
     const [isModalAlterarSenha, setIsModalAlterarSenha] = useState(false);
+    const minCaracteresNomeCompleto = 3;
 
     const [formDataDadosPessoais, setFormDataDadosPessoais] = useState<iFormDadosPessoais>({
         nomeCompleto: usuario?.nomeCompleto ?? '',
@@ -102,10 +104,19 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
                 <TopHatSecundario titulo='Dados pessoais' />
 
                 <div className={`${Styles.sessao} margem0_5`}>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Nome completo</span>
-                        <input className='input' type='text' name='nomeCompleto' onChange={handleChange} value={formDataDadosPessoais.nomeCompleto} />
-                    </div>
+                    <Input
+                        titulo='Nome completo'
+                        placeholder=''
+                        name='nomeCompleto'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={minCaracteresNomeCompleto}
+                        dataTip={`O seu nome completo deve ter pelo menos ${minCaracteresNomeCompleto} caracteres`}
+                        value={formDataDadosPessoais.nomeCompleto}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        referencia={null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>

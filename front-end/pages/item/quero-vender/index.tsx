@@ -31,6 +31,7 @@ export default function Index() {
                 name='AEEEEEEEEEEEEA'
                 minCaracteres={10}
                 tip='aea pues mongol'
+                value=''
                 handleChange={() => null}
                 handleKeyPress={() => null}
                 referencia={null}

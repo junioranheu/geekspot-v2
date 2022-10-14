@@ -7,25 +7,46 @@ interface iParametros {
     titulo: string;
     placeholder: string | null;
     name: string | null;
+    tipo: string | null;
+    isDisabled: boolean;
     minCaracteres: number;
-    tip: string | null;
+    dataTip: string | null;
+    value: string | null;
 
     handleChange: Dispatch<any> | undefined;
     handleKeyPress: KeyboardEventHandler<HTMLInputElement> | undefined;
     referencia: MutableRefObject<any> | null;
 }
 
-export default function Input({ titulo, placeholder, name, minCaracteres, tip, handleChange, handleKeyPress, referencia }: iParametros) {
+export default function Input({ titulo, placeholder, name, tipo, isDisabled, minCaracteres, dataTip, value, handleChange, handleKeyPress, referencia }: iParametros) {
 
     const [isExibirIconeErro, setIsExibirIconeErro] = useState(true);
-    const [inputControleInterno, setInputControleInterno] = useState('');
+    const [controleInterno, setControleInterno] = useState(value);
     useEffect(() => {
-        if (inputControleInterno?.length >= minCaracteres) {
+        verificarExibirIconeErro();
+    }, []);
+
+    function verificarExibirIconeErro() {
+        if (!controleInterno) {
+            setIsExibirIconeErro(true);
+            return false;
+        }
+
+        if (controleInterno?.length >= minCaracteres) {
             setIsExibirIconeErro(false);
         } else {
             setIsExibirIconeErro(true);
         }
-    }, [inputControleInterno, minCaracteres]);
+    }
+
+    // Controle interno;
+    function handleControleInterno(e: any) {
+        setControleInterno(e.target.value)
+    }
+
+    useEffect(() => {
+        verificarExibirIconeErro();
+    }, [controleInterno]);
 
     return (
         <Fragment>
@@ -48,14 +69,18 @@ export default function Input({ titulo, placeholder, name, minCaracteres, tip, h
 
                 <input
                     className='input'
-                    type='text'
-                    placeholder={placeholder ?? ''}
-                    name={name ?? UUID()}
+                    type={(tipo ?? 'text')}
+                    placeholder={(placeholder ?? '')}
+                    name={(name ?? UUID())}
+                    readOnly={isDisabled} 
+                    disabled={isDisabled}
                     autoComplete='new-password'
-                    onChange={(e) => { handleChange; setInputControleInterno(e.target.value) }}
-                    onKeyPress={handleKeyPress}
                     ref={referencia}
-                    data-tip={tip}
+                    data-tip={dataTip}
+                    value={(value ?? '')}
+                    onChange={handleChange}
+                    onInput={handleControleInterno}
+                    onKeyPress={handleKeyPress}
                 />
             </div>
         </Fragment>
