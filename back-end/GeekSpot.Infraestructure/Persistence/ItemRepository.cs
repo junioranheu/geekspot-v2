@@ -104,7 +104,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             // #1 - Buscar todos os usuários ativos;
             var todosUsuarios = await _context.Usuarios.
-                                Where(i => i.IsAtivo == true).
+                                Where(i => i.IsAtivo == true && i.IsVerificado == true && i.IsVerificado == true).
                                 OrderBy(ui => ui.UsuarioId).AsNoTracking().ToListAsync();
 
             if (todosUsuarios is null)

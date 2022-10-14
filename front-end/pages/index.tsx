@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import nProgress from 'nprogress';
 import { Fragment, useContext, useEffect, useState } from 'react';
+import { Facebook, List } from 'react-content-loader'; // https://www.npmjs.com/package/react-content-loader
 import Carousel from '../components/carousel/carousel';
 import ModuloAlternativo from '../components/modulo/modulo.alternativo';
 import ModuloPrincipal from '../components/modulo/modulo.principal';
@@ -38,7 +39,7 @@ export default function Home() {
 
             if (!resposta) {
                 nProgress.done();
-                Aviso.error('Houve um problema ao buscar os itens dos usuários', 10000);
+                Aviso.error('Houve um problema interno ao carregar os dados da página inicial', 10000);
                 Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.ERRO_INTERNO } });
                 return false;
             }
@@ -68,31 +69,39 @@ export default function Home() {
 
             <div className='margem3'>
                 {
-                    listaItensRandom && listaItensRandom?.map((item: any, i: number) => (
-                        <Fragment key={i}>
-                            {
-                                item?.length < 6 ? (
-                                    <ModuloAlternativo
-                                        i={i}
-                                        usuarioId={item[0]?.usuarios?.usuarioId}
-                                        usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                                        titulo={item[0]?.usuarios?.usuariosInformacoes?.lojinhaTitulo}
-                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.lojinhaDescricao}
-                                        listaItens={item}
-                                    />
-                                ) : (
-                                    <ModuloPrincipal
-                                        i={i}
-                                        usuarioId={item[0]?.usuarios?.usuarioId}
-                                        usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
-                                        titulo={item[0]?.usuarios?.usuariosInformacoes?.lojinhaTitulo}
-                                        descricao={item[0]?.usuarios?.usuariosInformacoes?.lojinhaDescricao}
-                                        listaItens={item}
-                                    />
-                                )
-                            }
-                        </Fragment>
-                    ))
+                    listaItensRandom ? (
+                        listaItensRandom && listaItensRandom?.map((item: any, i: number) => (
+                            <Fragment key={i}>
+                                {
+                                    item?.length < 6 ? (
+                                        <ModuloAlternativo
+                                            i={i}
+                                            usuarioId={item[0]?.usuarios?.usuarioId}
+                                            usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
+                                            titulo={item[0]?.usuarios?.usuariosInformacoes?.lojinhaTitulo}
+                                            descricao={item[0]?.usuarios?.usuariosInformacoes?.lojinhaDescricao}
+                                            listaItens={item}
+                                        />
+                                    ) : (
+                                        <ModuloPrincipal
+                                            i={i}
+                                            usuarioId={item[0]?.usuarios?.usuarioId}
+                                            usuarioNomeSistema={item[0]?.usuarios?.nomeUsuarioSistema}
+                                            titulo={item[0]?.usuarios?.usuariosInformacoes?.lojinhaTitulo}
+                                            descricao={item[0]?.usuarios?.usuariosInformacoes?.lojinhaDescricao}
+                                            listaItens={item}
+                                        />
+                                    )
+                                }
+                            </Fragment>
+                        ))
+                    ) : (
+                        <div className='flexColumn'>
+                            <Facebook style={{ width: '100%' }} />
+                            <List style={{ width: '100%' }} />
+                            <List style={{ width: '100%' }} />
+                        </div>
+                    )
                 }
             </div>
 
@@ -101,6 +110,8 @@ export default function Home() {
         </section>
     )
 }
+
+
 
 export async function getStaticProps() {
     HabilitarHttp();
