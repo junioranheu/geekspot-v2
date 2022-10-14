@@ -91,10 +91,12 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                     isExisteValidacaoExtra={false}
                     handleValidacaoExtra={null}
                     value={formDataLojinha.lojinhaTitulo}
+                    mascara=''
+                    referencia={null}
                     isExibirIconeDireita={true}
                     handleChange={handleChange}
                     handleKeyPress={() => null}
-                    referencia={null}
+                    handleBlur={() => null}
                 />
 
                 <span className='separadorHorizontal'></span>
@@ -109,10 +111,12 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                     isExisteValidacaoExtra={false}
                     handleValidacaoExtra={null}
                     value={formDataLojinha.lojinhaDescricao}
+                    mascara=''
+                    referencia={null}
                     isExibirIconeDireita={false}
                     handleChange={handleChange}
                     handleKeyPress={() => null}
-                    referencia={null}
+                    handleBlur={() => null}
                 />
 
                 <span className='separadorHorizontal'></span>

@@ -131,14 +131,17 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
                         <span className={Styles.item}>CEP</span>
 
                         <InputMascara
-                            className='input'
+                            placeholder='_____-___'
                             name='cep'
-                            onChange={handleChange}
+                            tipo='text'
+                            isDisabled={false}
                             value={formDataDadosEndereco?.cep?.toString()}
                             mascara='99999-999'
-                            onBlur={() => null}
-                            placeholder='_____-___'
-                            isDisabled={false}
+                            referencia={null}
+                            handleChange={handleChange}
+                            handleKeyPress={() => null}
+                            handleControleInterno={() => null}
+                            handleBlur={() => null}
                         />
                     </div>
 

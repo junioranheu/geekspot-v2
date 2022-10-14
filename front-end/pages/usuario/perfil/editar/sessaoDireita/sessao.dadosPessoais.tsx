@@ -14,6 +14,7 @@ import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Aviso } from '../../../../../utils/outros/aviso';
 import validarCompletoEmail from '../../../../../utils/outros/validacoes/validar.completo.email';
 import validarCompletoNomeCompleto from '../../../../../utils/outros/validacoes/validar.completo.nomeCompleto';
+import validarCompletoNomeUsuarioSistema from '../../../../../utils/outros/validacoes/validar.completo.nomeUsuarioSistema';
 import validarDadosCriarConta from '../../../../../utils/outros/validarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -115,12 +116,14 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
                         minCaracteres={minCaracteresNomeCompleto}
                         dataTip={`O seu nome completo deve ter pelo menos ${minCaracteresNomeCompleto} caracteres. E não se esqueça do seu sobrenome!`}
                         value={formDataDadosPessoais.nomeCompleto}
+                        mascara=''
+                        referencia={null}
                         isExibirIconeDireita={true}
                         isExisteValidacaoExtra={true}
                         handleValidacaoExtra={validarCompletoNomeCompleto(false, formDataDadosPessoais.nomeCompleto, null, null, null)}
                         handleChange={handleChange}
                         handleKeyPress={() => null}
-                        referencia={null}
+                        handleBlur={() => null}
                     />
 
                     <span className='separadorHorizontal'></span>
@@ -133,19 +136,35 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
                         minCaracteres={0}
                         dataTip='Coloque seu melhor e-mail aqui 🖖'
                         value={formDataDadosPessoais.email}
+                        mascara=''
+                        referencia={null}
                         isExibirIconeDireita={true}
                         isExisteValidacaoExtra={true}
                         handleValidacaoExtra={validarCompletoEmail(false, formDataDadosPessoais.email, null, null, null)}
                         handleChange={handleChange}
                         handleKeyPress={() => null}
-                        referencia={null}
+                        handleBlur={() => null}
                     />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Nome de usuário</span>
-                        <input className='input' type='text' name='nomeUsuarioSistema' onChange={handleChange} value={formDataDadosPessoais.nomeUsuarioSistema} />
-                    </div>
+                    <Input
+                        titulo='Nome de usuário do sistema'
+                        placeholder=''
+                        name='nomeUsuarioSistema'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip={`Esse aqui vai ser seu @ aqui no ${CONSTS_SISTEMA.NOME_SISTEMA}`}
+                        value={formDataDadosPessoais.nomeUsuarioSistema}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarCompletoNomeUsuarioSistema(false, formDataDadosPessoais.nomeUsuarioSistema, null, null, null)}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>

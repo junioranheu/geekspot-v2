@@ -1,6 +1,6 @@
-import { Dispatch, Fragment, KeyboardEventHandler, MutableRefObject, useEffect, useState } from 'react';
+import { Dispatch, FocusEventHandler, Fragment, KeyboardEventHandler, MutableRefObject, useEffect, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
-import UUID from '../../utils/outros/UUID';
+import InputMascara from './inputMascara';
 import Styles from './styles/input.module.scss';
 
 interface iParametros {
@@ -12,6 +12,8 @@ interface iParametros {
     minCaracteres: number;
     dataTip: string | null;
     value: string | null;
+    mascara: string | null;
+    referencia: MutableRefObject<any> | null;
 
     isExibirIconeDireita: boolean;
     isExisteValidacaoExtra: boolean;
@@ -19,10 +21,10 @@ interface iParametros {
 
     handleChange: Dispatch<any> | undefined;
     handleKeyPress: KeyboardEventHandler<HTMLInputElement> | undefined;
-    referencia: MutableRefObject<any> | null;
+    handleBlur: FocusEventHandler<HTMLInputElement> | undefined;
 }
 
-export default function Input({ titulo, placeholder, name, tipo, isDisabled, minCaracteres, dataTip, value, isExibirIconeDireita, isExisteValidacaoExtra, handleValidacaoExtra, handleChange, handleKeyPress, referencia }: iParametros) {
+export default function Input({ titulo, placeholder, name, tipo, isDisabled, minCaracteres, dataTip, value, mascara, referencia, isExibirIconeDireita, isExisteValidacaoExtra, handleValidacaoExtra, handleChange, handleKeyPress, handleBlur }: iParametros) {
 
     const [isExibirIconeErro, setIsExibirIconeErro] = useState(true);
     const [controleInterno, setControleInterno] = useState(value);
@@ -77,20 +79,18 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
                     }
                 </div>
 
-                <input
-                    className='input'
-                    type={(tipo ?? 'text')}
-                    placeholder={(placeholder ?? '')}
-                    name={(name ?? UUID())}
-                    readOnly={isDisabled}
-                    disabled={isDisabled}
-                    autoComplete='new-password'
-                    ref={referencia}
-                    data-tip={dataTip}
-                    value={(value ?? '')}
-                    onChange={handleChange}
-                    onInput={handleControleInterno}
-                    onKeyPress={handleKeyPress}
+                <InputMascara
+                    placeholder={placeholder}
+                    name={name}
+                    tipo={tipo}
+                    isDisabled={isDisabled}
+                    value={value}
+                    mascara={mascara}
+                    referencia={referencia}
+                    handleChange={handleChange}
+                    handleKeyPress={handleKeyPress}
+                    handleControleInterno={handleControleInterno}
+                    handleBlur={handleBlur}
                 />
             </div>
         </Fragment>
