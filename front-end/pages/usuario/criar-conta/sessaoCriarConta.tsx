@@ -18,7 +18,7 @@ import gerarImagemPerfilRandom from '../../../utils/outros/gerarImagemPerfilRand
 import horarioBrasilia from '../../../utils/outros/horarioBrasilia';
 import padronizarNomeCompletoUsuario from '../../../utils/outros/padronizarNomeCompletoUsuario';
 import pegarPrimeiraPalavraDaFrase from '../../../utils/outros/pegarPrimeiraPalavraDaFrase';
-import verificarDadosCriarConta from '../../../utils/outros/verificarDadosCriarConta';
+import validarDadosCriarConta from '../../../utils/outros/validarDadosCriarConta';
 import iContextDadosUsuario from '../../../utils/types/context.dadosUsuario';
 import iUsuario from '../../../utils/types/usuario';
 
@@ -75,7 +75,7 @@ export default function SessaoCriarConta() {
 
         // Verificações;
         const isTrocouSenha = true;
-        let isContinuarUm = verificarDadosCriarConta(formData, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha);
+        let isContinuarUm = validarDadosCriarConta(formData, refNomeCompleto, refEmail, refNomeUsuario, refSenha, refConfirmarSenha, isTrocouSenha);
         if (!isContinuarUm) {
             refBtnCriar.current.disabled = false;
             return false;

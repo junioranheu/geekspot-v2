@@ -42,7 +42,7 @@ export default function ModalAlterarSenha({ handleModal }: iParametros) {
 
     async function handleAlterarSenha() {
         if (!formSenha.senhaAtual) {
-            Aviso.warn('O campo de <b>senha atual/b> está vazio', 5000);
+            Aviso.warn('O campo de <b>senha atual</b> está vazio', 5000);
             refSenhaAtual && refSenhaAtual.current?.select();
             return false;
         }

@@ -12,7 +12,7 @@ import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Aviso } from '../../../../../utils/outros/aviso';
-import verificarDadosCriarConta from '../../../../../utils/outros/verificarDadosCriarConta';
+import validarDadosCriarConta from '../../../../../utils/outros/validarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -55,7 +55,7 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
     }
 
     async function handleSubmit() {
-        let isContinuarUm = verificarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, false);
+        let isContinuarUm = validarDadosCriarConta(formDataDadosPessoais, null, null, null, null, null, false);
         if (!isContinuarUm) {
             refBtn.current.disabled = false;
             return false;

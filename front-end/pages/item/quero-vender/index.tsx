@@ -1,6 +1,5 @@
 import Router from 'next/router';
 import { useEffect } from 'react';
-import Input from '../../../components/outros/input';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
 import CONSTS_ERROS from '../../../utils/consts/outros/erros';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
@@ -21,21 +20,11 @@ export default function Index() {
         if (!usuarioId) {
             Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.SEM_ACESSO } });
         }
-    }, [isVerificado]);
+    }, [isVerificado, usuarioId]);
 
     return (
         <section className={`${Styles.main} paddingPadrao paddingPadraoMargemGrande`}>
-            <Input
-                titulo='AEA'
-                placeholder='AEAAA'
-                name='AEEEEEEEEEEEEA'
-                minCaracteres={10}
-                tip='aea pues mongol'
-                value=''
-                handleChange={() => null}
-                handleKeyPress={() => null}
-                referencia={null}
-            />
+    
         </section>
     )
 }

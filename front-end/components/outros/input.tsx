@@ -23,30 +23,26 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
     const [isExibirIconeErro, setIsExibirIconeErro] = useState(true);
     const [controleInterno, setControleInterno] = useState(value);
     useEffect(() => {
+        function verificarExibirIconeErro() {
+            if (!controleInterno) {
+                setIsExibirIconeErro(true);
+                return false;
+            }
+    
+            if (controleInterno?.length >= minCaracteres) {
+                setIsExibirIconeErro(false);
+            } else {
+                setIsExibirIconeErro(true);
+            }
+        }
+
         verificarExibirIconeErro();
-    }, []);
-
-    function verificarExibirIconeErro() {
-        if (!controleInterno) {
-            setIsExibirIconeErro(true);
-            return false;
-        }
-
-        if (controleInterno?.length >= minCaracteres) {
-            setIsExibirIconeErro(false);
-        } else {
-            setIsExibirIconeErro(true);
-        }
-    }
+    }, [controleInterno, minCaracteres]);
 
     // Controle interno;
     function handleControleInterno(e: any) {
         setControleInterno(e.target.value)
     }
-
-    useEffect(() => {
-        verificarExibirIconeErro();
-    }, [controleInterno]);
 
     return (
         <Fragment>

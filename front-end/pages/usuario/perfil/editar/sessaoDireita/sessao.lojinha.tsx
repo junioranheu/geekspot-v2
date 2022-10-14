@@ -84,8 +84,10 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                     titulo='Nome da lojinha'
                     placeholder=''
                     name='lojinhaTitulo'
+                    tipo='text'
+                    isDisabled={false}
                     minCaracteres={minCaracteresNomeLojinha}
-                    tip={`O nome da sua lojinha deve ter pelo menos ${minCaracteresNomeLojinha} caracteres`}
+                    dataTip={`O nome da sua lojinha deve ter pelo menos ${minCaracteresNomeLojinha} caracteres`}
                     value={formDataLojinha.lojinhaTitulo}
                     handleChange={handleChange}
                     handleKeyPress={() => null}
@@ -97,8 +99,10 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
                     titulo='Descrição ou bio da lojinha'
                     placeholder=''
                     name='lojinhaDescricao'
+                    tipo='text'
+                    isDisabled={false}
                     minCaracteres={0}
-                    tip=''
+                    dataTip=''
                     value={formDataLojinha.lojinhaDescricao}
                     handleChange={handleChange}
                     handleKeyPress={() => null}
