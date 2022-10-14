@@ -16,7 +16,7 @@ import SessaoDireita from './sessaoDireita';
 import SessaoEsquerda from './sessaoEsquerda';
 
 export default function Index() {
-
+ 
     document.title = `Configurações — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
     const isVerificado = Auth?.get()?.isVerificado ?? false;

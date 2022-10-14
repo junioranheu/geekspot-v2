@@ -39,16 +39,16 @@ export default function Home() {
 
             if (!resposta) {
                 nProgress.done();
-                Aviso.error('Houve um problema interno ao carregar os dados da página inicial', 10000);
+                Aviso.error(`Houve um problema interno ao carregar os dados do ${CONSTS_SISTEMA.NOME_SISTEMA}`, 10000);
                 Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.ERRO_INTERNO } });
                 return false;
             }
 
             setListaItensRandom(randomizarArray(resposta) as iItem[])
             nProgress.done();
-            paginaCarregada(false, 100, 300, setIsLoaded);
         }
 
+        paginaCarregada(false, 100, 300, setIsLoaded);
         getItens();
     }, []);
 

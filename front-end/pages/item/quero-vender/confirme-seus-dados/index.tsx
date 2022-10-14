@@ -36,9 +36,9 @@ export default function Index() {
                     Antes de continuar, vamos precisar confirmar alguns dos seus <span className='cor-principal'>dados</span> e <span className='cor-principal'>confirmar sua conta</span>
                 </span>
 
-                <span className='texto'>
+                {/* <span className='texto'>
                     Ao clicar no botão para <span className='cor-principal'>verificar dados</span>, não se esqueça de preencher todos os <span className='cor-principal'>campos obrigatórios</span> e salvar as informações; e, também, usar o botão no final da página para iniciar o processo de <span className='cor-principal'>confirmação da sua conta</span>!
-                </span>
+                </span> */}
             </div>
 
             <div className={Styles.divDireita}>

@@ -1,0 +1,48 @@
+.divInput {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    .flex {
+        // background-color: blue;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 0.05rem;
+        padding-right: 0.05rem;
+
+        .titulo {
+            // background-color: red;
+            color: var(--preto);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .iconeSucesso {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+
+            background-color: #73CA70;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            color: #FFFF;
+            font-size: 11px;
+            font-weight: 400;
+        }
+
+        .iconeErro {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+
+            background-color: #EC544F;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            color: #FFFF;
+            font-size: 11px;
+            font-weight: 400;
+        }
+    }
+}

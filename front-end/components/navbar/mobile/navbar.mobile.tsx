@@ -59,7 +59,7 @@ export default function NavbarMobile() {
             >
                 <div className={Styles.divAtalhos} onClick={() => setIsModalLateralOpen(false)}>
                     {/* Mesmas opções usadas no menu de usuário */}
-                    <div className={Styles.divOpcoes}>
+                    <div className={`${Styles.divOpcoes} margem0_5`}>
                         <MenuUsuarioOpcoes isMeuPerfilBotao={false} />
                     </div>
 
