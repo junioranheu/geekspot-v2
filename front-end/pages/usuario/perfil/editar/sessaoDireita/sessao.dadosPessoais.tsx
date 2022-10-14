@@ -6,7 +6,6 @@ import ModalLayout from '../../../../../components/modal/_modal.layout';
 import ModalWrapper from '../../../../../components/modal/_modal.wrapper';
 import Botao from '../../../../../components/outros/botao';
 import Input from '../../../../../components/outros/input';
-import InputMascara from '../../../../../components/outros/inputMascara';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
@@ -15,7 +14,9 @@ import { Aviso } from '../../../../../utils/outros/aviso';
 import validarCompletoEmail from '../../../../../utils/outros/validacoes/validar.completo.email';
 import validarCompletoNomeCompleto from '../../../../../utils/outros/validacoes/validar.completo.nomeCompleto';
 import validarCompletoNomeUsuarioSistema from '../../../../../utils/outros/validacoes/validar.completo.nomeUsuarioSistema';
+import validarCPF from '../../../../../utils/outros/validacoes/validar.cpf';
 import validarDataNascimento from '../../../../../utils/outros/validacoes/validar.dataNascimento';
+import validarNumeroTelefone from '../../../../../utils/outros/validacoes/validar.numeroTelefone';
 import validarDadosCriarConta from '../../../../../utils/outros/validarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -198,36 +199,44 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
                     />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>CPF</span>
-
-                        <InputMascara
-                            className='input'
-                            name='cpf'
-                            onChange={handleChange}
-                            value={formDataDadosPessoais.cpf?.toString()}
-                            mascara='999.999.999-99'
-                            onBlur={() => null}
-                            placeholder='___.___.___-__'
-                            isDisabled={false}
-                        />
-                    </div>
+                    <Input
+                        titulo='CPF'
+                        placeholder='___.___.___-__'
+                        name='cpf'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip='Seu CPF aqui, por favor. Não use geradores, hein?'
+                        value={formDataDadosPessoais.cpf}
+                        mascara='999.999.999-99'
+                        referencia={null}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarCPF(formDataDadosPessoais.cpf?.toString())}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Telefone</span>
-
-                        <InputMascara
-                            className='input'
-                            name='telefone'
-                            onChange={handleChange}
-                            value={formDataDadosPessoais.telefone?.toString()}
-                            mascara='(99) 99999-9999'
-                            onBlur={() => null}
-                            placeholder='(__) _____-____'
-                            isDisabled={false}
-                        />
-                    </div>
+                    <Input
+                        titulo='Telefone'
+                        placeholder='(__) _____-____'
+                        name='telefone'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip='Juramos que não vamos te enviar trava-zaps'
+                        value={formDataDadosPessoais.telefone}
+                        mascara='(99) 99999-9999'
+                        referencia={null}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarNumeroTelefone(formDataDadosPessoais.telefone?.toString())}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className='divBotaoInvertido'>
