@@ -21,7 +21,7 @@ export default function Index() {
         paginaCarregada(true, 200, 500, setIsLoaded);
 
         if (!usuarioId) {
-            Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.SEM_ACESSO } });
+            Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.SEM_ACESSO } });
         }
     }, [usuarioId]);
 

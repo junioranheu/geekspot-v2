@@ -80,7 +80,6 @@ export async function getStaticProps(context: any) {
     return {
         props: {
             ajudaItem
-        },
-        // revalidate: 10 // segundos
+        }
     }
 }

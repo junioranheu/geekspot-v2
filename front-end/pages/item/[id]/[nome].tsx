@@ -74,7 +74,6 @@ export async function getStaticProps(context: any) {
     return {
         props: {
             item
-        },
-        // revalidate: 10 // segundos
+        }
     }
 }

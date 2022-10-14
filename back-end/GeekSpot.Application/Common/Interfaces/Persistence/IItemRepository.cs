@@ -11,5 +11,6 @@ namespace GeekSpot.Application.Common.Interfaces.Persistence
         Task<ItemDTO>? GetById(int id);
         Task<List<ItemDTO>>? GetByItemTipoId(int itemTipoId);
         Task<List<ItemDTO>>? GetByUsuarioId(int usuarioId);
+        Task<List<List<ItemDTO>>>? GetListaItensGroupByUsuario();
     }
 }

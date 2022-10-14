@@ -70,7 +70,6 @@ export async function getStaticProps(context: any) {
     return {
         props: {
             usuario
-        },
-        // revalidate: 10 // segundos
+        }
     }
 }

@@ -4,13 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
 import CONSTS_ERROS from '../../../utils/consts/outros/erros';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
+import CONSTS_TELAS from '../../../utils/consts/outros/telas';
 import { UsuarioContext } from '../../../utils/context/usuarioContext';
 import LottieAnimacao from '../../../utils/lotties/pessoas.json';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
 import SessaoEntrar from './sessaoEntrar';
 
 export default function Entrar() {
-    
+
     document.title = `Entrar — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
@@ -27,7 +28,7 @@ export default function Entrar() {
     }, []);
 
     if (isAuth && isPrimeiroLoading) {
-        Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.AUTENTICADO } });
+        Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.AUTENTICADO } });
         return false;
     }
 

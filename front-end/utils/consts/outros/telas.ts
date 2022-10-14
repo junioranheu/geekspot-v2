@@ -9,7 +9,8 @@ const CONSTS_TELAS = {
     SEGURANCA: '/ajuda/topico/7/seguranca-da-informacao',
     PERFIL_EDITAR: '/usuario/perfil/editar/',
     NOVO_ITEM: 'item/novo-item',
-    NOVO_ITEM_AVISO_NECESSARIO_PERFIL_EDITAR: '/item/novo-item/confirme-seus-dados'
+    NOVO_ITEM_AVISO_NECESSARIO_PERFIL_EDITAR: '/item/novo-item/confirme-seus-dados',
+    ERRO: '/404'
 };
  
 export default CONSTS_TELAS;

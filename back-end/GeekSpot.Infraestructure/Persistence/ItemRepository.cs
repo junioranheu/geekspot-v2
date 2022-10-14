@@ -99,5 +99,43 @@ namespace GeekSpot.Infraestructure.Persistence
             List<ItemDTO> dto = _map.Map<List<ItemDTO>>(itens);
             return dto;
         }
+
+        public async Task<List<List<ItemDTO>>>? GetListaItensGroupByUsuario()
+        {
+            // #1 - Buscar todos os usuários ativos;
+            var todosUsuarios = await _context.Usuarios.
+                                Where(i => i.IsAtivo == true).
+                                OrderBy(ui => ui.UsuarioId).AsNoTracking().ToListAsync();
+
+            if (todosUsuarios is null)
+            {
+                return null;
+            }
+
+            // #2 - Com base nos usuários encontrados, encontre, agora, seus itens;
+            List<List<Item>> listaItens = new();
+            foreach (var usuario in todosUsuarios)
+            {
+                var item = await _context.Itens.
+                           Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
+                           Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
+                           Include(it => it.ItensTipos).
+                           Include(ii => ii.ItensImagens).
+                           Where(ui => ui.UsuarioId == usuario.UsuarioId && ui.IsAtivo == true).AsNoTracking().ToListAsync();
+
+                if (item?.Count > 0)
+                {
+                    listaItens.Add(item);
+                }
+            }
+
+            if (listaItens is null || listaItens?.Count == 0)
+            {
+                return null;
+            }
+
+            List<List<ItemDTO>> dto = _map.Map<List<List<ItemDTO>>>(listaItens);
+            return dto;
+        }
     }
 }

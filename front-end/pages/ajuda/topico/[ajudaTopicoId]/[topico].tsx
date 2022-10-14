@@ -87,7 +87,6 @@ export async function getStaticProps(context: any) {
     return {
         props: {
             listaAjudasItens
-        },
-        // revalidate: 10 // segundos
+        }
     }
 }

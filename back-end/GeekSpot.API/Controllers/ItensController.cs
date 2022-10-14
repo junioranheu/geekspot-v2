@@ -86,6 +86,19 @@ namespace GeekSpot.API.Controllers
 
             return Ok(byUsuarioId);
         }
+
+        [HttpGet("listaItensGroupByUsuario")]
+        public async Task<ActionResult<List<List<ItemDTO>>>> GetListaItensGroupByUsuario()
+        {
+            var listaItensGroupByUsuario = await _itemRepository.GetListaItensGroupByUsuario();
+
+            if (listaItensGroupByUsuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(listaItensGroupByUsuario);
+        }
     }
 }
 

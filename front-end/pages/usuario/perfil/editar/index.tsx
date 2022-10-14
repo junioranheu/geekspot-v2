@@ -6,6 +6,7 @@ import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../utils/consts/data/constUsuarios';
 import CONSTS_ERROS from '../../../../utils/consts/outros/erros';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
+import CONSTS_TELAS from '../../../../utils/consts/outros/telas';
 import { Auth } from '../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../utils/outros/aviso';
 import paginaCarregada from '../../../../utils/outros/paginaCarregada';
@@ -40,7 +41,7 @@ export default function Index() {
             getUsuario(usuarioId.toString());
             nProgress.done();
         } else {
-            Router.push({ pathname: '/404', query: { erro: CONSTS_ERROS.SEM_ACESSO } });
+            Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.SEM_ACESSO } });
         }
     }, [usuarioId]);
 

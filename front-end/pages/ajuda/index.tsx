@@ -57,8 +57,7 @@ export async function getStaticProps() {
     return {
         props: {
             listaTopicos
-        },
-        // revalidate: 60 // segundos
+        }
     }
 }
 
