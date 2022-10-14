@@ -79,19 +79,21 @@ export default function Input({ titulo, placeholder, name, tipo, isDisabled, min
                     }
                 </div>
 
-                <InputMascara
-                    placeholder={placeholder}
-                    name={name}
-                    tipo={tipo}
-                    isDisabled={isDisabled}
-                    value={value}
-                    mascara={mascara}
-                    referencia={referencia}
-                    handleChange={handleChange}
-                    handleKeyPress={handleKeyPress}
-                    handleControleInterno={handleControleInterno}
-                    handleBlur={handleBlur}
-                />
+                <div data-tip={dataTip}>
+                    <InputMascara
+                        placeholder={placeholder}
+                        name={name}
+                        tipo={tipo}
+                        isDisabled={isDisabled}
+                        value={value}
+                        mascara={mascara}
+                        referencia={referencia}
+                        handleChange={handleChange}
+                        handleKeyPress={handleKeyPress}
+                        handleControleInterno={handleControleInterno}
+                        handleBlur={handleBlur}
+                    />
+                </div>
             </div>
         </Fragment>
     )

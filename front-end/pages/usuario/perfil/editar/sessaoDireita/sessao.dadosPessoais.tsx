@@ -15,6 +15,7 @@ import { Aviso } from '../../../../../utils/outros/aviso';
 import validarCompletoEmail from '../../../../../utils/outros/validacoes/validar.completo.email';
 import validarCompletoNomeCompleto from '../../../../../utils/outros/validacoes/validar.completo.nomeCompleto';
 import validarCompletoNomeUsuarioSistema from '../../../../../utils/outros/validacoes/validar.completo.nomeUsuarioSistema';
+import validarDataNascimento from '../../../../../utils/outros/validacoes/validar.dataNascimento';
 import validarDadosCriarConta from '../../../../../utils/outros/validarDadosCriarConta';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -177,16 +178,24 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
                     </div>
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Aniversário</span>
-                        <input
-                            className='input'
-                            type='date'
-                            name='dataAniversario'
-                            onChange={handleChange}
-                            value={moment(formDataDadosPessoais?.dataAniversario).format('yyyy-MM-DD')}
-                        />
-                    </div>
+                    <Input
+                        titulo='Aniversário'
+                        placeholder=''
+                        name='dataAniversario'
+                        tipo='date'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip='Qual é a fortunada data do seu nascimento?'
+                        value={moment(formDataDadosPessoais?.dataAniversario).format('yyyy-MM-DD')}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={true}
+                        isExisteValidacaoExtra={true}
+                        handleValidacaoExtra={validarDataNascimento(moment(formDataDadosPessoais?.dataAniversario).format('yyyy-MM-DD'))}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className={Styles.divInput}>
