@@ -112,6 +112,6 @@ export async function getStaticProps() {
         props: {
             listaItens
         },
-        // revalidate: 60 // segundos
+        revalidate: 600 // segundos
     }
 }
