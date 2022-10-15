@@ -76,7 +76,7 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
     }
 
     return (
-        <div>
+        <div className={Styles.main}>
             <TopHatSecundario titulo='Lojinha' />
 
             <div className={`${Styles.sessao} margem0_5`}>

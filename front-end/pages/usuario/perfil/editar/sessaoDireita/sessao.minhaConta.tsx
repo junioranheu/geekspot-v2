@@ -53,34 +53,36 @@ export default function SessaoMinhaConta({ usuario, setIsHouveAlteracao }: iPara
             </ModalWrapper>
 
             {/* Conteúdo */}
-            <span className='separadorHorizontal'></span>
-            <div className='margem0_5'>
-                <TopHatSecundario titulo='Minha conta' />
+            <div className={`${Styles.main} margem1`}>
+                <span className='separadorHorizontal'></span>
+                <div className='margem0_5'>
+                    <TopHatSecundario titulo='Minha conta' />
 
-                <div className={`${Styles.sessao} margem0_5`}>
-                    <div className='divBotaoInvertido'>
-                        <Botao
-                            texto={`‏‏‎ ‎‏‏‎ ‎${(usuario?.isVerificado ? 'Sua conta já está verificada ✅' : 'Reenviar e-mail de verificação de conta')}`}
-                            url={null}
-                            isNovaAba={false}
-                            handleFuncao={() => (usuario?.isVerificado ? null : handleVerificarConta())}
-                            Svg={<Seguranca width={16} url={null} title={null} isCorPrincipal={false} />}
-                            refBtn={refBtnVerificarConta}
-                            isEnabled={(!usuario?.isVerificado)}
-                        />
-                    </div>
+                    <div className={`${Styles.sessao} margem0_5`}>
+                        <div className='divBotaoInvertido'>
+                            <Botao
+                                texto={`‏‏‎ ‎‏‏‎ ‎${(usuario?.isVerificado ? 'Sua conta já está verificada ✅' : 'Reenviar e-mail de verificação de conta')}`}
+                                url={null}
+                                isNovaAba={false}
+                                handleFuncao={() => (usuario?.isVerificado ? null : handleVerificarConta())}
+                                Svg={<Seguranca width={16} url={null} title={null} isCorPrincipal={false} />}
+                                refBtn={refBtnVerificarConta}
+                                isEnabled={(!usuario?.isVerificado)}
+                            />
+                        </div>
 
-                    <span className='separadorHorizontal'></span>
-                    <div className={`${Styles.botaoFonteVermelha} divBotaoInvertido`}>
-                        <Botao
-                            texto='&nbsp;&nbsp;Quero desativar minha conta'
-                            url={null}
-                            isNovaAba={false}
-                            handleFuncao={() => setIsModalDesativarConta(true)}
-                            Svg={<AvisoSvg width={16} url={null} title={null} isCorPrincipal={false} />}
-                            refBtn={null}
-                            isEnabled={true}
-                        />
+                        <span className='separadorHorizontal'></span>
+                        <div className={`${Styles.botaoFonteVermelha} divBotaoInvertido`}>
+                            <Botao
+                                texto='&nbsp;&nbsp;Quero desativar minha conta'
+                                url={null}
+                                isNovaAba={false}
+                                handleFuncao={() => setIsModalDesativarConta(true)}
+                                Svg={<AvisoSvg width={16} url={null} title={null} isCorPrincipal={false} />}
+                                refBtn={null}
+                                isEnabled={true}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

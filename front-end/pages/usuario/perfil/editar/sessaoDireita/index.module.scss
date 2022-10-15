@@ -39,9 +39,21 @@
                 }
             }
 
+            .divInputSenha {
+                // background-color: blue;
+                display: flex;
+                align-items: flex-end;
+                gap: 1rem;
+                color: var(--preto);
+
+                button {
+                    margin-bottom: 0.1rem;
+                }
+            }
+
             .botaoFonteVermelha {
                 button {
-                    color: red !important;
+                    color: var(--vermelho) !important;
                 }
             }
         }

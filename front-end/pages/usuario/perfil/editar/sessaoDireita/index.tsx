@@ -26,7 +26,7 @@ export default function SessaoDireita({ usuario, arquivoUploadFotoPerfil, setArq
         <div className={Styles.sessaoDireita}>
             <TopHat Svg={<Configuracao width={22} url={null} title={null} isCorPrincipal={false} />} titulo='Configurações' />
 
-            <div className={`${Styles.main} margem1`}>
+            <div className='margem1'>
                 {/* =-=-=-=-=-=-=-=-=-=-=-= #1 - Lojinha =-=-=-=-=-=-=-=-=-=-=-=- */}
                 <SessaoLojinha
                     usuario={usuario}

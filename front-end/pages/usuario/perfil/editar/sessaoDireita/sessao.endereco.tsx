@@ -1,5 +1,5 @@
 import nProgress from 'nprogress';
-import { ChangeEvent, Dispatch, Fragment, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, Dispatch, useEffect, useRef, useState } from 'react';
 import Botao from '../../../../../components/outros/botao';
 import Input from '../../../../../components/outros/input';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
@@ -122,7 +122,7 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
     }
 
     return (
-        <Fragment>
+        <div className={`${Styles.main} margem1`}>
             <span className='separadorHorizontal'></span>
             <div className='margem0_5'>
                 <TopHatSecundario titulo='Endereço' />
@@ -148,40 +148,124 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
                     />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Estado</span>
-                        <input readOnly={true} disabled={true} className='input' type='text' value={formDataDadosEndereco?.estado?.toString()} />
-                    </div>
+                    <Input
+                        titulo='Estado'
+                        placeholder=''
+                        name=''
+                        tipo='text'
+                        isDisabled={true}
+                        minCaracteres={0}
+                        dataTip=''
+                        value={formDataDadosEndereco?.estado}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={false}
+                        isExisteValidacaoExtra={false}
+                        handleValidacaoExtra={null}
+                        handleChange={() => null}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Cidade</span>
-                        <input readOnly={true} disabled={true} className='input' type='text' value={formDataDadosEndereco?.cidade?.toString()} />
-                    </div>
+                    <Input
+                        titulo='Cidade'
+                        placeholder=''
+                        name=''
+                        tipo='text'
+                        isDisabled={true}
+                        minCaracteres={0}
+                        dataTip=''
+                        value={formDataDadosEndereco?.cidade}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={false}
+                        isExisteValidacaoExtra={false}
+                        handleValidacaoExtra={null}
+                        handleChange={() => null}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Bairro</span>
-                        <input readOnly={true} disabled={true} className='input' type='text' value={formDataDadosEndereco?.bairro?.toString()} />
-                    </div>
+                    <Input
+                        titulo='Bairro'
+                        placeholder=''
+                        name=''
+                        tipo='text'
+                        isDisabled={true}
+                        minCaracteres={0}
+                        dataTip=''
+                        value={formDataDadosEndereco?.bairro}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={false}
+                        isExisteValidacaoExtra={false}
+                        handleValidacaoExtra={null}
+                        handleChange={() => null}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Rua</span>
-                        <input readOnly={true} disabled={true} className='input' type='text' value={formDataDadosEndereco?.rua?.toString()} />
-                    </div>
+                    <Input
+                        titulo='Rua'
+                        placeholder=''
+                        name=''
+                        tipo='text'
+                        isDisabled={true}
+                        minCaracteres={0}
+                        dataTip=''
+                        value={formDataDadosEndereco?.rua}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={false}
+                        isExisteValidacaoExtra={false}
+                        handleValidacaoExtra={null}
+                        handleChange={() => null}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Número da residência</span>
-                        <input className='input' type='text' name='numeroResidencia' onChange={handleChange} value={formDataDadosEndereco.numeroResidencia?.toString()} />
-                    </div>
+                    <Input
+                        titulo='Número da residência'
+                        placeholder=''
+                        name='numeroResidencia'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip=''
+                        value={formDataDadosEndereco?.numeroResidencia}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={false}
+                        isExisteValidacaoExtra={false}
+                        handleValidacaoExtra={null}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
-                    <div className={Styles.divInput}>
-                        <span className={Styles.item}>Referência</span>
-                        <input className='input' type='text' name='referenciaLocal' onChange={handleChange} value={formDataDadosEndereco.referenciaLocal?.toString()} />
-                    </div>
+                    <Input
+                        titulo='Referência do local'
+                        placeholder=''
+                        name='referenciaLocal'
+                        tipo='text'
+                        isDisabled={false}
+                        minCaracteres={0}
+                        dataTip=''
+                        value={formDataDadosEndereco?.referenciaLocal}
+                        mascara=''
+                        referencia={null}
+                        isExibirIconeDireita={false}
+                        isExisteValidacaoExtra={false}
+                        handleValidacaoExtra={null}
+                        handleChange={handleChange}
+                        handleKeyPress={() => null}
+                        handleBlur={() => null}
+                    />
 
                     <span className='separadorHorizontal'></span>
                     <div className='divBotaoInvertido'>
@@ -189,7 +273,7 @@ export default function SessaoEndereco({ usuario, isHouveAlteracao, setIsHouveAl
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </div>
     )
 }
 
