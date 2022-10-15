@@ -98,8 +98,21 @@ export default function Home() {
                     ) : (
                         <div className='flexColumn'>
                             <Facebook style={{ width: '100%' }} />
-                            <List style={{ width: '100%' }} />
-                            <List style={{ width: '100%' }} />
+
+                            <div className='flexRow'>
+                                <List style={{ width: '100%' }} />
+                                <List style={{ width: '100%' }} />
+                            </div>
+
+                            <div className='flexRow margem3'>
+                                <List style={{ width: '100%' }} />
+                                <List style={{ width: '100%' }} />
+                            </div>
+
+                            <div className='flexRow margem3'>
+                                <List style={{ width: '100%' }} />
+                                <List style={{ width: '100%' }} />
+                            </div>
                         </div>
                     )
                 }
