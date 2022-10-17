@@ -20,7 +20,7 @@ export default function NavbarPadrao() {
 
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
-
+ 
     const { asPath } = useRouter();
     const [urlAtual, setUrlAtual] = useState('');
     useEffect(() => {

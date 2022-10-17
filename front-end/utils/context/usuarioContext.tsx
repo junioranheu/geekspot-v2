@@ -4,6 +4,7 @@ import iContextDadosUsuario from '../types/context.dadosUsuario';
 
 interface iContext {
     isAuthContext: [isAuth: boolean, setIsAuth: any];
+    isFotoPerfilChangedContext: [isFotoPerfilChanged: boolean, setIsFotoPerfilChanged: any];
 }
 
 const _item = 'auth';
@@ -11,10 +12,12 @@ export const UsuarioContext = createContext<iContext | null>(null);
 
 export const UsuarioProvider = (props: any) => {
     const [isAuth, setIsAuth] = useState(Auth.get() ? true : false);
+    const [isFotoPerfilChanged, setIsFotoPerfilChanged] = useState(false);
 
     return (
         <UsuarioContext.Provider value={{
             isAuthContext: [isAuth, setIsAuth],
+            isFotoPerfilChangedContext: [isFotoPerfilChanged, setIsFotoPerfilChanged]
         }}>
             {props.children}
         </UsuarioContext.Provider>

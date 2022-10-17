@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { Dispatch, Fragment } from 'react';
+import { Dispatch, Fragment, useContext, useEffect } from 'react';
 import useEmoji from '../../../../hooks/outros/useEmoji';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
-import { Auth } from '../../../../utils/context/usuarioContext';
+import { Auth, UsuarioContext } from '../../../../utils/context/usuarioContext';
 import Styles from './menu.usuario.module.scss';
 import MenuUsuarioOpcoes from './menu.usuario.opcoes';
 
@@ -15,6 +15,9 @@ interface iParametros {
 
 export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuario, debounceFecharMenuUsuario }: iParametros) {
 
+    const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
+    const [isFotoPerfilChanged, setIsFotoPerfilChanged] = [usuarioContext?.isFotoPerfilChangedContext[0], usuarioContext?.isFotoPerfilChangedContext[1]];
+
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     const emoji = useEmoji();
 
@@ -23,10 +26,24 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
         debounceFecharMenuUsuario.cancel();
     }
 
+    // Sempre que a variável "isFotoPerfilChanged" mudar, é porque houve uma alteração na foto de perfil,
+    // Portanto é necessário que se force a alteração da imagem (através de uma lógica);
+    useEffect(() => {
+        setTimeout(function () {
+            setIsFotoPerfilChanged(false); // Retornar ao valor padrão de false;
+        }, 1000);
+    }, [isFotoPerfilChanged]);
+
     return (
         <Fragment>
             <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
-                <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={30} height={30} alt='' />
+                {
+                    isFotoPerfilChanged ? (
+                        <Fragment></Fragment>
+                    ) : (
+                        <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={30} height={30} alt='' />
+                    )
+                }
 
                 {
                     isExibirMenuUsuario && (
