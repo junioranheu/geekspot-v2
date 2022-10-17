@@ -9,6 +9,7 @@ import CarouselDois from '../static/image/carousel/dois.webp';
 import CarouselDoisBlack from '../static/image/carousel/dois_black.webp';
 import CarouselUm from '../static/image/carousel/um.webp';
 import CarouselUmBlack from '../static/image/carousel/um_black.webp';
+import Styles from '../styles/home.module.scss';
 import { Fetch } from '../utils/api/fetch';
 import HabilitarHttp from '../utils/api/habilitarHttp';
 import CONSTS_ITENS from '../utils/consts/data/constItens';
@@ -43,7 +44,7 @@ export default function Home() {
                 Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.ERRO_INTERNO } });
                 return false;
             }
-
+    
             setListaItensRandom(randomizarArray(resposta) as iItem[])
             nProgress.done();
         }
@@ -96,7 +97,7 @@ export default function Home() {
                             </Fragment>
                         ))
                     ) : (
-                        <div className='flexColumn'>
+                        <div className={Styles.centralizarContentLoading}>
                             <Facebook style={{ width: '100%' }} />
 
                             <div className='flexRow'>
