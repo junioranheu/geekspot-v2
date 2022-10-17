@@ -21,20 +21,24 @@ export default function NavbarPadrao() {
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
-    const router = useRouter();
+    const { asPath } = useRouter();
+    const [urlAtual, setUrlAtual] = useState('');
+    useEffect(() => {
+        // Finalizar o nProgress;
+        nProgress.done();
+
+        // Setar url no Hook, para usar em verificarLayout();
+        setUrlAtual(asPath);
+    }, [asPath]);
 
     const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
     const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     function simularLoading() {
-        if (router.asPath !== '/') {
+        if (asPath !== '/') {
             nProgress.start();
         }
     }
-
-    useEffect(() => {
-        nProgress.done();
-    }, [router.asPath]);
 
     return (
         <nav className={Styles.navbar}>
@@ -60,8 +64,8 @@ export default function NavbarPadrao() {
                         )
                     }
 
-                    {
-                        isAuth && (
+{
+                        isAuth && urlAtual !== CONSTS_TELAS.PERFIL_EDITAR && (
                             <NavbarPadraoMenuUsuario
                                 isExibirMenuUsuario={isExibirMenuUsuario}
                                 setIsExibirMenuUsuario={setIsExibirMenuUsuario}

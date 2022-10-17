@@ -6,8 +6,10 @@ import CONSTS_USUARIOS from '../../../utils/consts/data/constUsuarios';
 import CONSTS_ERROS from '../../../utils/consts/outros/erros';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import CONSTS_TELAS from '../../../utils/consts/outros/telas';
+import { Auth } from '../../../utils/context/usuarioContext';
 import { Aviso } from '../../../utils/outros/aviso';
 import paginaCarregada from '../../../utils/outros/paginaCarregada';
+import iContextDadosUsuario from '../../../utils/types/context.dadosUsuario';
 
 export default function VerificarConta() {
 
@@ -29,6 +31,10 @@ export default function VerificarConta() {
                 Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.CODIGO_VERIFICACAO_INVALIDO } });
                 return false;
             }
+
+            // Atualizar no Local Storage; 
+            const dadosUsuario = { isVerificado: true } as iContextDadosUsuario;
+            Auth.update(dadosUsuario);
 
             nProgress.done();
             paginaCarregada(true, 200, 500, setIsLoaded);

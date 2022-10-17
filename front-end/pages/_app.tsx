@@ -15,9 +15,8 @@ import { ModoDarkProvider } from '../utils/context/modoDarkContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
 
 export default function App({ Component, pageProps }: any) {
-    const { asPath } = useRouter();
-    const router = useRouter();
 
+    const { asPath } = useRouter();
     const [url, setUrl] = useState('');
     useEffect(() => {
         // Setar url no Hook, para usar em verificarLayout();
@@ -43,7 +42,7 @@ export default function App({ Component, pageProps }: any) {
         // console.log('useEffect fired!', {asPath: router.asPath});
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         console.clear();
-    }, [router.asPath]);
+    }, [asPath]);
 
     return url ?
         (
