@@ -2,8 +2,8 @@
 using ImageProcessor.Plugins.WebP.Imaging.Formats;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using System.Security.Claims;
+using static GeekSpot.Utils.Biblioteca;
 
 // Como criar um BaseController: https://stackoverflow.com/questions/58735503/creating-base-controller-for-asp-net-core-to-do-logging-but-something-is-wrong-w;
 // Como fazer os metódos da BaseController não bugar a API ([NonAction]): https://stackoverflow.com/questions/35788911/500-error-when-setting-up-swagger-in-asp-net-core-mvc-6-app
@@ -36,27 +36,33 @@ namespace GeekSpot.API.Controllers
         }
 
         // arquivo = o arquivo em si, a variável IFormFile;
-        // id = o id do objeto em questão. Por exemplo, ao mudar a foto de perfil de um usuário, envie o id dele;
+        // nomeArquivo = o nome do novo objeto em questão. Por exemplo, ao mudar a foto de perfil de um usuário, envie o id dele;
         // nomePasta = nome do caminho do arquivo, da pasta. Por exemplo: /upload/usuario/. "usuario" é o caminho;
-        // arquivoAtual = o nome do arquivo atual, caso exista;
+        // nomeArquivoAnterior = o nome do arquivo que constava anterior, caso exista;
         // hostingEnvironment = o caminho até o wwwroot. Ele deve ser passado por parâmetro, já que não funcionaria aqui diretamente no BaseController;
-        protected async Task<string> UparImagem(IFormFile arquivo, string id, string nomePasta, string? arquivoAtual, IWebHostEnvironment hostingEnvironment)
+        protected async Task<string> UparImagem(IFormFile arquivo, string nomeArquivo, string nomePasta, string? nomeArquivoAnterior, IWebHostEnvironment hostingEnvironment)
         {
             return await Task.Run(() =>
             {
                 // Procedimento de inicialização para salvar nova imagem;
                 string webRootPath = hostingEnvironment.ContentRootPath; // Vai até o wwwwroot;
-                string restoCaminho = "/upload/" + nomePasta + "/"; // Acesso à pasta referente; 
-                string nomeNovo = id + ".webp"; // Nome novo do arquivo;
-                string caminhoDestino = webRootPath + restoCaminho + nomeNovo; // Caminho de destino para upar;
+                string restoCaminho = $"/upload/{nomePasta}/"; // Acesso à pasta referente; 
+
+                // Verificar se o arquivo tem extensão, se não tiver, adicione;
+                if (!Path.HasExtension(nomeArquivo))
+                {
+                    nomeArquivo = $"{nomeArquivo}.webp";
+                }
+
+                string caminhoDestino = webRootPath + restoCaminho + nomeArquivo; // Caminho de destino para upar;
 
                 // Copiar o novo arquivo para o local de destino;
                 if (arquivo.Length > 0)
                 {
                     // Verificar se já existe uma foto caso exista, delete-a;
-                    if (!String.IsNullOrEmpty(arquivoAtual))
+                    if (!String.IsNullOrEmpty(nomeArquivoAnterior))
                     {
-                        string caminhoArquivoAtual = webRootPath + restoCaminho + arquivoAtual;
+                        string caminhoArquivoAtual = webRootPath + restoCaminho + nomeArquivoAnterior;
 
                         // Verificar se o arquivo existe;
                         if (System.IO.File.Exists(caminhoArquivoAtual))
@@ -76,7 +82,7 @@ namespace GeekSpot.API.Controllers
                                     .Save(webPFileStream);
                     }
 
-                    return nomeNovo;
+                    return nomeArquivo;
                 }
                 else
                 {

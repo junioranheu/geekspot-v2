@@ -22,13 +22,9 @@ export default function NavbarPadrao() {
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
  
     const { asPath } = useRouter();
-    const [urlAtual, setUrlAtual] = useState('');
     useEffect(() => {
         // Finalizar o nProgress;
         nProgress.done();
-
-        // Setar url no Hook, para usar em verificarLayout();
-        setUrlAtual(asPath);
     }, [asPath]);
 
     const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
@@ -65,7 +61,6 @@ export default function NavbarPadrao() {
                     }
 
                     {
-                        // isAuth && urlAtual !== CONSTS_TELAS.PERFIL_EDITAR && (
                         isAuth && (
                             <NavbarPadraoMenuUsuario
                                 isExibirMenuUsuario={isExibirMenuUsuario}

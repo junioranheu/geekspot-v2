@@ -19,6 +19,8 @@ namespace GeekSpot.Domain.DTO
         public UsuarioTipoDTO? UsuariosTipos { get; set; }
 
         public string? Foto { get; set; } = null;
+        public string? FotoAnterior { get; set; } = null;
+
         public DateTime DataRegistro { get; set; } = HorarioBrasilia();
         public DateTime DataOnline { get; set; }
         public bool IsAtivo { get; set; } = true;

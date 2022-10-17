@@ -8,8 +8,9 @@ import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import UPLOAD_IMAGEM from '../../../../../utils/consts/outros/uploadImagem';
-import { UsuarioContext } from '../../../../../utils/context/usuarioContext';
+import { Auth, UsuarioContext } from '../../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../../utils/outros/aviso';
+import iContextDadosUsuario from '../../../../../utils/types/context.dadosUsuario';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -74,7 +75,9 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
             return false;
         }
 
-        // Forçar atualização no contexto;
+        // Forçar atualização no Local Storage e contexto;
+        const dadosUsuario = { foto: resposta.foto } as iContextDadosUsuario;
+        Auth.update(dadosUsuario);
         setIsFotoPerfilChanged(true);
 
         nProgress.done();

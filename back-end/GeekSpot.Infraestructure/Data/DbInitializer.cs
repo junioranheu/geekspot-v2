@@ -37,12 +37,12 @@ namespace GeekSpot.Infraestructure.Data
 
             if (!await context.Usuarios.AnyAsync())
             {
-                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 1, NomeCompleto = "Administrador do GeekSpot", Email = "adm@Hotmail.com", NomeUsuarioSistema = "adm", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Administrador, Foto = "1.webp", IsAtivo = true, IsVerificado = false });
-                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 2, NomeCompleto = "Junior Souza", Email = "juninholorena@Hotmail.com", NomeUsuarioSistema = "junioranheu", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "2.webp", IsAtivo = true, IsVerificado = true });
-                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 3, NomeCompleto = "Usuário Teste Loja", Email = "loja@Hotmail.com", NomeUsuarioSistema = "loja", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Loja, Foto = "3.webp", IsAtivo = true, IsVerificado = false });
-                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 4, NomeCompleto = "Israel Cabrera", Email = "chaleco@Hotmail.com", NomeUsuarioSistema = "chaleco", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "4.webp", IsAtivo = true, IsVerificado = true });
-                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 5, NomeCompleto = "Marcelo Sallerno", Email = "ateu@Hotmail.com", NomeUsuarioSistema = "ateu", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "5.webp", IsAtivo = true, IsVerificado = true });
-                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 6, NomeCompleto = "Mariana Scalzaretto", Email = "mariana@Hotmail.com", NomeUsuarioSistema = "elfamscal", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "6.webp", IsAtivo = true, IsVerificado = false });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 1, NomeCompleto = "Administrador do GeekSpot", Email = "adm@Hotmail.com", NomeUsuarioSistema = "adm", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Administrador, Foto = "1AAAAA.webp", IsAtivo = true, IsVerificado = false });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 2, NomeCompleto = "Junior Souza", Email = "juninholorena@Hotmail.com", NomeUsuarioSistema = "junioranheu", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "2AAAAA.webp", IsAtivo = true, IsVerificado = true });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 3, NomeCompleto = "Usuário Teste Loja", Email = "loja@Hotmail.com", NomeUsuarioSistema = "loja", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Loja, Foto = "3AAAAA.webp", IsAtivo = true, IsVerificado = false });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 4, NomeCompleto = "Israel Cabrera", Email = "chaleco@Hotmail.com", NomeUsuarioSistema = "chaleco", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "4AAAAA.webp", IsAtivo = true, IsVerificado = true });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 5, NomeCompleto = "Marcelo Sallerno", Email = "ateu@Hotmail.com", NomeUsuarioSistema = "ateu", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "5AAAAA.webp", IsAtivo = true, IsVerificado = true });
+                await context.Usuarios.AddAsync(new Usuario() { UsuarioId = 6, NomeCompleto = "Mariana Scalzaretto", Email = "mariana@Hotmail.com", NomeUsuarioSistema = "elfamscal", Senha = Criptografar("123"), DataRegistro = dataAgora, UsuarioTipoId = (int)UsuarioTipoEnum.Usuario, Foto = "6AAAAA.webp", IsAtivo = true, IsVerificado = false });
             }
 
             if (!await context.UsuariosInformacoes.AnyAsync())
@@ -108,29 +108,29 @@ namespace GeekSpot.Infraestructure.Data
             if (!await context.ItensImagens.AnyAsync())
             {
                 // Itens do usuário @junioranheu (2);
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 1, CaminhoImagem = "1-1.webp", ItemId = 1, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 2, CaminhoImagem = "2-1.webp", ItemId = 2, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 3, CaminhoImagem = "3-1.webp", ItemId = 3, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 4, CaminhoImagem = "4-1.webp", ItemId = 4, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 5, CaminhoImagem = "5-1.webp", ItemId = 5, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 6, CaminhoImagem = "6-1.webp", ItemId = 6, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 7, CaminhoImagem = "6-2.webp", ItemId = 6, IsAtivo = true, IsFotoPrincipal = false, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 1, CaminhoImagem = "1-1AAAAA.webp", ItemId = 1, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 2, CaminhoImagem = "2-1AAAAA.webp", ItemId = 2, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 3, CaminhoImagem = "3-1AAAAA.webp", ItemId = 3, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 4, CaminhoImagem = "4-1AAAAA.webp", ItemId = 4, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 5, CaminhoImagem = "5-1AAAAA.webp", ItemId = 5, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 6, CaminhoImagem = "6-1AAAAA.webp", ItemId = 6, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 7, CaminhoImagem = "6-2AAAAA.webp", ItemId = 6, IsAtivo = true, IsFotoPrincipal = false, DataRegistro = dataAgora });
 
                 // Itens do usuário @chaleco (4);
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 8, CaminhoImagem = "7-1.webp", ItemId = 7, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 9, CaminhoImagem = "8-1.webp", ItemId = 8, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 10, CaminhoImagem = "9-1.webp", ItemId = 9, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 11, CaminhoImagem = "10-1.webp", ItemId = 10, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 12, CaminhoImagem = "11-1.webp", ItemId = 11, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 13, CaminhoImagem = "12-1.webp", ItemId = 12, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 14, CaminhoImagem = "12-2.webp", ItemId = 12, IsAtivo = true, IsFotoPrincipal = false, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 8, CaminhoImagem = "7-1AAAAA.webp", ItemId = 7, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 9, CaminhoImagem = "8-1AAAAA.webp", ItemId = 8, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 10, CaminhoImagem = "9-1AAAAA.webp", ItemId = 9, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 11, CaminhoImagem = "10-1AAAAA.webp", ItemId = 10, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 12, CaminhoImagem = "11-1AAAAA.webp", ItemId = 11, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 13, CaminhoImagem = "12-1AAAAA.webp", ItemId = 12, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 14, CaminhoImagem = "12-2AAAAA.webp", ItemId = 12, IsAtivo = true, IsFotoPrincipal = false, DataRegistro = dataAgora });
 
                 // Itens do usuário @ateu (5);
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 15, CaminhoImagem = "13-1.webp", ItemId = 13, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 16, CaminhoImagem = "14-1.webp", ItemId = 14, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 17, CaminhoImagem = "15-1.webp", ItemId = 15, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 18, CaminhoImagem = "16-1.webp", ItemId = 16, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
-                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 19, CaminhoImagem = "17-1.webp", ItemId = 17, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 15, CaminhoImagem = "13-1AAAAA.webp", ItemId = 13, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 16, CaminhoImagem = "14-1AAAAA.webp", ItemId = 14, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 17, CaminhoImagem = "15-1AAAAA.webp", ItemId = 15, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 18, CaminhoImagem = "16-1AAAAA.webp", ItemId = 16, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
+                await context.ItensImagens.AddAsync(new ItemImagem() { ItemImagemId = 19, CaminhoImagem = "17-1AAAAA.webp", ItemId = 17, IsAtivo = true, IsFotoPrincipal = true, DataRegistro = dataAgora });
             }
             #endregion
 

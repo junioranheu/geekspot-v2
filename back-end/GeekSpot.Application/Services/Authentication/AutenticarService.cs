@@ -130,8 +130,10 @@ namespace GeekSpot.Application.Services.Authentication
 
             UsuarioDTO usuarioAdicionado = await _usuarioRepository.Adicionar(novoUsuario);
 
-            // #4 - Automaticamente atualizar o valor da Foto com um valor padrão após criar o novo usuário;
-            await _usuarioRepository.AtualizarFoto(usuarioAdicionado.UsuarioId, $"{usuarioAdicionado.UsuarioId}.webp");
+            // #4 - Automaticamente atualizar o valor da Foto com um valor padrão após criar o novo usuário e adicionar ao ovjeto novoUsuario;
+            string nomeNovaFoto = $"{usuarioAdicionado.UsuarioId}{GerarStringAleatoria(5, true)}.webp";
+            await _usuarioRepository.AtualizarFoto(usuarioAdicionado.UsuarioId, nomeNovaFoto);
+            novoUsuario.Foto = nomeNovaFoto;
 
             // #5 - Adicionar ao objeto novoUsuario o id do novo usuário;
             novoUsuario.UsuarioId = usuarioAdicionado.UsuarioId;

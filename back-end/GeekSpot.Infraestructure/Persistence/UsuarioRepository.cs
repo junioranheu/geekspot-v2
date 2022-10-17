@@ -190,9 +190,13 @@ namespace GeekSpot.Infraestructure.Persistence
                 byId.UsuariosInformacoes = new();
             }
 
+            // "Segurar" dados anteriores;
+            string fotoAnterior = byId?.Foto ?? "";
+            string fotoCapaAnterior = byId?.UsuariosInformacoes?.LojinhaImagemCapa ?? "";
+
             // Atualizar dados;
-            byId.Foto = !String.IsNullOrEmpty(dto.Foto) ? $"{usuarioId}.webp" : "";
-            byId.UsuariosInformacoes.LojinhaImagemCapa = !String.IsNullOrEmpty(dto.UsuariosInformacoes?.LojinhaImagemCapa) ? $"{usuarioId}.webp" : "";
+            byId.Foto = !String.IsNullOrEmpty(dto.Foto) ? $"{usuarioId}{GerarStringAleatoria(5, true)}.webp" : "";
+            byId.UsuariosInformacoes.LojinhaImagemCapa = !String.IsNullOrEmpty(dto.UsuariosInformacoes?.LojinhaImagemCapa) ? $"{usuarioId}{GerarStringAleatoria(5, true)}.webp" : "";
             byId.UsuariosInformacoes.LojinhaTitulo = dto.UsuariosInformacoes?.LojinhaTitulo;
             byId.UsuariosInformacoes.LojinhaDescricao = dto.UsuariosInformacoes?.LojinhaDescricao;
             byId.UsuariosInformacoes.DataUltimaAlteracao = HorarioBrasilia();
@@ -201,6 +205,9 @@ namespace GeekSpot.Infraestructure.Persistence
             await _context.SaveChangesAsync();
 
             UsuarioDTO dtoRetorno = _map.Map<UsuarioDTO>(byId);
+            dtoRetorno.FotoAnterior = fotoAnterior;
+            dtoRetorno.UsuariosInformacoes.LojinhaImagemCapaAnterior = fotoCapaAnterior;
+
             return dtoRetorno;
         }
 

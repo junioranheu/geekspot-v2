@@ -24,5 +24,6 @@ export default interface iUsuario {
     genero: string | null;
     cep: string | null;
     isEmailVerificacaoContaEnviado: boolean | null;
+    fotoAnterior: string | null;
 }
 

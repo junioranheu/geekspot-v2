@@ -25,7 +25,10 @@ namespace GeekSpot.Domain.DTO
         // Propriedades referentes à "Lojinha";
         public string? LojinhaTitulo { get; set; } = null;
         public string? LojinhaDescricao { get; set; } = null;
+
         public string? LojinhaImagemCapa { get; set; } = null;
+        public string? LojinhaImagemCapaAnterior { get; set; } = null;
+
         public double? LojinhaQtdEstrelas { get; set; } = 0;
 
         public DateTime? DataUltimaAlteracao { get; set; } = HorarioBrasilia();
