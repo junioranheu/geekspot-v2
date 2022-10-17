@@ -39,7 +39,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
             <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
                 {
                     isFotoPerfilChanged ? (
-                        <Fragment></Fragment>
+                        <Image src={ImgCinza} width={30} height={30} alt='' />
                     ) : (
                         <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={30} height={30} alt='' />
                     )
