@@ -64,8 +64,9 @@ export default function NavbarPadrao() {
                         )
                     }
 
-{
-                        isAuth && urlAtual !== CONSTS_TELAS.PERFIL_EDITAR && (
+                    {
+                        // isAuth && urlAtual !== CONSTS_TELAS.PERFIL_EDITAR && (
+                        isAuth && (
                             <NavbarPadraoMenuUsuario
                                 isExibirMenuUsuario={isExibirMenuUsuario}
                                 setIsExibirMenuUsuario={setIsExibirMenuUsuario}

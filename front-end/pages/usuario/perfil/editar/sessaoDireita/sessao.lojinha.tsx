@@ -8,7 +8,9 @@ import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_UPLOAD from '../../../../../utils/consts/data/constUpload';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
 import UPLOAD_IMAGEM from '../../../../../utils/consts/outros/uploadImagem';
+import { Auth } from '../../../../../utils/context/usuarioContext';
 import { Aviso } from '../../../../../utils/outros/aviso';
+import iContextDadosUsuario from '../../../../../utils/types/context.dadosUsuario';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
 
@@ -69,6 +71,15 @@ export default function SessaoLojinha({ usuario, arquivoUploadFotoPerfil, setArq
             Aviso.warn(resposta?.mensagemErro ?? 'Houve um erro ao atualizar os dados', 5000);
             return false;
         }
+
+        // Forçar atualização da imagem de perfil;
+        const dadosUsuario = { foto: '' } as iContextDadosUsuario;
+        Auth.update(dadosUsuario);
+
+        setTimeout(function () {
+            const dadosUsuario = { foto: `${Auth?.get()?.usuarioId}.webp` } as iContextDadosUsuario;
+            Auth.update(dadosUsuario);
+        }, 1000);
 
         nProgress.done();
         refBtn.current.disabled = false;
