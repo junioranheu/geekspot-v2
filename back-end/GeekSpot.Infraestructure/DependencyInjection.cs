@@ -16,6 +16,7 @@ namespace GeekSpot.Infraestructure
 {
     public static class DependencyInjection
     {
+        // Como importar o parâmetro "WebApplicationBuilder" caso aconteça algum erro: https://stackoverflow.com/questions/71146292/how-import-webapplicationbuilder-in-a-class-library
         public static IServiceCollection AddInfraestructure(this IServiceCollection services, WebApplicationBuilder builder)
         {
             ConfigurationManager configuration = builder.Configuration;

@@ -3,7 +3,7 @@ using static GeekSpot.Utils.Biblioteca;
 
 namespace GeekSpot.Domain.DTO
 {
-    public class RefreshTokenDTO
+    public class RefreshTokenDTO : _RetornoApiDTO
     {
         [Key]
         public int RefreshTokenId { get; set; }

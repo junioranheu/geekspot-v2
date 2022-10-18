@@ -2,7 +2,6 @@
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
-using GeekSpot.Domain.Enums;
 using GeekSpot.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
 

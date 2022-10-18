@@ -15,7 +15,7 @@ namespace GeekSpot.Utils
 {
     public static class Biblioteca
     {
-        // Pegar informações do appsettings: https://stackoverflow.com/a/58432834
+        // Pegar informações do appsettings: https://stackoverflow.com/a/58432834 (Necessário instalar o pacote "Microsoft.Extensions.Configuration.Json");
         static readonly string emailApiKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["EmailApiKey"];
         static readonly string emailPadrao = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["EmailPadrao"];
         static readonly string emailNomeRemetente = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["NomeRemetente"];
