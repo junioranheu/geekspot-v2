@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using static GeekSpot.Utils.Biblioteca;
 
-namespace GeekSpot.Infraestructure.Authentication
+namespace GeekSpot.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {

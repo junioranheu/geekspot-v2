@@ -2,10 +2,10 @@
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
-using GeekSpot.Infraestructure.Data;
+using GeekSpot.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeekSpot.Infraestructure.Persistence
+namespace GeekSpot.Infrastructure.Persistence
 {
     public class ItemRepository : IItemRepository
     {

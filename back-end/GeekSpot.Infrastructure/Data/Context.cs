@@ -1,7 +1,7 @@
 ﻿using GeekSpot.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeekSpot.Infraestructure.Data
+namespace GeekSpot.Infrastructure.Data
 {
     public class Context : DbContext
     {

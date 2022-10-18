@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using GeekSpot.Application.Common.Interfaces.Authentication;
 using GeekSpot.Application.Common.Interfaces.Persistence;
-using GeekSpot.Infraestructure.Authentication;
-using GeekSpot.Infraestructure.AutoMapper;
 using GeekSpot.Infraestructure.Persistence;
+using GeekSpot.Infrastructure.Authentication;
+using GeekSpot.Infrastructure.AutoMapper;
+using GeekSpot.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -12,12 +13,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace GeekSpot.Infraestructure
+namespace GeekSpot.Infrastructure
 {
     public static class DependencyInjection
     {
         // Como importar o parâmetro "WebApplicationBuilder" caso aconteça algum erro: https://stackoverflow.com/questions/71146292/how-import-webapplicationbuilder-in-a-class-library
-        public static IServiceCollection AddInfraestructure(this IServiceCollection services, WebApplicationBuilder builder)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, WebApplicationBuilder builder)
         {
             ConfigurationManager configuration = builder.Configuration;
 

@@ -1,10 +1,10 @@
 ﻿using GeekSpot.Domain.Entities;
 using GeekSpot.Domain.Enums;
-using GeekSpot.Infraestructure.Data.Seed;
+using GeekSpot.Infrastructure.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 using static GeekSpot.Utils.Biblioteca;
 
-namespace GeekSpot.Infraestructure.Data
+namespace GeekSpot.Infrastructure.Data
 {
     public static class DbInitializer
     {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using GeekSpot.Application.Common.Interfaces.Persistence;
 using GeekSpot.Domain.DTO;
-using GeekSpot.Infraestructure.Data;
+using GeekSpot.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using static GeekSpot.Utils.Biblioteca;
 
-namespace GeekSpot.Infraestructure.Persistence
+namespace GeekSpot.Infrastructure.Persistence
 {
     public class SistemaRepository : ISistemaRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace GeekSpot.Infraestructure.Authentication
+﻿namespace GeekSpot.Infrastructure.Authentication
 {
     public class JwtSettings
     {

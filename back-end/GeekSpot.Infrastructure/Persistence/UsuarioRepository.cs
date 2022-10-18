@@ -4,7 +4,7 @@ using GeekSpot.Application.Services.Authentication;
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 using GeekSpot.Domain.Enums;
-using GeekSpot.Infraestructure.Data;
+using GeekSpot.Infrastructure.Data;
 using GeekSpot.Utils.Entities;
 using Microsoft.EntityFrameworkCore;
 using static GeekSpot.Utils.Biblioteca;

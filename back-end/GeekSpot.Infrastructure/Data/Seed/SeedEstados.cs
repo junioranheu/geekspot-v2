@@ -1,7 +1,7 @@
 ﻿using GeekSpot.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeekSpot.Infraestructure.Data.Seed
+namespace GeekSpot.Infrastructure.Data.Seed
 {
     public class SeedEstados
     {

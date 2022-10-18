@@ -18,7 +18,7 @@
 *** Contem os domain services (https://stackoverflow.com/questions/3839386/domain-services-vs-application-services/3840552#3840552);
 *** Não deve conter classes que pessoas do negócio não entenderiam, exemplo: IJwtGenerator, etc. Os nomes devem ser sugestivos;
 
-** #4 - Infraestructure - Camada de infraestrutura:
+** #4 - Infrastructure - Camada de infraestrutura:
 *** Cuida do suporte geral às demais camadas;
 *** Mapping;
 *** Serviços e bibliotecas;

@@ -2,7 +2,7 @@
 using GeekSpot.Domain.DTO;
 using GeekSpot.Domain.Entities;
 
-namespace GeekSpot.Infraestructure.AutoMapper
+namespace GeekSpot.Infrastructure.AutoMapper
 {
     public class AutoMapperConfig : Profile
     {
