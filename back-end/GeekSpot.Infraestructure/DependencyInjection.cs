@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GeekSpot.Application.Common.Interfaces.Authentication;
 using GeekSpot.Application.Common.Interfaces.Persistence;
-using GeekSpot.Application.Services.Authentication;
 using GeekSpot.Infraestructure.Authentication;
 using GeekSpot.Infraestructure.AutoMapper;
 using GeekSpot.Infraestructure.Persistence;
