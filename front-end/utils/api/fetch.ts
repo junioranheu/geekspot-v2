@@ -140,10 +140,12 @@ export const Fetch = {
             } as iContextDadosUsuario;
 
             Auth.update(dadosUsuario);
+            
+            const msgRefreshTokenAtualizado = 'Refresh token atualizado';
+            console.log(msgRefreshTokenAtualizado);
 
             if (process.env.NODE_ENV === 'development') {
-                console.log('Refresh token atualizado');
-                Aviso.success('Refresh token atualizado', 5000);
+                Aviso.success(msgRefreshTokenAtualizado, 5000);
             }
 
             // Tentar novamente a chamada para o end-point requisitado, mas agora com o novo token;
