@@ -23,7 +23,7 @@ export default function MenuUsuarioOpcoes({ isMeuPerfilBotao }: iParametros) {
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     const urlPerfil = `/usuario/perfil/${idUsuario}/@${nomeUsuario}`;
-
+ 
     return (
         <Fragment>
             {

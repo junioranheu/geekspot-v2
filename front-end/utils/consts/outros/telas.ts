@@ -8,7 +8,7 @@ const CONSTS_TELAS = {
     VENDAS: '/ajuda/topico/5/vendas',
     SEGURANCA: '/ajuda/topico/7/seguranca-da-informacao',
     PERFIL_EDITAR: '/usuario/perfil/editar',
-    QUERO_VENDER: 'item/quero-vender',
+    QUERO_VENDER: '/item/quero-vender',
     QUERO_VENDER_AVISO_NECESSARIO_PERFIL_EDITAR: '/item/quero-vender/confirme-seus-dados',
     ERRO: '/404'
 };

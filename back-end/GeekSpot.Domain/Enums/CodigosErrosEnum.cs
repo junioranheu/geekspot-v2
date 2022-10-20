@@ -59,7 +59,7 @@ namespace GeekSpot.Domain.Enums
         [Description("Esse código de recuperação não está vinculado a nenhum usuário")]
         HashRecuperacaoNaoExiste = 118,
 
-        [Description("Um e-mail de validação de contajá foi enviado para você há pouco tempo. Tente novamente mais tarde")]
+        [Description("Um e-mail de validação de conta já foi enviado para você há pouco tempo. Tente novamente mais tarde")]
         EmailValidacaoJaEnviado = 119,
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 200 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
