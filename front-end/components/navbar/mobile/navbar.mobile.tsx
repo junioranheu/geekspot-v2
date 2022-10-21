@@ -23,6 +23,8 @@ export default function NavbarMobile() {
     
     const [isModalLateralOpen, setIsModalLateralOpen] = useState(false);
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
+    const idUsuario = Auth?.get()?.usuarioId ?? 0;
+    const urlPerfil = `/usuario/perfil/${idUsuario}/@${nomeUsuario}`;
     const emoji = useEmoji();
 
     function simularLoading() {
@@ -60,9 +62,9 @@ export default function NavbarMobile() {
                 <div className={Styles.divAtalhos} onClick={() => setIsModalLateralOpen(false)}>
                     {/* Mesmas opções usadas no menu de usuário */}
                     <div className={`${Styles.divOpcoes} margem0_5`}>
-                        <MenuUsuarioOpcoes isMeuPerfilBotao={false} />
+                        <MenuUsuarioOpcoes isMeuPerfilBotao={false} urlPerfil={urlPerfil} />
                     </div>
-
+ 
                     <div className='divisao margem1'>ou</div>
 
                     {
