@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
@@ -89,23 +90,27 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, titu
                         <Fragment key={i}>
                             {
                                 ordemTamanhosImagens[i] === 1 ? (
-                                    // Tamanho grande;
-                                    <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} title={item.nome}>
-                                        <Image
-                                            src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
-                                            width={tamanhoGrande}
-                                            height={tamanhoGrande}
-                                            alt=''
-                                            onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
-                                        />
+                                    <Fragment>
+                                        <ReactTooltip multiline={true} />
 
-                                        <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
-                                    </div>
+                                        {/* // Tamanho grande; */}
+                                        <div className={`${Styles.divImagemGrande} ${Styles.wrapImagem}`} data-tip={item.nome}>
+                                            <Image
+                                                src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
+                                                width={tamanhoGrande}
+                                                height={tamanhoGrande}
+                                                alt=''
+                                                onClick={() => Router.push(`/item/${item?.itemId}/${ajustarUrl(item?.nome)}`)}
+                                            />
+
+                                            <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
+                                        </div>
+                                    </Fragment>
                                 ) : (
                                     // Tamanho pequeno;
                                     listaItens[i + 1] && ordemTamanhosImagens[i + 1] === 0 && (
                                         <div className={Styles.divGrupoImagens}>
-                                            <div className={Styles.wrapImagem} title={item.nome}>
+                                            <div className={Styles.wrapImagem} data-tip={item.nome}>
                                                 <Image
                                                     src={(item.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${item.itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
@@ -117,7 +122,7 @@ export default function ModuloPrincipal({ i, usuarioId, usuarioNomeSistema, titu
                                                 <span className={Styles.infoBottomLeft}>{definirPreco(item?.preco, item?.precoDesconto)}</span>
                                             </div>
 
-                                            <div className={Styles.wrapImagem} title={listaItens[i + 1].nome}>
+                                            <div className={Styles.wrapImagem} data-tip={listaItens[i + 1].nome}>
                                                 <Image
                                                     src={(listaItens[i + 1]?.itensImagens ? `${CONSTS_UPLOAD.API_URL_GET_ITENS_IMAGENS}/${listaItens[i + 1].itensImagens.find((x: any) => x.isAtivo)?.caminhoImagem}` : ImgCinza)}
                                                     width={tamanhoPequeno}
