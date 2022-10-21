@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Router from 'next/router';
 import { Dispatch, Fragment, useContext, useEffect } from 'react';
 import useEmoji from '../../../../hooks/outros/useEmoji';
 import ImgCinza from '../../../../static/image/outros/cinza.webp';
@@ -19,6 +20,8 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
     const [isFotoPerfilChanged, setIsFotoPerfilChanged] = [usuarioContext?.isFotoPerfilChangedContext[0], usuarioContext?.isFotoPerfilChangedContext[1]];
 
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
+    const idUsuario = Auth?.get()?.usuarioId ?? 0;
+    const urlPerfil = `/usuario/perfil/${idUsuario}/@${nomeUsuario}`;
     const emoji = useEmoji();
 
     function abrirMenuUsuario() {
@@ -37,13 +40,15 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
     return (
         <Fragment>
             <div className={Styles.divMenu} onMouseEnter={() => abrirMenuUsuario()}>
-                {
-                    isFotoPerfilChanged ? (
-                        <Image src={ImgCinza} width={30} height={30} alt='' />
-                    ) : (
-                        <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={30} height={30} alt='' />
-                    )
-                }
+                <div onClick={() => Router.push(urlPerfil)}>
+                    {
+                        isFotoPerfilChanged ? (
+                            <Image src={ImgCinza} width={30} height={30} alt='' />
+                        ) : (
+                            <Image src={(Auth?.get()?.foto ? `${CONSTS_UPLOAD.API_URL_GET_USUARIOS_IMAGENS}/${Auth?.get()?.foto}` : ImgCinza)} width={30} height={30} alt='' />
+                        )
+                    }
+                </div>
 
                 {
                     isExibirMenuUsuario && (
@@ -52,7 +57,7 @@ export default function MenuUsuario({ isExibirMenuUsuario, setIsExibirMenuUsuari
                                 <b>Olá,&nbsp;<span className='cor-principal'>@{nomeUsuario}</span> {emoji}</b>
 
                                 <div className={`${Styles.divItens} margem1`}>
-                                    <MenuUsuarioOpcoes isMeuPerfilBotao={true} />
+                                    <MenuUsuarioOpcoes isMeuPerfilBotao={true} urlPerfil={urlPerfil} />
                                 </div>
                             </div>
                         </div>

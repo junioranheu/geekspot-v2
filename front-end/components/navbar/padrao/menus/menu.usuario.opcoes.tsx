@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Fragment, useContext } from 'react';
 import CONSTS_TELAS from '../../../../utils/consts/outros/telas';
-import { Auth, UsuarioContext } from '../../../../utils/context/usuarioContext';
+import { UsuarioContext } from '../../../../utils/context/usuarioContext';
 import Botao from '../../../outros/botao';
 import Ajuda from '../../../svg/ajuda';
 import Configuracao from '../../../svg/configuracao';
@@ -13,17 +13,14 @@ import Seguranca from '../../../svg/seguranca';
 
 interface iParametros {
     isMeuPerfilBotao: boolean;
+    urlPerfil: string;
 }
 
-export default function MenuUsuarioOpcoes({ isMeuPerfilBotao }: iParametros) {
+export default function MenuUsuarioOpcoes({ isMeuPerfilBotao, urlPerfil }: iParametros) {
 
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
-    const idUsuario = Auth?.get()?.usuarioId ?? 0;
-    const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
-    const urlPerfil = `/usuario/perfil/${idUsuario}/@${nomeUsuario}`;
- 
     return (
         <Fragment>
             {
