@@ -60,7 +60,7 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: false
+        fallback: 'blocking' // para atualizar de x em x tempos: https://nextjs.org/docs/api-reference/data-fetching/get-static-paths;
     }
 }
 
@@ -73,7 +73,8 @@ export async function getStaticProps(context: any) {
 
     return {
         props: {
-            item
+            item,
+            revalidate: 5 // segundos;
         }
     }
 }
