@@ -23,7 +23,7 @@ namespace GeekSpot.Infrastructure.Persistence
         {
             Comentario comentario = _map.Map<Comentario>(dto);
 
-            _context.Add(comentario);
+            await _context.AddAsync(comentario);
             await _context.SaveChangesAsync();
         }
 

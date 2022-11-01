@@ -22,7 +22,7 @@ namespace GeekSpot.Infrastructure.Persistence
         {
             ItemTipo itemTipo = _map.Map<ItemTipo>(dto);
 
-            _context.Add(itemTipo);
+            await _context.AddAsync(itemTipo);
             await _context.SaveChangesAsync();
         }
 

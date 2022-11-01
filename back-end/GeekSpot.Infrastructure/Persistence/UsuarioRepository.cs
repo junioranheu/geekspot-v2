@@ -26,7 +26,7 @@ namespace GeekSpot.Infraestructure.Persistence
         {
             Usuario usuario = _map.Map<Usuario>(dto);
 
-            _context.Add(usuario);
+            await _context.AddAsync(usuario);
             await _context.SaveChangesAsync();
 
             UsuarioDTO usuarioDTO = _map.Map<UsuarioDTO>(usuario);

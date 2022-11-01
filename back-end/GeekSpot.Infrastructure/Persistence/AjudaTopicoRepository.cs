@@ -22,7 +22,7 @@ namespace GeekSpot.Infrastructure.Persistence
         {
             AjudaTopico ajudaTopico = _map.Map<AjudaTopico>(dto);
 
-            _context.Add(ajudaTopico);
+            await _context.AddAsync(ajudaTopico);
             await _context.SaveChangesAsync();
         }
 

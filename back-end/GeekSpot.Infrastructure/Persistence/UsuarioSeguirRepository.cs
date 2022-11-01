@@ -22,7 +22,7 @@ namespace GeekSpot.Infrastructure.Persistence
         {
             UsuarioSeguir item = _map.Map<UsuarioSeguir>(dto);
 
-            _context.Add(item);
+            await _context.AddAsync(item);
             await _context.SaveChangesAsync();
         }
 

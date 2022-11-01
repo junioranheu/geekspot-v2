@@ -31,7 +31,7 @@ namespace GeekSpot.Infrastructure.Persistence
             // #2 - Adicionar novo refresh token;
             RefreshToken item = _map.Map<RefreshToken>(dto);
 
-            _context.Add(item);
+            await _context.AddAsync(item);
             await _context.SaveChangesAsync();
         }
 
