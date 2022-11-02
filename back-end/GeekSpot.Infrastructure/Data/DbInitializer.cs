@@ -137,8 +137,11 @@ namespace GeekSpot.Infrastructure.Data
             #region seed_comentarios
             if (!await context.Comentarios.AnyAsync())
             {
-                await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 1, ItemId = 12, UsuarioId = 5, Mensagem = "Olá, quero comprar a guatona", DataMensagem = dataAgora, Resposta = null, DataResposta = null, IsAtivo = true });
+                await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 1, ItemId = 12, UsuarioId = 5, Mensagem = "Olá, quero comprar a guatona!", DataMensagem = dataAgora, Resposta = null, DataResposta = null, IsAtivo = true });
                 await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 2, ItemId = 12, UsuarioId = 2, Mensagem = "Te dou 1 real por ela", DataMensagem = dataAgora, Resposta = "Não obrigado", DataResposta = null, IsAtivo = true });
+
+                await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 3, ItemId = 17, UsuarioId = 2, Mensagem = "Olá, quero comprar esse disco!", DataMensagem = dataAgora, Resposta = null, DataResposta = null, IsAtivo = true });
+                await context.Comentarios.AddAsync(new Comentario() { ComentarioId = 4, ItemId = 17, UsuarioId = 6, Mensagem = "Já vendeu?", DataMensagem = dataAgora, Resposta = "Ainda não :)", DataResposta = null, IsAtivo = true });
             }
             #endregion
 
