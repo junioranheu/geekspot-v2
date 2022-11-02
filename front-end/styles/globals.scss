@@ -680,6 +680,12 @@ body::-webkit-scrollbar {
     }
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= Tooltip =-=-=-=-=-=-=-=-=-=-= */
+.__react_component_tooltip {
+    // background-color: pink !important;
+    z-index: 999999 !important;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= FlipClockCountdown =-=-=-=-=-=-=-=-=-=-= */
 // Esconder o "dia" do FlipClockCountdown;
 ._qWTcH {
