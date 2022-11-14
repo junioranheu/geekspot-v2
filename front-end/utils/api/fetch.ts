@@ -51,7 +51,7 @@ export const Fetch = {
             // Aviso.error('Houve uma falha na requisição GET ao servidor!', 5000);
 
             // Se o usuário tem um token e foi erro 401, chame o end-point de refresh token;
-            respostaJson = await Fetch.refreshToken(token, erro.message, 'GET', url, null, isTentarRefreshToken);
+            respostaJson = await Fetch.refreshToken(token, erro.message, VERBOS_HTTP.GET, url, null, isTentarRefreshToken);
         }
 
         return respostaJson;
