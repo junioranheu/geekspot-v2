@@ -30,7 +30,20 @@ namespace GeekSpot.Infrastructure.Persistence
         {
             Item item = _map.Map<Item>(dto);
 
-            _context.Update(item);
+            // Pegar os dados "originais" do item em questão;
+            ItemDTO dadosOriginaisDTO = await GetById(dto.ItemId);
+            Item dadosOriginais = _map.Map<Item>(dadosOriginaisDTO);
+
+            dadosOriginais.Nome = item.Nome ?? dadosOriginais.Nome;
+            dadosOriginais.Descricao = item.Descricao ?? dadosOriginais.Descricao;
+            dadosOriginais.Tamanho = item.Tamanho ?? dadosOriginais.Tamanho;
+            dadosOriginais.Marca = item.Marca ?? dadosOriginais.Marca;
+            dadosOriginais.Condicao = item.Condicao ?? dadosOriginais.Condicao;
+            dadosOriginais.Preco = item.Preco > 0 ? item.Preco : dadosOriginais.Preco;
+            dadosOriginais.PrecoDesconto = item.PrecoDesconto > 0 ? item.PrecoDesconto : dadosOriginais.PrecoDesconto;
+            dadosOriginais.ItemTipoId = item.ItemTipoId > 0 ? item.ItemTipoId : dadosOriginais.ItemTipoId;
+
+            _context.Update(dadosOriginais);
             await _context.SaveChangesAsync();
         }
 
