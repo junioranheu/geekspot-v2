@@ -1,9 +1,20 @@
-.centralizarContentLoading {
-    // background-color: coral;
+.limiteWidth {
+    // background-color: red;
+    max-width: 1366px !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: auto;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: auto;
+    margin-right: auto;
+
+    .centralizarContentLoading {
+        // background-color: coral;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: auto;
+    }
 }

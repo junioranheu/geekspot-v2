@@ -58,7 +58,7 @@ export default function Home() {
     }
 
     return (
-        <section className='paddingPadrao'>
+        <section className={`${Styles.limiteWidth} paddingPadrao`}>
             <Carousel
                 isLoop={true}
                 isShowPagination={true}
