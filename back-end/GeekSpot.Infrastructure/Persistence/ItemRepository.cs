@@ -40,8 +40,8 @@ namespace GeekSpot.Infrastructure.Persistence
             dadosOriginais.Marca = item.Marca ?? dadosOriginais.Marca;
             dadosOriginais.Condicao = item.Condicao ?? dadosOriginais.Condicao;
             dadosOriginais.Preco = item.Preco > 0 ? item.Preco : dadosOriginais.Preco;
-            dadosOriginais.PrecoDesconto = item.PrecoDesconto > 0 ? item.PrecoDesconto : dadosOriginais.PrecoDesconto;
-            dadosOriginais.ItemTipoId = item.ItemTipoId > 0 ? item.ItemTipoId : dadosOriginais.ItemTipoId;
+            dadosOriginais.PrecoDesconto = !String.IsNullOrEmpty(item.ItemTipoId.ToString()) ? item.PrecoDesconto : dadosOriginais.PrecoDesconto;
+            dadosOriginais.ItemTipoId = !String.IsNullOrEmpty(item.ItemTipoId.ToString()) ? item.ItemTipoId : dadosOriginais.ItemTipoId;
 
             _context.Update(dadosOriginais);
             await _context.SaveChangesAsync();
