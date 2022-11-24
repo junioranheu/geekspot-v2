@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     // Inserir as informações do banco na variável builder antes de buildá-la;
     var secretSenhaBancoDados = builder.Configuration["SecretSenhaBancoDados"]; // secrets.json;
-    string con = builder.Configuration.GetConnectionString("BaseDadosGeekSpot");
+    string con = builder.Configuration.GetConnectionString("BaseDadosGeekSpot") ?? "";
     con = con.Replace("[secretSenhaBancoDados]", secretSenhaBancoDados); // Alterar pela senha do secrets.json;
     builder.Services.AddDbContext<Context>(options => options.UseMySql(con, ServerVersion.AutoDetect(con)));
 

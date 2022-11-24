@@ -150,5 +150,22 @@ namespace GeekSpot.Infrastructure.Persistence
             List<List<ItemDTO>> dto = _map.Map<List<List<ItemDTO>>>(listaItens);
             return dto;
         }
+
+        public async Task<dynamic>? GetListaItensGroupByItemTipo()
+        {
+            var itensAgrupados = await _context.Itens.
+                                 Include(it => it.ItensTipos).
+                                 Where(i => i.IsAtivo == true).
+                                 GroupBy(it => it.ItemTipoId).
+                                 Select(x => new { xItemTipoId = x.Key, xItemTipo = x.FirstOrDefault().ItensTipos.Tipo, xQuantidade = x.Count() }).
+                                 AsNoTracking().ToListAsync();
+
+            if (itensAgrupados is null)
+            {
+                return null;
+            }
+
+            return itensAgrupados;
+        }
     }
 }
