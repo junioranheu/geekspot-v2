@@ -100,7 +100,7 @@ namespace GeekSpot.API.Controllers
             return Ok(listaItensGroupByUsuario);
         }
 
-        [HttpGet("listaItensGroupByTipoItem")]
+        [HttpGet("listaItensGroupByItemTipo")]
         public async Task<ActionResult<dynamic>> GetListaItensGroupByItemTipo()
         {
             var listaItensGroupByItemTipo = await _itemRepository.GetListaItensGroupByItemTipo();
