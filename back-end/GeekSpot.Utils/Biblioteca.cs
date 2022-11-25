@@ -21,8 +21,6 @@ namespace GeekSpot.Utils
         static readonly string emailNomeRemetente = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["NomeRemetente"];
         static readonly string urlFrontDev = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontDev"];
         static readonly string urlFrontProd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontProd"];
-
-        // Pegar informações do appsettings: https://stackoverflow.com/a/58432834
         static readonly string encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("PasswordEncryptionSettings")["EncryptionKey"];
 
         // Converter para o horário de Brasilia: https://blog.yowko.com/timezoneinfo-time-zone-id-not-found/;
