@@ -27,6 +27,7 @@ export default function ajustarUrl(url: string) {
     urlAjustada = urlAjustada.replaceAll('#', 'sharp'); // # pela palavra "sharp";
     urlAjustada = urlAjustada.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, ''); // Remover todos os emojis;
     urlAjustada = urlAjustada.replace(/-$/, ''); // Se o último caracter for um -, remova-o;
+    urlAjustada = urlAjustada.replaceAll('--', '-'); // Não permitir duplicar "-". Exemplo: "isso--e--um--teste";
 
     // console.log(`urlAjustada: ${urlAjustada}`);
     return urlAjustada;
