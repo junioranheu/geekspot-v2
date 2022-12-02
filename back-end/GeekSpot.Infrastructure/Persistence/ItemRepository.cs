@@ -118,7 +118,10 @@ namespace GeekSpot.Infrastructure.Persistence
             // #1 - Buscar todos os usuários ativos;
             var todosUsuarios = await _context.Usuarios.
                                 Where(i => i.IsAtivo == true && i.IsVerificado == true && i.IsVerificado == true).
-                                OrderBy(ui => ui.UsuarioId).AsNoTracking().ToListAsync();
+                                OrderBy(ui => ui.UsuarioId).
+                                AsNoTracking().
+                                Select(u => u.UsuarioId).
+                                ToListAsync();
 
             if (todosUsuarios is null)
             {
@@ -127,14 +130,14 @@ namespace GeekSpot.Infrastructure.Persistence
 
             // #2 - Com base nos usuários encontrados, encontre, agora, seus itens;
             List<List<Item>> listaItens = new();
-            foreach (var usuario in todosUsuarios)
+            foreach (var usuarioId in todosUsuarios)
             {
                 var item = await _context.Itens.
                            Include(u => u.Usuarios).ThenInclude(ut => ut.UsuariosTipos).
                            Include(u => u.Usuarios).ThenInclude(ui => ui.UsuariosInformacoes).
                            Include(it => it.ItensTipos).
                            Include(ii => ii.ItensImagens).
-                           Where(ui => ui.UsuarioId == usuario.UsuarioId && ui.IsAtivo == true).AsNoTracking().ToListAsync();
+                           Where(ui => ui.UsuarioId == usuarioId && ui.IsAtivo == true).AsNoTracking().ToListAsync();
 
                 if (item?.Count > 0)
                 {
