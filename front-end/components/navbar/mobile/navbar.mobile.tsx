@@ -21,7 +21,7 @@ export default function NavbarMobile() {
 
     const router = useRouter();
     
-    const [isModalLateralOpen, setIsModalLateralOpen] = useState(false);
+    const [isModalLateralOpen, setIsModalLateralOpen] = useState<boolean>(false);
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const urlPerfil = `/usuario/perfil/${idUsuario}/@${nomeUsuario}`;

@@ -22,7 +22,7 @@ export default function TextArea({
     isMostrarBotao, textoBotao, handleFuncaoBotao, referenciaBotao, isEnabledBotao
 }: iParametros) {
 
-    const [qtdCaracteresRestantes, setQtdCaracteresRestantes] = useState(max);
+    const [qtdCaracteresRestantes, setQtdCaracteresRestantes] = useState<number>(max);
     function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
         const verificarQtdCaracteresRestantes = max - e.target.value.length;
 

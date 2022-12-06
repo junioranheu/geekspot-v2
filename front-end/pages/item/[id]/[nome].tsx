@@ -16,7 +16,7 @@ interface iParametros {
 
 export default function Item({ item }: iParametros) {
     
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, []);

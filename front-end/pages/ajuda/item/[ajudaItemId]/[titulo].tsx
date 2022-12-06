@@ -18,7 +18,7 @@ export default function ItemAjuda({ ajudaItem }: iParametros) {
 
     document.title = `${(ajudaItem?.titulo ?? 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, [ajudaItem]);

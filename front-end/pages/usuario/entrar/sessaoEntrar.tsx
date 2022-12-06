@@ -12,6 +12,7 @@ import Google from '../../../components/svg/google';
 import Styles from '../../../styles/usuario.autenticar.module.scss';
 import { Fetch } from '../../../utils/api/fetch';
 import CONSTS_AUTENTICAR from '../../../utils/consts/data/constAutenticar';
+import CONSTS_MODAL from '../../../utils/consts/outros/modal.tamanho';
 import CONSTS_SISTEMA from '../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../utils/context/usuarioContext';
 import { Aviso } from '../../../utils/outros/aviso';
@@ -34,7 +35,7 @@ export default function SessaoEntrar() {
     const refSenha = useRef<any>(null);
     const refBtn = useRef<any>(null);
 
-    const [isExibirDivEmail, setIsExibirDivEmail] = useState(false);
+    const [isExibirDivEmail, setIsExibirDivEmail] = useState<boolean>(false);
 
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState<iFormData>({ usuario: '', senha: '' });
@@ -99,15 +100,15 @@ export default function SessaoEntrar() {
         }
     }
 
-    const [modalAvisoLoginDescricao, setModalAvisoLoginDescricao] = useState('');
-    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
-    const [isModalEsqueciSenhaOpen, setIsModalEsqueciSenhaOpen] = useState(false);
+    const [modalAvisoLoginDescricao, setModalAvisoLoginDescricao] = useState<string>('');
+    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState<boolean>(false);
+    const [isModalEsqueciSenhaOpen, setIsModalEsqueciSenhaOpen] = useState<boolean>(false);
 
     return (
         <Fragment>
             {/* Modal de aviso de login */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen}>
-                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho={CONSTS_MODAL.PEQUENO} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAvisoLogin
                         handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
                         titulo={null}
@@ -122,7 +123,7 @@ export default function SessaoEntrar() {
 
             {/* Modal de recuperação de senha */}
             <ModalWrapper isOpen={isModalEsqueciSenhaOpen}>
-                <ModalLayout handleModal={() => setIsModalEsqueciSenhaOpen(!isModalEsqueciSenhaOpen)} isExibirApenasLogo={true} titulo='Recuperar senha' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalEsqueciSenhaOpen(!isModalEsqueciSenhaOpen)} isExibirApenasLogo={true} titulo='Recuperar senha' tamanho={CONSTS_MODAL.PEQUENO} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalRecuperarSenha handleModal={() => setIsModalEsqueciSenhaOpen(!isModalEsqueciSenhaOpen)} />
                 </ModalLayout>
             </ModalWrapper>

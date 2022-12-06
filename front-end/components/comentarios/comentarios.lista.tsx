@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { Fragment, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
 import CONSTS_UPLOAD from '../../utils/consts/data/constUpload';
+import CONSTS_MODAL from '../../utils/consts/outros/modal.tamanho';
 import { Auth } from '../../utils/context/usuarioContext';
 import ajustarUrl from '../../utils/outros/ajustarUrl';
 import formatarData from '../../utils/outros/formatarData';
@@ -26,7 +27,7 @@ export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOp
 
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
-    const [isModalResponderComentarioOpen, setIsModalResponderComentarioOpen] = useState(false);
+    const [isModalResponderComentarioOpen, setIsModalResponderComentarioOpen] = useState<boolean>(false);
     const [comentarioClicadoParaResponder, setComentarioClicadoParaResponder] = useState<any>();
     function handleResponderComentario(item: any) {
         setComentarioClicadoParaResponder(item);
@@ -37,7 +38,7 @@ export default function ComentariosLista({ itemId, usuarioIdDonoItem, isExibirOp
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalResponderComentarioOpen}>
-                <ModalLayout handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)} isExibirApenasLogo={true} titulo={null} tamanho={CONSTS_MODAL.NULL} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalResponderComentario
                         handleModal={() => setIsModalResponderComentarioOpen(!isModalResponderComentarioOpen)}
                         dados={comentarioClicadoParaResponder}

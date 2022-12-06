@@ -8,7 +8,7 @@ export default function NavbarFiltro() {
 
     // Pegar os dados a cada X ms do elemento #Typewriter__wrapper;
     const tw = document.getElementsByClassName('Typewriter__wrapper');
-    const [efeitoTypewriter__wrapper, setEfeitoTypewriter__wrapper] = useState('');
+    const [efeitoTypewriter__wrapper, setEfeitoTypewriter__wrapper] = useState<string>('');
     useEffect(() => {
         const interval = setInterval(() => {
             // @ts-ignore;
@@ -19,7 +19,7 @@ export default function NavbarFiltro() {
         return () => clearInterval(interval);
     }, [tw]);
 
-    const [isDivPesquisaFullWidth, setIsDivPesquisaFullWidth] = useState('');
+    const [isDivPesquisaFullWidth, setIsDivPesquisaFullWidth] = useState<string>('');
     function handleEnter() {
         // console.log('handleEnter');
         setIsDivPesquisaFullWidth(Styles.divPesquisaFullWidth);
@@ -49,7 +49,7 @@ export default function NavbarFiltro() {
         }
     }
 
-    const [txtFiltro, setTxtFiltro] = useState('');
+    const [txtFiltro, setTxtFiltro] = useState<string>('');
     function handleBuscar() {
         console.log('handleBuscar():', txtFiltro);
     }

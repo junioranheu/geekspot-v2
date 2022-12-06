@@ -17,8 +17,8 @@ export default function Entrar() {
     const usuarioContext = useContext(UsuarioContext);// Contexto do usuário;
     const [isAuth, setIsAuth] = [usuarioContext?.isAuthContext[0], usuarioContext?.isAuthContext[1]];
 
-    const [isPrimeiroLoading, setIsPrimeiroLoading] = useState(true);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isPrimeiroLoading, setIsPrimeiroLoading] = useState<boolean>(true);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         // Criar variável para que o Router.push abaixo não bugue;
         // Se for o primeiro loading, permita o push acontecer, já que o usuário estaria entrando na tela por querer, mesmo estando logado;

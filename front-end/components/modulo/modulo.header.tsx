@@ -16,7 +16,7 @@ interface iParametros {
 
 export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, titulo, descricao, textoTagTitle }: iParametros) {
 
-    const [fraseAleatoria, setFraseAleatoria] = useState('');
+    const [fraseAleatoria, setFraseAleatoria] = useState<string>('');
     useEffect(() => {
         setFraseAleatoria(gerarFraseAleatoria());
     }, [i]);

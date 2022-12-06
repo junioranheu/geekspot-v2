@@ -25,9 +25,9 @@ export default function ModalResponderComentario({ handleModal, dados, itemId, g
 
     const refTextarea = useRef<any>(null);
     const refBtn = useRef<any>(null);
-    const [texto, setTexto] = useState('');
+    const [texto, setTexto] = useState<string>('');
 
-    const [aviso, setAviso] = useState('');
+    const [aviso, setAviso] = useState<string>('');
     useEffect(() => {
         function gerarAvisoAleatoria() {
             const frases = [

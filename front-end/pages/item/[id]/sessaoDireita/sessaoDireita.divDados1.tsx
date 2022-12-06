@@ -19,13 +19,13 @@ interface iParametros {
 
 export default function DivDados1({ item }: iParametros) {
 
-    const [dataAlvo, setDataAlvo] = useState('');
+    const [dataAlvo, setDataAlvo] = useState<string>('');
     useEffect(() => {
         const data = horarioBrasilia().add(gerarNumeroAleatorio(1, 24), 'hours').format();
         setDataAlvo(data);
     }, []);
 
-    const [textoParcelas, setTextoParcelas] = useState('');
+    const [textoParcelas, setTextoParcelas] = useState<string>('');
     useEffect(() => {
         const numeroAleatorio = gerarNumeroAleatorio(2, 5);
         const parcela = arredondarNumero((item?.preco / numeroAleatorio), 2);

@@ -15,7 +15,7 @@ interface iParametros {
 }
 
 export default function ModalLayout({ handleModal, isExibirApenasLogo, titulo, children, tamanho, isCentralizado, isFecharModalClicandoNoFundo }: iParametros) {
-    const [animarDiv, setAnimarDiv] = useState('');
+    const [animarDiv, setAnimarDiv] = useState<string>('');
 
     return (
         <div className={`${Styles.fundo} semHighlight`} onMouseDown={(e) => FecharModal.fecharModalClicandoNoFundo(isFecharModalClicandoNoFundo, handleModal, e, setAnimarDiv)}>

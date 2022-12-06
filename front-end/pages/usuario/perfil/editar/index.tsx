@@ -22,11 +22,11 @@ export default function Index() {
     const isVerificado = Auth?.get()?.isVerificado ?? false;
     useBackgroundBege();
 
-    const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState('');
-    const [arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha] = useState('');
+    const [arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil] = useState<string>('');
+    const [arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha] = useState<string>('');
 
     const [usuario, setUsuario] = useState<iUsuario>();
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         async function getUsuario(usuarioId: number) {
             const url = `${CONSTS_USUARIOS.API_URL_GET_BY_ID}/${usuarioId}`;
@@ -38,7 +38,7 @@ export default function Index() {
 
         if (usuarioId) {
             nProgress.start();
-            getUsuario(usuarioId.toString());
+            getUsuario(usuarioId);
             nProgress.done();
         } else {
             Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.SEM_ACESSO } });

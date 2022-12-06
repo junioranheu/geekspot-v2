@@ -20,7 +20,7 @@ export default function AjudaInputPesquisaTopico({ topicoBuscado }: iParametros)
         }
     }
 
-    const [txtFiltro, setTxtFiltro] = useState(topicoBuscado ?? '');
+    const [txtFiltro, setTxtFiltro] = useState<string>(topicoBuscado ?? '');
     function handleBuscar() {
         if (!txtFiltro) {
             Aviso.warn('Parece que você não escreveu nada no <b>campo de busca</b>', 5000);

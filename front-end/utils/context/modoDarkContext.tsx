@@ -5,11 +5,12 @@ interface iContext {
     testeContext: [teste: boolean, setTeste: any];
 }
 
+const _item = '_modoDark';
 export const ModoDarkContext = createContext<iContext | null>(null);
 
 export const ModoDarkProvider = (props: any) => {
-    const [isModoDark, setIsModoDark] = useState(localStorage.getItem('modoDark') !== null ? StorageModoDark.get().isModoDark : null);
-    const [teste, setTeste] = useState(true);
+    const [isModoDark, setIsModoDark] = useState(localStorage.getItem(_item) !== null ? StorageModoDark.get().isModoDark : null);
+    const [teste, setTeste] = useState<boolean>(true);
 
     return (
         <ModoDarkContext.Provider value={{
@@ -28,11 +29,11 @@ export const StorageModoDark = {
         };
 
         let parsedData = JSON.stringify(dados);
-        localStorage.setItem('modoDark', parsedData);
+        localStorage.setItem(_item, parsedData);
     },
 
     get() {
-        let data = localStorage.getItem('modoDark');
+        let data = localStorage.getItem(_item);
 
         if (!data) {
             return null;
@@ -43,7 +44,7 @@ export const StorageModoDark = {
     },
 
     delete() {
-        localStorage.removeItem('modoDark');
+        localStorage.removeItem(_item);
     },
 
     update(data: any) {
@@ -52,6 +53,6 @@ export const StorageModoDark = {
         };
 
         let parsedData = JSON.stringify(dados);
-        localStorage.setItem('modoDark', parsedData);
+        localStorage.setItem(_item, parsedData);
     }
 }

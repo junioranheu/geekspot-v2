@@ -18,7 +18,7 @@ export default function VerificarConta() {
     const router = useRouter();
     const { codigoVerificacao } = router.query;
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         async function handleVerificarConta(codigoVerificacao: string) {
             const url = `${CONSTS_USUARIOS.API_URL_PUT_VERIFICAR_CONTA}/${codigoVerificacao}`;

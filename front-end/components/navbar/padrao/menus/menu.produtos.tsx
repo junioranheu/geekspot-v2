@@ -16,7 +16,7 @@ export default function MenuProdutos({ efeitoBottomCSS }: iParametros) {
     // Get todos os tipos de itens;
     const itensTipos = useItensTipos(false);
 
-    const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState(false);
+    const [isExibirMenuProdutos, setIsExibirMenuProdutos] = useState<boolean>(false);
     const debounceFecharMenuProdutos = debounce(() => setIsExibirMenuProdutos(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     function abrirMenuProdutos() {

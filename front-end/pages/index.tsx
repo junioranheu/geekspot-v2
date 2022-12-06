@@ -30,7 +30,7 @@ export default function Home() {
     const [isModoDark, setIsModoDark] = [modoDarkContext?.isModoDarkContext[0], modoDarkContext?.isModoDarkContext[1]];
 
     const [listaItensRandom, setListaItensRandom] = useState<iItem[]>();
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         async function getItens() {
             nProgress.start();

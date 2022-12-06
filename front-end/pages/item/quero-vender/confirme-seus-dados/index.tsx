@@ -16,7 +16,7 @@ export default function Index() {
     document.title = `Confirme seus dados — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 200, 500, setIsLoaded);
 

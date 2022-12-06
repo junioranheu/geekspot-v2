@@ -7,7 +7,7 @@ import Styles from './index.module.scss';
 
 export default function DivAvisoProtecao() {
 
-    const [aviso, setAviso] = useState('');
+    const [aviso, setAviso] = useState<string>('');
     useEffect(() => {
         function gerarAvisoAleatoria() {
             const frases = [

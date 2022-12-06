@@ -22,7 +22,7 @@ export default function Topico({ listaAjudasItens }: iParametros) {
 
     document.title = `${(listaAjudasItens[0]?.ajudasTopicos?.topico ? removerHTML(listaAjudasItens[0]?.ajudasTopicos?.topico) : 'Ajuda')} — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, [listaAjudasItens]);

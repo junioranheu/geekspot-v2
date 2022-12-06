@@ -19,7 +19,7 @@ interface iParametros {
 
 export default function SessaoDireita({ usuario, arquivoUploadFotoPerfil, setArquivoUploadFotoPerfil, arquivoUploadCapaLojinha, setArquivoUploadCapaLojinha }: iParametros) {
 
-    const [isHouveAlteracao, setIsHouveAlteracao] = useState(false);
+    const [isHouveAlteracao, setIsHouveAlteracao] = useState<boolean>(false);
     useAvisoAlteracoesNaoSalvas(isHouveAlteracao, '');
 
     return (

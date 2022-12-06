@@ -7,9 +7,9 @@ export default function GameOut() {
     
     document.title = 'GameOut, o GeekSpot em 2017';
 
-    const [isMostrarBotao, setIsMostrarBotao] = useState(false);
+    const [isMostrarBotao, setIsMostrarBotao] = useState<boolean>(false);
     const nomeSistema = '<span class="cor-principal">GeekSpot</span>';
-    const [isMostrarPrint, setIsMostrarPrint] = useState(false);
+    const [isMostrarPrint, setIsMostrarPrint] = useState<boolean>(false);
 
     return (
         <Fragment>

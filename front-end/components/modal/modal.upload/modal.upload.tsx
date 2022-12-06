@@ -20,11 +20,11 @@ interface iParametros {
 
 export default function ModalUpload({ isBase64, handleModal, setArquivoUpload, limitarAspectRatio }: iParametros) {
 
-    const [nomeElementoInput] = useState('inputUpload_modalUpload');
-    const [arquivo, setArquivo] = useState(null);
-    const [arquivoBlob, setArquivoBlob] = useState('');
-    const [arquivoCrop, setArquivoCrop] = useState('');
-    const [isDisabled, setIsDisabled] = useState(false);
+    const [nomeElementoInput] = useState<string>('inputUpload_modalUpload');
+    const [arquivo, setArquivo] = useState<any>(null);
+    const [arquivoBlob, setArquivoBlob] = useState<string>('');
+    const [arquivoCrop, setArquivoCrop] = useState<string>('');
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
     useEffect(() => {
         if (arquivo) {
             const arquivoBlob = URL.createObjectURL(arquivo);

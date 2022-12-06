@@ -9,6 +9,7 @@ import Input from '../../../../../components/outros/input';
 import TopHatSecundario from '../../../../../components/outros/topHat.secundario';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
+import CONSTS_MODAL from '../../../../../utils/consts/outros/modal.tamanho';
 import CONSTS_SISTEMA from '../../../../../utils/consts/outros/sistema';
 import { Aviso } from '../../../../../utils/outros/aviso';
 import validarCompletoEmail from '../../../../../utils/outros/validacoes/validar.completo.email';
@@ -41,7 +42,7 @@ interface iFormDadosPessoais {
 export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHouveAlteracao }: iParametros) {
 
     const refBtn = useRef<any>(null);
-    const [isModalAlterarSenha, setIsModalAlterarSenha] = useState(false);
+    const [isModalAlterarSenha, setIsModalAlterarSenha] = useState<boolean>(false);
     const minCaracteresNomeCompleto = 3;
 
     const [formDataDadosPessoais, setFormDataDadosPessoais] = useState<iFormDadosPessoais>({
@@ -98,7 +99,7 @@ export default function SessaoDadosPessoais({ usuario, isHouveAlteracao, setIsHo
         <Fragment>
             {/* Modal alterar senha */}
             <ModalWrapper isOpen={isModalAlterarSenha}>
-                <ModalLayout handleModal={() => setIsModalAlterarSenha(!isModalAlterarSenha)} isExibirApenasLogo={true} titulo='Alterar senha' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalAlterarSenha(!isModalAlterarSenha)} isExibirApenasLogo={true} titulo='Alterar senha' tamanho={CONSTS_MODAL.PEQUENO} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAlterarSenha handleModal={() => setIsModalAlterarSenha(!isModalAlterarSenha)} />
                 </ModalLayout>
             </ModalWrapper>

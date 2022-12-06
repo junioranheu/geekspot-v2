@@ -17,9 +17,9 @@ export default function BuscaAjuda() {
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const router = useRouter();
 
-    const [queryBuscada, setQueryBuscada] = useState('');
+    const [queryBuscada, setQueryBuscada] = useState<string>('');
     const [listaAjudasItens, setListaAjudasItens] = useState<iAjudaItem[]>();
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         async function handleBuscar(query: string) {
             if (!query) {

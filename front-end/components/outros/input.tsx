@@ -26,8 +26,8 @@ interface iParametros {
 
 export default function Input({ titulo, placeholder, name, tipo, isDisabled, minCaracteres, dataTip, value, mascara, referencia, isExibirIconeDireita, isExisteValidacaoExtra, handleValidacaoExtra, handleChange, handleKeyPress, handleBlur }: iParametros) {
 
-    const [isExibirIconeErro, setIsExibirIconeErro] = useState(true);
-    const [controleInterno, setControleInterno] = useState(value);
+    const [isExibirIconeErro, setIsExibirIconeErro] = useState<boolean>(true);
+    const [controleInterno, setControleInterno] = useState<string | null>(value);
     useEffect(() => {
         function verificarExibirIconeErro() {
             if (!controleInterno) {

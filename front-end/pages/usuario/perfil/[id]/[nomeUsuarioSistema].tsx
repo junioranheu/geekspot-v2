@@ -15,7 +15,7 @@ export default function Perfil({ usuario }: iParametros) {
 
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         document.title = usuario?.nomeUsuarioSistema ? `Perfil de @${usuario.nomeUsuarioSistema} — ${CONSTS_SISTEMA.NOME_SISTEMA}` : CONSTS_SISTEMA.NOME_SISTEMA;
         paginaCarregada(true, 200, 500, setIsLoaded);

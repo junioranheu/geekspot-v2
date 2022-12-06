@@ -18,7 +18,7 @@ import { Aviso } from '../utils/outros/aviso';
 export default function App({ Component, pageProps }: any) {
 
     const { asPath } = useRouter();
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState<string>('');
     useEffect(() => {
         // Setar url no Hook, para usar em verificarLayout();
         setUrl(asPath);

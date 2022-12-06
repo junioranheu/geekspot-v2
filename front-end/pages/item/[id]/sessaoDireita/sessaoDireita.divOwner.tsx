@@ -10,6 +10,7 @@ import ImgCinza from '../../../../static/image/outros/cinza.webp';
 import { Fetch } from '../../../../utils/api/fetch';
 import CONSTS_UPLOAD from '../../../../utils/consts/data/constUpload';
 import CONSTS_USUARIOS_SEGUIR from '../../../../utils/consts/data/constUsuariosSeguir';
+import CONSTS_MODAL from '../../../../utils/consts/outros/modal.tamanho';
 import CONSTS_SISTEMA from '../../../../utils/consts/outros/sistema';
 import { Auth, UsuarioContext } from '../../../../utils/context/usuarioContext';
 import ajustarUrl from '../../../../utils/outros/ajustarUrl';
@@ -31,9 +32,9 @@ export default function DivOwner({ item }: iParametros) {
     const usuarioLogadoId = Auth?.get()?.usuarioId ?? 0;
 
     const urlPerfilDonoItem = (item?.usuarios?.nomeUsuarioSistema ? `/usuario/perfil/${item?.usuarioId}/@${ajustarUrl(item?.usuarios?.nomeUsuarioSistema?.toString())}` : '/');
-    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
+    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState<boolean>(false);
 
-    const [isJaSigo, setIsJaSigo] = useState(false);
+    const [isJaSigo, setIsJaSigo] = useState<boolean>(false);
     async function getIsJaSegue(usuarioId: number) {
         const url = `${CONSTS_USUARIOS_SEGUIR.API_URL_GET_IS_JA_SIGO_ESSE_USUARIO}/${usuarioId}`;
         const isJaSigo = await Fetch.getApi(url);
@@ -97,7 +98,7 @@ export default function DivOwner({ item }: iParametros) {
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen}>
-                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho={CONSTS_MODAL.PEQUENO} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAvisoLogin
                         handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
                         titulo={null}

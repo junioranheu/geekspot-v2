@@ -18,7 +18,7 @@ export default function Index({ listaTopicos }: iParametros) {
 
     document.title = `Ajuda — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 300, 600, setIsLoaded);
     }, []);

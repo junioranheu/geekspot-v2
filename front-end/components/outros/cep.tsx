@@ -19,10 +19,10 @@ export default function Cep({ precoProduto }: iParametros) {
 
     const refInputCep = useRef<any>(null);
     const refSalvar = useRef<any>(null);
-    const [isMostrarInputCep, setIsMostrarInputCep] = useState(false);
-    const [data, setData] = useState('');
+    const [isMostrarInputCep, setIsMostrarInputCep] = useState<boolean>(false);
+    const [data, setData] = useState<string>('');
     const { cep, loading, error } = useViaCep(data);
-    const [isCepOk, setIsCepOk] = useState(false);
+    const [isCepOk, setIsCepOk] = useState<boolean>(false);
 
     const cepAuth = Auth?.get()?.cep ?? '';
     useEffect(() => {

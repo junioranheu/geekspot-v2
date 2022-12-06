@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -25,8 +25,8 @@ export default function SessaoEsquerda({ usuario, arquivoUploadFotoPerfil, arqui
     const idUsuario = Auth?.get()?.usuarioId ?? 0;
     const nomeUsuario = Auth?.get()?.nomeUsuarioSistema ?? '';
 
-    const [fotoPerfil, setFotoPerfil] = useState(ImgCinza.src);
-    const [capaLojinha, setCapaLojinha] = useState(ImgCinza.src);
+    const [fotoPerfil, setFotoPerfil] = useState<StaticImageData | string>(ImgCinza.src);
+    const [capaLojinha, setCapaLojinha] = useState<StaticImageData | string>(ImgCinza.src);
     useEffect(() => {
         // #1 - Verificar se a foto de perfil vem do upload, do banco ou de nenhuma das opções;
         if (arquivoUploadFotoPerfil) {

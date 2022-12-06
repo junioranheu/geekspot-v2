@@ -30,7 +30,7 @@ export default function RecuperarSenha() {
     const refSenhaConfirmacao = useRef<any>(null);
     const refBtn = useRef<any>(null);
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 200, 500, setIsLoaded);
     }, []);

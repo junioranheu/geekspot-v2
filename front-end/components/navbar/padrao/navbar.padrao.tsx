@@ -27,7 +27,7 @@ export default function NavbarPadrao() {
         nProgress.done();
     }, [asPath]);
 
-    const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState(false);
+    const [isExibirMenuUsuario, setIsExibirMenuUsuario] = useState<boolean>(false);
     const debounceFecharMenuUsuario = debounce(() => setIsExibirMenuUsuario(false), 500); // Delay React onMouseOver event: https://stackoverflow.com/a/68349975
 
     function simularLoading() {

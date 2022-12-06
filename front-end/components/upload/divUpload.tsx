@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Dispatch, Fragment, useEffect, useState } from 'react';
 import ImgCinza from '../../static/image/outros/cinza.webp';
+import CONSTS_MODAL from '../../utils/consts/outros/modal.tamanho';
 import converterSrcImagemParaBase64 from '../../utils/outros/converterSrcImagemParaBase64';
 import ModalUpload from '../modal/modal.upload/modal.upload';
 import ModalLayout from '../modal/_modal.layout';
@@ -23,7 +24,7 @@ interface iParametros {
 
 export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, infoAleatoriaDois, textoBotaoDireita, limitarAspectRatio, arquivoUpload, setArquivoUpload }: iParametros) {
 
-    const [isModalUploadFotoPerfilOpen, setIsModalUploadFotoPerfilOpen] = useState(false);
+    const [isModalUploadFotoPerfilOpen, setIsModalUploadFotoPerfilOpen] = useState<boolean>(false);
 
     useEffect(() => {
         if (imagem) {
@@ -45,7 +46,7 @@ export default function DivUpload({ imagem, apiPasta, titulo, infoAleatoriaUm, i
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalUploadFotoPerfilOpen}>
-                <ModalLayout handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} isExibirApenasLogo={true} titulo={null} tamanho='' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)} isExibirApenasLogo={true} titulo={null} tamanho={CONSTS_MODAL.NULL} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalUpload
                         isBase64={true}
                         handleModal={() => setIsModalUploadFotoPerfilOpen(!isModalUploadFotoPerfilOpen)}

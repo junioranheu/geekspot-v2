@@ -12,8 +12,8 @@ export default function Erro() {
     document.title = `404 — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const router = useRouter();
 
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [msg, setMsg] = useState('');
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const [msg, setMsg] = useState<string>('');
     useEffect(() => {
         function verificarMsg(msgErro: string) {
             // console.log(msgErro);

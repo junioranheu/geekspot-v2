@@ -22,7 +22,7 @@ export default function ModalDesativarConta({ handleModal, setIsHouveAlteracao }
 
     const refSenha = useRef<any>(null);
     const refBtn = useRef<any>(null);
-    const [senha, setSenha] = useState('');
+    const [senha, setSenha] = useState<string>('');
 
     function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {

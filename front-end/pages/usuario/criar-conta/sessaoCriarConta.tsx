@@ -42,7 +42,7 @@ export default function SessaoCriarConta() {
     const refConfirmarSenha = useRef<any>(null);
     const refBtnCriar = useRef<any>(null);
 
-    const [isExibirDivEmail, setIsExibirDivEmail] = useState(false);
+    const [isExibirDivEmail, setIsExibirDivEmail] = useState<boolean>(false);
 
     const msgRequisitosSenha = `A sua senha deve conter ao menos:
     <br />1 número;

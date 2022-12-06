@@ -9,6 +9,7 @@ import AvisoSvg from '../../../../../components/svg/aviso';
 import Seguranca from '../../../../../components/svg/seguranca';
 import { Fetch } from '../../../../../utils/api/fetch';
 import CONSTS_USUARIOS from '../../../../../utils/consts/data/constUsuarios';
+import CONSTS_MODAL from '../../../../../utils/consts/outros/modal.tamanho';
 import { Aviso } from '../../../../../utils/outros/aviso';
 import iUsuario from '../../../../../utils/types/usuario';
 import Styles from './index.module.scss';
@@ -21,7 +22,7 @@ interface iParametros {
 
 export default function SessaoMinhaConta({ usuario, setIsHouveAlteracao }: iParametros) {
 
-    const [isModalDesativarConta, setIsModalDesativarConta] = useState(false);
+    const [isModalDesativarConta, setIsModalDesativarConta] = useState<boolean>(false);
     const refBtnVerificarConta = useRef<any>(null);
 
     async function handleVerificarConta() {
@@ -44,7 +45,7 @@ export default function SessaoMinhaConta({ usuario, setIsHouveAlteracao }: iPara
         <Fragment>
             {/* Modal desativar conta */}
             <ModalWrapper isOpen={isModalDesativarConta}>
-                <ModalLayout handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} isExibirApenasLogo={true} titulo='Desativar conta' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)} isExibirApenasLogo={true} titulo='Desativar conta' tamanho={CONSTS_MODAL.PEQUENO} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalDesativarConta
                         handleModal={() => setIsModalDesativarConta(!isModalDesativarConta)}
                         setIsHouveAlteracao={setIsHouveAlteracao}

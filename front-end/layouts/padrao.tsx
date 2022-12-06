@@ -9,7 +9,8 @@ import verificarTokenValido from '../utils/api/verificarTokenValido';
 import { UsuarioContext } from '../utils/context/usuarioContext';
 
 export default function Padrao({ Component, pageProps }: any) {
-    const router = useRouter();
+
+    const { asPath } = useRouter();
     const tamanhoTela = useWindowSize();
 
     const usuarioContext = useContext(UsuarioContext); // Contexto do usuário;
@@ -21,14 +22,14 @@ export default function Padrao({ Component, pageProps }: any) {
     }, [isAuth]);
 
     // Renovar animação a cada mudança de URL (router.asPath);
-    const [efeitoAnimar, setEfeitoAnimar] = useState('');
+    const [efeitoAnimar, setEfeitoAnimar] = useState<string>('');
     useEffect(() => {
         setEfeitoAnimar('animate__animated animate__fadeIn animate__delay03');
 
         setTimeout(function () {
             setEfeitoAnimar('');
         }, 1000);
-    }, [router.asPath]);
+    }, [asPath]);
 
     return (
         <section className='main semHighlight'>

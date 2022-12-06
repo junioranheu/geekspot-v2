@@ -12,7 +12,7 @@ export default function ErroSessaoExpirada() {
     document.title = `404 — ${CONSTS_SISTEMA.NOME_SISTEMA}`;
     const router = useRouter();
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     useEffect(() => {
         paginaCarregada(true, 200, 500, setIsLoaded);
     }, [router]);

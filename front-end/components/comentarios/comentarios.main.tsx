@@ -3,6 +3,7 @@ import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Fetch } from '../../utils/api/fetch';
 import CONSTS_COMENTARIOS from '../../utils/consts/data/constComentarios';
 import COMENTARIOS from '../../utils/consts/outros/comentarios';
+import CONSTS_MODAL from '../../utils/consts/outros/modal.tamanho';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import { Aviso } from '../../utils/outros/aviso';
 import horarioBrasilia from '../../utils/outros/horarioBrasilia';
@@ -26,10 +27,10 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
 
     const usuarioId = Auth?.get()?.usuarioId ?? 0;
 
-    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState(false);
+    const [isModalAvisoLoginOpen, setIsModalAvisoLoginOpen] = useState<boolean>(false);
     const refTextarea = useRef<any>(null);
     const refBtn = useRef<any>(null);
-    const [texto, setTexto] = useState('');
+    const [texto, setTexto] = useState<string>('');
 
     const [comentarios, setComentarios] = useState<iListaComentarios[]>();
     async function getComentarios(itemId: number) {
@@ -101,7 +102,7 @@ export default function ComentariosMain({ itemId, usuarioIdDonoItem }: iParametr
         <Fragment>
             {/* Modal */}
             <ModalWrapper isOpen={isModalAvisoLoginOpen}>
-                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho='pequeno' isCentralizado={true} isFecharModalClicandoNoFundo={false}>
+                <ModalLayout handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)} isExibirApenasLogo={true} titulo='Entre agora mesmo' tamanho={CONSTS_MODAL.PEQUENO} isCentralizado={true} isFecharModalClicandoNoFundo={false}>
                     <ModalAvisoLogin
                         handleModal={() => setIsModalAvisoLoginOpen(!isModalAvisoLoginOpen)}
                         titulo={null}
