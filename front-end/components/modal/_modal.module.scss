@@ -39,7 +39,7 @@
             align-items: center;
 
             .cabecalhoTitulo {
-                // color: pink;
+                // background-color: pink;
                 color: var(--preto);
                 font-size: 1.3em;
                 font-weight: 600;
@@ -49,6 +49,10 @@
                 width: 80%;
                 display: inline-block;
                 text-align: center;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .botaoFechar {
