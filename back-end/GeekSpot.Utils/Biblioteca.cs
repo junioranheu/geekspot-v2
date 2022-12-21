@@ -1,10 +1,10 @@
 ﻿using GeekSpot.Utils.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
+using System.Net;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,12 +16,14 @@ namespace GeekSpot.Utils
     public static class Biblioteca
     {
         // Pegar informações do appsettings: https://stackoverflow.com/a/58432834 (Necessário instalar o pacote "Microsoft.Extensions.Configuration.Json");
-        static readonly string emailApiKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["EmailApiKey"];
-        static readonly string emailPadrao = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["EmailPadrao"];
-        static readonly string emailNomeRemetente = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("SendGridSettings")["NomeRemetente"];
-        static readonly string urlFrontDev = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontDev"];
-        static readonly string urlFrontProd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontProd"];
-        static readonly string encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("PasswordEncryptionSettings")["EncryptionKey"];
+        static readonly string _emailDominio = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EmailSettings")["Domain"] ?? "";
+        static readonly string _emailPorta = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EmailSettings")["Port"] ?? "";
+        static readonly string _emailEmail = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EmailSettings")["Email"] ?? "";
+        static readonly string _emailChave = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EmailSettings")["Key"] ?? "";
+        static readonly string _emailRemetente = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("EmailSettings")["Name"] ?? "";
+        static readonly string _urlFrontDev = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontDev"] ?? "";
+        static readonly string _urlFrontProd = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("URLSettings")["FrontProd"] ?? "";
+        static readonly string _encriptionKey = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("PasswordEncryptionSettings")["EncryptionKey"] ?? "";
 
         // Converter para o horário de Brasilia: https://blog.yowko.com/timezoneinfo-time-zone-id-not-found/;
         public static DateTime HorarioBrasilia()
@@ -34,9 +36,7 @@ namespace GeekSpot.Utils
         public static string LoremIpsum(int minWords, int maxWords, int minSentences, int maxSentences, int numParagraphs, bool isAdicionarTagP)
         {
 
-            var words = new[]{"lorem", "ipsum", "dolor", "sit", "amet", "consectetuer",
-        "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod",
-        "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat"};
+            var words = new[] { "lorem", "ipsum", "dolor", "sit", "amet", "consectetuer", "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod", "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat" };
 
             var rand = new Random();
             int numSentences = rand.Next(maxSentences - minSentences) + minSentences + 1;
@@ -77,7 +77,7 @@ namespace GeekSpot.Utils
 
             using (Aes encryptor = Aes.Create())
             {
-                Rfc2898DeriveBytes pdb = new(password: encriptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                Rfc2898DeriveBytes pdb = new(password: _encriptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
                 encryptor.Key = pdb.GetBytes(32);
                 encryptor.IV = pdb.GetBytes(16);
 
@@ -101,7 +101,7 @@ namespace GeekSpot.Utils
 
             using (Aes encryptor = Aes.Create())
             {
-                Rfc2898DeriveBytes pdb = new(password: encriptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                Rfc2898DeriveBytes pdb = new(password: _encriptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
                 encryptor.Key = pdb.GetBytes(32);
                 encryptor.IV = pdb.GetBytes(16);
 
@@ -247,6 +247,19 @@ namespace GeekSpot.Utils
             return stringAleatoria;
         }
 
+        // Pegar o tipo da extensão de um arquivo;
+        public static string GetMimeType(string caminhoArquivo)
+        {
+            string mimeType = "application/unknown";
+            string ext = System.IO.Path.GetExtension(caminhoArquivo).ToLower();
+            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+                mimeType = regKey.GetValue("Content Type").ToString();
+
+            return mimeType;
+        }
+
         // Gerar um código hash para o usuário com base no usuarioId + string aleatória;
         public static string GerarHashUsuario(int usuarioId)
         {
@@ -254,6 +267,36 @@ namespace GeekSpot.Utils
             string hash = Criptografar(palavraAleatoria).Replace("/", "");
 
             return hash;
+        }
+
+        // Converter IFormFile para bytes[]: https://stackoverflow.com/questions/36432028/how-to-convert-a-file-into-byte-array-in-memory;
+        public static async Task<byte[]> IFormFileParaBytes(IFormFile formFile)
+        {
+            await using var memoryStream = new MemoryStream();
+            await formFile.CopyToAsync(memoryStream);
+
+            return memoryStream.ToArray();
+        }
+
+        // Converter Base64 para arquivo;
+        public static IFormFile Base64ToFile(string base64)
+        {
+            List<IFormFile> formFiles = new();
+            string split = ";base64,";
+            string normalizarBase64 = base64;
+
+            if (base64.Contains(split))
+            {
+                normalizarBase64 = base64.Substring(base64.IndexOf(split) + split.Length);
+            }
+
+            byte[] bytes = Convert.FromBase64String(normalizarBase64);
+            MemoryStream stream = new(bytes);
+
+            IFormFile file = new FormFile(stream, 0, bytes.Length, Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            formFiles.Add(file);
+
+            return formFiles[0];
         }
 
         // Verificar se a aplicação está sendo executada em localhost ou publicada;
@@ -270,11 +313,11 @@ namespace GeekSpot.Utils
         // Verificar se o front-end está sendo executado em localhost ou publicado;
         public static string CaminhoFront()
         {
-            string urlApi = urlFrontProd;
+            string urlApi = _urlFrontProd;
 
             if (IsDebug())
             {
-                urlApi = urlFrontDev;
+                urlApi = _urlFrontDev;
             }
 
             return urlApi;
@@ -288,10 +331,45 @@ namespace GeekSpot.Utils
                 return false;
             }
 
-            string conteudoEmailHtml = string.Empty;
-            string caminhoFinal = $"{Directory.GetCurrentDirectory()}/Emails/{nomeArquivo}";
+            string caminhoFinalArquivoHTML = $"{Directory.GetCurrentDirectory()}/Emails/{nomeArquivo}";
+            string conteudoEmailHTML = AjustarConteudoEmailHTML(caminhoFinalArquivoHTML, listaDadosReplace);
 
-            using (var reader = new StreamReader(caminhoFinal))
+            try
+            {
+
+                MailMessage mail = new()
+                {
+                    From = new MailAddress(_emailEmail, _emailRemetente)
+                };
+
+                mail.To.Add(new MailAddress(emailTo));
+                // mail.CC.Add(new MailAddress(emailTo));
+
+                mail.Subject = assunto;
+                mail.Body = conteudoEmailHTML;
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+
+                // mail.Attachments.Add(new Attachment(arquivo));
+
+                using SmtpClient smtp = new(_emailDominio, Convert.ToInt32(_emailPorta));
+                smtp.Credentials = new NetworkCredential(_emailEmail, _emailChave);
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(mail);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static string AjustarConteudoEmailHTML(string caminhoFinalArquivoHTML, List<EmailDadosReplace>? listaDadosReplace)
+        {
+            string conteudoEmailHtml = string.Empty;
+
+            using (var reader = new StreamReader(caminhoFinalArquivoHTML))
             {
                 // #1 - Ler arquivo;
                 string readFile = reader.ReadToEnd();
@@ -301,24 +379,20 @@ namespace GeekSpot.Utils
                 strContent = strContent.Replace("\r", string.Empty);
                 strContent = strContent.Replace("\n", string.Empty);
 
-                // #3 - Replaces utilizando o parâmetro "listaDadosReplace";
-                foreach (var item in listaDadosReplace)
+                // #3 - Replaces utilizando o parâmetro "listaDadosReplace";[
+                if (listaDadosReplace?.Count > 0)
                 {
-                    strContent = strContent.Replace($"[{item.Key}]", item.Value);
+                    foreach (var item in listaDadosReplace)
+                    {
+                        strContent = strContent.Replace($"[{item.Key}]", item.Value);
+                    }
                 }
 
                 // #4 - Gerar resultado final;
                 conteudoEmailHtml = strContent.ToString();
             }
 
-            // https://app.sendgrid.com/guide/integrate/langs/csharp
-            var client = new SendGridClient(emailApiKey);
-            var from = new EmailAddress(emailPadrao, emailNomeRemetente);
-            var to = new EmailAddress(emailTo);
-            var msg = MailHelper.CreateSingleEmail(from, to, assunto, string.Empty, conteudoEmailHtml);
-            var resposta = await client.SendEmailAsync(msg);
-
-            return resposta.IsSuccessStatusCode;
+            return conteudoEmailHtml;
         }
     }
 }
