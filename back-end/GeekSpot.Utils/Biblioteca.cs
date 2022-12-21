@@ -323,7 +323,7 @@ namespace GeekSpot.Utils
             return urlApi;
         }
 
-        // Método padrão para envio de e-mails: https://app.sendgrid.com/;
+        // SMTP Gmail: https://www.youtube.com/watch?v=FZfneLNyE4o&ab_channel=AWPLife 
         public static async Task<bool> EnviarEmail(string emailTo, string assunto, string nomeArquivo, List<EmailDadosReplace> listaDadosReplace)
         {
             if (String.IsNullOrEmpty(emailTo) || String.IsNullOrEmpty(assunto) || String.IsNullOrEmpty(nomeArquivo))
@@ -336,7 +336,6 @@ namespace GeekSpot.Utils
 
             try
             {
-
                 MailMessage mail = new()
                 {
                     From = new MailAddress(_emailEmail, _emailRemetente)
