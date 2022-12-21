@@ -57,7 +57,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     // Cors;
     builder.Services.AddCors(options =>
-        options.AddPolicy(name: builder.Configuration["CORSSettings:Cors"], builder =>
+        options.AddPolicy(name: builder.Configuration["CORSSettings:Cors"] ?? "", builder =>
         {
             builder.AllowAnyHeader()
                 .AllowAnyMethod()
@@ -114,7 +114,7 @@ var app = builder.Build();
     }
 
     // Cors;
-    app.UseCors(builder.Configuration["CORSSettings:Cors"]);
+    app.UseCors(builder.Configuration["CORSSettings:Cors"] ?? "");
 
     // Outros;
     app.UseAuthentication();
