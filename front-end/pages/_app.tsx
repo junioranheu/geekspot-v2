@@ -13,7 +13,6 @@ import '../styles/globals.scss';
 import CONSTS_SISTEMA from '../utils/consts/outros/sistema';
 import { ModoDarkProvider } from '../utils/context/modoDarkContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
-import { Aviso } from '../utils/outros/aviso';
 
 export default function App({ Component, pageProps }: any) {
 
@@ -44,10 +43,6 @@ export default function App({ Component, pageProps }: any) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         console.clear();
     }, [asPath]);
-
-    useEffect(() => {
-        Aviso.info(`No momento todos os processos de <b>envio de e-mail</b> estão desabilitados no ${CONSTS_SISTEMA.NOME_SISTEMA}`, 7500);
-    }, []);
 
     return url ?
         (
