@@ -96,6 +96,12 @@
         }
     }
 
+    .divHeader {
+        // background-color: coral;
+        text-align: center;
+        margin: auto;
+    }    
+
     .divGrupoImagens {
         // background-color: red;
         flex-direction: row;
@@ -110,6 +116,7 @@
 @media (max-width:600px) {
     .container {
         // background-color: red;
+        padding: 4rem;
 
         // Imagens grandes, apenas;
         .divImagemGrande {

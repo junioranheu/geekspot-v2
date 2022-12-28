@@ -67,7 +67,7 @@ export default function Home() {
                     { imagem: (isModoDark ? CarouselDoisBlack : CarouselDois), url: '/xxx' }
                 ]}
             />
-
+ 
             <div className='margem3'>
                 {
                     listaItensRandom ? (

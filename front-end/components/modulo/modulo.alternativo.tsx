@@ -27,7 +27,7 @@ export default function ModuloAlternativo({ i, usuarioId, usuarioNomeSistema, ti
                 descricao={descricao}
                 textoTagTitle='Ver tudo'
             />
-
+ 
             <ScrollContainer>
                 <div className={`${Styles.container} margem1`}>
                     {

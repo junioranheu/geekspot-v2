@@ -22,7 +22,7 @@ export default function ModuloHeader({ i, usuarioId, usuarioNomeSistema, titulo,
     }, [i]);
 
     return (
-        <div className='flexRow'>
+        <div className={`${Styles.divHeader} flexRow`}>
             <div className='flexColumn'>
                 <b className='titulo cor-principal-hover pointer' onClick={() => Router.push(`/usuario/perfil/${usuarioId}/@${ajustarUrl(usuarioNomeSistema)}`)}>
                     {titulo ?? `Itens do usuário @${usuarioNomeSistema}`}

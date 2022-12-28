@@ -62,7 +62,12 @@
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
 /* hi-res laptops and desktops */
-@media (max-width:1281px) {}
+@media (max-width:1281px) {
+    .container {
+        // background-color: pink !important;
+        max-width: 400px; // Bug fix;
+    }
+}
 
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {}
