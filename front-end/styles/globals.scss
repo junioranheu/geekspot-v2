@@ -686,6 +686,7 @@ body::-webkit-scrollbar {
     z-index: 999999 !important;
 }
 
+
 /* =-=-=-=-=-=-=-=-=-=-= FlipClockCountdown =-=-=-=-=-=-=-=-=-=-= */
 // Esconder o "dia" do FlipClockCountdown;
 ._qWTcH {
@@ -699,6 +700,72 @@ body::-webkit-scrollbar {
         &:nth-child(2) {
             display: none !important;
         }
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Swal =-=-=-=-=-=-=-=-=-=-= */
+.swal2-popup {
+    padding: 2.5rem 2rem !important;
+    border-radius: 0.85rem !important;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
+
+    .swal2-html-container {
+        // background-color: orange;
+        font-weight: 500 !important;
+        font-size: 1rem !important;
+        font-family: inherit !important;
+        text-align: left !important;
+
+        video {
+            // background-color: tomato !important;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 0.4rem !important;
+        }
+    }
+
+    button {
+        background-color: var(--cor-principal-escura) !important;
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        letter-spacing: 1px !important;
+        padding: 1rem 2rem !important;
+        color: var(--branco) !important;
+        min-width: 10rem !important;
+        border-radius: 0.4rem !important;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .swal2-cancel {
+        background-color: var(--branco) !important;
+        color: var(--preto) !important;
+        box-shadow: none !important;
+    }
+
+    .swal2-title {
+        font-size: 1.35rem !important;
+        color: var(--preto) !important;
+    }
+
+    .swal2-input {
+        // box-shadow: none !important;
+
+        &::-webkit-input-placeholder {
+            font-size: 1.05rem;
+        }
+    }
+
+    .swal2-image {
+        // background-color: orange !important;
+        border-radius: 0.3rem !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .swal2-loader {
+        border-bottom-color: var(--cor-principal-escura);
+        border-top-color: var(--cor-principal-escura);
     }
 }
 

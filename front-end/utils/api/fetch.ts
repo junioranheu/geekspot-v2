@@ -140,7 +140,7 @@ export const Fetch = {
             } as iContextDadosUsuario;
 
             Auth.update(dadosUsuario);
-            
+
             const msgRefreshTokenAtualizado = 'Refresh token atualizado';
             console.log(msgRefreshTokenAtualizado);
 
