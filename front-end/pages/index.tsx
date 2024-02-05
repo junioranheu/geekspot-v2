@@ -20,7 +20,6 @@ import { ModoDarkContext } from '../utils/context/modoDarkContext';
 import { Aviso } from '../utils/outros/aviso';
 import paginaCarregada from '../utils/outros/paginaCarregada';
 import randomizarArray from '../utils/outros/randomizarArray';
-import swalAvisoBancoDeDados from '../utils/outros/swal.avisoBancoDeDados';
 import iItem from '../utils/types/item';
 
 export default function Home() {
@@ -43,14 +42,14 @@ export default function Home() {
                 nProgress.done();
                 Aviso.error(`Houve um problema interno ao carregar os dados do ${CONSTS_SISTEMA.NOME_SISTEMA}`, 10000);
 
-                // RIP banco de dados;
-                if (true) {
-                    setTimeout(() => {
-                        swalAvisoBancoDeDados('/videos/sample.mp4');
-                    }, 1250);
+                // // RIP banco de dados;
+                // if (true) {
+                //     setTimeout(() => {
+                //         swalAvisoBancoDeDados('/videos/sample.mp4');
+                //     }, 1250);
 
-                    return false;
-                }
+                //     return false;
+                // }
 
                 Router.push({ pathname: CONSTS_TELAS.ERRO, query: { erro: CONSTS_ERROS.ERRO_INTERNO } });
                 return false;
