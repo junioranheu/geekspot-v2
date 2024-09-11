@@ -9,7 +9,7 @@ on:
 env:
   DOTNET_VERSION: '7.x'  # .NET SDK version to use
   BUILD_CONFIGURATION: 'Release'  # Build configuration
-  AZURE_WEBAPP_NAME: 'geekspot-v2'  # Your Azure Web App name
+  AZURE_WEBAPP_NAME: 'geekspotapi'  # Your Azure Web App name
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Azure publish profile secret
 
 jobs:
